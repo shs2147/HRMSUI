@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 // import ahom from "../Signin/ahom.mp4";
+import ahom from '../Signin/ahom.png'
 import classes from "./SignIn.module.css";
 import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
@@ -63,7 +64,9 @@ function SignIn(props) {
   // const jwtKey = 'admin';
 
   return (
+    
     <div>
+      {/* <img src={bg} alt="bg"></img> */}
       {/* <div> */}
       {/* <nav className="navbar navbar-expand-lg bg-light">
 <div className="container-fluid">
@@ -82,8 +85,9 @@ function SignIn(props) {
   </div>
 </div>
 </nav> */}
-      <div className="App">
+      <div className={classes.saurabh}>
         {/* </div> */}
+        
         <div className={classes.appForm}>
           {/* <div className={classes.pageSwitcher}>
             <NavLink
@@ -126,9 +130,17 @@ function SignIn(props) {
           }
 
           {/* {!loggedIn && <SignUpForm/>}          */}
-          
-           
-
+          <div>
+            <img src={ahom} alt="logo"/>
+            {/* <video
+              style={{ width: "100%", height: "90%",marginBottom:'0px' }}
+              autoPlay
+              loop
+              muted
+            >
+              <source src={ahom} type="video/mp4" />
+            </video> */}
+          </div>
         </div>
        
       </div>

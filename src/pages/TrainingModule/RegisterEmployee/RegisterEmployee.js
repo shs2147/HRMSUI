@@ -64,6 +64,15 @@ const fetchData=()=>{
 useEffect(()=>{
   fetchData();
 },[show])
+
+// const submitHandler=(e)=>{
+//   e.preventDefault();
+//   axios.put(`http://localhost:8080/edit/${value.id}`,{
+//     id:value.id,trainingName: data.trainingName, employee: data.employee,eventName:value.eventName}).then(res=>console.log(res))
+//   console.log(show)
+// }
+
+
 const deleteUser= (id)=>{
   fetch(`http://localhost:8080/employee/delete/${id}`,{
 method:'DELETE'

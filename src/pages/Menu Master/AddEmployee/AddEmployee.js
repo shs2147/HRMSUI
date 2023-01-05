@@ -17,7 +17,7 @@ const AddEmployee = () => {
     const submitHandler = (e) => {
         e.preventDefault();
         console.log(JSON.stringify(data))
-        fetch('http://localhost:8080/saveemployee', {
+        fetch('http://localhost:8080/basic/saveemployee', {
 
             method: "POST",
             headers: { "Content-Type": "application/json", "Accept": "application/json" },
@@ -179,7 +179,7 @@ const AddEmployee = () => {
                                             <div className="col-sm-3 ">
                                                 <label className="form-label" for="cars" id='label'>Employement type:</label>
 
-                                                <select value={data.employementType} className="form-select form-control" aria-label="Default select example" name='employementType' onChange={inputChangeHandler}>
+                                                <select value={data.employmentType} className="form-select form-control" aria-label="Default select example" name='employmentType' onChange={inputChangeHandler}>
                                                     <option selected disabled>Select Employement type</option>
                                                     <option value="abcd">abcd</option>
                                                     <option value="defg">defg</option>
@@ -221,9 +221,9 @@ const AddEmployee = () => {
                                                 </select>
                                             </div>
                                             <div className="col-sm-3 ">
-                                                <label className="form-label" for="cars" id='label'>Insurance avil:</label>
+                                                <label className="form-label" for="cars" id='label'>Insurance avail:</label>
 
-                                                <select value={data.insuranceAvil} className="form-select" aria-label="Default select example" name='insuranceAvil' onChange={inputChangeHandler}>
+                                                <select value={data.insuranceAvail} className="form-select" aria-label="Default select example" name='insuranceAvail' onChange={inputChangeHandler}>
                                                     <option selected disabled>Select insurance</option>
                                                     <option value="abcd">abcd</option>
                                                     <option value="defg">defg</option>
