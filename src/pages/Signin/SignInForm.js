@@ -69,9 +69,9 @@ class SignInForm extends Component {
 
           <div className={classes.formField}>
             <button onClick={this.handleSubmit} className={classes.formFieldButton}>Sign In</button>{" "}
-            <Link to="/" className={classes.formFieldLink}>
+            {/* <Link to="/" className={classes.formFieldLink}>
               Create an account
-            </Link>
+            </Link> */}
           </div>
 
           </form>        
