@@ -18,7 +18,7 @@ const TrainingMaster = () => {
  const submitHandler=(e)=>{
   console.log(JSON.stringify(data))
  
-  fetch("http://localhost:8080/employee",{
+  fetch("http://localhost:8080/employee/save",{
     method:"POST",
     headers:{"Content-Type":"application/json","Accept":"application/json"},
     body:JSON.stringify(data)

@@ -19,7 +19,7 @@ const FixingInterviewOnline = () => {
  }
  const submitHandler=(e)=>{
  console.log(JSON.stringify(data))
- fetch("http://localhost:8080/interview",{
+ fetch("http://localhost:8080/intreview/save",{
  method:"POST",
  headers:{"Content-Type":"application/json","Accept":"appliction/json"},
  body:JSON.stringify(data)

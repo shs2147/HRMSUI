@@ -1,4 +1,6 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect,useState, submitHandler } from "react";
+import axios from "axios";
+import {AiFillsave} from 'react-icons/ai';
 // import Swal from "sweetalert2";
 
 const RegisterEmployee = (event) => {
@@ -42,8 +44,10 @@ const RegisterEmployee = (event) => {
   
   const [show,setShow]= useState([]);
 
+ 
+
 const fetchData=()=>{
-  fetch("http://localhost:8080/get")
+  fetch("http://localhost:8080/employee/get")
   .then((response)=>{
     return response.json();
   })
@@ -59,10 +63,9 @@ const fetchData=()=>{
 
 useEffect(()=>{
   fetchData();
- 
 },[show])
 const deleteUser= (id)=>{
-  fetch(`http://localhost:8080/delete/${id}`,{
+  fetch(`http://localhost:8080/employee/delete/${id}`,{
 method:'DELETE'
   }).then((result)=>{
     result.json().then((response)=>{
