@@ -22,7 +22,7 @@ const OnlineApplication = () => {
  const submitHandler=(e)=>{
   e.preventDefault();
  console.log(JSON.stringify(data))
-  fetch("http://localhost:8080/application/image",{
+  fetch("http://localhost:8080/application/save",{
   method:"POST",
   
   headers:{"Content-Type":"application/json","Accept":"appliction/json"},

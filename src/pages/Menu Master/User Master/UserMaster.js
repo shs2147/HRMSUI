@@ -26,7 +26,7 @@ const AddUser = () => {
       body: JSON.stringify(data),
     })
       .then(() => {
-        console.log("Payroll are Added");
+        console.log("User are Added");
       })
       .catch((err) => console.log(err));
   };

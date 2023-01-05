@@ -50,6 +50,7 @@ return <>
   <input value={data.departmentId} type="number" class="form-control" id="formGroupExampleInput" name="departmentId" onChange={inputChangeHandler}/>
 </div> */}
 
+
 <div className="col-sm-6 mt-2">
        <label for="cars" id='label'>Department Name:</label>
      <br/>

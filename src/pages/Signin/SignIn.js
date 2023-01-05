@@ -127,15 +127,8 @@ function SignIn(props) {
 
           {/* {!loggedIn && <SignUpForm/>}          */}
           
-            {/* <video
-              style={{ width: "600px", height: "300px",marginRight:'300px' }}
-              autoPlay
-              loop
-              muted
-            >
-              <source src={ahom} type="video/mp4" />
-            </video> */}
-          
+           
+
         </div>
        
       </div>
