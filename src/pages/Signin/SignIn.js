@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-
+import ahom from "../Signin/ahom.mp4";
 import classes from "./SignIn.module.css";
 import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
@@ -82,28 +82,7 @@ function SignIn(props) {
   </div>
 </div>
 </nav> */}
-      <div className="App" style={{ display: "flex" }}>
-        <div className={classes.appAside}>
-          <div
-            style={{
-              color: "black",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              marginTop: " 133px",
-            }}
-          >
-            {/* <h1 style={{}}>Welcome<br/>&nbsp;&nbsp;&nbsp;&nbsp;To<br/> &nbsp;Ahom</h1> */}
-            <div>
-              <img
-                alt="img"
-                src="https://images.yourstory.com/cs/images/companies/Ahom-Logo-512-px-square-01-1651739151181.png?fm=auto&ar=1:1&mode=fill&fill=solid&fill-color=fff"
-              />
-            </div>
-          </div>
-        </div>
-
+      <div className="App">
         {/* </div> */}
         <div className={classes.appForm}>
           {/* <div className={classes.pageSwitcher}>
@@ -147,7 +126,18 @@ function SignIn(props) {
           }
 
           {/* {!loggedIn && <SignUpForm/>}          */}
+          
+            <video
+              style={{ width: "600px", height: "300px",marginRight:'300px' }}
+              autoPlay
+              loop
+              muted
+            >
+              <source src={ahom} type="video/mp4" />
+            </video>
+          
         </div>
+       
       </div>
     </div>
   );
