@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import ahom from "../Signin/ahom.mp4";
+// import ahom from "../Signin/ahom.mp4";
 import classes from "./SignIn.module.css";
 import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
@@ -127,14 +127,14 @@ function SignIn(props) {
 
           {/* {!loggedIn && <SignUpForm/>}          */}
           
-            <video
+            {/* <video
               style={{ width: "600px", height: "300px",marginRight:'300px' }}
               autoPlay
               loop
               muted
             >
               <source src={ahom} type="video/mp4" />
-            </video>
+            </video> */}
           
         </div>
        

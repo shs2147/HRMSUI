@@ -39,16 +39,16 @@ return <>
   <button type="button" className="btn btn-primary sm-4 mt-2 mx-3">Add Department Master</button>
   </div> 
   <hr />
-  <h6>Add/Edit Department</h6>
+  <h6>Add Department</h6>
   <form onSubmit={submitHandler} className="bg-light">
   <div className="row ">
     
     
-  <div className="col-sm-6 mt-2">
+  {/* <div className="col-sm-6 mt-2">
        <label for="cars" id='label'>Department ID:</label>
      <br/>
   <input value={data.departmentId} type="number" class="form-control" id="formGroupExampleInput" name="departmentId" onChange={inputChangeHandler}/>
-</div>
+</div> */}
 
 <div className="col-sm-6 mt-2">
        <label for="cars" id='label'>Department Name:</label>
