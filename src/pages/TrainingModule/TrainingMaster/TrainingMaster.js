@@ -23,7 +23,7 @@ const TrainingMaster = () => {
     headers:{"Content-Type":"application/json","Accept":"application/json"},
     body:JSON.stringify(data)
   }).then(()=>{
-    console.log("item are added")})
+    console.log("employee added successfuly")})
   
 }
 

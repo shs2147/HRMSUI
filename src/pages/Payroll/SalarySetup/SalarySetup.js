@@ -24,7 +24,7 @@ const submitHandler=(e)=>{
   return (
     <div>
     <h2 className='container'>Add Employee Salary <div className='header Button'>
-        <button type="button" className="btn btn-outline-primary btn-sm mx-2">+ Salary Details</button>
+        {/* <button type="button" className="btn btn-outline-primary btn-sm mx-2">+ Salary Details</button> */}
          </div></h2>
     <div className=' shadow-lg p-2 mb-5 bg-body rounded'>
    

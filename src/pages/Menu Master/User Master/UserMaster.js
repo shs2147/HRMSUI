@@ -161,6 +161,7 @@ const AddUser = () => {
                 </option>
                 <option valueType="react JS">ADMIN</option>
                 <option valueType="java">EMPLOYEE</option>
+                <option valueType="java">User</option>
               </select>
             </div>
           </div>

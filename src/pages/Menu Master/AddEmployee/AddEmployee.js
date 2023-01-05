@@ -17,7 +17,7 @@ const AddEmployee = () => {
     const submitHandler = (e) => {
         e.preventDefault();
         console.log(JSON.stringify(data))
-        fetch('http://localhost:8080/saveemployee', {
+        fetch('http://localhost:8080/basic/saveemployee', {
 
             method: "POST",
             headers: { "Content-Type": "application/json", "Accept": "application/json" },
@@ -32,7 +32,7 @@ const AddEmployee = () => {
             headers: { "Content-Type": "application/json", "Accept": "application/json" },
             body:JSON.stringify(data)
         }).then(() => {
-            console.log("Save info Added");
+            console.log("Work Info Added");
         }).catch(err=>console.log(err))
         console.log(JSON.stringify(data))
         fetch('http://localhost:8080/savebankinginfo', {
@@ -138,6 +138,183 @@ const AddEmployee = () => {
                                             </div>
                                             <div className="col-sm-3 ">
                                                 <label className="form-label" for="cars" id='label'>Reporting To:</label>
+                <p onClick={basicHandler} style={{ cursor: 'pointer' }}>Basic Information <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-down" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                </svg></p>
+                {showBasic && <form>
+                    <div className="container2">
+                        <div className="bg-light">
+                            <div onSubmit={{submitHandler}} className="row ">
+                                <div className=" col-sm-2">
+                                    <label className="form-label">Employee ID:</label><br />
+                                    <input value={data.employeeId} type="text" className="form-control" id="formGroupExampleInput" name='employeeId' onChange={inputChangeHandler} />
+                                </div>
+                                <div className=" col-sm-4">
+                                    <label className="form-label">Employee Name:</label><br />
+                                    <input value={data.employeeName} type="text" className="form-control" id="formGroupExampleInput" name='employeeName'  onChange={inputChangeHandler} />
+                                </div>
+                                <div className="col-sm-3 ">
+                                    <label for="cars" id='label'>Which Company:</label>
+                                    <br />
+                                    <select valueType={data.whichCompany} className="form-select" aria-label="Default select example" name='whichCompany' onChange={inputChangeHandler}>
+                                        <option selected disabled>---Select Company---</option>
+                                        <option valueType="abcd">abcd</option>
+                                        <option valueType="defg">defg</option>
+                                        <option valueType="hijk">hijk</option>
+                                        <option valueType="slmno">lmno</option>
+                                    </select>
+                                </div>
+                                <div className="col-sm-3 ">
+                                    <label for="cars" id='label'>Select Department:</label>
+                                    <br />
+                                    <select valueType={data.selectDepartment} className="form-select" aria-label="Default select example" name='selectDepartment' onChange={inputChangeHandler}>
+                                        <option selected disabled>---Select Department---</option>
+                                        <option valueType="abcd">abcd</option>
+                                        <option valueType="defg">defg</option>
+                                        <option valueType="hijk">hijk</option>
+                                        <option valueType="slmno">lmno</option>
+                                    </select>
+                                </div>
+                                <div className="col-sm-4 ">
+                                    <label className="form-label" for="cars" id='label'>Designation:</label>
+
+                                    <select valueType={data.designation} className="form-select" aria-label="Default select example" name='designation' onChange={inputChangeHandler}>
+                                        <option selected disabled>---Select Designation---</option>
+                                        <option vavalueTypelue="abcd">abcd</option>
+                                        <option valueType="defg">defg</option>
+                                        <option valueType="hijk">hijk</option>
+                                        <option valueType="slmno">lmno</option>
+                                    </select>
+                                </div>
+                                <div className=" col-sm-4">
+                                    <label className="form-label">Email:</label><br />
+                                    <input value={data.email} type="text" className="form-control" id="formGroupExampleInput" name='email' onChange={inputChangeHandler} />
+                                </div>
+                                <div className=" col-sm-4">
+                                    <label className="form-label">Mobile:</label><br />
+                                    <input value={data.mobile} type="text" className="form-control" id="formGroupExampleInput" name='mobile' onChange={inputChangeHandler} />
+                                </div>
+                                <div className=" col-sm-3">
+                                    <label className="form-label" >Joining Date:</label>
+                                    <div ><Form.Control value={data.joiningDate} type="date" name="joiningDate" onChange={inputChangeHandler}  ></Form.Control></div>
+                                </div>
+                                <div className="col-sm-3 ">
+                                    <label className="form-label" for="cars" id='label'>Reporting To:</label>
+
+                                    <select valueType={data.reportingTo} className="form-select" aria-label="Default select example" name='reportingTo' onChange={inputChangeHandler}>
+                                        <option selected disabled>---Reporting To---</option>
+                                        <option valueType="abcd">abcd</option>
+                                        <option valueType="defg">defg</option>
+                                        <option valueType="hijk">hijk</option>
+                                        <option valueType="slmno">lmno</option>
+                                    </select>
+                                </div>
+                                <div className=" col-sm-3">
+                                    <label className="form-label" >DOB:</label>
+                                    <div ><Form.Control value={data.dob} type="date" name="dob" onChange={inputChangeHandler} ></Form.Control></div>
+                                </div>
+                                <div className="col-sm-3 ">
+                                    <label className="form-label" for="cars" id='label'>Work Type:</label>
+
+                                    <select valueType={data.workType} className="form-select" aria-label="Default select example" name='workType' onChange={inputChangeHandler}>
+                                        <option selected disabled>---Permanent---</option>
+                                        <option valueType="abcd">abcd</option>
+                                        <option valueType="defg">defg</option>
+                                        <option valueType="hijk">hijk</option>
+                                        <option valueType="slmno">lmno</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>}
+                <hr style={{ width: '70vw' }} />
+                <p onClick={workHandler} style={{ cursor: 'pointer' }}>Work Information <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-down" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                </svg></p>
+                {showWork && <form>
+                    <div className="container2">
+                        <div className="bg-light">
+                            <div className="row ">
+                                <div className="col-sm-3 ">
+                                    <label className="form-label" for="cars" id='label'>Employement type:</label>
+
+                                    <select value={data.employmentType} className="form-select form-control" aria-label="Default select example" name='employmentType' onChange={inputChangeHandler}>
+                                        <option selected disabled>Select Employment type</option>
+                                        <option value="abcd">abcd</option>
+                                        <option value="defg">defg</option>
+                                        <option value="hijk">hijk</option>
+                                        <option value="slmno">lmno</option>
+                                    </select>
+                                </div>
+                                <div className="col-sm-3 ">
+                                    <label className="form-label" for="cars" id='label'>Office Branch:</label>
+
+                                    <select value={data.officeBranch} className="form-select" aria-label="Default select example" name='officeBranch' onChange={inputChangeHandler}>
+                                        <option selected disabled>Select Branch</option>
+                                        <option value="abcd">abcd</option>
+                                        <option value="defg">defg</option>
+                                        <option value="hijk">hijk</option>
+                                        <option value="slmno">lmno</option>
+                                    </select>
+                                </div>
+                                <div className="col-sm-3 ">
+                                    <label className="form-label" for="cars" id='label'>Employee Grade:</label>
+
+                                    <select value={data.employeeGrade} className="form-select" aria-label="Default select example" name='employeeGrade' onChange={inputChangeHandler}>
+                                        <option selected disabled>Select Employee Grade </option>
+                                        <option value="abcd">abcd</option>
+                                        <option value="defg">defg</option>
+                                        <option value="hijk">hijk</option>
+                                        <option value="slmno">lmno</option>
+                                    </select>
+                                </div>
+                                <div className="col-sm-3 ">
+                                    <label className="form-label" for="cars" id='label'>Employee Group:</label>
+
+                                    <select value={data.employeeGroup} className="form-select" aria-label="Default select example" name='employeeGroup' onChange={inputChangeHandler}>
+                                        <option selected disabled>Choose Employee Group</option>
+                                        <option value="abcd">abcd</option>
+                                        <option value="defg">defg</option>
+                                        <option value="hijk">hijk</option>
+                                        <option value="slmno">lmno</option>
+                                    </select>
+                                </div>
+                                <div className="col-sm-3 ">
+                                    <label className="form-label" for="cars" id='label'>Insurance avil:</label>
+
+                                    <select value={data.insuranceAvail} className="form-select" aria-label="Default select example" name='insuranceAvail' onChange={inputChangeHandler}>
+                                        <option selected disabled>Select insurance</option>
+                                        <option value="abcd">abcd</option>
+                                        <option value="defg">defg</option>
+                                        <option value="hijk">hijk</option>
+                                        <option value="slmno">lmno</option>
+                                    </select>
+                                </div>
+                                <div className="col-sm-3 ">
+                                    <label className="form-label" for="cars" id='label'>Gender:</label>
+
+                                    <select value={data.gender} className="form-select" aria-label="Default select example" name='gender' onChange={inputChangeHandler} >
+                                        <option selected disabled>Gender</option>
+                                        <option value="abcd">Male</option>
+                                        <option value="defg">Female</option>
+                                    </select>
+                                </div>
+                                <div className="col-sm-3 ">
+                                    <label className="form-label" for="cars" id='label'>Blood Group:</label>
+
+                                    <select value={data.bloodGroup} className="form-select" aria-label="Default select example" name='bloodGroup' onChange={inputChangeHandler}>
+                                        <option selected disabled>Group</option>
+                                        <option value="abcd">abcd</option>
+                                        <option value="defg">defg</option>
+                                        <option value="hijk">hijk</option>
+                                        <option value="slmno">lmno</option>
+                                    </select>
+                                </div>
+                                <div className="col-sm-3 ">
+                                    <label className="form-label" for="cars" id='label'>Incentive:</label>
+
 
                                                 <select valueType={data.reportingTo} className="form-select" aria-label="Default select example" name='reportingTo' onChange={inputChangeHandler}>
                                                     <option selected disabled>---Reporting To---</option>
