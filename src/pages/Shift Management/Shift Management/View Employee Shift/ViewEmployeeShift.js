@@ -1,13 +1,14 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form } from 'react-bootstrap'
 import Edit from "./Edit";
 import Form2 from './Form2'
 
 
 const ViewEmployeeShift = () => {
-  const [data, setData] = useState({
+  const [data, setData] = useState({});
+  // const [show, setShow] = useState ([]);
 
-  });
+
   const[displayed,setDisplayed]=useState([]);
   const[value,setValue]=useState([]);
   const inputChangeHandler = (e) => {
@@ -29,11 +30,34 @@ const displayHandler=(display)=>{
   setDisplayed(display)
 }
 
+// useEffect(()=> {
+//   fetch('http://localhost:8080/shiftmanagement/viewShift', {
+//     method: 'GET',
+//     headers: {
+//       'Accept': 'application/json',
+//       'Authorization': `Bearer $(token)}`,
+
+//     }
+//   })
+//     .then((response)=> response.json())
+//     .then((response)=> setData(response.data)).then()
+//     .catch((err)=> console.log(err))
+
+// },[])
+
+useEffect(()=>{
+  console.log(data)
+},[])
+
+
+
+
+
   return (
     <div><div className="container2">
       <h2>View Employees Duty</h2>
       <hr />
-      <div className="bg-light">
+      {/* <div className="bg-light">
         <div className="row ">
 
           <div className=" col-sm-3">
@@ -67,7 +91,7 @@ const displayHandler=(display)=>{
         <hr />
       </div>
     </div>
-    <div>
+    <div> */}
 
         {displayed&&<Edit value={value}/>}
     </div>

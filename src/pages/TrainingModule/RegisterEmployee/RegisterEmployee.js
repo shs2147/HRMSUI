@@ -48,6 +48,7 @@ const RegisterEmployee = (event) => {
 
 const fetchData=()=>{
   fetch("http://localhost:8080/employee/get")
+  
   .then((response)=>{
     return response.json();
   })

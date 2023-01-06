@@ -125,7 +125,7 @@
     width: 85%;
     background-color: transparent;
     /* border: ; */
-    color:rgb(0, 0, 0);
+    color:rgb(231, 231, 231);
     border-radius: 10px;
     outline: none;
     border-bottom: 1px solid #445366;
@@ -144,13 +144,18 @@
   .formFieldButton {
     background-color: #dedddd11;
     
-    color: white;
+    color: rgb(253, 76, 0);
+    font-family: 'Times New Roman', Times, serif;
     border: none;
     outline: none;
     border-radius: 15px;
     padding: 15px 50px;
-    font-size: 0.8em;
+    
+    font-size: 1em;
     /* font-weight: 500; */
+  }
+  .formFieldButton:hover{
+    background-color: rgb(189, 187, 187);
   }
   
   .formFieldLink {

@@ -45,7 +45,7 @@ class SignInForm extends Component {
               type="text"
               id="userName"
               className={classes.formFieldInput}
-              placeholder="Enter your userName"
+              placeholder="Enter Your UserName"
               name="userName"
               value={this.state.userName}
               onChange={this.handleChange}
@@ -60,7 +60,7 @@ class SignInForm extends Component {
               type="password"
               id="password"
               className={classes.formFieldInput}
-              placeholder="Enter your password"
+              placeholder="Enter Your Password"
               name="password"
               value={this.state.password}
               onChange={this.handleChange}

@@ -7,7 +7,7 @@ const Form2 = (props) => {
   const[display,setDisplay]=useState(false);
   
   const fetchData = () =>{
-    fetch("http://localhost:8080/viewshift",{
+    fetch("http://localhost:8080/shiftmanagement/viewshift",{
       
     })
     .then((response) =>{
@@ -35,7 +35,7 @@ const deleteHandler =(Id,e) =>{
   e.preventDefault();
   console.log(Id)
   
-  fetch(`http://localhost:8080/addshift/${Id}`,{
+  fetch(`http://localhost:8080/shiftmanagement/addshift/${Id}`,{
     method:"DELETE",
     headers:{"Content-Type": "application/json", "Accept":"application/json"},
     body:JSON.stringify(show),
@@ -43,6 +43,14 @@ const deleteHandler =(Id,e) =>{
 
 
 }
+// const deleteUser= (id)=>{
+//   fetch(`http://localhost:8080/shiftmanagement/delete/${id}`,{
+// method:'DELETE'
+//   }).then((result)=>{
+//     result.json().then((response)=>{
+//       console.warn(response)
+//     })
+//   })
 
   return (
     <div className="container2">

@@ -74,15 +74,15 @@ const AddEmployee = () => {
     return (
         <>
             <h2 className='mb-4'>Add Employee</h2>
-            <form onSubmit={submitHandler} className=' shadow-lg p-2 mb-5 bg-body rounded'>
+
                 <CAccordion activeItemKey={1}>
                     <CAccordionItem itemKey={1}>
                         <CAccordionHeader>Basic Information</CAccordionHeader>
                         <CAccordionBody>
-                            <form>
+                            
                                 <div className="container">
                                     <div className="bg-light">
-                                        <div onSubmit={{ submitHandler }} className="row ">
+                                        <div className="row ">
                                             <div className=" col-sm-2">
                                                 <label className="form-label">Employee ID:</label><br />
                                                 <input value={data.employeeId} type="text" className="form-control" id="formGroupExampleInput" name='employeeId' onChange={inputChangeHandler} />
@@ -166,13 +166,13 @@ const AddEmployee = () => {
                                     </div>
                                 </div>
 
-                            </form>
+                            
                         </CAccordionBody>
                     </CAccordionItem>
                     <CAccordionItem itemKey={2}>
                         <CAccordionHeader>Work Information</CAccordionHeader>
                         <CAccordionBody>
-                            <form>
+                            
                                 <div className="container">
                                     <div className="bg-light">
                                         <div className="row ">
@@ -302,13 +302,13 @@ const AddEmployee = () => {
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            
                         </CAccordionBody>
                     </CAccordionItem>
                     <CAccordionItem itemKey={3}>
                         <CAccordionHeader>Banking Information</CAccordionHeader>
                         <CAccordionBody>
-                            <form>
+                        
                                 <div className="container">
                                     <div className="bg-light">
                                         <div className="row ">
@@ -346,13 +346,13 @@ const AddEmployee = () => {
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            
                         </CAccordionBody>
                     </CAccordionItem>
                     <CAccordionItem itemKey={4}>
                         <CAccordionHeader>Emergency Contact Information</CAccordionHeader>
                         <CAccordionBody>
-                            <form>
+                            
                                 <div className="container">
                                     <div className="bg-light">
                                         <div className="row ">
@@ -375,15 +375,14 @@ const AddEmployee = () => {
                                         </div>
                                     </div>
                                 </div>
-                            </form>
                         </CAccordionBody>
                     </CAccordionItem>
                 </CAccordion>
                 <div className=' my-4'>
-                    <button type='submit' className='btn btn-primary mx-2'>Save</button>
+                    <button type='submit' className='btn btn-primary mx-2' onClick={submitHandler} >Save</button>
                     <button className='btn btn-info '>Back</button>
                 </div>
-            </form>
+   
         </>
 
 
@@ -398,7 +397,7 @@ const AddEmployee = () => {
 
 
         // <div >
-        // hsdjhdgfhdgfd
+
         //     <h2 className='mb-4'>Add Employee</h2>
         //     <form onSubmit={submitHandler} className=' shadow-lg p-2 mb-5 bg-body rounded'>
 
