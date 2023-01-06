@@ -65,7 +65,7 @@ function SignIn(props) {
 
   return (
     
-    <div>
+    <div className={classes.body}>
       {/* <img src={bg} alt="bg"></img> */}
       {/* <div> */}
       {/* <nav className="navbar navbar-expand-lg bg-light">
@@ -130,8 +130,8 @@ function SignIn(props) {
           }
 
           {/* {!loggedIn && <SignUpForm/>}          */}
-          <div>
-            <img src={ahom} alt="logo"/>
+          <div className={classes.logo}>
+            <img src={ahom} alt="logo" />
             {/* <video
               style={{ width: "100%", height: "90%",marginBottom:'0px' }}
               autoPlay
