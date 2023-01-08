@@ -5,12 +5,12 @@ const OnlineApplication = () => {
     fullName:'',
     email:'',
     contact:'',
-    yearOfExperience:'',
+    yearOfExperince:'',
     locationJobApplied:'',
     vacancyType:'',
     date:'',
     careerPercentage:'',
-    resumeupload:'',
+    imageUrl:'',
     exampleTextArea:'',
   });
  const inputChangeHandler=(e)=>{
@@ -57,7 +57,7 @@ const OnlineApplication = () => {
     
     <div className="col-sm-3">
       <label  class="form-label">Year Of Experience:</label><br/>
-      <input value={data.yearOfExperience} type="text" class="form-control" id="formGroupExampleInput" name="yearOfExperience" onChange={inputChangeHandler}/>
+      <input value={data.yearOfExperince} type="text" class="form-control" id="formGroupExampleInput" name="yearOfExperince" onChange={inputChangeHandler}/>
     </div>
     </div>
     <div className="row mt-4">
@@ -89,7 +89,7 @@ const OnlineApplication = () => {
 
     <div className="col-sm-4 mt-2">
        <label for="formFile" class="form-label">Resume Upload</label>
-       <input value={data.resumeupload}class="form-control" type="file" id="formFile"name="resumeupload" onChange={inputChangeHandler}></input>
+       <input value={data.imageUrl}class="form-control" type="file" id="formFile"name="imageUrl" onChange={inputChangeHandler}></input>
     </div>
        <div className="col-sm-4 mt-2">
         <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>

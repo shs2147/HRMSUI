@@ -13,6 +13,7 @@ const Nav = () => {
     //  const submitHandler=(e)=>{
     //     e.preventDefault();
     //  }
+    
 
     return (
         <div className="container2" >
