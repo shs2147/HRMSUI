@@ -1,6 +1,8 @@
-import { useState } from "react";
+import {useEffect, useState } from "react";
 
 const AddUser = () => {
+  const[show,setShow]=useState([]);
+  const[itemshow,setItemshow]=useState([])
   const [data, setData] = useState({
     roles: [
       {
@@ -13,6 +15,32 @@ const AddUser = () => {
     newData[e.target.name] = e.target.value;
     setData(newData);
   };
+  const fetchData1 = () =>{
+    fetch("http://localhost:8080/getall",{
+    })
+    .then((response) =>{
+      return response.json();
+    })
+    .then((data) =>{
+      setItemshow(data)
+    })
+  }
+  const fetchData = () =>{
+    fetch("http://localhost:8080/basic/fetchdata",{
+    })
+    .then((response) =>{
+      return response.json();
+    })
+    .then((data) =>{
+      setShow(data)
+    })
+  }
+  useEffect(() =>{
+  fetchData();
+  fetchData1();
+ 
+},[])
+console.log(show);
   const submitHandler = (e) => {
     e.preventDefault();
     setData({});
@@ -36,9 +64,9 @@ const AddUser = () => {
       <div className="container">
         <div className="d-flex">
           <h3>Add User</h3>
-          <button type="button" className="btn btn-primary sm-4 mt-2 mx-3">
+          {/* <button type="button" className="btn btn-primary sm-4 mt-2 mx-3">
             Add User Master
-          </button>
+          </button> */}
         </div>
         <hr />
         <h6>Add/Edit User</h6>
@@ -60,10 +88,8 @@ const AddUser = () => {
                 <option selected disabled>
                   Select Department
                 </option>
-                <option valueType="B.Tech">B.Tech</option>
-                <option valueType="MCA">MCA</option>
-                <option valueType="Arts">Arts</option>
-                <option valueType="Sceince">Sceince</option>
+                {itemshow.map(aman=>( <option valueType={aman.departmentName}>{aman.departmentName}</option>))}
+               
               </select>
             </div>
 
@@ -83,10 +109,8 @@ const AddUser = () => {
                 <option selected disabled>
                   Select Employee Name
                 </option>
-                <option valueType="aman">Aman</option>
-                <option valueType="amit">Amit</option>
-                <option valueType="ranjan">Ranjan</option>
-                <option valueType="saurav">Saurav</option>
+               {show.map(saurabh=>( <option valueType={saurabh.employeeName}>{saurabh.employeeName}</option>))}
+               
               </select>
             </div>
 
@@ -106,10 +130,8 @@ const AddUser = () => {
                 <option selected disabled>
                   Select Employee Code
                 </option>
-                <option valueType="004">004</option>
-                <option valueType="005">005</option>
-                <option valueType="006">006</option>
-                <option valueType="007">007</option>
+                {show.map(saurabh=>( <option valueType={saurabh.employeeId}>{saurabh.employeeId}</option>))}
+                
               </select>
             </div>
 
