@@ -81,7 +81,7 @@ function App() {
   console.log(data)
   console.log(token)
   if(token2){
- setLogged(true)
+ setLogged(false)
  navigate('/');
   }
 else{
