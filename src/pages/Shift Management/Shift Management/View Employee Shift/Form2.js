@@ -8,20 +8,15 @@ const Form2 = (props) => {
   
   const fetchData = () =>{
     fetch("http://localhost:8080/shiftmanagement/viewshift",{
-      
     })
     .then((response) =>{
       return response.json();
     })
     .then((data) =>{
-  
       setShow(data)
     })
   }
-  
   useEffect(() =>{
-    
-  
   fetchData();
 },[show])
 
