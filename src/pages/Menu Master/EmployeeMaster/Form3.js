@@ -1,6 +1,38 @@
-import React from 'react'
+import React, { useEffect,useState, submitHandler } from "react";
 
 const Form3 = () => {
+  // const fetchData=()=>{
+    const [data , setData]= useState([]);
+    
+    fetch("http://localhost:8080/basic/getAll",{
+      method: 'GET',
+      headers : {
+            'Accept' : 'application/json',
+            'Authorization': `Bearer $ token `
+
+      },
+    })
+    .then((response)=> response.json())
+    .then((response)=> setData((response.data)))
+    .catch((data) => console.log(data))
+    // .then((response)=>{
+    //   return response.json();
+    // })
+    // .then((data)=>{
+    //   // console.log(data);
+    //   let gagan = data
+    //   // console.log(gagan)
+    //   setShow()
+    // })
+    
+  
+  // }
+  useEffect(()=>{
+    console.log(data);
+  },[data])
+
+  
+  
   return (
     <div className="container2">
       <table class="table table2 bg-light">
@@ -38,6 +70,7 @@ const Form3 = () => {
    
    
   </tbody>
+  
 </table>
       </div>
   )
