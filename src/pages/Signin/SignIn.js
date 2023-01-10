@@ -110,7 +110,7 @@ function SignIn(props) {
 
           <div className={classes.formTitle}>
             <p className={classes.formTitleLink} onClick={logInHandler}>
-              WELCOME
+              Sign In
             </p>{" "}
             {/* or{" "}
             <p

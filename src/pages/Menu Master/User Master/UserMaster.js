@@ -1,6 +1,4 @@
-
-import { formatMuiErrorMessage } from "@material-ui/utils";
-import { useState } from "react";
+import {useEffect, useState } from "react";
 
 const AddUser = () => {
   const[show,setShow]=useState([]);
@@ -12,10 +10,6 @@ const AddUser = () => {
       },
     ],
   });
-  const [formData, SetFormData] = useState({})
-  const saveHandler = ()=> {
-    alert("Data Saved Successfully");
-}
   const inputChangeHandler = (e) => {
     let newData = { ...data };
     newData[e.target.name] = e.target.value;
@@ -64,21 +58,6 @@ console.log(show);
       })
       .catch((err) => console.log(err));
   };
-  const validateForm =() => {
-    let err = {}
-    //
-    if(formData.departmentName === ''){
-      err.departmentName = "Department Name Required!"
-    }
-    return false;
-  }
-  const onSubmitHandler = (event) => {
-    event.preventDefault()
-    console.log("Form Data:", formData)
-    let isValid = validateForm()
-    console.log(isValid)
-
-  }
 
   return (
     <>
@@ -92,13 +71,13 @@ console.log(show);
         <hr />
         <h6>Add/Edit User</h6>
         <form onSubmit={submitHandler} className="bg-light">
-          <div className="row needs-validation" novalidate>
-            <div  className="col-sm-4 mt-2  needs-validation" >
-              <label for="validationCustom01 cars" id="label">
-                 Department Name:
+          <div className="row ">
+            <div className="col-sm-4 mt-2">
+              <label for="cars" id="label">
+                Department Name:
               </label>
               <br />
-              <select id="validationCustom01"
+              <select
                 valueType={data.departmentName}
                 class="form-select"
                 aria-label="Default select example"
@@ -112,7 +91,6 @@ console.log(show);
                 {itemshow.map(aman=>( <option valueType={aman.departmentName}>{aman.departmentName}</option>))}
                
               </select>
-              <span>{formatMuiErrorMessage.departmentName}</span>
             </div>
 
             <div className="col-sm-4 mt-2">
@@ -209,7 +187,7 @@ console.log(show);
               </select>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary mt-4" onClick={saveHandler}>
+          <button type="submit" class="btn btn-primary mt-4">
             Save
           </button>
         </form>
