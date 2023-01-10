@@ -26,8 +26,9 @@
   
   .appForm {
     width: 30%;
-    height: 80%;
+    height: 85%;
     /* background-color:#ffffff; */
+    /* background:rgb(115, 115, 205) ; */
     background: rgba(255, 255, 255, 0.15);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     color: #3c354e;
@@ -123,7 +124,7 @@
     text-transform: uppercase;
     font-size: 1em;
     font-family: 'Times New Roman', Times, serif;
-    color: rgb(232, 217, 210);
+    color: rgb(15, 14, 14);
     width: 100%;
     
   }
@@ -131,7 +132,7 @@
     width: 85%;
     background-color: transparent;
     /* border: ; */
-    color:rgb(231, 231, 231);
+    color:rgb(10, 9, 9);
     border-radius: 10px;
     outline: none;
     border-bottom: 1px solid #445366;
@@ -142,16 +143,17 @@
   }
   
   .formFieldInput::placeholder {
-    color: #d5c7c7;
-    font-family: 'Times New Roman', Times, serif;
+    color: #130303;
+    /* font-family: 'Times New Roman', Times, serif; */
+    font-family: Arial, Helvetica, sans-serif;
     padding: 20px 20px;
   }
   
   .formFieldButton {
-    background-color: #dedddd11;
+    background-color:#489de9;
     
-    color: rgb(253, 76, 0);
-    font-family: 'Times New Roman', Times, serif;
+    color: rgb(12, 5, 2);
+    font-family: Arial, Helvetica, sans-serif;
     border: none;
     outline: none;
     border-radius: 15px;
@@ -161,7 +163,7 @@
     /* font-weight: 500; */
   }
   .formFieldButton:hover{
-    background-color: rgb(189, 187, 187);
+    background-color: rgb(20, 104, 189);
   }
   
   .formFieldLink {

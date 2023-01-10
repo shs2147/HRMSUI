@@ -11,8 +11,8 @@ function Dashboard() {
       <DasNav />
       <div className='justify-content-around ' style={{ flexDirection: "row", display: 'flex',maxWidth:'fit-content' }}>
         <Card img={pic} title="Permanent Employee" number="2" />
-        <Card img={pic} title="Permanent Employee" number="2" />
-        <Card img={pic} title="Permanent Employee" number="2" />
+        {/* <Card img={pic} title="Permanent Employee" number="2" /> */}
+        <Card img={pic} title="Under Probation" number="2" />
       </div>
       <Calender />
     </div>
