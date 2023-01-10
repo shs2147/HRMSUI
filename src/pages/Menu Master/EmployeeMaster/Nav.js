@@ -16,7 +16,7 @@ const Nav = () => {
     
 
     return (
-        <div className="container2" >
+        <div className="container" >
             <h2 className='d-flex justify-content-around'>
                 <span >Employee Master</span>
                 {/* <link className='link' to='/SubPages/AddEmployees'>Add Employee</link> */}
