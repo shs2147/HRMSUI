@@ -3,7 +3,7 @@ import { propTypes } from 'react-bootstrap/esm/Image';
 import { Link, NavLink, useLocation } from 'react-router-dom'
 
 const DasNav = () => {
-   const location= useLocation();
+   const location = useLocation();
    const handleSubmit=(e)=>{
     e.preventDefault();
     sessionStorage.removeItem('user');

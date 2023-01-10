@@ -22,8 +22,8 @@ import OnlineApplication from "./pages/Recruitment/OnlineApplication/OnlineAppli
 import RegisterEmployee from "./pages/TrainingModule/RegisterEmployee/RegisterEmployee";
 import TrainingToFeedback from "./pages/TrainingModule/TrainingToFeedback/TrainingToFeedback";
 import TrainingMaster from "./pages/TrainingModule/TrainingMaster/TrainingMaster";
-import AddShift from "./pages/Shift Management/Shift Management/Add Shift/AddShift";
-import ViewEmployeeShift from "./pages/Shift Management/Shift Management/View Employee Shift/ViewEmployeeShift";
+import AddShift from "./pages/Shift Management/Add Shift/AddShift";
+import ViewEmployeeShift from "./pages/Shift Management/View Employee Shift/ViewEmployeeShift";
 import AttendanceDetails from "./pages/Screening & Approval/AttendanceDetails.js";
 import CreateLeave from "./pages/SelfPortal/CreateLeave/CreateLeave";
 import MonthlyPerformance from "./pages/SelfPortal/MonthlyPerformance/MonthlyPerformance";
