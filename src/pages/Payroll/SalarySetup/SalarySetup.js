@@ -33,7 +33,7 @@ const submitHandler=(e)=>{
       <div className="row ">
       <div className=" col-sm-6">
         <label className="form-label">Employee Id:</label><br />
-    <input value={data.employeeId} type="text" className="form-control" id="formGroupExampleInput" name='employeeId' onChange={inputChangeHandler} />
+    <input value={data.id} type="text" className="form-control" id="formGroupExampleInput" name='id' onChange={inputChangeHandler} />
           </div>
           {/* <div className=" col-sm-6">
         <label className="form-label">Financial Year:</label><br />
