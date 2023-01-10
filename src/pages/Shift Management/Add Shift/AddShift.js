@@ -27,7 +27,7 @@ const AddShift = () => {
  }
 
   return (
-    <div className="container2">
+    <div className="container">
       <h2>Shift Duty Assign</h2>
       <hr />
       <div className="bg-light">

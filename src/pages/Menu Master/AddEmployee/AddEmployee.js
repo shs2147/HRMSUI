@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { CAccordion, CAccordionBody, CAccordionHeader, CAccordionItem } from '@coreui/bootstrap-react';
 // import React,{ useState } from "react";
 
 const AddEmployee = () => {
+    const[show,setShow]=useState([]);
+    const[itemshow,setItemshow]=useState([])
     const [data, setData] = useState({
         name: ''
     });
@@ -13,6 +15,31 @@ const AddEmployee = () => {
         setData(newData)
         // console.log(JSON.stringify(newData))
     }
+    const fetchData = () =>{
+        fetch("http://localhost:8080/basic/fetchdata",{
+        })
+        .then((response) =>{
+          return response.json();
+        })
+        .then((data) =>{
+          setShow(data)
+        })
+      }
+    const fetchData1 = () =>{
+        fetch("http://localhost:8080/getall",{
+        })
+        .then((response) =>{
+          return response.json();
+        })
+        .then((data) =>{
+          setItemshow(data)
+        })
+      }
+      useEffect(() =>{
+        fetchData();
+        fetchData1();
+       
+      },[])
     
     const submitHandler = (e) => {
         e.preventDefault();
@@ -96,10 +123,8 @@ const AddEmployee = () => {
                                                 <br />
                                                 <select valueType={data.whichCompany} className="form-select" aria-label="Default select example" name='whichCompany' onChange={inputChangeHandler}>
                                                     <option selected disabled>---Select Company---</option>
-                                                    <option valueType="abcd">abcd</option>
-                                                    <option valueType="defg">defg</option>
-                                                    <option valueType="hijk">hijk</option>
-                                                    <option valueType="slmno">lmno</option>
+                                                    <option valueType="ahomTechnologies">Ahom Technologies</option>
+                                                   
                                                 </select>
                                             </div>
                                             <div className="col-sm-3 ">
@@ -107,10 +132,7 @@ const AddEmployee = () => {
                                                 <br />
                                                 <select valueType={data.selectDepartment} className="form-select" aria-label="Default select example" name='selectDepartment' onChange={inputChangeHandler}>
                                                     <option selected disabled>---Select Department---</option>
-                                                    <option valueType="abcd">abcd</option>
-                                                    <option valueType="defg">defg</option>
-                                                    <option valueType="hijk">hijk</option>
-                                                    <option valueType="slmno">lmno</option>
+                                                    {itemshow.map(saurabh=>( <option valueType={saurabh.departmentName}>{saurabh.departmentName}</option>))}
                                                 </select>
                                             </div>
                                             <div className="col-sm-4 ">
