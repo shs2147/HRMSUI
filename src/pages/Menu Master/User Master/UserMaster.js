@@ -1,3 +1,4 @@
+import { formatMuiErrorMessage } from "@material-ui/utils";
 import { useState } from "react";
 
 const AddUser = () => {
@@ -8,6 +9,10 @@ const AddUser = () => {
       },
     ],
   });
+  const [formData, SetFormData] = useState({})
+  const saveHandler = ()=> {
+    alert("Data Saved Successfully");
+}
   const inputChangeHandler = (e) => {
     let newData = { ...data };
     newData[e.target.name] = e.target.value;
@@ -30,26 +35,41 @@ const AddUser = () => {
       })
       .catch((err) => console.log(err));
   };
+  const validateForm =() => {
+    let err = {}
+    //
+    if(formData.departmentName === ''){
+      err.departmentName = "Department Name Required!"
+    }
+    return false;
+  }
+  const onSubmitHandler = (event) => {
+    event.preventDefault()
+    console.log("Form Data:", formData)
+    let isValid = validateForm()
+    console.log(isValid)
+
+  }
 
   return (
     <>
       <div className="container">
         <div className="d-flex">
           <h3>Add User</h3>
-          <button type="button" className="btn btn-primary sm-4 mt-2 mx-3">
+          {/* <button type="button" className="btn btn-primary sm-4 mt-2 mx-3">
             Add User Master
-          </button>
+          </button> */}
         </div>
         <hr />
         <h6>Add/Edit User</h6>
         <form onSubmit={submitHandler} className="bg-light">
-          <div className="row ">
-            <div className="col-sm-4 mt-2">
-              <label for="cars" id="label">
-                Department Name:
+          <div className="row needs-validation" novalidate>
+            <div  className="col-sm-4 mt-2  needs-validation" >
+              <label for="validationCustom01 cars" id="label">
+                 Department Name:
               </label>
               <br />
-              <select
+              <select id="validationCustom01"
                 valueType={data.departmentName}
                 class="form-select"
                 aria-label="Default select example"
@@ -65,6 +85,7 @@ const AddUser = () => {
                 <option valueType="Arts">Arts</option>
                 <option valueType="Sceince">Sceince</option>
               </select>
+              <span>{formatMuiErrorMessage.departmentName}</span>
             </div>
 
             <div className="col-sm-4 mt-2">
@@ -165,7 +186,7 @@ const AddUser = () => {
               </select>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary mt-4">
+          <button type="submit" class="btn btn-primary mt-4" onClick={saveHandler}>
             Save
           </button>
         </form>
