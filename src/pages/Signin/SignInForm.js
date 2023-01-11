@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import classes from './SignIn.module.css';
+import classes from "./SignIn.module.css";
 class SignInForm extends Component {
   constructor() {
     super();
 
     this.state = {
       userName: "",
-      password: ""
+      password: "",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -20,7 +19,7 @@ class SignInForm extends Component {
     let name = target.name;
 
     this.setState({
-      [name]: value
+      [name]: value,
     });
   }
 
@@ -28,7 +27,7 @@ class SignInForm extends Component {
     event.preventDefault();
     this.props.handler(this.state);
     this.props.handlerInput(this.state);
-    this.props.onClick()
+    this.props.onClick();
     console.log("The form was submitted with the following data:");
     console.log(this.state);
   }
@@ -39,7 +38,7 @@ class SignInForm extends Component {
         <form className={classes.formField} onSubmit={this.handleSubmit}>
           <div className={classes.formField}>
             <label className={classes.formFieldLabel} htmlFor="userName">
-            User Name
+              User Name
             </label>
             <input
               type="text"
@@ -68,14 +67,15 @@ class SignInForm extends Component {
           </div>
 
           <div className={classes.formField}>
-            <button onClick={this.handleSubmit} className={classes.formFieldButton}>Sign In</button>{" "}
-
+            <button
+              onClick={this.handleSubmit}
+              className={classes.formFieldButton}
+            >
+              Sign In
+            </button>{" "}
           </div>
-
-          </form>        
-          </div>
-      
-    
+        </form>
+      </div>
     );
   }
 }

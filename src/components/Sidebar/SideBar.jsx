@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import {  FaBars } from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
 import { BiAlignLeft } from "react-icons/bi";
 import { AiOutlineCaretRight } from "react-icons/ai";
 import { BsFillPersonFill } from "react-icons/bs";
@@ -11,62 +11,53 @@ import SidebarMenu from "./SidebarMenu";
 // import SubPage from "../../SubPages/SubPage";
 const routes = [
   {
-    path: "",
+    path: "/Dashboard",
     name: "Dashboard",
-    icon: <BiAlignLeft />, 
-   
+    icon: <BiAlignLeft />,
   },
   {
     path: "/menuMaster",
     name: "Menu Master",
-    icon: <BiAlignLeft/>,
+    icon: <BiAlignLeft />,
     subRoutes: [
       {
         path: "/menuMaster/UserMaster",
         name: "User Master",
         icon: <AiOutlineCaretRight />,
-
-       },
-       {
+      },
+      {
         path: "/menuMaster/AddEmployee",
         name: "Add Employee",
         icon: <AiOutlineCaretRight />,
-       },
+      },
 
-       {
+      {
         path: "/menuMaster/EmployeeMaster",
         name: "Employee Master",
         icon: <AiOutlineCaretRight />,
+      },
 
-       },
-
-       {
+      {
         path: "/menuMaster/DepartmentMaster",
         name: "Department Master",
         icon: <AiOutlineCaretRight />,
-
-       },
-       {
+      },
+      {
         path: "/menuMaster/DesignationMaster",
         name: "Designation Master",
         icon: <AiOutlineCaretRight />,
-
-       },
-       {
-       path: "/menuMaster/EmploymentTypeMaster",
-       name: "Employment Type Master",
-       icon: <AiOutlineCaretRight />,
-
+      },
+      {
+        path: "/menuMaster/EmploymentTypeMaster",
+        name: "Employment Type Master",
+        icon: <AiOutlineCaretRight />,
       },
       {
         path: "/menuMaster/UserApproval",
         name: "User Approval",
         icon: <AiOutlineCaretRight />,
-
-       },
-    
-       
-    ]
+      },
+    ],
   },
   {
     path: "/selfPortal",
@@ -77,33 +68,28 @@ const routes = [
         path: "/selfPortal/AttendanceDetails",
         name: "Attendance Details",
         icon: <AiOutlineCaretRight />,
-
-       },
-       {
+      },
+      {
         path: "/selfPortal/CreateLeave",
         name: "Create Leave Request",
         icon: <AiOutlineCaretRight />,
-
-       },
-       {
+      },
+      {
         path: "/selfPortal/MonthlyPerformance",
         name: "Monthly Performance",
         icon: <AiOutlineCaretRight />,
-
-       },
-       {
+      },
+      {
         path: "/selfPortal/RaiseGrievance",
         name: "Raise Grievances",
         icon: <AiOutlineCaretRight />,
-
-       },
-       {
+      },
+      {
         path: "/selfPortal/SelfPortal",
         name: "Travel Overview",
         icon: <AiOutlineCaretRight />,
-
-       },
-    ]
+      },
+    ],
   },
   {
     path: "/screening&Approval",
@@ -114,67 +100,57 @@ const routes = [
         path: "/screening&Approval/Attendance Details",
         name: "Attendance Details",
         icon: <AiOutlineCaretRight />,
-
-       },
+      },
       {
         path: "/screening&Approval/LeaveAproval",
         name: "Leave Aproval",
         icon: <AiOutlineCaretRight />,
-
-       },
-    ]
+      },
+    ],
   },
   {
     path: "/payroll",
     name: "Payroll",
     icon: <BiAlignLeft />,
     subRoutes: [
-      
-       {
+      {
         path: "/payroll/SalarySetup",
         name: "SalarySetup",
         icon: <AiOutlineCaretRight />,
-
-       },
-       {
+      },
+      {
         path: "/payroll/PayRoll",
         name: "PayRoll",
         icon: <AiOutlineCaretRight />,
-
-       },
-       {
+      },
+      {
         path: "/payroll/PayrollItem",
         name: "PayrollItem",
         icon: <AiOutlineCaretRight />,
-
-       },
-       {
+      },
+      {
         path: "/allowance/Allowance",
         name: "Allowance",
         icon: <AiOutlineCaretRight />,
-
-       },
-       {
+      },
+      {
         path: "/employeeallowance/EmployeeAllowance",
         name: "EmployeeAllowance",
         icon: <AiOutlineCaretRight />,
-
-       },
-       {
+      },
+      {
         path: "/deduction/deduction",
         name: "Deduction",
         icon: <AiOutlineCaretRight />,
-
-       },
-       {
+      },
+      {
         path: "/employeededuction/employeededuction",
         name: "EmployeeDeduction",
         icon: <AiOutlineCaretRight />,
-
-       }
-    ]
+      },
+    ],
   },
-  
+
   {
     path: "/organisationStructure",
     name: "Organisation Structure",
@@ -184,21 +160,18 @@ const routes = [
         path: "/organisationStructure/AddHoliday",
         name: "Add Holiday",
         icon: <AiOutlineCaretRight />,
-
-       },
-       {
+      },
+      {
         path: "/organisationStructure/LeaveType",
         name: "Leave Type",
         icon: <AiOutlineCaretRight />,
-
-       },
-       {
+      },
+      {
         path: "/organisationStructure/PayheadList",
         name: "Payhead List",
         icon: <AiOutlineCaretRight />,
-
-       },
-    ]
+      },
+    ],
   },
   {
     path: "/requirementStructure",
@@ -209,34 +182,29 @@ const routes = [
         path: "/Recruitment/AddjobTitle",
         name: "Add Job Title",
         icon: <AiOutlineCaretRight />,
-
-       },
-       {
+      },
+      {
         path: "/Recruitment/ViewjobTitle",
         name: "View Job Title",
         icon: <AiOutlineCaretRight />,
-
-       },
-       {
+      },
+      {
         path: "/Recruitment/AddJobVacancy",
         name: "Add Job Vacancies",
         icon: <AiOutlineCaretRight />,
+      },
 
-       },
-     
-       {
+      {
         path: "/Recruitment/FixinInterviewOnline",
         name: "Fixing Interview Online",
         icon: <AiOutlineCaretRight />,
-
-       },
-       {
+      },
+      {
         path: "/Recruitment/OnlineApplication",
         name: "Online Application",
         icon: <AiOutlineCaretRight />,
-
-       },
-    ]
+      },
+    ],
   },
   {
     path: "/trainingModule",
@@ -247,21 +215,18 @@ const routes = [
         path: "/trainingModule/RegisterEmployee",
         name: "Registered Emp For Training",
         icon: <AiOutlineCaretRight />,
-
-       },
-       {
+      },
+      {
         path: "/trainingModule/TainingMaster",
         name: "Training To Employee",
         icon: <AiOutlineCaretRight />,
-
-       },
-       {
+      },
+      {
         path: "/trainingModule/TrainingToFeedback",
         name: "Training To Feedback",
         icon: <AiOutlineCaretRight />,
-
-       },
-    ]
+      },
+    ],
   },
   {
     path: "/advanceOrLoan",
@@ -272,15 +237,13 @@ const routes = [
         path: "/advanceOrLoan/LoanMaster",
         name: "Loan Master",
         icon: <AiOutlineCaretRight />,
-
-       },
-       {
+      },
+      {
         path: "/advanceOrLoan/LoanApplication",
         name: "Loan Application",
         icon: <AiOutlineCaretRight />,
-
-       },
-    ]
+      },
+    ],
   },
   {
     path: "/attendance",
@@ -291,45 +254,38 @@ const routes = [
         path: "/attendance/AddIndividualAttendance",
         name: "Add Individual Attendance",
         icon: <AiOutlineCaretRight />,
-
-       },
-       {
+      },
+      {
         path: "/attendance/UploadBulkAttendance",
         name: "Upload Bulk Attendance",
         icon: <AiOutlineCaretRight />,
-
-       },
-       {
+      },
+      {
         path: "/attendance/AddOverTime",
         name: "Add Over Time",
         icon: <AiOutlineCaretRight />,
-
-       },
-       {
+      },
+      {
         path: "/attendance/ViewOtReport",
         name: "View Ot Report",
         icon: <AiOutlineCaretRight />,
-
-       },
-       {
+      },
+      {
         path: "/attendance/MonthwiseAbsentReport",
         name: "Monthwise Absent Report",
         icon: <AiOutlineCaretRight />,
-
-       },
-       {
+      },
+      {
         path: "/attendance/MonthwiseAttdReport",
         name: "Monthwise Attd Report",
         icon: <AiOutlineCaretRight />,
-
-       },
-       {
+      },
+      {
         path: "/attendance/LeaveReport",
         name: "Leave Report",
         icon: <AiOutlineCaretRight />,
-
-       },
-    ]
+      },
+    ],
   },
   {
     path: "/ShiftManagement",
@@ -340,20 +296,16 @@ const routes = [
         path: "Shift Management/Add Shift",
         name: "Add Shift",
         icon: <AiOutlineCaretRight />,
-
-       },
-       {
+      },
+      {
         path: "Shift Management/View Employee Shift",
         name: "View Employee Shift",
         icon: <AiOutlineCaretRight />,
+      },
+    ],
+  },
 
-       },
-    ]
-   },
-
-   
-   
-   {
+  {
     path: "/Employee",
     name: "Employee",
     icon: <BiAlignLeft />,
@@ -362,10 +314,10 @@ const routes = [
         path: "Employee/Employee",
         name: "Employee",
         icon: <AiOutlineCaretRight />,
-       },
-    ]
-   },
-   {
+      },
+    ],
+  },
+  {
     path: "/Position",
     name: "Position",
     icon: <BiAlignLeft />,
@@ -374,10 +326,9 @@ const routes = [
         path: "Position/Position",
         name: "Position",
         icon: <AiOutlineCaretRight />,
-       },
- 
-    ]
-   },
+      },
+    ],
+  },
 ];
 
 const SideBar = ({ children }) => {
@@ -423,12 +374,11 @@ const SideBar = ({ children }) => {
         <motion.div
           animate={{
             width: isOpen ? "285px" : "55px",
-            transition: { duration: 0.5, type: "spring", damping: 10 ,},
+            transition: { duration: 0.5, type: "spring", damping: 10 },
           }}
           className={`sidebar `}
         >
           <div className="top_section">
-
             <div className="bars">
               <FaBars onClick={toggle} />
             </div>
@@ -448,15 +398,17 @@ const SideBar = ({ children }) => {
                   type="text"
                   values="Administrator"
                   placeholder="Search"
-                >Administrator</motion.text>
+                >
+                  Administrator
+                </motion.text>
               )}
             </AnimatePresence>
           </div>
           <section className="routes">
             {routes.map((route, index) => {
               if (route.subRoutes) {
-                  return(
-                    <SidebarMenu
+                return (
+                  <SidebarMenu
                     setIsOpen={setIsOpen}
                     route={route}
                     showAnimation={showAnimation}
@@ -472,7 +424,7 @@ const SideBar = ({ children }) => {
                   activeClassName="active"
                 >
                   <div className="icon ">{route.icon}</div>
-                  <AnimatePresence >
+                  <AnimatePresence>
                     {isOpen && (
                       <motion.div
                         variants={showAnimation}
