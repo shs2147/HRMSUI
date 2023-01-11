@@ -22,9 +22,10 @@ const ViewOtReport = () => {
         return response.json();
       })
       .then((data) => {
-        console.log(data)
+        setShow(data)
       })
   }
+  
   // useEffect(() => {
   //   fetchData();
   // }, [])
