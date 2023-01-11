@@ -35,9 +35,31 @@ const AddEmployee = () => {
           setItemshow(data)
         })
       }
+      const fetchData2 = () =>{
+        fetch("http://localhost:8080/getallEmp",{
+        })
+        .then((response) =>{
+          return response.json();
+        })
+        .then((data) =>{
+          setItemshow(data)
+        })
+      }
+      const fetchData3 = () =>{
+        fetch("http://localhost:8080/branch/fetchdata",{
+        })
+        .then((response) =>{
+          return response.json();
+        })
+        .then((data) =>{
+          setItemshow(data)
+        })
+      }
       useEffect(() =>{
         fetchData();
         fetchData1();
+        fetchData2();
+        fetchData3();
        
       },[])
     
@@ -194,10 +216,11 @@ const AddEmployee = () => {
 
                                                 <select value={data.employmentType} className="form-select form-control" aria-label="Default select example" name='employmentType' onChange={inputChangeHandler}>
                                                     <option selected disabled>Select Employement type</option>
-                                                    <option value="abcd">abcd</option>
+                                                    {itemshow.map(e=>( <option valueType={e.employmentType}>{e.employmentType}</option>))}
+                                                    {/* <option value="abcd">abcd</option>
                                                     <option value="defg">defg</option>
                                                     <option value="hijk">hijk</option>
-                                                    <option value="slmno">lmno</option>
+                                                    <option value="slmno">lmno</option> */}
                                                 </select>
                                             </div>
                                             <div className="col-sm-3 ">
@@ -205,10 +228,11 @@ const AddEmployee = () => {
 
                                                 <select value={data.officeBranch} className="form-select" aria-label="Default select example" name='officeBranch' onChange={inputChangeHandler}>
                                                     <option selected disabled>Select Branch</option>
-                                                    <option value="abcd">abcd</option>
+                                                    {itemshow.map(e=>( <option valueType={e.name}>{e.name}</option>))}
+                                                    {/* <option value="abcd">abcd</option>
                                                     <option value="defg">defg</option>
                                                     <option value="hijk">hijk</option>
-                                                    <option value="slmno">lmno</option>
+                                                    <option value="slmno">lmno</option> */}
                                                 </select>
                                             </div>
                                             <div className="col-sm-3 ">
@@ -216,10 +240,13 @@ const AddEmployee = () => {
 
                                                 <select value={data.employeeGrade} className="form-select" aria-label="Default select example" name='employeeGrade' onChange={inputChangeHandler}>
                                                     <option selected disabled>Select Employee Grade </option>
-                                                    <option value="abcd">abcd</option>
-                                                    <option value="defg">defg</option>
-                                                    <option value="hijk">hijk</option>
-                                                    <option value="slmno">lmno</option>
+                                                    <option value="A+">A+</option>
+                                                    <option value="A">A</option>
+                                                    <option value="B">B</option>
+                                                    <option value="C">C</option>
+                                                    <option value="D">D</option>
+                                                    
+                                                    
                                                 </select>
                                             </div>
                                             <div className="col-sm-3 ">
@@ -238,10 +265,9 @@ const AddEmployee = () => {
 
                                                 <select value={data.insuranceAvail} className="form-select" aria-label="Default select example" name='insuranceAvail' onChange={inputChangeHandler}>
                                                     <option selected disabled>Select insurance</option>
-                                                    <option value="abcd">abcd</option>
-                                                    <option value="defg">defg</option>
-                                                    <option value="hijk">hijk</option>
-                                                    <option value="slmno">lmno</option>
+                                                    <option value="Yes">Yes</option>
+                                                    <option value="No">No</option>
+                                                
                                                 </select>
                                             </div>
                                             <div className="col-sm-3 ">

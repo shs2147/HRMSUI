@@ -7,11 +7,7 @@ const AddUser = () => {
   const[show,setShow]=useState([]);
   const[itemshow,setItemshow]=useState([])
   const [data, setData] = useState({
-    roles: [
-      {
-        roleName: "",
-      },
-    ],
+    
   });
   const inputChangeHandler = (e) => {
     let newData = { ...data };
@@ -177,7 +173,7 @@ console.log(show);
                 valueType={data.roleName}
                 class="form-select"
                 aria-label="Default select example"
-                name="roleType"
+                name="roleName"
                 onChange={inputChangeHandler}
               >
                 {/* <input value={data.name} type="text" class="form-control" id="formGroupExampleInput" name="name" onChange={inputChangeHandler}/> */}

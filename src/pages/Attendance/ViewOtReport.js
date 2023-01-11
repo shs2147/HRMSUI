@@ -81,7 +81,7 @@ const ViewOtReport = () => {
             <br />
             <select value={data.employee} class="form-select" aria-label="Default select example" name="employee" onChange={inputChangeHandler}>
               <option selected disabled>select employee</option>
-              {show.map(e => (<option valueType={e.employeeName}>{e.employeeName}</option>))}
+              {show.map(aman=>( <option valueType={aman.employeeName}>{aman.employeeName}</option>))}
               {/* <option value="aman">Aman</option>
     <option value="amit">Amit</option>
     <option value="ranjan">Ranjan</option>
