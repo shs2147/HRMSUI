@@ -14,7 +14,7 @@ const inputChangeHandler=(e)=>{
 }
  const submitHandler=(e)=>{
     e.preventDefault();
-     fetch('http://localhost:8080/savedesignation', {
+     fetch('http://localhost:8080/designation/savedesignation', {
 
             method: "POST",
             headers: { "Content-Type": "application/json", "Accept": "application/json" },

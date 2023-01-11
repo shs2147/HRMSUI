@@ -39,13 +39,13 @@ class SignInForm extends Component {
         <form className={classes.formField} onSubmit={this.handleSubmit}>
           <div className={classes.formField}>
             <label className={classes.formFieldLabel} htmlFor="userName">
-            userName
+            User Name
             </label>
             <input
               type="text"
               id="userName"
               className={classes.formFieldInput}
-              placeholder="Enter your userName"
+              placeholder="Username..."
               name="userName"
               value={this.state.userName}
               onChange={this.handleChange}
@@ -60,7 +60,7 @@ class SignInForm extends Component {
               type="password"
               id="password"
               className={classes.formFieldInput}
-              placeholder="Enter your password"
+              placeholder=" Password..."
               name="password"
               value={this.state.password}
               onChange={this.handleChange}
@@ -69,9 +69,7 @@ class SignInForm extends Component {
 
           <div className={classes.formField}>
             <button onClick={this.handleSubmit} className={classes.formFieldButton}>Sign In</button>{" "}
-            {/* <Link to="/" className={classes.formFieldLink}>
-              Create an account
-            </Link> */}
+
           </div>
 
           </form>        

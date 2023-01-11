@@ -14,7 +14,7 @@ const DepartmentMaster = () => {
             headers: { "Content-Type": "application/json", "Accept": "application/json" },
             body:JSON.stringify(data)
         }).then(() => {
-            console.log("Basic Information Added");
+            console.log("department Added");
         }).catch(err=>console.log(err))
         
  }
