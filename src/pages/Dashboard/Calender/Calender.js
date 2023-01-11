@@ -6,7 +6,7 @@ function Calender() {
        
 
   return (
-    <Calendar className={classes.calender}/>
+    <Calendar className={classes.calender} style={{display:"flex", flexWrap:"nowrap"}}/>
   )
 }
 
