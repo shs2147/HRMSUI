@@ -16,7 +16,7 @@ const AddEmployee = () => {
         // console.log(JSON.stringify(newData))
     }
     const fetchData = () =>{
-        fetch("http://localhost:8080/basic/fetchdata",{
+        fetch("http://localhost:8080/designation/fetchalldesignation",{
         })
         .then((response) =>{
           return response.json();
@@ -140,7 +140,7 @@ const AddEmployee = () => {
 
                                                 <select valueType={data.designation} className="form-select" aria-label="Default select example" name='designation' onChange={inputChangeHandler}>
                                                     <option selected disabled>---Select Designation---</option>
-                                                    {show.map(saurabh=>( <option valueType={saurabh.designation}>{saurabh.designation}</option>))}
+                                                    {show.map(saurabh=>( <option valueType={saurabh.designationName}>{saurabh.designationName}</option>))}
                                                 </select>
                                             </div>
                                             <div className=" col-sm-4">
