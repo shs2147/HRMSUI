@@ -52,7 +52,7 @@ return <>
        <label for="cars" id='label'>Select Employee:</label>
      <br/>  
  <select value={data.selectEmployee} class="form-select" aria-label="Default select example" name="selectEmployee" onChange={inputChangeHandler}>
-  <option selected disabled>Admistrator</option>
+  <option selected disabled>select employee</option>
   {show.map(e=>(<option valueType={e.employeeName}>{e.employeeName}</option>))}
   {/* <option value="aman">Aman</option>
   <option value="amit">Amit</option>
