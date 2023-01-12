@@ -9,6 +9,7 @@ const ViewOtReport = () => {
     //   todate:''
   });
   const [show, setShow] = useState([]);
+  const [view, setView] = useState([]);
   const inputChangeHandler = (e) => {
     let newData = { ...data };
     newData[e.target.name] = e.target.value;
@@ -46,7 +47,7 @@ const ViewOtReport = () => {
         return response.json();
       })
       .then((data) => {
-        setShow(data)
+        setView(data)
       })
   }
   useEffect(() => {
@@ -103,25 +104,26 @@ const ViewOtReport = () => {
         <button type="submit" onClick={submitHandler} className="btn btn-primary mt-4">View</button>
         <div className="container">
 
-          <table class="table table2 bg-light">
+         <table class="table table2 bg-light">
 
             <thead>
               <tr>
-                <th scope="col">SL</th>
+                <th scope="col">ID</th>
                 <th scope="col">Employee Name</th>
                 <th scope="col">Description</th>
                 <th scope="col">Date</th>
                 <th scope="col">Start Time</th>
                 <th scope="col">End Time</th>
+                <th scope="col">Edit</th>
               </tr>
             </thead>
             <tbody>
 
 
-{/* 
-              {data.map(sauarabh => (<tr>
 
-                <th scope="row">1</th>
+              {view.map(sauarabh => (<tr>
+
+                <th scope="row">{sauarabh.id}</th>
 
                 <td>{sauarabh.selectEmployee}</td>
 
@@ -148,7 +150,7 @@ const ViewOtReport = () => {
 
               </tr>))}
 
- */}
+
 
 
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
   const LeaveReport = () => {
   const [data,setData]=useState({
     Session:'',
@@ -7,6 +7,7 @@ import { useState } from "react";
 
 
   });
+  const [show, setShow] = useState([]);
  const inputChangeHandler=(e)=>{
     let newData={...data};
     newData[e.target.name]=e.target.value;
@@ -16,6 +17,19 @@ import { useState } from "react";
  const submitHandler=(e)=>{
   console.log(JSON.stringify(data))
  }
+ const fetchData = () => {
+  fetch("http://localhost:8080/basic/fetchdata", {
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      setShow(data)
+    })
+}
+useEffect(() => {
+    fetchData();
+  }, [])
 
   return <>
   <div className="container">
@@ -63,10 +77,11 @@ import { useState } from "react";
        <br/>  
        <select value={data.Chooseemployee} class="form-select" aria-label="Default select example" name="Chooseemployee" onChange={inputChangeHandler}>
     <option selected disabled>Choose Emoloyee</option>
-    <option value="aman">Aman</option>
+    {show.map(aman=>( <option valueType={aman.employeeName}>{aman.employeeName}</option>))}
+    {/* <option value="aman">Aman</option>
     <option value="amit">Amit</option>
     <option value="ranjan">Ranjan</option>
-    <option value="saurav">Saurav</option>
+    <option value="saurav">Saurav</option> */}
   </select>
   </div>
 

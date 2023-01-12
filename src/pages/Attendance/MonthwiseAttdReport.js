@@ -1,15 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const DatewiseAttendaceReport = () => {
   const [employee,setEmployee]=useState('');
   const [fromDate,setFromDate]=useState('');
   const [toDate,setToDate]=useState('');
+  const [show, setShow] = useState([]);
 
  const submitHandler=(e)=>{
     e.preventDefault();
     const values={employee:employee,fromDate:fromDate,toDate:toDate}
     console.log(JSON.stringify(values))
  }
-
+ const fetchData = () => {
+  fetch("http://localhost:8080/basic/fetchdata", {
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      setShow(data)
+    })
+}
+useEffect(() => {
+    fetchData();
+  }, [])
 
   return <>
   <div className="container">
@@ -24,11 +37,12 @@ const DatewiseAttendaceReport = () => {
          <label for="cars" id='label'>Select Employee:</label>
        <br/>  
        <select valueType={employee} class="form-select" aria-label="Default select example" name="selectemployee" onChange={(e)=>{setEmployee(e.target.value)}}>
-    <option selected disabled>Admistrator</option>
-    <option valueType="aman">Aman</option>
+    <option selected disabled>Select Employee</option>
+    {show.map(aman=>( <option valueType={aman.employeeName}>{aman.employeeName}</option>))}
+    {/* <option valueType="aman">Aman</option>
     <option valueType="amit">Amit</option>
     <option valueType="ranjan">Ranjan</option>
-    <option valueType="saurav">Saurav</option>
+    <option valueType="saurav">Saurav</option> */}
   </select>
   </div>
   
