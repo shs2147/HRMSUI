@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // import { propTypes } from "react-bootstrap/esm/Image";
 
   const AttendanceDetails = () => {
-    const[show]=useState([]);
+    const[show,setShow]=useState([]);
+    const[view,setView]=useState([]);
   const [data,setData]=useState({
     fromDate:'',
     toDate:'',
@@ -14,10 +15,18 @@ import { useState } from "react";
     setData(newData)
    
  }
+ const fetchData = () => {
+  fetch("http://localhost:8080/basic/fetchdata", {
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      setView(data)
+    })
+}
  const submitHandler=(e)=>{
   console.log(JSON.stringify(data))
-
-// useEffect(()=>{
   fetch('http://localhost:8080/attendance_details/save',{
     method:"POST",
     headers:{"content-Type":"application/json","Accept":"appliaction/json"},
@@ -26,6 +35,9 @@ import { useState } from "react";
     console.log(" attendance_details are added")
  })
 }
+useEffect(()=>{
+  fetchData();
+},[])
  
   return (
     <div style={{width:'75vw'}}>
@@ -53,11 +65,7 @@ import { useState } from "react";
          <br/>  
      <select valueType={data.selectEmployee} class="form-select" aria-label="Default select example" name="selectEmployee" onChange={inputChangeHandler}>
       <option selected disabled>Choose Employee</option>
-      <option valueType="aman">Aman</option>
-      <option valueType="amit">Amit</option>
-      <option valueType="ranjan">Ranjan</option>
-      <option valueType="saurav">Saurav</option>
-      <option valueType="vijay">Vijay</option>
+      {view.map(aman=>( <option valueType={aman.employeeName}>{aman.employeeName}</option>))}
     </select>
     </div>
     
