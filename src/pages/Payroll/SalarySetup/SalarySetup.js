@@ -1,12 +1,22 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const SalarySetup = () => {
-  const [data, setData] = useState({
-   
-});
+  const [data, setData] = useState({});
+const [show,setShow]=useState([]);
+const [empName,setEmpName]=useState("");
+const [selectedId,setSelectedId]=useState("");
+
+  console.log(empName,selectedId,"selectedId")
 const inputChangeHandler = (e) => {
     let newData = { ...data };
-    newData[e.target.name] = e.target.value;
+    newData[e.target.name ] = e.target.value;
+    if(e.target.name === "employeeName"){
+      setEmpName(e.target.value)
+    }
+    if(e.target.name === "selectEmployee"){
+      setSelectedId(e.target.value);
+     
+    }
     setData(newData)
     // console.log(JSON.stringify(newData))
 }
@@ -21,6 +31,43 @@ const submitHandler=(e)=>{
       console.log("payroll are added")
     })
 }
+const fetchData = () =>{
+  fetch("http://localhost:8080/basic/fetchemployee/{?employeeid}",{
+
+  })
+  .then((response) =>{
+    return response.json();
+  })
+  .then((data) =>{
+    setShow(data)
+  })
+  console.log(data.id)
+}
+const fetchData1 = () =>{
+  fetch("http://localhost:8080/basic/fetchdata",{
+  })
+  .then((response) =>{
+    return response.json();
+  })
+  .then((data) =>{
+    setShow(data)
+  })
+}
+useEffect(()=>
+{
+  // fetchData();
+  fetchData1();
+
+},[])
+       
+useEffect(()=>{
+     const myData = show?.filter((item)=>item.employeeId == selectedId )
+   console.log("my emp",myData[0].employeeName)
+   setEmpName(myData[0]?.employeeName)
+},[selectedId])
+
+
+console.log(data,"data")
   return (
     <div>
     <h2 className='container'>Add Employee Salary <div className='header Button'>
@@ -33,13 +80,29 @@ const submitHandler=(e)=>{
       <div className="row ">
       <div className=" col-sm-6">
         <label className="form-label">Employee Id:</label><br />
-    <input value={data.id} type="text" className="form-control" id="formGroupExampleInput" name='id' onChange={inputChangeHandler} />
+    {/* <input value={data.id} type="text" className="form-control" id="formGroupExampleInput" name='id' onChange={inputChangeHandler} /> */}
+    <select value={data.selectEmployee } class="form-select" aria-label="Default select example" name="selectEmployee" onChange={inputChangeHandler}>
+    <option selected disabled>select employee</option>
+    {show.map(e=>(<option valueType={e.employeeId }>{e.employeeId }</option>))}
+  </select>
+  </div>
+  <div className=" col-sm-6">
+        <label className="form-label">Employee Name</label><br />
+        <select value={empName} className="form-select" aria-label="Default select example" name="employeeName" onChange={inputChangeHandler}>
+    {/* <select value={data.employeeName} type="text" className="form-control" id="formGroupExampleInput" name='employeeName' onChange={inputChangeHandler}> </select> */}
+    {show.map(e=>(<option valueType={e.employeeName}>{e.employeeName}</option>))}
+    {/* {show.map(e=>(<option value={data.value}>{data.value}</option>))} */}
+    </select>
           </div>
+
+
+
+          
           {/* <div className=" col-sm-6">
         <label className="form-label">Financial Year:</label><br />
     <input value={data.financialYear} type="text" className="form-control" id="formGroupExampleInput" name='financialYear' onChange={inputChangeHandler} />
           </div> */}
-          <div className="col-sm-6 ">
+          {/* <div className="col-sm-6 ">
           <label className="form-label" for="cars" id='label'>Financial Year:</label>
            <br />
  <select value={data.financialYear} className="form-select" aria-label="Default select example" name='financialYear' onChange={inputChangeHandler}>
@@ -76,7 +139,7 @@ const submitHandler=(e)=>{
           <div className=" col-sm-6">
         <label className="form-label">Annual Salary:</label><br />
     <input value={data.annualSalary} type="text" className="form-control" id="formGroupExampleInput" name='annualSalary' onChange={inputChangeHandler} />
-          </div>
+          </div> */}
 
 
 
