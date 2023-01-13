@@ -40,10 +40,10 @@ function Form() {
   };
 
   const options = [
-    { value: "", text: "--Choose an option--", disabled: true },
-    { value: "apple", text: "Apple 🍏" },
-    { value: "banana", text: "Banana 🍌" },
-    { value: "kiwi", text: "Kiwi 🥝" },
+    { value: "", text: "--Choose an option--", disabled: false },
+    { value: "apple", text: "Individual Grievances" },
+    { value: "banana", text: "Group Grievances" },
+    { value: "kiwi", text: "Union Grievances" },
   ];
 
   return (

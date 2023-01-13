@@ -9,12 +9,23 @@ function Form() {
     description: "",
    
   });
+  const[show,setShow]=useState([]);
   function handleInput(e) {
     e.preventDefault();
     const newdata = { ...data };
     newdata[e.target.name] = e.target.value;
     setData(newdata);
     console.log(JSON.stringify(newdata));
+  }
+  const fetchData1 = () =>{
+    fetch("http://localhost:8080/basic/fetchdata",{
+    })
+    .then((response) =>{
+      return response.json();
+    })
+    .then((data) =>{
+      setShow(data)
+    })
   }
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -41,6 +52,7 @@ function Form() {
         <div className=" " style={{ fontSize: "1.2vw" }}>
           <div className="d-flex pb-4 mx-1">
             <div className="px-5 ">Employee Id :</div>
+            {show.map(e=>(<option valueType={e.employeeName}>{e.employeeName}</option>))}
             <div className="px-5">0</div>
           </div>
           <div className="d-flex mx-1 pb-4">
