@@ -63,8 +63,7 @@ useEffect(()=>
 useEffect(()=>{
      const myData = show?.filter((item)=>item.employeeId == selectedId )
 
-  //  console.log("my emp",myData[0].employeeName)
-
+   console.log("my emp",myData[0]?.employeeName)
    setEmpName(myData[0]?.employeeName)
 },[selectedId])
 
@@ -104,7 +103,7 @@ console.log(data,"data")
         <label className="form-label">Financial Year:</label><br />
     <input value={data.financialYear} type="text" className="form-control" id="formGroupExampleInput" name='financialYear' onChange={inputChangeHandler} />
           </div> */}
-          {/* <div className="col-sm-6 ">
+          <div className="col-sm-6 ">
           <label className="form-label" for="cars" id='label'>Financial Year:</label>
            <br />
  <select value={data.financialYear} className="form-select" aria-label="Default select example" name='financialYear' onChange={inputChangeHandler}>
@@ -141,7 +140,7 @@ console.log(data,"data")
           <div className=" col-sm-6">
         <label className="form-label">Annual Salary:</label><br />
     <input value={data.annualSalary} type="text" className="form-control" id="formGroupExampleInput" name='annualSalary' onChange={inputChangeHandler} />
-          </div> */}
+          </div>
 
 
 

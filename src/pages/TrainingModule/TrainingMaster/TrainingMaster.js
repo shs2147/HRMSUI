@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState,useEffect} from "react";
 
 const TrainingMaster = () => {
   const [data,setData]=useState({
   
   });
+const [show,setShow]=useState([]);
  const inputChangeHandler=(e)=>{
     let newData={...data};
     newData[e.target.name]=e.target.value;
@@ -26,8 +27,35 @@ const TrainingMaster = () => {
     console.log("employee added successfuly")})
   
 }
+const fetchData1 = () =>{
+  fetch("http://localhost:8080/basic/fetchdata",{
+  })
+  .then((response) =>{
+    return response.json();
+  })
+  .then((data) =>{
+    setShow(data)
+  })
+}
+useEffect(()=>
+{
+  fetchData1();
+},[])
 
-
+const fetchData = () =>{
+  fetch("http://localhost:8080/employee/get",{
+  })
+  .then((response) =>{
+    return response.json();
+  })
+  .then((data) =>{
+    setShow(data)
+  })
+}
+useEffect(()=>
+{
+  fetchData();
+ },[])
 
   return (
     <div className="container2">
@@ -41,9 +69,10 @@ const TrainingMaster = () => {
             <br />
             <select value={data.eventName} class="form-select" aria-label="Default select example" name="eventName" onChange={inputChangeHandler}>
               <option selected disabled>Event Name</option>
-              <option value="abcd">abcd</option>
+              {show.map(e=>(<option valueType={e.eventName}>{e.eventName}</option>))}
+              {/* <option value="abcd">abcd</option>
               <option value="efgh">efgh</option>
-              <option value="ijkl">ijkl</option>
+              <option value="ijkl">ijkl</option> */}
             </select>
           </div>
           <div className="col-sm-4">
@@ -51,19 +80,21 @@ const TrainingMaster = () => {
             <br />
             <select value={data.trainingName} class="form-select" aria-label="Default select example" name="trainingName" onChange={inputChangeHandler}>
               <option selected disabled>Training Name</option>
-              <option value="react js">react js</option>
+              {show.map(e=>(<option valueType={e.trainingName}>{e.trainingName}</option>))}
+              {/* <option value="react js">react js</option>
               <option value="java">java</option>
-              <option value="php">php</option>
+              <option value="php">php</option> */}
             </select>
           </div>
           <div className="col-sm-4">
             <label for="cars" id='label'>Employee:</label>
             <br />
             <select value={data.employee} class="form-select" aria-label="Default select example" name="employee" onChange={inputChangeHandler} >
-              <option selected disabled>Employee</option>
-              <option value="aman">aman</option>
+              <option selected disabled>Select Employee</option>
+              {show.map(e=>(<option valueType={e.employeeName}>{e.employeeName}</option>))}
+              {/* <option value="aman">aman</option>
               <option value="amit">amit</option>
-              <option value="saurav">saurav</option>
+              <option value="saurav">saurav</option> */}
             </select>
           </div>
       </div>
