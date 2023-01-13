@@ -57,8 +57,8 @@ import DepartmentMaster from "./pages/Menu Master/Department Master/DepartmentMa
 import DesignationMaster from "./pages/Menu Master/Designation Master/DesignationMaster";
 import EmploymentTypeMaster from "./pages/Menu Master/Employment Type Master/EmploymentTypeMaster";
 import UserApproval from "./pages/Menu Master/User Approval/UserApproval";
-import Employee from "./pages/Employee/Employee";
-import Position from "./pages/Position/Position";
+import Training from "./pages/Training/Training";
+// import Position from "./pages/Position/Position";
 import SignIn from "./pages/Signin/SignIn";
 import SignInForm from "./pages/Signin/SignInForm";
 import SignUpForm from "./pages/Signin/SignUpForm";
@@ -231,8 +231,8 @@ function App() {
               element={<MonthwiseAttdReport />}
             />
             <Route path="/attendance/LeaveReport" element={<LeaveReport />} />
-            <Route path="/employee/employee" element={<Employee />} />
-            <Route path="/Position/Position" element={<Position />} />
+            <Route path="/training/training" element={<Training />} />
+            {/* <Route path="/Position/Position" element={<Position />} /> */}
 
             <Route path="/Shift Management/Add Shift" element={<AddShift />} />
             <Route
