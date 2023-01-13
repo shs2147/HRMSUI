@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
   const LoanApplication = () => {
   const [data,setData]=useState({
   
   });
+  const[show,setShow]=useState([]);
  const inputChangeHandler=(e)=>{
     let newData={...data};
     newData[e.target.name]=e.target.value;
@@ -22,6 +23,20 @@ import { useState } from "react";
 
   
 }
+const fetchData1 = () =>{
+  fetch("http://localhost:8080/basic/fetchdata",{
+  })
+  .then((response) =>{
+    return response.json();
+  })
+  .then((data) =>{
+    setShow(data)
+  })
+}
+useEffect(()=>
+{
+  fetchData1();
+},[])
 
   return <>
   <div className="container">
@@ -36,11 +51,12 @@ import { useState } from "react";
        <br/>  
        <select valueType={data.chooseEmployee} class="form-select" aria-label="Default select example" name="chooseEmployee" onChange={inputChangeHandler}>
   
-    <option selected disabled>Admistrator</option>
-    <option valueType="aman">Aman</option>
+    <option selected disabled>Select Employee</option>
+    {show.map(e=>(<option valueType={e.employeeName}>{e.employeeName}</option>))}
+    {/* <option valueType="aman">Aman</option>
     <option valueType="amit">Amit</option>
     <option valueType="ranjan">Ranjan</option>
-    <option valueType="saurav">Saurav</option>
+    <option valueType="saurav">Saurav</option> */}
   </select>
   </div>
   <div className="col-sm-4 mt-2">
@@ -48,11 +64,11 @@ import { useState } from "react";
        <br/>  
    <select valueType={data.loanType} class="form-select" aria-label="Default select example" name="loanType" onChange={inputChangeHandler}>
    
-    <option selected disabled>Admistrator</option>
-    <option valueType="aman">Aman</option>
-    <option valueType="amit">Amit</option>
-    <option valueType="ranjan">Ranjan</option>
-    <option valueType="saurav">Saurav</option>
+    <option selected disabled>Choose Type</option>
+    <option valueType="aman">Home Loan</option>
+    <option valueType="amit">Gold Loan</option>
+    <option valueType="ranjan">Personal Loan</option>
+    <option valueType="saurav">Property Loan</option>
   </select>
   </div>
    <div className="col-sm-4 mt-2">
@@ -94,10 +110,10 @@ import { useState } from "react";
        <br/>  
    <select valueType={data.rePaymentMethod} class="form-select" aria-label="Default select example" name="rePaymentMethod" onChange={inputChangeHandler}>
     <option selected disabled>Select Method</option>
-    <option valueType="aman">Aman</option>
-    <option valueType="amit">Amit</option>
-    <option valueType="ranjan">Ranjan</option>
-    <option valueType="saurav">Saurav</option>
+    <option valueType="aman">Cash</option>
+    <option valueType="amit">Cheque</option>
+    <option valueType="ranjan">NEFT</option>
+    <option valueType="saurav">RTGS</option>
   </select>
   </div>
 
