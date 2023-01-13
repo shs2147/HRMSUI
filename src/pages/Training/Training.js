@@ -20,18 +20,18 @@ import { useState } from "react";
    return <>
    <div className="container">
     <div className="d-flex">
-     <h3>Employee</h3>
+     <h3>Add Details</h3>
      </div> 
      <hr />
      <div className="bg-light">
      <div className="row ">
   
-   <div className="col-sm-4 mt-2">
-          <label for="cars" id='label'>EMP ID:</label>
+   <div className="col-sm-4 my-4">
+          <label for="cars" id='label'>NAME:</label>
         <br/>
      <input value={data.empid} type="text" class="form-control" id="formGroupExampleInput" name="empid" onChange={inputChangeHandler}/>
    </div>
-   <div className="col-sm-4 mt-2">
+   {/* <div className="col-sm-4 mt-2">
           <label for="cars" id='label'>DEP ID:</label>
         <br/>
      <input value={data.depid} type="text" class="form-control" id="formGroupExampleInput" name="depid" onChange={inputChangeHandler}/>
@@ -56,7 +56,7 @@ import { useState } from "react";
           <label for="cars" id='label'>Salary:</label>
         <br/>
      <input value={data.salary} type="text" class="form-control" id="formGroupExampleInput" name="salary" onChange={inputChangeHandler}/>
-   </div>
+   </div> */}
 
    </div>
    <button onClick={submitHandler} className="btn btn-primary mt-4">Save</button>
