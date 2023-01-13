@@ -193,8 +193,10 @@ const AddEmployee = () => {
                                                 <label className="form-label" for="cars" id='label'>Work Type:</label>
 
                                                 <select valueType={data.workType} className="form-select" aria-label="Default select example" name='workType' onChange={inputChangeHandler}>
-                                                    <option selected disabled>---Permanent---</option>
-                                                    {show.map(saurabh=>( <option valueType={saurabh.workType}>{saurabh.workType}</option>))}
+                                                    <option >---select Type---</option>
+                                                    <option value="permanent">Technical</option>
+                                                    <option value="probation">Non-Technical</option>
+                                                    {/* {show.map(saurabh=>( <option valueType={saurabh.workType}>{saurabh.workType}</option>))} */}
                                                 </select>
                                             </div>
                                         </div>
@@ -284,10 +286,14 @@ const AddEmployee = () => {
 
                                                 <select value={data.bloodGroup} className="form-select" aria-label="Default select example" name='bloodGroup' onChange={inputChangeHandler}>
                                                     <option selected disabled>Group</option>
-                                                    <option value="abcd">abcd</option>
-                                                    <option value="defg">defg</option>
-                                                    <option value="hijk">hijk</option>
-                                                    <option value="slmno">lmno</option>
+                                                    <option value="abcd">A+</option>
+                                                    <option value="defg">A-</option>
+                                                    <option value="hijk">B+</option>
+                                                    <option value="slmno">B-</option>
+                                                    <option value="abcd">O+</option>
+                                                    <option value="defg">O-</option>
+                                                    <option value="hijk">AB+</option>
+                                                    <option value="slmno">AB-</option>
                                                 </select>
                                             </div>
                                             <div className="col-sm-3 ">
@@ -300,10 +306,8 @@ const AddEmployee = () => {
 
                                                 <select value={data.employeeType} className="form-select" aria-label="Default select example" name='employeeType' onChange={inputChangeHandler}>
                                                     <option selected disabled>Choice</option>
-                                                    <option value="abcd">abcd</option>
-                                                    <option value="defg">defg</option>
-                                                    <option value="hijk">hijk</option>
-                                                    <option value="slmno">lmno</option>
+                                                    <option value="abcd">Permanent</option>
+                                                    <option value="defg">Under-Probation</option>
                                                 </select>
                                             </div>
                                             <div className=" col-sm-3">
@@ -372,10 +376,10 @@ const AddEmployee = () => {
 
                                                 <select value={data.paymentType} className="form-select" aria-label="Default select example" name='paymentType' onChange={inputChangeHandler}>
                                                     <option selected disabled>Choice Payment type</option>
-                                                    <option value="abcd">abcd</option>
-                                                    <option value="defg">defg</option>
-                                                    <option value="hijk">hijk</option>
-                                                    <option value="slmno">lmno</option>
+                                                    <option value="slmno">Cash</option>
+                                                    <option value="defg">Cheque</option>
+                                                    <option value="abcd">RTGS</option>
+                                                    <option value="hijk">NEFT</option>
                                                 </select>
                                             </div>
                                             <div className=" col-sm-6">
