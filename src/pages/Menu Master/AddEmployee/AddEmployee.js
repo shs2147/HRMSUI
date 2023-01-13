@@ -6,6 +6,7 @@ import { CAccordion, CAccordionBody, CAccordionHeader, CAccordionItem } from '@c
 const AddEmployee = () => {
     const[show,setShow]=useState([]);
     const[itemshow,setItemshow]=useState([])
+    const[emp,setEmp]=useState([]);
     const [data, setData] = useState({
         name: ''
     });
@@ -42,7 +43,7 @@ const AddEmployee = () => {
           return response.json();
         })
         .then((data) =>{
-          setItemshow(data)
+          setEmp(data)
         })
       }
       const fetchData3 = () =>{
@@ -218,7 +219,7 @@ const AddEmployee = () => {
 
                                                 <select value={data.employmentType} className="form-select form-control" aria-label="Default select example" name='employmentType' onChange={inputChangeHandler}>
                                                     <option selected disabled>Select Employement type</option>
-                                                    {itemshow.map(e=>( <option valueType={e.employmentType}>{e.employmentType}</option>))}
+                                                    {emp.map(e=>( <option valueType={e.employmentType}>{e.employmentType}</option>))}
                                                     {/* <option value="abcd">abcd</option>
                                                     <option value="defg">defg</option>
                                                     <option value="hijk">hijk</option>
