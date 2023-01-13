@@ -62,7 +62,7 @@ useEffect(()=>
        
 useEffect(()=>{
      const myData = show?.filter((item)=>item.employeeId == selectedId )
-   console.log("my emp",myData[0].employeeName)
+  //  console.log("my emp",myData[0].employeeName)
    setEmpName(myData[0]?.employeeName)
 },[selectedId])
 

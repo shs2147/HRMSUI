@@ -10,6 +10,8 @@ const ViewOtReport = () => {
   });
   const [show, setShow] = useState([]);
   const [view, setView] = useState([]);
+  const [row, setRow] = useState([]);
+  // const [rows, setRows] = useState([]);
   const inputChangeHandler = (e) => {
     let newData = { ...data };
     newData[e.target.name] = e.target.value;
@@ -55,7 +57,20 @@ const ViewOtReport = () => {
     submitHandler();
   }, [])
 
-
+  const submitHandler1 = () => {
+    fetch("http://localhost:8080/OverTime/bydate", {
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setRow(data)
+      })
+  }
+  useEffect(() => {
+    fetchData();
+    submitHandler1();
+  }, [])
   // console.log(data)
 
 
@@ -102,7 +117,7 @@ const ViewOtReport = () => {
           </div>
         </div>
         <button type="submit" onClick={submitHandler} className="btn btn-primary mt-4">View</button>
-        <div className="container">
+         <div className="container">
 
          <table class="table table2 bg-light">
 
