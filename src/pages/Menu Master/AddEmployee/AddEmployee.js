@@ -6,6 +6,7 @@ import { CAccordion, CAccordionBody, CAccordionHeader, CAccordionItem } from '@c
 const AddEmployee = () => {
     const[show,setShow]=useState([]);
     const[itemshow,setItemshow]=useState([])
+    const[report,setReport]=useState([])
     const [data, setData] = useState({
         name: ''
     });
@@ -23,6 +24,16 @@ const AddEmployee = () => {
         })
         .then((data) =>{
           setShow(data)
+        })
+      }
+      const fetchData4 = () =>{
+        fetch("http://localhost:8080/basic/fetchdata",{
+        })
+        .then((response) =>{
+          return response.json();
+        })
+        .then((data) =>{
+          setReport(data)
         })
       }
     const fetchData1 = () =>{
@@ -60,7 +71,7 @@ const AddEmployee = () => {
         fetchData1();
         fetchData2();
         fetchData3();
-       
+       fetchData4();
       },[])
     
     const submitHandler = (e) => {
@@ -182,7 +193,7 @@ const AddEmployee = () => {
 
                                                 <select valueType={data.reportingTo} className="form-select" aria-label="Default select example" name='reportingTo' onChange={inputChangeHandler}>
                                                     <option selected disabled>---Reporting To---</option>
-                                                    {show.map(saurabh=>( <option valueType={saurabh.reportingTo}>{saurabh.reportingTo}</option>))}
+                                                    {report.map(e=>(<option valueType={e.employeeName}>{e.employeeName}</option>))}
                                                 </select>
                                             </div>
                                             <div className=" col-sm-3">
