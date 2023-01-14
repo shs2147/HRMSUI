@@ -10,7 +10,7 @@ const inputChangeHandler=(e)=>{
   let newData={...data};
   newData[e.target.name]=e.target.value;
   setData(newData)
-  console.log(JSON.stringify(newData))
+  // console.log(JSON.stringify(newData))
 }
 
   const submitHandler = (e) => {
