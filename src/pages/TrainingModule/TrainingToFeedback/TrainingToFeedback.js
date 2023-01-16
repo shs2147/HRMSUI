@@ -28,7 +28,7 @@ useEffect(()=>
 },[])
 
 const fetchData = () =>{
-  fetch("http://localhost:8080/employee/get",{
+  fetch("http://localhost:8080/training/fetchdata",{
   })
   .then((response) =>{
     return response.json();

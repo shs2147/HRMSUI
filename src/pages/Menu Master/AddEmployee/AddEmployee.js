@@ -80,6 +80,7 @@ const AddEmployee = () => {
     
     const submitHandler = (e) => {
         e.preventDefault();
+        alert("Success")
         console.log(JSON.stringify(data))
         fetch('http://localhost:8080/basic/saveemployee', {
 

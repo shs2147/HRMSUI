@@ -5,6 +5,9 @@ const TrainingMaster = () => {
   
   });
 const [show,setShow]=useState([]);
+const [itemshow,setItemshow]=useState([]);
+const[train,setTrian]=useState([]);
+
  const inputChangeHandler=(e)=>{
     let newData={...data};
     newData[e.target.name]=e.target.value;
@@ -34,7 +37,7 @@ const fetchData1 = () =>{
     return response.json();
   })
   .then((data) =>{
-    setShow(data)
+    setItemshow(data)
   })
 }
 useEffect(()=>
@@ -42,8 +45,21 @@ useEffect(()=>
   fetchData1();
 },[])
 
-const fetchData = () =>{
-  fetch("http://localhost:8080/employee/get",{
+// useEffect(() => {
+//   const fetchData = async () => {
+//     const response = await fetch(
+//       "http://localhost:8080/basic/fetchdata"
+//     );
+//     const result = await response.json();
+
+//     console.log("res", result);
+//   };
+
+//   fetchData();
+// }, []);
+
+const fetchData2 = () =>{
+  fetch("http://localhost:8080/event/fetchdata",{
   })
   .then((response) =>{
     return response.json();
@@ -54,7 +70,22 @@ const fetchData = () =>{
 }
 useEffect(()=>
 {
-  fetchData();
+  fetchData2();
+ },[])
+
+ const fetchData3 = () =>{
+  fetch("http://localhost:8080/training/fetchdata",{
+  })
+  .then((response) =>{
+    return response.json();
+  })
+  .then((data) =>{
+    setTrian(data)
+  })
+}
+useEffect(()=>
+{
+  fetchData3();
  },[])
 
   return (
@@ -67,9 +98,9 @@ useEffect(()=>
       <div className="col-sm-4">
             <label for="cars" id='label'>Event Name:</label>
             <br />
-            <select value={data.eventName} class="form-select" aria-label="Default select example" name="eventName" onChange={inputChangeHandler}>
+            <select value={data.name} class="form-select" aria-label="Default select example" name="name" onChange={inputChangeHandler}>
               <option selected disabled>Event Name</option>
-              {show.map(e=>(<option valueType={e.eventName}>{e.eventName}</option>))}
+              {show.map(e=>(<option valueType={e.name}>{e.name}</option>))}
               {/* <option value="abcd">abcd</option>
               <option value="efgh">efgh</option>
               <option value="ijkl">ijkl</option> */}
@@ -80,7 +111,7 @@ useEffect(()=>
             <br />
             <select value={data.trainingName} class="form-select" aria-label="Default select example" name="trainingName" onChange={inputChangeHandler}>
               <option selected disabled>Training Name</option>
-              {show.map(e=>(<option valueType={e.trainingName}>{e.trainingName}</option>))}
+              {train.map(e=>(<option valueType={e.trainingName}>{e.trainingName}</option>))}
               {/* <option value="react js">react js</option>
               <option value="java">java</option>
               <option value="php">php</option> */}
@@ -91,7 +122,7 @@ useEffect(()=>
             <br />
             <select value={data.employee} class="form-select" aria-label="Default select example" name="employee" onChange={inputChangeHandler} >
               <option selected disabled>Select Employee</option>
-              {show.map(e=>(<option valueType={e.employeeName}>{e.employeeName}</option>))}
+              {itemshow.map(e=>(<option valueType={e.employeeName}>{e.employeeName}</option>))}
               {/* <option value="aman">aman</option>
               <option value="amit">amit</option>
               <option value="saurav">saurav</option> */}

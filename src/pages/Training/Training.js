@@ -14,8 +14,19 @@ import { useState } from "react";
       newData[e.target.name]=e.target.value;
       setData(newData)
    }
-   const submitHandler=(e)=>{
+  //  const submitHandler=(e)=>{
+  //   console.log(JSON.stringify(data))
+  // }
+  const submitHandler=(e)=>{
     console.log(JSON.stringify(data))
+  
+    fetch("http://localhost:8080/training/save",{
+      method:"POST",
+      headers:{"content-Type": "application/json", "Accept": "application/json"},
+      body:JSON.stringify(data)
+    }).then(()=>{
+      console.log("Training are added")})
+  
   }
    return <>
    <div className="container">
@@ -27,9 +38,15 @@ import { useState } from "react";
      <div className="row ">
   
    <div className="col-sm-4 my-4">
-          <label for="cars" id='label'>NAME:</label>
+          <label for="cars" id='label'>Name:</label>
         <br/>
-     <input value={data.empid} type="text" class="form-control" id="formGroupExampleInput" name="empid" onChange={inputChangeHandler}/>
+     <input value={data.trainingName} type="text" class="form-control" id="formGroupExampleInput" name="trainingName" onChange={inputChangeHandler}/>
+   </div>
+
+   <div className="col-sm-4 my-4">
+          <label for="cars" id='label'>Description:</label>
+        <br/>
+     <input value={data.description} type="text" class="form-control" id="formGroupExampleInput" name="description" onChange={inputChangeHandler}/>
    </div>
    {/* <div className="col-sm-4 mt-2">
           <label for="cars" id='label'>DEP ID:</label>
