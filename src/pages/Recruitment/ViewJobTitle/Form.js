@@ -10,19 +10,13 @@ const ViewJobTitle = () => {
     newData[e.target.name] = e.target.value;
     setData(newData);
   };
-  // let token;
-  // useEffect(() => {
-  //    token = sessionStorage.getItem("token");
-    
-  // }, [token]);
+  
   const submitHandler = async(e) => {
     e.preventDefault();
 
-    // console.log("token: " + token);
      fetch("http://localhost:8080/addjobtitle/getjob", {
       headers: {
         Accept: 'application/json',
-        // Authorization: `Bearer ${token}`,
       },
     })
       .then((res) => res.json())
@@ -51,7 +45,7 @@ const ViewJobTitle = () => {
             placeholder="Search"
             aria-label="Search "
             name="searchjobtitles"
-            // onChange={inputChangeHandler}
+            onChange={inputChangeHandler}
           />
           <button
             onClick={submitHandler}
@@ -60,13 +54,7 @@ const ViewJobTitle = () => {
           >
             Search
           </button>
-          {/* <button
-            onClick={viewHandler}
-            className="btn btn-outline-success"
-            type="submit"
-          >
-            View{" "}
-          </button> */}
+        
         </form>
       </nav>
       <Card className="table-responsive ">

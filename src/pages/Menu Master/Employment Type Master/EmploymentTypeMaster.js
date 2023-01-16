@@ -25,6 +25,7 @@ const inputChangeHandler=(e)=>{
       console.log("Employement Master Added");
     }).catch(err => console.log(err))
   }
+  
 //  const submitHandler=(e)=>{
 //     e.preventDefault();
 //  }
@@ -33,10 +34,10 @@ return <>
 <div className="container">
  <div className="d-flex">
   <h3>Employment Type Master</h3>
-  <button type="button" className="btn btn-primary sm-4 mt-2 mx-3">Add Employment Type</button>
+  {/* <button type="button" className="btn btn-primary sm-4 mt-2 mx-3">Add Employment Type</button> */}
   </div> 
   <hr />
-  <h5>Add/Edit Employment Type</h5>
+  <h5>Add Employment Type</h5>
   <form onSubmit={submitHandler} className="bg-light">
   <div className="row ">
     
@@ -54,7 +55,7 @@ return <>
 </div>
 
 </div>
-<button type="submit" class="btn btn-primary  mt-4 ">Save</button>    <button type="button" class="btn btn-primary mt-4">Back</button>
+<button type="submit" class="btn btn-primary  mt-4 ">Save</button> 
 </form>
 </div>
 </>

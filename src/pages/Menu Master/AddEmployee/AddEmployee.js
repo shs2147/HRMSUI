@@ -148,15 +148,16 @@ const AddEmployee = () => {
                                 <div className="container">
                                     <div className="bg-light">
                                         <div className="row ">
-                                            <div className=" col-sm-2">
+                                            {/* <div className=" col-sm-2">
                                                 <label className="form-label">Employee ID:</label><br />
                                                 <input value={data.employeeId} type="text" className="form-control" id="formGroupExampleInput" name='employeeId' onChange={inputChangeHandler} />
-                                            </div>
+                                            </div> */}
                                             <div className=" col-sm-4">
-                                                <label className="form-label">Employee Name:</label><br />
+            
+                                                <label for="cars" id='label'>Employee Name:</label>
                                                 <input value={data.employeeName} type="text" className="form-control" id="formGroupExampleInput" name='employeeName' onChange={inputChangeHandler} />
                                             </div>
-                                            <div className="col-sm-3 ">
+                                            <div className="col-sm-4 ">
                                                 <label for="cars" id='label'>Which Company:</label>
                                                 <br />
                                                 <select valueType={data.whichCompany} className="form-select" aria-label="Default select example" name='whichCompany' onChange={inputChangeHandler}>
@@ -165,7 +166,7 @@ const AddEmployee = () => {
                                                    
                                                 </select>
                                             </div>
-                                            <div className="col-sm-3 ">
+                                            <div className="col-sm-4 ">
                                                 <label for="cars" id='label'>Select Department:</label>
                                                 <br />
                                                 <select valueType={data.selectDepartment} className="form-select" aria-label="Default select example" name='selectDepartment' onChange={inputChangeHandler}>
@@ -317,7 +318,7 @@ const AddEmployee = () => {
 
                                                 <input value={data.incentive} type="text" className="form-control" id="formGroupExampleInput" name='incentive' onChange={inputChangeHandler} />
                                             </div>
-                                            <div className="col-sm-3 ">
+                                            {/* <div className="col-sm-3 ">
                                                 <label className="form-label" for="cars" id='label'>Employee type:</label>
 
                                                 <select value={data.employeeType} className="form-select" aria-label="Default select example" name='employeeType' onChange={inputChangeHandler}>
@@ -325,7 +326,7 @@ const AddEmployee = () => {
                                                     <option value="abcd">Permanent</option>
                                                     <option value="defg">Under-Probation</option>
                                                 </select>
-                                            </div>
+                                            </div> */}
                                             <div className=" col-sm-3">
                                                 <label className="form-label">Value:</label><br />
                                                 <input value={data.value} type="text" className="form-control" id="formGroupExampleInput" name='value' onChange={inputChangeHandler} />
@@ -416,19 +417,19 @@ const AddEmployee = () => {
                                     <div className="bg-light">
                                         <div className="row ">
                                             <div className=" col-sm-6">
-                                                <label className="form-label">Emergency Contact Name:</label><br />
+                                                <label className="form-label">Contact Name:</label><br />
                                                 <input value={data.emergencyContactName} type="text" className="form-control" id="formGroupExampleInput" name='emergencyContactName' onChange={inputChangeHandler} />
                                             </div>
                                             <div className=" col-sm-6">
-                                                <label className="form-label">Emergency Contact Mobile:</label><br />
+                                                <label className="form-label">Mobile Number:</label><br />
                                                 <input value={data.emergencyContactMobile} type="text" className="form-control" id="formGroupExampleInput" name='emergencyContactMobile' onChange={inputChangeHandler} />
                                             </div>
                                             <div className=" col-sm-6">
-                                                <label className="form-label">Emergency Contact Email:</label><br />
+                                                <label className="form-label">Email:</label><br />
                                                 <input value={data.emergencyContactEmail} type="text" className="form-control" id="formGroupExampleInput" name='emergencyContactEmail' onChange={inputChangeHandler} />
                                             </div>
                                             <div className=" col-sm-6">
-                                                <label className="form-label">Emergency Contact Address:</label><br />
+                                                <label className="form-label">Address:</label><br />
                                                 <input value={data.emergencyContactAddress} type="text" className="form-control" id="formGroupExampleInput" name='emergencyContactAddress' onChange={inputChangeHandler} />
                                             </div>
                                         </div>
