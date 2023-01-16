@@ -1,18 +1,17 @@
-// import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ahom from "../Signin/ahom.png";
 import classes from "./SignIn.module.css";
 import SignInForm from "./SignInForm";
-// import SignUpForm from "./SignUpForm";
 
 function SignIn(props) {
-  const [loggedIn, SetLoggedIn] = useState(false);
-  const [dataInput, setDataInput] = useState({});
+  // const [loggedIn, SetLoggedIn] = useState(false);
+  const [dataInput, setDataInput] = useState(null);
   const navigate = useNavigate();
   const handlerInput = (val) => {
     setDataInput(val);
   };
+
   // const logInHandler = () => {
   //   navigate("/Dashboard");
   // };
@@ -23,7 +22,7 @@ function SignIn(props) {
       method: "POST",
       headers: {
         "content-Type": "application/json",
-        "Accept" : "application/json",
+        Accept: "application/json",
       },
       body: JSON.stringify(dataInput),
     })
@@ -32,14 +31,15 @@ function SignIn(props) {
         if (data) {
           console.log(data.jwtToken);
           if (data.jwtToken) {
-            // sessionStorage.setItem("token", JSON.stringify(data.jwtToken));
+            sessionStorage.setItem("token", JSON.stringify(data.jwtToken));
             navigate("/Dashboard");
-          }
+          } ;
+          
         }
       })
       .catch((err) => console.log(err));
   };
-  const token = localStorage.getItem("token");
+  // const token = localStorage.getItem("token");
 
   return (
     <div className={classes.body}>
@@ -49,11 +49,11 @@ function SignIn(props) {
             <img src={ahom} alt="logo" />
           </div>
 
-          <div className={classes.formTitle}>
+          {/* <div className={classes.formTitle}>
             <p className={classes.formTitleLink} onClick={logInHandler}>
               Sign In
-            </p>{" "}
-          </div>
+            </p>
+          </div> */}
           {
             <SignInForm
               onClick={logInHandler}
