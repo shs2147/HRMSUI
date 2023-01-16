@@ -9,11 +9,25 @@ const AddUser = () => {
   const [data, setData] = useState({
     
   });
+const [empName,setEmpName]=useState("");
+const [selectedId,setSelectedId]=useState("");
+  // console.log(empName,selectedId,"selectedId")
   const inputChangeHandler = (e) => {
     let newData = { ...data };
+    newData[e.target.name ] = e.target.value;
+    if(e.target.name === "employeeName"){
+      setEmpName(e.target.value)
+    }
+    if(e.target.name === "id"){
+      setSelectedId(e.target.value);
+     
+    }
     newData[e.target.name] = e.target.value;
-    setData(newData);
-  };
+    setData(newData)
+    console.log(JSON.stringify(newData))
+}
+
+
   const fetchData1 = () =>{
     fetch("http://localhost:8080/getall",{
     })
@@ -34,6 +48,12 @@ const AddUser = () => {
       setShow(data)
     })
   }
+  useEffect(()=>{
+    const myData = show?.filter((item)=>item.employeeId == selectedId )
+
+  console.log("my emp",myData[0]?.employeeName)
+  setEmpName(myData[0]?.employeeName)
+},[selectedId])
   useEffect(() =>{
   fetchData();
   fetchData1();
@@ -94,10 +114,42 @@ console.log(show);
 
             <div className="col-sm-4 mt-2">
               <label for="cars" id="label">
+                Employee Code:
+              </label>
+              <br />
+              {/* <select
+                valueType={data.employeeCode}
+                class="form-select"
+                aria-label="Default select example"
+                name="employeeCode"
+                onChange={inputChangeHandler}
+              > */}
+                    {/* <select value={data.id } class="form-select" aria-label="Default select example" name="id" onChange={inputChangeHandler}> */}
+                    <select value={data.id } class="form-select" aria-label="Default select example" name="id" onChange={inputChangeHandler}>
+    <option selected disabled>select employee</option>
+    {show.map(e=>(<option valueType={e.employeeId }>{e.employeeId }</option>))}
+  </select>
+                {/* <input value={data.name} type="text" class="form-control" id="formGroupExampleInput" name="name" onChange={inputChangeHandler}/> */}
+                {/* <option selected disabled>
+                  Select Employee Code
+                </option>
+                {show.map(saurabh=>( <option valueType={saurabh.employeeId}>{saurabh.employeeId}</option>))} */}
+                
+              {/* </select> */}
+            </div>
+
+
+            <div className="col-sm-4 mt-2">
+              <label for="cars" id="label">
                 Employee Name:
               </label>
               <br />
-              <select
+              <select value={empName} className="form-select" aria-label="Default select example" name="employeeName" onChange={inputChangeHandler}>
+   
+    {show.map(e=>(<option valueType={e.employeeName}>{e.employeeName}</option>))}
+   
+    </select>
+              {/* <select
                 valueType={data.employeeName}
                 class="form-select"
                 aria-label="Default select example"
@@ -105,35 +157,15 @@ console.log(show);
                 onChange={inputChangeHandler}
               >
                 {/* <input value={data.name} type="text" class="form-control" id="formGroupExampleInput" name="name" onChange={inputChangeHandler}/> */}
-                <option selected disabled>
+                {/* <option selected disabled>
                   Select Employee Name
                 </option>
                {show.map(saurabh=>( <option valueType={saurabh.employeeName}>{saurabh.employeeName}</option>))}
                
-              </select>
+              </select> */} 
             </div>
 
-            <div className="col-sm-4 mt-2">
-              <label for="cars" id="label">
-                Employee Code:
-              </label>
-              <br />
-              <select
-                valueType={data.employeeCode}
-                class="form-select"
-                aria-label="Default select example"
-                name="employeeCode"
-                onChange={inputChangeHandler}
-              >
-                {/* <input value={data.name} type="text" class="form-control" id="formGroupExampleInput" name="name" onChange={inputChangeHandler}/> */}
-                <option selected disabled>
-                  Select Employee Code
-                </option>
-                {show.map(saurabh=>( <option valueType={saurabh.employeeId}>{saurabh.employeeId}</option>))}
-                
-              </select>
-            </div>
-
+           
             <div className="col-sm-4 mt-2">
               <label for="cars" id="label">
                 User Name:
