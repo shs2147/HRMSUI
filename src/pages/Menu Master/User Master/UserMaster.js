@@ -1,64 +1,17 @@
-import React from "react";
+
 import { formatMuiErrorMessage } from "@material-ui/utils";
-import { useState, useEffect } from "react";
+import { useState,useEffect } from "react";
+
 
 const AddUser = () => {
-  const [show, setShow] = useState([]);
-  const [itemshow, setItemshow] = useState([]);
+  const[show,setShow]=useState([]);
+  const[itemshow,setItemshow]=useState([])
   const [data, setData] = useState({
     
   });
-
-  const initialValues = { username: "", password: "" };
-  const [formValues, setFormValues] = useState(initialValues);
-  const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
-
-  const inputChangeHandler = (e) => {
-    // let newData = { ...data };
-    // newData[e.target.name] = e.target.value;
-    // setData(newData);
-
-    const { name, value } = e.target;
-    setFormValues({ formValues, [name]: value });
-    setData(formValues);
-    console.log(formValues);
-  };
-
-  const fetchData1 = () => {
-    fetch("http://localhost:8080/getall", {})
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        setItemshow(data);
-      });
-  };
-  const fetchData = () => {
-    fetch("http://localhost:8080/basic/fetchdata", {})
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        setShow(data);
-      });
-  };
-  useEffect(() => {
-    console.log(formErrors);
-    fetchData();
-    fetchData1();
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      console.log(formValues);
-    }
-  }, [formErrors]);
-  console.log(show);
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-    setFormErrors(validate(formValues));
-
-    setIsSubmit(true);
-
+const [empName,setEmpName]=useState("");
+const [selectedId,setSelectedId]=useState("");
+  // console.log(empName,selectedId,"selectedId")
   const inputChangeHandler = (e) => {
     let newData = { ...data };
     newData[e.target.name ] = e.target.value;
@@ -74,15 +27,42 @@ const AddUser = () => {
     console.log(JSON.stringify(newData))
 }
 
+
+  const fetchData1 = () =>{
+    fetch("http://localhost:8080/getall",{
+    })
+    .then((response) =>{
+      return response.json();
+    })
+    .then((data) =>{
+      setItemshow(data)
+    })
+  }
+  const fetchData = () =>{
+    fetch("http://localhost:8080/basic/fetchdata",{
+    })
+    .then((response) =>{
+      return response.json();
+    })
+    .then((data) =>{
+      setShow(data)
+    })
+  }
   useEffect(()=>{
     const myData = show?.filter((item)=>item.employeeId == selectedId )
 
   console.log("my emp",myData[0]?.employeeName)
   setEmpName(myData[0]?.employeeName)
 },[selectedId])
+  useEffect(() =>{
+  fetchData();
+  fetchData1();
  
-
-
+},[])
+console.log(show);
+  const submitHandler = (e) => {
+    e.preventDefault();
+    alert("Data Added Successfully")
     setData({});
     console.log(JSON.stringify(data));
     fetch("http://localhost:8080/usermaster/saveuser", {
@@ -98,20 +78,6 @@ const AddUser = () => {
       })
       .catch((err) => console.log(err));
   };
-  const validate = (values) => {
-    const errors = {};
-    // const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    if (!values.username) {
-      errors.username = "Username is required!";
-    }
-    if (!values.password) {
-      errors.password = "Password is required!";
-    } else if (values.password.length < 4) {
-      errors.password = "Password must be more than 4 character";
-    }
-
-    return errors;
-  };
 
   return (
     <>
@@ -124,35 +90,26 @@ const AddUser = () => {
         </div>
         <hr />
         <h6>Add/Edit User</h6>
-        {Object.keys(formErrors).length === 0 && isSubmit ? (
-          <div className="ui message success">Signed in Succesfully</div>
-        ) : (
-          ""
-        )}
         <form onSubmit={submitHandler} className="bg-light">
           <div className="row ">
             <div className="col-sm-4 mt-2">
               <label for="cars" id="label">
                 Department Name:
               </label>
-              {/* <br/> */}
-              <p style={{ color: "red" }}></p>
+              <br />
               <select
                 valueType={data.departmentName}
                 class="form-select"
                 aria-label="Default select example"
                 name="departmentName"
-                // onChange={inputChangeHandler}
+                onChange={inputChangeHandler}
               >
                 {/* <input value={data.name} type="text" class="form-control" id="formGroupExampleInput" name="name" onChange={inputChangeHandler}/> */}
                 <option selected disabled>
                   Select Department
                 </option>
-                {itemshow.map((aman) => (
-                  <option valueType={aman.departmentName}>
-                    {aman.departmentName}
-                  </option>
-                ))}
+                {itemshow.map(aman=>( <option valueType={aman.departmentName}>{aman.departmentName}</option>))}
+               
               </select>
             </div>
 
@@ -160,7 +117,6 @@ const AddUser = () => {
               <label for="cars" id="label">
                 Employee Code:
               </label>
-
               <br />
               {/* <select
                 valueType={data.employeeCode}
@@ -178,11 +134,9 @@ const AddUser = () => {
                 {/* <option selected disabled>
                   Select Employee Code
                 </option>
-
                 {show.map(saurabh=>( <option valueType={saurabh.employeeId}>{saurabh.employeeId}</option>))} */}
                 
               {/* </select> */}
-
             </div>
 
 
@@ -207,7 +161,6 @@ const AddUser = () => {
                 {/* <option selected disabled>
                   Select Employee Name
                 </option>
-
                {show.map(saurabh=>( <option valueType={saurabh.employeeName}>{saurabh.employeeName}</option>))}
                
               </select> */} 
@@ -215,44 +168,32 @@ const AddUser = () => {
 
            
             <div className="col-sm-4 mt-2">
-              <label for="formGroupExampleInput">User Name:</label>
-              <p style={{ color: "red" }}>{formErrors.username}</p>
+              <label for="cars" id="label">
+                User Name:
+              </label>
+              <br />
               <input
+                value={data.userName}
                 type="text"
-                className="form-control"
+                class="form-control"
                 id="formGroupExampleInput"
+                name="userName"
                 onChange={inputChangeHandler}
-                placeholder="Enter Username"
-                value={formValues.username}
               />
-
-              {/* <input
-                type="text"
-                className="form-control"
-                id="formGroupExampleInput"
-                onChange={inputChangeHandler}
-                value={formValues.username}
-                placeholder="Enter Username"
-              /> */}
             </div>
-
-            <br />
 
             <div className="col-sm-4 mt-2">
               <label for="cars" id="label">
                 Password:
               </label>
-              <p style={{ color: "red" }}>{formErrors.password}</p>
-
+              <br />
               <input
-                // value={data.password}
-                value={formValues.password}
-                type="password"
+                value={data.password}
+                type="text"
                 class="form-control"
                 id="formGroupExampleInput"
                 name="password"
                 onChange={inputChangeHandler}
-                placeholder="Enter Password"
               />
             </div>
 
@@ -260,12 +201,11 @@ const AddUser = () => {
               <label for="cars" id="label">
                 Role Type:
               </label>
-              <p style={{ color: "red" }}></p>
+              <br />
               <select
                 valueType={data.roleName}
                 class="form-select"
                 aria-label="Default select example"
-
                 name="roleName"
                 onChange={inputChangeHandler}
               >

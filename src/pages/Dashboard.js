@@ -40,9 +40,7 @@ function Dashboard() {
         }}
       >
         <Card img={pic} title="Permanent Employee" number={ln} />
-
         <Card img={pic} title="Under Probation Employee" number="0" />
-
         {/* <Card img={pic} title="Permanent Employee" number="2" /> */}
       </div>
 
@@ -56,6 +54,5 @@ function Dashboard() {
     </div>
   );
 }
-
 
 export default Dashboard;

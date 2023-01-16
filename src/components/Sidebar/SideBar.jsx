@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import { BiAlignLeft } from "react-icons/bi";
-import { AiFillHome, AiOutlineCaretRight } from "react-icons/ai";
+import { AiOutlineCaretRight } from "react-icons/ai";
 import { BsFillPersonFill } from "react-icons/bs";
 
 import { useState } from "react";
@@ -13,7 +13,7 @@ const routes = [
   {
     path: "/Dashboard",
     name: "Dashboard",
-    icon: <AiFillHome />,
+    icon: <BiAlignLeft />,
   },
   {
     path: "/menuMaster",
@@ -376,8 +376,7 @@ const SideBar = ({ children }) => {
             width: isOpen ? "285px" : "55px",
             transition: { duration: 0.5, type: "spring", damping: 10 },
           }}
-          className="sidebar"
-          style={{ display: "inline-table" }}
+          className={`sidebar `}
         >
           <div className="top_section">
             <div className="bars">

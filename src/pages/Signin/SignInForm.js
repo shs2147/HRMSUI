@@ -1,108 +1,41 @@
 import React, { Component } from "react";
 import classes from "./SignIn.module.css";
 class SignInForm extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       userName: "",
       password: "",
-      nameError: "",
-      passwordError: "",
     };
 
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // handleSubmit(event) {
-  //   event.preventDefault();
-  //   this.props.handler(this.state);
-  //   this.props.handlerInput(this.state);
-  //   this.props.onClick();
-  //   console.log("The form was submitted with the following data:");
-  //   console.log(this.state);
-  // }
-
-  handleUserChange(e) {
-    // let target = event.target;
-    // let value = target.type === "checkbox" ? target.checked : target.value;
-    // let name = target.name;
+  handleChange(event) {
+    let target = event.target;
+    let value = target.type === "checkbox" ? target.checked : target.value;
+    let name = target.name;
 
     this.setState({
-      // [name]: value,
-      userName: e.target.value,
-      // password: e.target.value,
-    });
-  }
-  handlePasswordChange(e) {
-    this.setState({
-      password: e.target.value,
+      [name]: value,
     });
   }
 
-  valid() {
-    if (
-      this.state.userName.includes("ahom") &&
-      this.state.password.length > 2
-    ) {
-      this.setState({
-        nameError: "User Success",
-       
-      });
-    } else if (
-      this.state.userName.includes("ahom") ||
-      !this.state.password.length > 2
-    ) {
-      this.setState({
-        passwordError: "password Wrong",
-      });
-    } else if (
-      !this.state.userName.includes("ahom") ||
-      this.state.password.length > 2
-    ) {
-      this.setState({
-        nameError: "User Invalid",
-      });
-    } else {
-      this.setState({
-        nameError: "user wrong",
-        passwordError: "password wrong",
-      });
-    }
-    // else if (
-    //   this.state.userName.includes("ahom") &&
-    //   !this.state.password.length > 2
-    // ) {
-    //   this.setState({
-
-    //     passwordError: "Password Incorrect",
-    //   });
-    // }
-  }
-  handleSubmit(e) {
-    this.setState({ nameError: "", passwordError: "" });
-    e.preventDefault();
+  handleSubmit(event) {
+    event.preventDefault();
     this.props.handler(this.state);
     this.props.handlerInput(this.state);
     this.props.onClick();
     console.log("The form was submitted with the following data:");
     console.log(this.state);
-
-    if (this.valid()) {
-      alert("user Login");
-    }
   }
 
   render() {
     return (
       <div className={classes.formCenter}>
-        <form
-          className={classes.formField}
-          onSubmit={(e) => {
-            this.handleSubmit(e);
-          }}
-        >
+        <form className={classes.formField} onSubmit={this.handleSubmit}>
           <div className={classes.formField}>
             <label className={classes.formFieldLabel} htmlFor="userName">
               User Name
@@ -112,14 +45,11 @@ class SignInForm extends Component {
               id="userName"
               className={classes.formFieldInput}
               placeholder="Username..."
-              name="username"
+              name="userName"
               value={this.state.userName}
-              onChange={(e) => {
-                this.handleUserChange(e);
-              }}
+              onChange={this.handleChange}
             />
           </div>
-          {this.state.nameError}
 
           <div className={classes.formField}>
             <label className={classes.formFieldLabel} htmlFor="password">
@@ -132,20 +62,17 @@ class SignInForm extends Component {
               placeholder=" Password..."
               name="password"
               value={this.state.password}
-              onChange={(e) => {
-                this.handlePasswordChange(e);
-              }}
+              onChange={this.handleChange}
             />
           </div>
-          {this.state.passwordError}
 
           <div className={classes.formField}>
             <button
-              // onClick={this.handleSubmit}
+              onClick={this.handleSubmit}
               className={classes.formFieldButton}
             >
               Sign In
-            </button>
+            </button>{" "}
           </div>
         </form>
       </div>
