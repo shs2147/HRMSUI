@@ -1,15 +1,30 @@
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 
   const OvertimeReport = () => {
   const [data,setData]=useState({
+    
 
   });
+  const[show,setShow]=useState([]);
  const inputChangeHandler=(e)=>{
     let newData={...data};
     newData[e.target.name]=e.target.value;
     setData(newData)
    
  }
+ const fetchData = () =>{
+  fetch("http://localhost:8080/basic/fetchdata",{
+  })
+  .then((response) =>{
+    return response.json();
+  })
+  .then((data) =>{
+    setShow(data)
+  })
+}
+useEffect(()=>{
+  fetchData();
+},[])
  const submitHandler=(e)=>{
   console.log(JSON.stringify(data))
   fetch("http://localhost:8080/OverTime/save",{
@@ -33,13 +48,14 @@ import { useState } from "react";
          <label for="cars" id='label'>Select Employee:</label>
        <br/>  
    <select value={data.selectEmployee} class="form-select" aria-label="Default select example" name="selectEmployee" onChange={inputChangeHandler}>
-    <option selected disabled>Admistrator</option>
-    <option value="aman">Aman</option>
+    <option selected disabled>select employee</option>
+    {show.map(e=>(<option valueType={e.employeeName}>{e.employeeName}</option>))}
+    {/* <option value="aman">Aman</option>
     <option value="amit">Amit</option>
     <option value="ranjan">Ranjan</option>
     <option value="saurav">Saurav</option>
     <option value="raj kumar mali">Raj Kumar Mali</option>
-    <option value="vijay kumar ray">Vijay Kumar Ray</option>
+    <option value="vijay kumar ray">Vijay Kumar Ray</option> */}
   </select>
   </div>
   

@@ -6,12 +6,9 @@ const AddUser = () => {
   const [show, setShow] = useState([]);
   const [itemshow, setItemshow] = useState([]);
   const [data, setData] = useState({
-    roles: [
-      {
-        roleName: "",
-      },
-    ],
+    
   });
+
   const initialValues = { username: "", password: "" };
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
@@ -61,6 +58,31 @@ const AddUser = () => {
     setFormErrors(validate(formValues));
 
     setIsSubmit(true);
+
+  const inputChangeHandler = (e) => {
+    let newData = { ...data };
+    newData[e.target.name ] = e.target.value;
+    if(e.target.name === "employeeName"){
+      setEmpName(e.target.value)
+    }
+    if(e.target.name === "id"){
+      setSelectedId(e.target.value);
+     
+    }
+    newData[e.target.name] = e.target.value;
+    setData(newData)
+    console.log(JSON.stringify(newData))
+}
+
+  useEffect(()=>{
+    const myData = show?.filter((item)=>item.employeeId == selectedId )
+
+  console.log("my emp",myData[0]?.employeeName)
+  setEmpName(myData[0]?.employeeName)
+},[selectedId])
+ 
+
+
     setData({});
     console.log(JSON.stringify(data));
     fetch("http://localhost:8080/usermaster/saveuser", {
@@ -136,54 +158,62 @@ const AddUser = () => {
 
             <div className="col-sm-4 mt-2">
               <label for="cars" id="label">
-                Employee Name:
-              </label>
-              {/* <br /> */}
-              <p style={{ color: "red" }}></p>
-              <select
-                valueType={data.employeeName}
-                class="form-select"
-                aria-label="Default select example"
-                name="employeeName"
-                // onChange={inputChangeHandler}
-              >
-                {/* <input value={data.name} type="text" class="form-control" id="formGroupExampleInput" name="name" onChange={inputChangeHandler}/> */}
-                <option selected disabled>
-                  Select Employee Name
-                </option>
-                {show.map((saurabh) => (
-                  <option valueType={saurabh.employeeName}>
-                    {saurabh.employeeName}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="col-sm-4 mt-2">
-              <label for="cars" id="label">
                 Employee Code:
               </label>
-              {/* <br /> */}
-              <p style={{ color: "red" }}></p>
-              <select
+
+              <br />
+              {/* <select
                 valueType={data.employeeCode}
                 class="form-select"
                 aria-label="Default select example"
                 name="employeeCode"
-                // onChange={inputChangeHandler}
-              >
+                onChange={inputChangeHandler}
+              > */}
+                    {/* <select value={data.id } class="form-select" aria-label="Default select example" name="id" onChange={inputChangeHandler}> */}
+                    <select value={data.id } class="form-select" aria-label="Default select example" name="id" onChange={inputChangeHandler}>
+    <option selected disabled>select employee</option>
+    {show.map(e=>(<option valueType={e.employeeId }>{e.employeeId }</option>))}
+  </select>
                 {/* <input value={data.name} type="text" class="form-control" id="formGroupExampleInput" name="name" onChange={inputChangeHandler}/> */}
-                <option selected disabled>
+                {/* <option selected disabled>
                   Select Employee Code
                 </option>
-                {show.map((saurabh) => (
-                  <option valueType={saurabh.employeeId}>
-                    {saurabh.employeeId}
-                  </option>
-                ))}
-              </select>
+
+                {show.map(saurabh=>( <option valueType={saurabh.employeeId}>{saurabh.employeeId}</option>))} */}
+                
+              {/* </select> */}
+
             </div>
 
+
+            <div className="col-sm-4 mt-2">
+              <label for="cars" id="label">
+                Employee Name:
+              </label>
+              <br />
+              <select value={empName} className="form-select" aria-label="Default select example" name="employeeName" onChange={inputChangeHandler}>
+   
+    {show.map(e=>(<option valueType={e.employeeName}>{e.employeeName}</option>))}
+   
+    </select>
+              {/* <select
+                valueType={data.employeeName}
+                class="form-select"
+                aria-label="Default select example"
+                name="employeeName"
+                onChange={inputChangeHandler}
+              >
+                {/* <input value={data.name} type="text" class="form-control" id="formGroupExampleInput" name="name" onChange={inputChangeHandler}/> */}
+                {/* <option selected disabled>
+                  Select Employee Name
+                </option>
+
+               {show.map(saurabh=>( <option valueType={saurabh.employeeName}>{saurabh.employeeName}</option>))}
+               
+              </select> */} 
+            </div>
+
+           
             <div className="col-sm-4 mt-2">
               <label for="formGroupExampleInput">User Name:</label>
               <p style={{ color: "red" }}>{formErrors.username}</p>
@@ -235,8 +265,9 @@ const AddUser = () => {
                 valueType={data.roleName}
                 class="form-select"
                 aria-label="Default select example"
-                name="roleType"
-                // onChange={inputChangeHandler}
+
+                name="roleName"
+                onChange={inputChangeHandler}
               >
                 {/* <input value={data.name} type="text" class="form-control" id="formGroupExampleInput" name="name" onChange={inputChangeHandler}/> */}
                 <option selected disabled>

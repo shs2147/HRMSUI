@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 
 function Form() {
   const url = "";
+  const [show,setShow]=useState([]);
   const [data, setData] = useState({
     employee: "",
     approver: "",
@@ -21,9 +22,28 @@ function Form() {
     setData(newdata);
     
   }
-  useEffect(()=>{
-    
-  })
+  // const fetchData1 = () =>{
+  //   fetch("http://localhost:8080/basic/fetchdata",{
+  //   })
+  //   .then((response) =>{
+  //     return response.json();
+  //   })
+  //   .then((data) =>{
+  //     setShow(data)
+  //   })
+  // }
+  // useEffect(()=>{
+  //   fetchData1();
+  // })
+  useEffect(() => {
+    const fetchData = async () => {
+    const response = await fetch('http://localhost:8080/basic/fetchdata')
+    const data = await response.json();
+    console.log(data);
+    setShow(data);
+}
+fetchData();
+}, []);
   const submitHandler=(e)=>{
     e.preventDefault();
     // console.log(JSON.stringify(data));
@@ -57,24 +77,24 @@ function Form() {
     { value: "banana", text: "Banana 🍌" },
     { value: "kiwi", text: "Kiwi 🥝" },
   ];
-  const approver = [
-    { value: "", text: "Administrator", disabled: true },
-    { value: "apple", text: "Apple 🍏" },
-    { value: "banana", text: "Banana 🍌" },
-    { value: "kiwi", text: "Kiwi 🥝" },
-  ];
+  // const approver = [
+  //   { value: "", text: "Administrator", disabled: true },
+  //   { value: "apple", text: "Apple 🍏" },
+  //   { value: "banana", text: "Banana 🍌" },
+  //   { value: "kiwi", text: "Kiwi 🥝" },
+  // ];
   const leaveType = [
-    { value: "", text: "Choose Leave Type", disabled: true },
-    { value: "apple", text: "Apple 🍏" },
-    { value: "banana", text: "Banana 🍌" },
-    { value: "kiwi", text: "Kiwi 🥝" },
+    { value: "", text: "Choose Leave Type", disabled: false },
+    { value: "casual", text: "Casual Leave" },
+    { value: "sick", text: "Sick Leave" },
+    { value: "annual", text: "Annual Leave" },
   ];
-  const leaveFor = [
-    { value: "", text: "Choose Leave For", disabled: true },
-    { value: "apple", text: "Apple 🍏" },
-    { value: "banana", text: "Banana 🍌" },
-    { value: "kiwi", text: "Kiwi 🥝" },
-  ];
+  // const leaveFor = [
+  //   { value: "", text: "Choose Leave For", disabled: true },
+  //   { value: "apple", text: "Apple 🍏" },
+  //   { value: "banana", text: "Banana 🍌" },
+  //   { value: "kiwi", text: "Kiwi 🥝" },
+  // ];
   // const [selectedEmployee, setSelectedEmployee] = useState("");
   // const [selectedApprover, setSelectedApprover] = useState("");
   // const [selectedLeaveType, setSelectedLeaveType] = useState("");
@@ -101,14 +121,15 @@ function Form() {
             Select Employee:
           </label>
           <br />
-
+          
           <select
             className="form-select form-select-lg mb-1 w-75"
             value={data.selectEmployee}
             onChange={handleInput}
             name="selectEmployee"
           >
-            {employee.map((option) => (
+            {show.map(e=>(<option valueType={e.employeeName}>{e.employeeName}</option>))}
+            {/* {employee.map((option) => (
               <option
                 disabled={option.disabled}
                 key={option.value}
@@ -116,8 +137,10 @@ function Form() {
               >
                 {option.text}
               </option>
-            ))}
+              
+            ))} */}
           </select>
+          
         </div>
         <div className="col-sm-5 mx-2">
           <label for="formFile" className="form-label">
@@ -131,7 +154,8 @@ function Form() {
             name="leaveApprover"
             onChange={handleInput}
           >
-            {approver.map((option) => (
+            {show.map(e=>(<option valueType={e.employeeName}>{e.employeeName}</option>))}
+            {/* {approver.map((option) => (
               <option
                 disabled={option.disabled}
                 key={option.value}
@@ -139,7 +163,7 @@ function Form() {
               >
                 {option.text}
               </option>
-            ))}
+            ))} */}
           </select>
         </div>
       </div>
@@ -167,7 +191,7 @@ function Form() {
             ))}
           </select>
         </div>
-        <div className="col-sm-5 mx-2">
+        {/* <div className="col-sm-5 mx-2">
           <label for="formFile" className="form-label">
             Available Balance:
           </label>
@@ -179,9 +203,9 @@ function Form() {
             onChange={handleInput}
             value={data.availableBalance}
           />
-        </div>
+        </div> */}
       </div>
-      <div className=" row mb-1 mx-4 ">
+      {/* <div className=" row mb-1 mx-4 ">
         <label for="formFile" className="form-label">
           Leave For:
         </label>
@@ -203,7 +227,7 @@ function Form() {
             </option>
           ))}
         </select>
-      </div>
+      </div> */}
       <div className=" row mb-1 d-flex justify-content-around ">
         <div className="col">
           <label for="exampleFormControlInput1" className="form-label ">
@@ -250,7 +274,7 @@ function Form() {
         <label for="exampleInputEmail1" className="form-label mx-5">
           Reason for Leave
         </label>
-        <input
+        <textarea
           name="reasonForLeave"
           onChange={handleInput}
           value={data.reasonForLeave}

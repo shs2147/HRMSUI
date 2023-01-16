@@ -4,6 +4,7 @@ const DepartmentMaster = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     console.log(data);
+    alert("Data Added Sucessfully")
     fetch("http://localhost:8080/savedepartment", {
       method: "POST",
       headers: {

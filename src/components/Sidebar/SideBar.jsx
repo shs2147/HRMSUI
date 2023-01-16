@@ -306,29 +306,29 @@ const routes = [
   },
 
   {
-    path: "/Employee",
-    name: "Employee",
+    path: "/Training",
+    name: "Training",
     icon: <BiAlignLeft />,
     subRoutes: [
       {
-        path: "Employee/Employee",
-        name: "Employee",
+        path: "Training/Training",
+        name: "Training",
         icon: <AiOutlineCaretRight />,
       },
     ],
-  },
-  {
-    path: "/Position",
-    name: "Position",
-    icon: <BiAlignLeft />,
-    subRoutes: [
-      {
-        path: "Position/Position",
-        name: "Position",
-        icon: <AiOutlineCaretRight />,
-      },
-    ],
-  },
+  }
+  // {
+  //   path: "/Position",
+  //   name: "Position",
+  //   icon: <BiAlignLeft />,
+  //   subRoutes: [
+  //     {
+  //       path: "Position/Position",
+  //       name: "Position",
+  //       icon: <AiOutlineCaretRight />,
+  //     },
+  //   ],
+  // },
 ];
 
 const SideBar = ({ children }) => {

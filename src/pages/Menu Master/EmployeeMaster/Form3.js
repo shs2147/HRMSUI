@@ -56,7 +56,7 @@ console.log(data);
       <table class="table table2 bg-light">
   <thead>
     <tr>
-      <th scope="col">SL</th>
+      
       <th scope="col">Employee Name</th>
       <th scope="col">Employee Code</th>
       <th scope="col">Department Name</th>
@@ -70,7 +70,7 @@ console.log(data);
   <tbody>
     
     {data.map(sauarabh=>(<tr>
-      <th scope="row">1</th>
+      {/* <th scope="row">1</th> */}
       <td>{sauarabh.employeeName}</td>
       <td>{sauarabh.employeeId}</td>
       <td>{sauarabh.selectDepartment}</td>
