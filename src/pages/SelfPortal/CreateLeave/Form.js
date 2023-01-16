@@ -84,7 +84,7 @@ fetchData();
   //   { value: "kiwi", text: "Kiwi 🥝" },
   // ];
   const leaveType = [
-    { value: "", text: "Choose Leave Type", disabled: true },
+    { value: "", text: "Choose Leave Type", disabled: false },
     { value: "casual", text: "Casual Leave" },
     { value: "sick", text: "Sick Leave" },
     { value: "annual", text: "Annual Leave" },

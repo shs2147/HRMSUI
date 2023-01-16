@@ -62,6 +62,7 @@ const [selectedId,setSelectedId]=useState("");
 console.log(show);
   const submitHandler = (e) => {
     e.preventDefault();
+    alert("Data Added Successfully")
     setData({});
     console.log(JSON.stringify(data));
     fetch("http://localhost:8080/usermaster/saveuser", {

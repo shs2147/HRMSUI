@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { Form } from 'react-bootstrap'
 
 
@@ -8,6 +8,7 @@ const AddShift = () => {
     shiftName:'',
     employee:'',
   });
+  const[show,setShow]=useState([]);
  const inputChangeHandler=(e)=>{
     let newData={...data};
     newData[e.target.name]=e.target.value;
@@ -25,6 +26,20 @@ const AddShift = () => {
 
 
  }
+ const fetchData1 = () =>{
+  fetch("http://localhost:8080/basic/fetchdata",{
+  })
+  .then((response) =>{
+    return response.json();
+  })
+  .then((data) =>{
+    setShow(data)
+  })
+}
+useEffect(()=>
+{
+  fetchData1();
+},[])
 
   return (
     <div className="container">
@@ -41,15 +56,21 @@ const AddShift = () => {
             <br />
             <select valueType={data.shiftName} class="form-select" aria-label="Default select example" name="shiftName" onChange={inputChangeHandler}>
               <option selected disabled>Choose Shift</option>
-              <option valueType="night">Shift A</option>
-              <option valueType="day">Shift B</option>
-              <option valueType="afternoon">Shift C</option>
-              <option valueType="Evening">Shift D</option>
+              <option valueType="night">Night</option>
+              <option valueType="day">Day</option>
+              {/* <option valueType="afternoon">Shift C</option>
+              <option valueType="Evening">Shift D</option> */}
             </select>
           </div>
           <div className="col-sm-4">
-            <label class="form-label">Employee:</label><br />
-            <input value={data.employee} type="text" class="form-control" id="formGroupExampleInput" name="employee" onChange={inputChangeHandler} />
+            <label for="car" id='label' >Employee:</label>
+          
+            <select valueType={data.employee}  class="form-select" aria-label="Default select example"  name="employee" onChange={inputChangeHandler} >
+            <option selected disabled>Select Employee</option>
+            {show.map(e=>(<option valueType={e.employeeName}>{e.employeeName}</option>))}
+            {/* <option valueType="night">Night</option>
+              <option valueType="day">Day</option> */}
+              </select>
           </div>
           </div>
           <button onClick={submitHandler} className="btn btn-primary btn-sm my-3 mx-5 ">Save</button>
