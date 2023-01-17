@@ -64,6 +64,7 @@ import SignInForm from "./pages/Signin/SignInForm";
 import SignUpForm from "./pages/Signin/SignUpForm";
 import { useEffect, useState } from "react";
 
+
 function App() {
   const [data, setData] = useState({});
   const [logged, setLogged] = useState(false);

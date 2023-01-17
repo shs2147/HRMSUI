@@ -24,7 +24,7 @@ const Nav = () => {
                 {/* <link className='link' to='/SubPages/AddEmployees'>Add Employee</link> */}
                 </h2>
             <hr />
-            <div className="bg-light">
+            {/* <div className="bg-light">
                 <div className='row'>
                     <div className="col-sm-8 d-flex">
                         <label className="form-label mx-5 w-75 mt-3">Search Employee:</label>
@@ -35,7 +35,7 @@ const Nav = () => {
                         <button className='btn btn-info '>View All</button>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
         </>
 

@@ -1,99 +1,147 @@
-import React, { useEffect,useState } from "react";
+import MaterialTable from "@material-table/core";
+import React, { useEffect, useState } from "react";
+// import { Modal } from "react-bootstrap";
+import { ExportCsv, ExportPdf } from "@material-table/exporters";
 
 const Form3 = () => {
+  const [userModal, setUserModal] = useState(false);
+  const [data, setData] = useState([]);
+  const [ticketDetails, setTicketDetails] = useState([]);
+
+  const showUserModal = () => {
+    setUserModal(true);
+  };
+  const closeUserModal = () => {
+    setUserModal(false);
+  };
+
   // const fetchData=()=>{
-    const [data , setData]= useState([]);
-    // fetch("http://localhost:8080/basic/fetchdata",{
-    //   method: 'GET',
-    //   headers : {
-    //         'Accept' : 'application/json',
-    //         'Authorization': `Bearer $ token `
 
-    //   },
-    // })
-    // .then((response)=> response.json())
-    // .then((response)=> setData((response.data)))
-    // .catch((data) => console.log(data))
+  // fetch("http://localhost:8080/basic/fetchdata",{
+  //   method: 'GET',
+  //   headers : {
+  //         'Accept' : 'application/json',
+  //         'Authorization': `Bearer $ token `
 
+  //   },
+  // })
+  // .then((response)=> response.json())
+  // .then((response)=> setData((response.data)))
+  // .catch((data) => console.log(data))
 
+  // .then((response)=>{
+  //   return response.json();
+  // })
+  // .then((data)=>{
+  //   // console.log(data);
+  //   let gagan = data
+  //   // console.log(gagan)
+  //   setShow()
+  // })
 
-
-
-    // .then((response)=>{
-    //   return response.json();
-    // })
-    // .then((data)=>{
-    //   // console.log(data);
-    //   let gagan = data
-    //   // console.log(gagan)
-    //   setShow()
-    // })
-    
-  
   // }
   // useEffect(()=>{
   //   console.log(data);
   // },[data])
 
-  const fetchData = () =>{
-    fetch("http://localhost:8080/basic/fetchdata",{
-    })
-    .then((response) =>{
-      return response.json();
-    })
-    .then((data) =>{
-      setData(data)
-    })
-  }
-  useEffect(() =>{
-  fetchData();
-},[])
-console.log(data);
-  
+  const fetchData = () => {
+    fetch("http://localhost:8080/basic/fetchdata", {})
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setData(data);
+        setTicketDetails(data);
+      });
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
+  console.log(data);
+
   return (
     <>
-    <div className="container">
-      <table class="table table2 bg-light">
-  <thead>
-    <tr>
-      
-      <th scope="col">Employee Name</th>
-      <th scope="col">Employee Code</th>
-      <th scope="col">Department Name</th>
-      <th scope="col">Email ID</th>
-      <th scope="col">Designation</th>
-      <th scope="col">Work Type</th>
-      <th scope="col">Reported To</th>
-      <th scope="col">Edit</th>
-    </tr>
-  </thead>
-  <tbody>
-    
-    {data.map(sauarabh=>(<tr>
-      {/* <th scope="row">1</th> */}
-      <td>{sauarabh.employeeName}</td>
-      <td>{sauarabh.employeeId}</td>
-      <td>{sauarabh.selectDepartment}</td>
-      <td>{sauarabh.email}</td>
-      <td>{sauarabh.designation}</td>
-      <td>{sauarabh.workType}</td>
-      <td>{sauarabh.reportingTo}</td>
-      <td>
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-</svg>
+      <MaterialTable
+        columns={[
+          {
+            title: "Employee Name",
+            field: "employeeName",
+          },
+          {
+            title: "Employee Code",
+            field: "employeeId",
+          },
+          {
+            title: "Department Name",
+            field: "selectDepartment",
+          },
+          {
+            title: "Email Id",
+            field: "email",
+          },
+          {
+            title: "Designation",
+            field: "designation",
+          },
+          {
+            title: "Work Type",
+            field: "workType",
+          },
+          {
+            title: "Reported To",
+            field: "reportingTo",
+          },
+        ]}
+        // data={[
+        //   {
+        //     EmplyoyeeName: "Piyush",
+        //     EmplyoyeeCode: 125,
+        //     DepartmentName: "HR",
+        //     EmailId: "asd@gmai.com",
+        //     Designation: "User",
+        //   },
+        // ]}
+        data={ticketDetails}
+        options={{
+          // filtering: true,
+          // sorting: true,
+          exportMenu: [
+            {
+              label: "Export PDF",
+              exportFunc: (cols, datas) =>
+                ExportPdf(cols, datas, "UserRecords"),
+            },
+            {
+              label: "Export CSV",
+              exportFunc: (cols, datas) =>
+                ExportCsv(cols, datas, "userRecords"),
+            },
+          ],
+          headerStyle: {
+            backgroundColor: "darkblue",
+            color: "#FFF",
+          },
+          rowStyle: {
+            backgroundColor: "#EEE",
+          },
+        }}
+        title="Employee Record"
+      />
+      {/* <button className="btn btn-primary" onClick={showUserModal}>
+        Open Modal
+      </button>
+      <Modal
+        show={userModal}
+        onHide={closeUserModal}
+        centered
+        backdrop="static"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Edit Details</Modal.Title>
+        </Modal.Header>
+      </Modal> */}
+    </>
+  );
+};
 
-</td>
-    </tr>))}
-   
-   
-  </tbody>
-  
-</table>
-      </div>
-      </>
-  )
-}
-
-export default Form3
+export default Form3;
