@@ -4,10 +4,13 @@ import { useState, useEffect } from "react";
 
 const ViewOtReport = () => {
   const [data, setData] = useState({
-    // SelectEmoloyee:'',
-    //   fromdate:'',
-    //   todate:''
+    // startdate:'',
+    //   enddate:'',
+    //   name:''
   });
+  const [startdate,setStartdate]=useState([]);
+  const[enddate,setEnddate]=useState([]);
+  const[name,setName]=useState([]);
   const [show, setShow] = useState([]);
   const [view, setView] = useState([]);
   const [row, setRow] = useState([]);
@@ -18,30 +21,18 @@ const ViewOtReport = () => {
     setData(newData)
 
   }
-  const fetchData = () => {
-    fetch("http://localhost:8080/basic/fetchdata", {
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        setShow(data)
-      })
-  }
+  // const fetchData = () => {
+  //   fetch("http://localhost:8080/OverTime/fetch", {
+  //   })
+  //     .then((response) => {
+  //       return response.json();
+  //     })
+  //     .then((data) => {
+  //       setShow(data)
+  //     })
+  // }
   
-  // useEffect(() => {
-  //   fetchData();
-  // }, [])
-  //  const submitHandler=(e)=>{
-  //   e.preventDefault();
-  //     console.log(JSON.stringify(data))
-  //       fetch("http://localhost:8080/OverTimeReport/save",{
-  //       method:"POST",
-  //       headers:{"content-Type": "application/json", "Accept": "application/json"},
-  //       body:JSON.stringify(data)
-  //     }).then(()=>{
-  //       console.log("OverTimeReport are added")})
-  //  }
+
   const submitHandler = () => {
     fetch("http://localhost:8080/OverTime/fetch", {
     })
@@ -53,37 +44,15 @@ const ViewOtReport = () => {
       })
   }
   useEffect(() => {
-    fetchData();
+    // fetchData();
     submitHandler();
   }, [])
 
-  const submitHandler1 = () => {
-    fetch("http://localhost:8080/OverTime/bydate", {
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        setRow(data)
-      })
-  }
-  useEffect(() => {
-    fetchData();
-    submitHandler1();
-  }, [])
-  // console.log(data)
+  console.log(data)
+ 
 
 
-  // const columns =[
-  //   {
-  //     name: 'Employee Name',
-  //     selector: (row) => row.selectEmployee
-  //   },
-  //   {
-  //     name: ' SL',
-  //     selector: (row) => row.employeeId
-  //   },
-  // ]
+
 
   return <>
     <div className="container">
@@ -96,9 +65,9 @@ const ViewOtReport = () => {
           <div className="col-sm-4 mt-1">
             <label for="cars" id='label'>Select Emoloyee:</label>
             <br />
-            <select value={data.employee} class="form-select" aria-label="Default select example" name="employee" onChange={inputChangeHandler}>
+            <select value={data.employee} class="form-select" aria-label="Default select example" name="name" onChange={inputChangeHandler}>
               <option selected disabled>select employee</option>
-              {show.map(aman=>( <option valueType={aman.employeeName}>{aman.employeeName}</option>))}
+              {view.map(aman=>( <option valueType={aman.selectEmployee}>{aman.selectEmployee}</option>))}
               {/* <option value="aman">Aman</option>
     <option value="amit">Amit</option>
     <option value="ranjan">Ranjan</option>
@@ -109,11 +78,11 @@ const ViewOtReport = () => {
           <div className="col-sm-4">
 
             <label class="form-label"> From Date :</label><br />
-            <input value={data.fromtime} type="date" class="form-control" id="formGroupExampleInput" name="fromtime" onChange={inputChangeHandler} />
+            <input value={data.startdate} type="date" class="form-control" id="formGroupExampleInput" name="startdate" onChange={inputChangeHandler} />
           </div>
           <div className="col-sm-4">
             <label class="form-label">To Date:</label><br />
-            <input value={data.totime} type="date" class="form-control" id="formGroupExampleInput" name="totime" onChange={inputChangeHandler} />
+            <input value={data.enddate} type="date" class="form-control" id="formGroupExampleInput" name="enddate" onChange={inputChangeHandler} />
           </div>
         </div>
         <button type="submit" onClick={submitHandler} className="btn btn-primary mt-4">View</button>
