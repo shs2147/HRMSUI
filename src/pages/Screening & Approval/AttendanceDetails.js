@@ -44,6 +44,15 @@ const coloum = [
   selector :(row) => row.selectEmployee
 }
 ]
+
+
+const coloum = [
+  {
+      name: 'Employee',
+      selector: (row) => row.employeeName
+
+  }
+]
  
   return (
     <div style={{width:'75vw'}}>
