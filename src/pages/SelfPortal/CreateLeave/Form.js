@@ -35,6 +35,7 @@ function Form() {
   // useEffect(()=>{
   //   fetchData1();
   // })
+  
   useEffect(() => {
     const fetchData = async () => {
     const response = await fetch('http://localhost:8080/basic/fetchdata')

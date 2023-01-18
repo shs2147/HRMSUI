@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
   const [data,setData]=useState({
     fromDate:'',
     toDate:'',
-    selectEmployee:'',
+    selectEmployee:''
   });
  const inputChangeHandler=(e)=>{
     let newData={...data};
@@ -38,6 +38,15 @@ import { useEffect, useState } from "react";
 useEffect(()=>{
   fetchData();
 },[])
+
+
+const coloum = [
+  {
+      name: 'Employee',
+      selector: (row) => row.employeeName
+
+  }
+]
  
   return (
     <div style={{width:'75vw'}}>
@@ -90,13 +99,13 @@ useEffect(()=>{
     
       <tbody>
         <tr>
-          <td data-label="sl">1</td>
+          {/* <td data-label="sl">1</td>
           <td data-label="Date">01-10-2022</td>
           <td data-label="Employee">Administrator</td>
           <td data-label="In Time">09:30</td>
-          <td data-label="Out Time">07:00</td>
-          <td data-label="Edit"><button onClick={submitHandler} className="btn btn-outline-primary">Edit</button></td>
-          <td data-label="Del"><button onClick={submitHandler} className="btn btn-outline-primary">Delete</button></td>
+          <td data-label="Out Time">07:00</td> */}
+          {/* <td data-label="Edit"><button onClick={submitHandler} className="btn btn-outline-primary">Edit</button></td>
+          <td data-label="Del"><button onClick={submitHandler} className="btn btn-outline-primary">Delete</button></td> */}
         </tr>
     
         
