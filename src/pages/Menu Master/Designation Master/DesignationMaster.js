@@ -73,6 +73,8 @@ fetch('http://localhost:8080/designation/fetchalldesignation', options)
           </button> */}
         </div>
       </div>
+      <br/><br/>
+
       <MaterialTable
           columns={[
             {
