@@ -316,19 +316,19 @@ const routes = [
         icon: <AiOutlineCaretRight />,
       },
     ],
+  },
+  {
+    path: "/Branch",
+    name: "Branch",
+    icon: <BiAlignLeft />,
+    subRoutes: [
+      {
+        path: "Branch/Branch",
+        name: "Branch",
+        icon: <AiOutlineCaretRight />,
+      },
+    ],
   }
-  // {
-  //   path: "/Position",
-  //   name: "Position",
-  //   icon: <BiAlignLeft />,
-  //   subRoutes: [
-  //     {
-  //       path: "Position/Position",
-  //       name: "Position",
-  //       icon: <AiOutlineCaretRight />,
-  //     },
-  //   ],
-  // },
 ];
 
 const SideBar = ({ children }) => {

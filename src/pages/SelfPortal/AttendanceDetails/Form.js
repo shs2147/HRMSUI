@@ -18,6 +18,21 @@ function Form() {
     // console.log(JSON.stringify(newdata));
   }
   
+  const fetchData = () =>{
+    fetch("http://localhost:8080/basic/fetchdata",{
+    })
+    .then((response) =>{
+      return response.json();
+    })
+    .then((data) =>{
+      setData(data)
+    })
+  }
+  useEffect(() =>{
+  fetchData();
+},[])
+console.log(data);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // axios
@@ -105,68 +120,6 @@ function Form() {
         </div>
       </div>
       <table className=" mt-5 pb-5 row main">
-      {/* <tr>
-        <td className="col">
-          <label for="exampleFormControlInput1" className="form-label ">
-            Sl:
-          </label>
-          <br />
-          <input
-            style={{ width: 25, padding: 1 }}
-            type="text"
-            value={1}
-            className=""
-            id="Choose Type"
-          />
-        </td>
-        <td className="col">
-          <label for="exampleFormControlInput1" className="form-label ">
-            Date:
-          </label>
-          <input type="Date" className="form-control" id="Choose Type" />
-        </td>
-        <td className="col">
-          <label for="exampleFormControlInput1" className="form-label ">
-            Employee:
-          </label>
-          <input
-            value="Administrator"
-            type="text"
-            className="form-control"
-            id="Choose Type"
-          />
-        </td>
-        <td className="col ">
-          <div className="">
-            <label for="exampleFormControlInput1" className="form-label ">
-              In Time:
-            </label>
-            <input type="time" className="form-control" id="Choose Type" />
-          </div>
-          <div className="">
-            <label for="exampleFormControlInput1" className="form-label ">
-              Out Time:
-            </label>
-            <input type="time" className="form-control" id="Choose Type" />
-          </div>
-        </td>
-        <div className=" col justify-content-around d-flex ">
-              <div className="mx-3">
-          <label for="exampleFormControlInput1" className="form-label ">
-            Edit:
-          </label>
-          <br />
-          <button className="btn btn-outline-success">Edit</button>
-        </div>
-        <td className="">
-          <label for="exampleFormControlInput1" className="form-label ">
-            Delete:
-          </label>
-          <br />
-          <button className="btn btn-outline-success">Delete</button>
-        </td>
-        </div>
-        </tr> */}
       </table>
     </form>
   );
