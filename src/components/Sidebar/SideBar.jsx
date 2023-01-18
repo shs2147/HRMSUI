@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import { BiAlignLeft } from "react-icons/bi";
-import { AiOutlineCaretRight } from "react-icons/ai";
+import { AiFillHome, AiOutlineCaretRight } from "react-icons/ai";
 import { BsFillPersonFill } from "react-icons/bs";
 
 import { useState } from "react";
@@ -13,7 +13,7 @@ const routes = [
   {
     path: "/Dashboard",
     name: "Dashboard",
-    icon: <BiAlignLeft />,
+    icon: <AiFillHome /> ,
   },
   {
     path: "/menuMaster",

@@ -22,8 +22,13 @@ const DasNav = () => {
       <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid homeBox">
           <h2>Dashboard</h2>
-          <span class="navbar-text">Welcome Admin</span>
-          <div style={{ width: "15%" }} className="d-flex justify-content-end">
+          <span class="navbar-text">
+            Welcome <b>Admin</b>
+          </span>
+          <div
+            style={{ width: "15%" }}
+            className="d-flex justify-content-center"
+          >
             {/* <NavLink style={{ color: "teal" }} to="/" className=" mt-1"> */}
             {/* <ButtonGroup>
               <Button variant="success" onClick={handleSubmit}>
@@ -42,6 +47,7 @@ const DasNav = () => {
           </div>
         </div>
       </nav>
+      <br /> <br />
     </div>
   );
 };
