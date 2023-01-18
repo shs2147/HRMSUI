@@ -1,11 +1,13 @@
 import { useState } from "react";
+import MaterialTable from "@material-table/core";
 
 const DepartmentMaster = () => {
+ 
   const submitHandler = (e) => {
     e.preventDefault();
     console.log(data);
-    alert("Data Added Sucessfully")
-    fetch("http://localhost:8080/savedepartment", {
+    alert("Data Added Sucessfully");
+    fetch("http://localhost:8080/department/savedepartment", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -28,15 +30,22 @@ const DepartmentMaster = () => {
   //  const submitHandler=(e)=>{
   //     e.preventDefault();
   //  }
+  const [ticketDetails, setTicketDetails] = useState([]);
+  const options = { method: "GET" };
+
+  fetch("http://localhost:8080/department/getall", options)
+    .then((response) => response.json())
+    .then((response) => setTicketDetails(response))
+    .catch((err) => console.error(err));
 
   return (
     <>
       <div className="container">
         <div className="d-flex">
           <h3>Add Department</h3>
-          <button type="button" className="btn btn-primary sm-4 mt-2 mx-3">
+          {/* <button type="button" className="btn btn-primary sm-4 mt-2 mx-3">
             Add Department Master
-          </button>
+          </button> */}
         </div>
         <hr />
         <h6>Add Department</h6>
@@ -82,6 +91,22 @@ const DepartmentMaster = () => {
             Save
           </button>
         </form>
+        <br/>
+        <MaterialTable
+          columns={[
+            {
+              title: "Department Name",
+              field: "departmentName",
+            },
+
+            {
+              title: "Description",
+              field: "description",
+            },
+          ]}
+          data={ticketDetails}
+          title="Department Record"
+        />
       </div>
     </>
   );
