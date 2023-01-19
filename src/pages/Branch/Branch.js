@@ -1,7 +1,7 @@
 import MaterialTable from "@material-table/core";
 import { useState } from "react";
 
-const EmploymentTypeMaster = () => {
+const Branch = () => {
   const [data, setData] = useState({
     name: "",
   });
@@ -15,7 +15,7 @@ const EmploymentTypeMaster = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     console.log(JSON.stringify(data));
-    fetch("http://localhost:8080/saveemployement", {
+    fetch("http://localhost:8080/branch/save", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -24,7 +24,7 @@ const EmploymentTypeMaster = () => {
       body: JSON.stringify(data),
     })
       .then(() => {
-        console.log("Employement Master Added");
+        console.log("Branch Name Added");
       })
       .catch((err) => console.log(err));
   };
@@ -35,7 +35,7 @@ const EmploymentTypeMaster = () => {
   const [ticketDetails, setTicketDetails] = useState([]);
   const options = { method: "GET" };
 
-  fetch("http://localhost:8080/getallEmp", options)
+  fetch("http://localhost:8080/branch/fetchdata", options)
     .then((response) => response.json())
     .then((response) => setTicketDetails(response))
     .catch((err) => console.error(err));
@@ -44,29 +44,29 @@ const EmploymentTypeMaster = () => {
     <>
       <div className="container">
         <div className="d-flex">
-          <h3>Employment Type Master</h3>
+          <h3>Branch Office</h3>
           {/* <button type="button" className="btn btn-primary sm-4 mt-2 mx-3">Add Employment Type</button> */}
         </div>
         <hr />
-        <h5>Add Employment Type</h5>
+        <h5>Add Branch Office</h5>
         <form onSubmit={submitHandler} className="bg-light">
           <div className="row ">
             <div className="col-sm-4 mt-2">
               <label for="cars" id="label">
-                Employment Type:
+                Name:
               </label>
               <br />
               <input
-                value={data.employmentType}
+                value={data.name}
                 type="text"
                 class="form-control"
                 id="formGroupExampleInput"
-                name="employmentType"
+                name="name"
                 onChange={inputChangeHandler}
               />
             </div>
 
-            <div className="col-sm-6 mt-2">
+            {/* <div className="col-sm-6 mt-2">
               <label for="cars" id="label">
                 Description:
               </label>
@@ -79,7 +79,7 @@ const EmploymentTypeMaster = () => {
                 name="description"
                 onChange={inputChangeHandler}
               />
-            </div>
+            </div> */}
           </div>
           <button type="submit" class="btn btn-primary  mt-4 ">
             Save
@@ -88,21 +88,22 @@ const EmploymentTypeMaster = () => {
       </div>   <br/><br/>
       <MaterialTable
         columns={[
-          {
-            title: "Employment Type",
-            field: "employmentType",
+               {
+            title: "Branch Id",
+            field: "id",
           },
+          {
+            title: "Branch Name",
+            field: "name",
+          }
 
-          {
-            title: "Description",
-            field: "description",
-          },
+       
         ]}
         data={ticketDetails}
-        title="Employment Record"
+        title="Branch Record"
       />
     </>
   );
 };
 
-export default EmploymentTypeMaster;
+export default Branch;

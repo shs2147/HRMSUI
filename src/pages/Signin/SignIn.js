@@ -32,6 +32,7 @@ function SignIn(props) {
           console.log(data.jwtToken);
           if (data.jwtToken) {
             sessionStorage.setItem("token", JSON.stringify(data.jwtToken));
+            sessionStorage.setItem("roleName", data.roleName);
             navigate("/Dashboard");
           }
         }

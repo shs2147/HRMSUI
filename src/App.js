@@ -58,6 +58,7 @@ import DesignationMaster from "./pages/Menu Master/Designation Master/Designatio
 import EmploymentTypeMaster from "./pages/Menu Master/Employment Type Master/EmploymentTypeMaster";
 import UserApproval from "./pages/Menu Master/User Approval/UserApproval";
 import Training from "./pages/Training/Training";
+import Branch from "./pages/Branch/Branch";
 // import Position from "./pages/Position/Position";
 import SignIn from "./pages/Signin/SignIn";
 import SignInForm from "./pages/Signin/SignInForm";
@@ -233,6 +234,8 @@ function App() {
             />
             <Route path="/attendance/LeaveReport" element={<LeaveReport />} />
             <Route path="/training/training" element={<Training />} />
+            <Route path="/branch/branch" element={<Branch />} />
+
             {/* <Route path="/Position/Position" element={<Position />} /> */}
 
             <Route path="/Shift Management/Add Shift" element={<AddShift />} />
