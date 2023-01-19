@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 const AddJobVacancy = () => {
   const [data,setData]=useState({
@@ -11,6 +11,9 @@ const AddJobVacancy = () => {
     active:'',
 
   });
+const[show,setShow]=useState([]);
+const[itemshow,setItemshow]=useState([])
+const[active,setActive]=useState([]);
  const inputChangeHandler=(e)=>{
     let newData={...data};
     newData[e.target.name]=e.target.value;
@@ -27,6 +30,36 @@ const AddJobVacancy = () => {
       console.log("Vacancy created")
     })
 }
+const fetchData = () =>{
+  fetch("http://localhost:8080/addjobtitle/getjob",{
+  })
+  .then((response) =>{
+    return response.json();
+  })
+  .then((data) =>{
+    setShow(data)
+  })
+}
+useEffect(()=>
+{
+  fetchData();
+ },[])
+
+ const fetchData1 = () =>{
+  fetch("http://localhost:8080/basic/fetchdata",{
+  })
+  .then((response) =>{
+    return response.json();
+  })
+  .then((data) =>{
+    setItemshow(data)
+  })
+}
+useEffect(()=>
+{
+  fetchData1();
+},[])
+
 
   return (
     <div className="container2">
@@ -42,10 +75,11 @@ const AddJobVacancy = () => {
             {/* <select class="form-select" aria-label="Default select example"> */}
             <select valueType={data.jobTitle} class="form-select" aria-label="Default select example"name="jobTitle" onChange={inputChangeHandler}>
               <option selected disabled>Select Job Title</option>
-              <option valueType="aman">Aman</option>
+              {show.map(e=>(<option valueType={e.jobTitles}>{e.jobTitles}</option>))}
+              {/* <option valueType="aman">Aman</option>
               <option valueType="amit">Amit</option>
               <option valueType="ranjan">Ranjan</option>
-              <option valueType="saurav">Saurav</option>
+              <option valueType="saurav">Saurav</option> */}
             </select>
           </div>
 
@@ -61,10 +95,11 @@ const AddJobVacancy = () => {
             {/* <select class="form-select" aria-label="Default select example"> */}
             <select valueType={data.hiringManager}class="form-select" aria-label="Default select example" name="hiringManager" onChange={inputChangeHandler}>
               <option selected disabled>Select Hiring Manager</option>
-              <option valueType="aman">Aman</option>
+              {itemshow.map(e=>(<option valueType={e.employeeName}>{e.employeeName}</option>))}
+              {/* <option valueType="aman">Aman</option>
               <option valueType="amit">Amit</option>
               <option valueType="ranjan">Ranjan</option>
-              <option valueType="saurav">Saurav</option>
+              <option valueType="saurav">Saurav</option> */}
             </select>
           </div>
 
@@ -86,11 +121,11 @@ const AddJobVacancy = () => {
         <div>
           <label class="form-label">Active:</label><br />
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" />
+            <input class="form-check-input" type="radio" name="active" id="inlineRadio1" value="1" onChange={(e)=> setActive(e.target.value)}/>
             <label class="form-check-label" htmlFor="inlineRadio1">Yes</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
+            <input class="form-check-input" type="radio" name="active" id="inlineRadio2" value="0" onChange={(e)=> setActive(e.target.value)} />
             <label class="form-check-label" htmlFor="inlineRadio2">No</label>
           </div>
         </div>
