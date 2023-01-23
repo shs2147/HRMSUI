@@ -1,4 +1,4 @@
-// import { formatMuiErrorMessage } from "@material-ui/utils";
+
 import { useState, useEffect } from "react";
 
 const AddUser = () => {
@@ -7,14 +7,14 @@ const AddUser = () => {
   const [data, setData] = useState({});
   const [empName, setEmpName] = useState("");
   const [selectedId, setSelectedId] = useState("");
-  // console.log(empName,selectedId,"selectedId")
+ 
   const inputChangeHandler = (e) => {
     let newData = { ...data };
     newData[e.target.name] = e.target.value;
     if (e.target.name === "employeeName") {
       setEmpName(e.target.value);
     }
-    if (e.target.name === "id") {
+    if (e.target.name === "employeeCode") {
       setSelectedId(e.target.value);
     }
     newData[e.target.name] = e.target.value;
@@ -41,7 +41,7 @@ const AddUser = () => {
       });
   };
   useEffect(() => {
-    const myData = show?.filter((item) => item.employeeId == selectedId);
+    const myData = show?.filter((item) => item.employeeId === selectedId);
 
     console.log("my emp", myData[0]?.employeeName);
     setEmpName(myData[0]?.employeeName);
@@ -94,8 +94,7 @@ const AddUser = () => {
                 aria-label="Default select example"
                 name="departmentName"
                 onChange={inputChangeHandler}
-              >
-                {/* <input value={data.name} type="text" class="form-control" id="formGroupExampleInput" name="name" onChange={inputChangeHandler}/> */}
+                >
                 <option selected disabled>
                   Select Department
                 </option>
@@ -112,19 +111,11 @@ const AddUser = () => {
                 Employee Code:
               </label>
               <br />
-              {/* <select
-                valueType={data.employeeCode}
+                <select
+                value={data.employeeCode}
                 class="form-select"
                 aria-label="Default select example"
                 name="employeeCode"
-                onChange={inputChangeHandler}
-              > */}
-              {/* <select value={data.id } class="form-select" aria-label="Default select example" name="id" onChange={inputChangeHandler}> */}
-              <select
-                value={data.id}
-                class="form-select"
-                aria-label="Default select example"
-                name="id"
                 onChange={inputChangeHandler}
               >
                 <option selected disabled>
@@ -134,13 +125,6 @@ const AddUser = () => {
                   <option valueType={e.employeeId}>{e.employeeId}</option>
                 ))}
               </select>
-              {/* <input value={data.name} type="text" class="form-control" id="formGroupExampleInput" name="name" onChange={inputChangeHandler}/> */}
-              {/* <option selected disabled>
-                  Select Employee Code
-                </option>
-                {show.map(saurabh=>( <option valueType={saurabh.employeeId}>{saurabh.employeeId}</option>))} */}
-
-              {/* </select> */}
             </div>
 
             <div className="col-sm-4 mt-2">
@@ -159,20 +143,7 @@ const AddUser = () => {
                   <option valueType={e.employeeName}>{e.employeeName}</option>
                 ))}
               </select>
-              {/* <select
-                valueType={data.employeeName}
-                class="form-select"
-                aria-label="Default select example"
-                name="employeeName"
-                onChange={inputChangeHandler}
-              >
-                {/* <input value={data.name} type="text" class="form-control" id="formGroupExampleInput" name="name" onChange={inputChangeHandler}/> */}
-              {/* <option selected disabled>
-                  Select Employee Name
-                </option>
-               {show.map(saurabh=>( <option valueType={saurabh.employeeName}>{saurabh.employeeName}</option>))}
-               
-              </select> */}
+             
             </div>
 
             <div className="col-sm-4 mt-2">
@@ -221,7 +192,7 @@ const AddUser = () => {
                 name="roleName"
                 onChange={inputChangeHandler}
               >
-                {/* <input value={data.name} type="text" class="form-control" id="formGroupExampleInput" name="name" onChange={inputChangeHandler}/> */}
+      
                 <option selected disabled>
                   Select Role
                 </option>

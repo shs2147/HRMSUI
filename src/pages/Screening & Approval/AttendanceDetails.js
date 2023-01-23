@@ -38,12 +38,7 @@ useEffect(()=>{
 
 console.log (data , "asadadadadadadadad")
 
-const coloum = [
-  {
-  name : 'employee',
-  selector :(row) => row.selectEmployee
-}
-]
+
 
 
 const coloum = [

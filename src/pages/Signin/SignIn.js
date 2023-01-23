@@ -32,7 +32,8 @@ function SignIn(props) {
           console.log(data.jwtToken);
           if (data.jwtToken) {
             sessionStorage.setItem("token", JSON.stringify(data.jwtToken));
-            sessionStorage.setItem("roleName", data.roleName);
+            sessionStorage.setItem("role", JSON.stringify(data.roleName));
+            sessionStorage.setItem("userName", JSON.stringify(data.user));
             navigate("/Dashboard");
           }
         }
