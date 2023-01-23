@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 
 const SalarySetup = () => {
-  const [data, setData] = useState({});
+const [data, setData] = useState([]);
 const [show,setShow]=useState([]);
-const [empName,setEmpName]=useState("");
-const [selectedId,setSelectedId]=useState("");
+const [empName,setEmpName]=useState([]);
+const [selectedId,setSelectedId]=useState([]);
 
-  // console.log(empName,selectedId,"selectedId")
+console.log(empName,selectedId,"selectedId")
 const inputChangeHandler = (e) => {
     let newData = { ...data };
     newData[e.target.name ] = e.target.value;
@@ -19,10 +19,10 @@ const inputChangeHandler = (e) => {
     }
     newData[e.target.name] = e.target.value;
     setData(newData)
-    console.log(JSON.stringify(newData))
+    // console.log(JSON.stringify(newData))
 }
 const submitHandler=(e)=>{
-  // e.preventDefault();
+  e.preventDefault();
   // console.log(JSON.stringify(data))
   fetch("http://localhost:8080/salary/salary",{
       method:"POST",
@@ -69,7 +69,7 @@ useEffect(()=>{
 },[selectedId])
 
 
-console.log(data,"data")
+// console.log(data,"data")
 
   return (
     <form>
@@ -149,10 +149,11 @@ console.log(data,"data")
 
        </div>
         </div>
-        <button type="button" className="btn btn-primary my-4">Save</button>
-        {/* <button type="submit" class="btn btn-primary mt-4"> */}
-            {/* Save
+        {/* <button type="button" className="btn btn-primary my-4" onClick={submitHandler}>Save</button> */}
+        {/* <button type="submit" class="btn btn-primary mt-4">
+            Save
           </button> */}
+          <button onClick={submitHandler} className="btn btn-primary mt-4">Save</button>
         </div>
         </div>
         </div>
