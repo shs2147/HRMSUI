@@ -5,6 +5,8 @@ const [data, setData] = useState([]);
 const [show,setShow]=useState([]);
 const [empName,setEmpName]=useState([]);
 const [selectedId,setSelectedId]=useState([]);
+//const [current,setCurrent]=useState([]);
+
 
 console.log(empName,selectedId,"selectedId")
 const inputChangeHandler = (e) => {
@@ -17,6 +19,10 @@ const inputChangeHandler = (e) => {
       setSelectedId(e.target.value);
      
     }
+    // if(e.target.name === "financialYear"){
+    //   setSelectedId(e.target.value);
+     
+    // }
     newData[e.target.name] = e.target.value;
     setData(newData)
     // console.log(JSON.stringify(newData))
@@ -32,6 +38,32 @@ const submitHandler=(e)=>{
       console.log("payroll are added")
     })
 }
+
+
+// const getCurrentFinancialYear = ()=> {
+//    const fiscalyear = "";
+//   var today = new Date();
+//   if ((today.getMonth() + 1) <= 3) {
+//     fiscalyear = (today.getFullYear() - 1) + "-" + today.getFullYear()
+//   } else {
+//     fiscalyear = today.getFullYear() + "-" + (today.getFullYear() + 1)
+//   }
+//   return fiscalyear
+// }
+// console.log(fiscalyear);
+
+// document.getElementById("spFY").innerHTML=getCurrentFinancialYear();
+const financialYear=()=>{
+  function getCurrentFinancialYear() {
+      const thisYear = (new Date()).getFullYear();
+      const yearArray = [0, 1, 2, 3, 4].map((count) => `${thisYear - count}-${(thisYear - count - 1).toString().slice(-2)}`);
+      console.log(yearArray);
+      return yearArray.join();
+    }
+    console.log(getCurrentFinancialYear());
+}
+
+
 const fetchData = () =>{
   fetch("http://localhost:8080/basic/fetchemployee/{?employeeid}",{
 
@@ -62,16 +94,18 @@ useEffect(()=>
 },[])
        
 useEffect(()=>{
-     const myData = show?.filter((item)=>item.employeeId === selectedId )
+     const myData = show?.filter((item)=>item.employeeId == selectedId )
 
    console.log("my emp",myData[0]?.employeeName)
    setEmpName(myData[0]?.employeeName)
 },[selectedId])
 
 
+
 // console.log(data,"data")
 
   return (
+    
     <form>
     <div>
     <h2 className='container'>Add Employee Salary <div className='header Button'>
@@ -107,37 +141,40 @@ useEffect(()=>{
     <input value={data.financialYear} type="text" className="form-control" id="formGroupExampleInput" name='financialYear' onChange={inputChangeHandler} />
           </div> */}
           <div className="col-sm-6 ">
-          <label className="form-label" for="cars" id='label'>Financial Year:</label>
-           <br />
- <select value={data.financialYear} className="form-select" aria-label="Default select example" name='financialYear' onChange={inputChangeHandler}>
-    <option selected disabled>---Select Year---</option>
-      <option value="2020-21">2020-21</option>
+          <label className="form-label" for="cars" id='label' >Financial Year:</label>
+           <br /> 
+          
+ <select value={data.financialYear} className="form-control" aria-label="Default select example" name='financialYear' onChange={financialYear}>
+  
+    {/* <option selected disabled>---Select Year---</option> */}
+      {/* <option value="2020-21">2020-21</option>
      <option value="2021-22">2021-22</option>
     <option value="2022-23">2022-23</option>
       <option value="2023-24">2023-24</option>
         <option value="2024-25">2024-25</option>
          <option value="2025-26">2025-26</option>
-          <option value="2026-27">2026-27</option>
+          <option value="2026-27">2026-27</option> */}
           
                   </select>
                  </div>
+                 
           <div className="col-sm-6 ">
           <label className="form-label" for="cars" id='label'>Month:</label>
            <br />
  <select value={data.month} className="form-select" aria-label="Default select example" name='month' onChange={inputChangeHandler}>
     <option selected disabled>---Select Month---</option>
-      <option value="Jan">Jan</option>
-     <option value="Fab">Fab</option>
-    <option value="Mar">Mar</option>
-      <option value="Apr">Apr</option>
+      <option value="Jan">January</option>
+     <option value="Fab">February</option>
+    <option value="Mar">March</option>
+      <option value="Apr">April</option>
         <option value="May">May</option>
-         <option value="Jun">Jun</option>
-          <option value="Jul">Jul</option>
-           <option value="Aug">Aug</option>
-             <option value="Sep">Sep</option>
-             <option value="Oct">Oct</option>
-            <option value="Nov">Nov</option>
-               <option value="Dec">Dec</option>
+         <option value="Jun">June</option>
+          <option value="Jul">July</option>
+           <option value="Aug">August</option>
+             <option value="Sep">September</option>
+             <option value="Oct">October</option>
+            <option value="Nov">November</option>
+               <option value="Dec">December</option>
                   </select>
                  </div>
           <div className=" col-sm-6">
