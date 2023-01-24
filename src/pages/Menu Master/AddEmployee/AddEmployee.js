@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
+import { useForm } from "react-hook-form";
 import {
   CAccordion,
   CAccordionBody,
@@ -11,7 +12,7 @@ import {
 const AddEmployee = () => {
   const [show, setShow] = useState([]);
   const [itemshow, setItemshow] = useState([]);
-
+  // const { register, handleSubmit, formState: { errors } } = useForm();
   const [report, setReport] = useState([]);
 
   const [emp, setEmp] = useState([]);
@@ -108,7 +109,7 @@ const AddEmployee = () => {
       })
       .catch((err) => console.log(err));
     console.log(JSON.stringify(data));
-    fetch("http://localhost:8080/savebankinginfo", {
+    fetch("http://localhost:8080/bank/savebankinginfo", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -250,6 +251,7 @@ const AddEmployee = () => {
                     <input
                       value={data.email}
                       type="email"
+                      
                       className="form-control"
                       id="formGroupExampleInput"
                       name="email"
@@ -632,19 +634,20 @@ const AddEmployee = () => {
             <div className="container">
               <div className="bg-light">
                 <div className="row ">
-                  <div className=" col-sm-6">
-                    <label className="form-label">Bank Account No:</label>
+                <div className=" col-sm-6">
+                    <label className="form-label">Name (As Per Bank Record):</label>
                     <br />
                     <input
-                      value={data.bankAccountNo}
-                      type="number"
+                      value={data.name}
+                      type="text"
                       className="form-control"
                       id="formGroupExampleInput"
-                      name="bankAccountNo"
+                      name="pan"
                       onChange={inputChangeHandler}
-                      placeholder="Enter Account Number"
+                      placeholder="Enter Your Name"
                     />
                   </div>
+                 
                   <div className=" col-sm-6">
                     <label className="form-label">Bank Name:</label>
                     <br />
@@ -672,6 +675,19 @@ const AddEmployee = () => {
                     />
                   </div>
                   <div className=" col-sm-6">
+                    <label className="form-label">Bank Account No:</label>
+                    <br />
+                    <input
+                      value={data.bankAccountNo}
+                      type="number"
+                      className="form-control"
+                      id="formGroupExampleInput"
+                      name="bankAccountNo"
+                      onChange={inputChangeHandler}
+                      placeholder="Enter Account Number"
+                    />
+                  </div>
+                  <div className=" col-sm-6">
                     <label className="form-label">IFSC Code:</label>
                     <br />
                     <input
@@ -684,7 +700,7 @@ const AddEmployee = () => {
                       placeholder="Enter IFSC Code"
                     />
                   </div>
-                  <div className=" col-sm-6">
+                  {/* <div className=" col-sm-6">
                     <label className="form-label" for="cars" id="label">
                       Payment type:
                     </label>
@@ -704,20 +720,8 @@ const AddEmployee = () => {
                       <option value="abcd">RTGS</option>
                       <option value="hijk">NEFT</option>
                     </select>
-                  </div>
-                  <div className=" col-sm-6">
-                    <label className="form-label">PAN:</label>
-                    <br />
-                    <input
-                      value={data.pan}
-                      type="text"
-                      className="form-control"
-                      id="formGroupExampleInput"
-                      name="pan"
-                      onChange={inputChangeHandler}
-                      placeholder="Enter PAN Number"
-                    />
-                  </div>
+                  </div> */}
+                  
                 </div>
               </div>
             </div>
