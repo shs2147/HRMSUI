@@ -106,43 +106,25 @@ const AddUser = () => {
               </select>
             </div>
 
-            <div className="col-sm-4 mt-2">
-              <label for="cars" id="label">
-                Employee Code:
-              </label>
-              <br />
-                <select
-                value={data.employeeCode}
-                class="form-select"
-                aria-label="Default select example"
-                name="employeeCode"
-                onChange={inputChangeHandler}
-              >
-                <option selected disabled>
-                  Select Employee
-                </option>
-                {show.map((e) => (
-                  <option valueType={e.employeeId}>{e.employeeId}</option>
-                ))}
-              </select>
-            </div>
+            
 
             <div className="col-sm-4 mt-2">
               <label for="cars" id="label">
                 Employee Name:
               </label>
               <br />
-              <select
+              <input
                 value={empName}
-                className="form-select"
+                className="form-control"
                 aria-label="Default select example"
                 name="employeeName"
                 onChange={inputChangeHandler}
+                placeholder="Enter Employee Name"
               >
-                {show.map((e) => (
+                {/* {show.map((e) => (
                   <option valueType={e.employeeName}>{e.employeeName}</option>
-                ))}
-              </select>
+                ))} */}
+              </input>
              
             </div>
 
@@ -177,6 +159,39 @@ const AddUser = () => {
                 onChange={inputChangeHandler}
                 required
                 placeholder="Enter Password"
+              />
+            </div>
+
+            <div className="col-sm-4 mt-2">
+              <label for="cars" id="label">
+                Aadhar Number:
+              </label>
+              <br />
+              <input
+                value={data.aadhaarNumber}
+                type="text"
+                class="form-control"
+                id="formGroupExampleInput"
+                name="aadhaarNumber"
+                onChange={inputChangeHandler}
+                required
+                placeholder="Enter Aadhar Number"
+              />
+            </div>
+            <div className="col-sm-4 mt-2">
+              <label for="cars" id="label">
+                PAN Number:
+              </label>
+              <br />
+              <input
+                value={data.panNumber}
+                type="text"
+                class="form-control"
+                id="formGroupExampleInput"
+                name="panNumber"
+                onChange={inputChangeHandler}
+                required
+                placeholder="Enter PAN Number"
               />
             </div>
 
