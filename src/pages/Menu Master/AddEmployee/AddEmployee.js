@@ -14,7 +14,7 @@ const AddEmployee = () => {
   const [itemshow, setItemshow] = useState([]);
   // const { register, handleSubmit, formState: { errors } } = useForm();
   const [report, setReport] = useState([]);
-
+  const[user,setUser]=useState([]);
   const [emp, setEmp] = useState([]);
 
   const [data, setData] = useState({
@@ -71,12 +71,22 @@ const AddEmployee = () => {
         setItemshow(data);
       });
   };
+  const fetchData5 = () => {
+    fetch("http://localhost:8080/usermaster/fetchAll", {})
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setUser(data);
+      });
+  };
   useEffect(() => {
     fetchData();
     fetchData1();
     fetchData2();
     fetchData3();
     fetchData4();
+    fetchData5();
   }, []);
 
   const submitHandler = (e) => {
@@ -180,6 +190,13 @@ const AddEmployee = () => {
                       onChange={inputChangeHandler}
                       placeholder="Enter Your Name"
                     />
+                    <datalist className="form-control">
+                    {user.map((saurabh) => (
+                        <option valueType={saurabh.employeeName}>
+                          {saurabh.employeeName}
+                        </option>
+                      ))}
+                    </datalist>
                   </div>
                   <div className="col-sm-4 ">
                     <label for="cars" id="label">
