@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
-import { useForm } from "react-hook-form";
+// import { useForm } from "react-hook-form";
 import {
   CAccordion,
   CAccordionBody,
@@ -181,6 +181,7 @@ const AddEmployee = () => {
                     <label for="cars" id="label">
                       Employee Name:
                     </label>
+                    {/* <label> */}
                     <input
                       value={data.employeeName}
                       type="text"
@@ -189,14 +190,17 @@ const AddEmployee = () => {
                       name="employeeName"
                       onChange={inputChangeHandler}
                       placeholder="Enter Your Name"
+                      list="employee"
                     />
-                    <datalist className="form-control">
+                    <datalist id="employee">
                     {user.map((saurabh) => (
-                        <option valueType={saurabh.employeeName}>
-                          {saurabh.employeeName}
+                        <option value={saurabh.employeeName}>
+                          {/* {saurabh.employeeName} */}
                         </option>
                       ))}
                     </datalist>
+                    
+                    {/* </label> */}
                   </div>
                   <div className="col-sm-4 ">
                     <label for="cars" id="label">
