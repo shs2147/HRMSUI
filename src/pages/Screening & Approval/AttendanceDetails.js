@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-// import { propTypes } from "react-bootstrap/esm/Image";
+
 
   const AttendanceDetails = () => {
     const[show,setShow]=useState([]);
     const[view,setView]=useState([]);
   const [data,setData]=useState([]);
+  
  const inputChangeHandler=(e)=>{
     let newData={...data};
     newData[e.target.name]=e.target.value;
@@ -21,22 +22,63 @@ import { useEffect, useState } from "react";
       setView(data)
     })
 }
- const submitHandler=(e)=>{
-  console.log(JSON.stringify(data))
-  fetch('http://localhost:8080/attendance_details/save',{
-    method:"POST",
-    headers:{"content-Type":"application/json","Accept":"appliaction/json"},
-    body:JSON.stringify(data)
- }).then(()=>{
-    // console.log(" attendance_details are added")
- })
+function DateComponent(){
+  const date=new Date();
+  const formattedDate=date.toISOString().substring(0,10);
+  return <p>{formattedDate}</p>
 }
+//  const submitHandler=(e)=>{
+//   console.log(JSON.stringify(data))
+//   fetch('http://localhost:8080/attendance_details/save',{
+//     method:"POST",
+//     headers:{"content-Type":"application/json","Accept":"appliaction/json"},
+//     body:JSON.stringify(data)
+//  }).then(()=>{
+//     // console.log(" attendance_details are added")
+//  })
+// }
 useEffect(()=>{
   fetchData();
 },[])
 
+// async function sendData() {
+//   const response = await fetch('http://localhost:8080/OverTime/bydate', {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/x-www-form-urlencoded'
+//     },
+//     body: JSON.stringify({
+//       startdate: 'fromDate',
+//       enddate: 'toDate',
+//       name: 'selectEmployee',
+//     })
+//   });
 
-console.log (data , "asadadadadadadadad")
+//   const result = await response.json();
+//   console.log(result);
+// }
+
+async function sendData() {
+  const params = new URLSearchParams();
+  params.append('startdate', 'startdate');
+  params.append('enddate', 'enddate');
+  params.append('name', 'name');
+
+  const response = await fetch('http://localhost:8080/OverTime/bydate' ,
+  {
+    method: 'GET',
+  });
+
+  const result = await response.json();
+  console.log(result);
+}
+
+
+
+
+
+
+// console.log (data )
 
 
 
@@ -61,26 +103,28 @@ const coloum = [
     
      <div className="col-sm-4">
       <label  class="form-label">From Date</label><br/>
-      <input value={data.fromDate} type="date" class="form-control" id="formGroupExampleInput" name="fromDate"onChange={inputChangeHandler} />
+      <input value={data.startdate} type="date" class="form-control" id="formGroupExampleInput" name="startdate"onChange={inputChangeHandler} />
       
     </div>
     
     <div className="col-sm-4">
       <label  class="form-label">To Date</label><br/>
-      <input value={data.toDate} type="date" class="form-control" id="formGroupExampleInput" name="toDate"onChange={inputChangeHandler} />
+      
+      <input value={data.enddate} type="date" class="form-control" id="formGroupExampleInput" name="enddate"onChange={inputChangeHandler} />
+  
     </div>
     
     <div className="col-sm-3 mt-2">
            <label for="cars" id='label'>Select Employee:</label>
          <br/>  
-     <select valueType={data.selectEmployee} class="form-select" aria-label="Default select example" name="selectEmployee" onChange={inputChangeHandler}>
+     <select valueType={data.name} class="form-select" aria-label="Default select example" name="name" onChange={inputChangeHandler}>
       <option selected disabled>Choose Employee</option>
       {view.map(aman=>( <option valueType={aman.employeeName}>{aman.employeeName}</option>))}
     </select>
     </div>
     
     </div>
-    <button  onClick={submitHandler} className="btn btn-primary mt-4">View details</button>
+    <button  onClick={sendData} className="btn btn-primary mt-4">View details</button>
     </div>
     
     

@@ -45,7 +45,7 @@ const AddEmployee = () => {
       });
   };
   const fetchData1 = () => {
-    fetch("http://localhost:8080/getall", {})
+    fetch("http://localhost:8080/department/getall", {})
       .then((response) => {
         return response.json();
       })
