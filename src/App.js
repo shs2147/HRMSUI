@@ -63,6 +63,7 @@ import Branch from "./pages/Branch/Branch";
 import SignIn from "./pages/Signin/SignIn";
 import SignInForm from "./pages/Signin/SignInForm";
 import SignUpForm from "./pages/Signin/SignUpForm";
+import Protected from "./components/Protected";
 import { useEffect, useState } from "react";
 
 
