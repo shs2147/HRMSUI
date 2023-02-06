@@ -32,6 +32,23 @@ const panNumber = (value) => {
     return !empty(value) && value.length == 10 ;
 };
 
+const Va =(values)=>{
+    let errors = {}
+    if(!values.userName){
+        errors.userName="Name Required"
+    }
+    else if (values.userName.length <2){
+        errors.userName="Name must be more than 2 char"
+    }
+    if(!values.password){
+        errors.password="Password Required"
+    }
+    else if (values.password.length <2){
+        errors.password="Password must be more than 2 char"
+    }
+    return errors;
+}
+
 const Validation = {
     empty,
     minimum,
@@ -40,6 +57,7 @@ const Validation = {
     password,
     panNumber,
     aadharValidate,
+    Va,
 };
 
 export default Validation;

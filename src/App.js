@@ -63,7 +63,8 @@ import Branch from "./pages/Branch/Branch";
 import SignIn from "./pages/Signin/SignIn";
 import SignInForm from "./pages/Signin/SignInForm";
 import SignUpForm from "./pages/Signin/SignUpForm";
-import Protected from "./components/Protected";
+//import PrivateRoute from "./PrivateRoute";
+
 import { useEffect, useState } from "react";
 
 
@@ -107,6 +108,7 @@ function App() {
       ) : (
         <SideBar>
           <Routes>
+          {/* <PrivateRoute path="/dashboard" component={Dashboard} /> */}
             <Route
               path="/Dashboard"
               element={<Dashboard setLogged={setLogged} />}

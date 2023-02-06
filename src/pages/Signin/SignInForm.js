@@ -1,155 +1,84 @@
-import React, { Component } from "react";
+// import React, {useState}from "react";
 import classes from "./SignIn.module.css";
-class SignInForm extends Component {
-  constructor(props) {
-    super(props);
+import{ useNavigate  } from 'react-router-dom';
+// //import SignIn from "./SignIn";
+// //import Validation from "../../validation/Validation";
+import React, { useState } from "react";
 
-    this.state = {
-      userName: "",
-      password: "",
-      nameError: "",
-      passwordError: "",
-    };
+const SignInForm = (props) => {
+  const [userName, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  // handleSubmit(event) {
+  // const handleSubmit = (event) => {
   //   event.preventDefault();
-  //   this.props.handler(this.state);
-  //   this.props.handlerInput(this.state);
-  //   this.props.onClick();
-  //   console.log("The form was submitted with the following data:");
-  //   console.log(this.state);
-  // }
+  //   // Perform authentication logic here
+  //   console.log(`Username: ${userName} Password: ${password}`);
+  // };
 
-  handleUserChange(e) {
-    // let target = event.target;
-    // let value = target.type === "checkbox" ? target.checked : target.value;
-    // let name = target.name;
 
-    this.setState({
-      // [name]: value,
-      userName: e.target.value,
-      // password: e.target.value,
-    });
-  }
-  handlePasswordChange(e) {
-    this.setState({
-      password: e.target.value,
-    });
-  }
-
-  valid() {
-    if (
-      this.state.userName.includes("ahom") &&
-      this.state.password.length > 2
-    ) {
-      this.setState({
-        nameError: "Either UserName or Password is wrong",
-      });
-    } else if (
-      this.state.userName.includes("ahom") ||
-      !this.state.password.length > 2
-    ) {
-      this.setState({
-        passwordError: "password Wrong",
-      });
-    } else if (
-      !this.state.userName.includes("ahom") ||
-      this.state.password.length > 2
-    ) {
-      this.setState({
-        nameError: "User Invalid",
-      });
-    } else {
-      this.setState({
-        nameError: "user wrong",
-        passwordError: "password wrong",
-      });
+  const handleSubmit = async (event) => {
+    //const res = await client.post("/sign-in", {userName, password});
+    event.preventDefault();
+    if (!userName || !password) {
+      setError("Please enter a username and password");
+      return;
     }
-    // else if (
-    //   this.state.userName.includes("ahom") &&
-    //   !this.state.password.length > 2
-    // ) {
-    //   this.setState({
+    setLoading(true);
+    setError(null);
+    
+    try {
+      // Perform authentication logic here, e.g. by calling an API
+      const response = await fetch("http://localhost:8080/usermaster/authenticate", {
+        method: "POST",
+        body: JSON.stringify({ userName, password }),
+        headers: { "Content-Type": "application/json" },
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data) {
+          console.log(data.jwtToken);
+          if (data.jwtToken) {
+            sessionStorage.setItem("token", JSON.stringify(data.jwtToken));
+            sessionStorage.setItem("role", JSON.stringify(data.roleName));
+            sessionStorage.setItem("userName", JSON.stringify(data.user));
+            navigate("/Dashboard"); }
+          }
+        })
+    } catch (err) {
+      setError(err.message);
+    } 
+  };
 
-    //     passwordError: "Password Incorrect",
-    //   });
-    // }
-  }
-  handleSubmit(e) {
-    this.setState({ nameError: "", passwordError: "" });
-    e.preventDefault();
-    this.props.handler(this.state);
-    this.props.handlerInput(this.state);
-    this.props.onClick();
-    console.log("The form was submitted with the following data:");
-    console.log(this.state);
-
-    if (this.valid()) {
-      alert("user Login");
-    }
-  }
-
-  render() {
-    return (
-      <div className={classes.formCenter}>
-        <form
-          className={classes.formField}
-          onSubmit={(e) => {
-            this.handleSubmit(e);
-          }}
-        >
-          <div className={classes.formField}>
-            <label className={classes.formFieldLabel} htmlFor="userName">
-              User Name
-            </label>
-            <input
-              type="text"
-              id="userName"
-              className={classes.formFieldInput}
-              placeholder="Username..."
-              name="username"
-              value={this.state.userName}
-              onChange={(e) => {
-                this.handleUserChange(e);
-              }}
-            />
-          </div>
-          {this.state.nameError}
-
-          <div className={classes.formField}>
-            <label className={classes.formFieldLabel} htmlFor="password">
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              className={classes.formFieldInput}
-              placeholder=" Password..."
-              name="password"
-              value={this.state.password}
-              onChange={(e) => {
-                this.handlePasswordChange(e);
-              }}
-            />
-          </div>
-          {this.state.passwordError}
-
-          <div className={classes.formField}>
-            <button
-              // onClick={this.handleSubmit}
-              className={classes.formFieldButton}
-            >
-              Sign In
-            </button>
-          </div>
-        </form>
+  return (
+    <form  onSubmit={handleSubmit} className={classes.formField}>
+      {error && <p style={{ color: "red" }}>{error}</p>}
+      <div className={classes.formField}>
+        <label htmlFor="username" className={classes.formFieldLabel}>Username:</label>
+        <input  className={classes.formFieldInput}
+          type="text"
+          id="username"
+          value={userName}
+          onChange={(event) => setUsername(event.target.value)}
+        />
       </div>
-    );
-  }
-}
+      <div className={classes.formField}>
+        <label htmlFor="password" className={classes.formFieldLabel}>Password:</label>
+        <input className={classes.formFieldInput}
+          type="password"
+          id="password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+        />
+      </div>
+      <button className={classes.formFieldButton} type="submit" disabled={loading}>
+        Sign In
+      </button>
+    </form>
+  );
+};
 
 export default SignInForm;
+
