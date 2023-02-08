@@ -1,16 +1,26 @@
 // import React, {useState}from "react";
 import classes from "./SignIn.module.css";
-import{ useNavigate  } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 // //import SignIn from "./SignIn";
-// //import Validation from "../../validation/Validation";
-import React, { useState } from "react";
+import Validation from "../../validation/Validation";
+import React, { useState, useEffect } from "react";
 
 const SignInForm = (props) => {
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const [showError, setShowError] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+ 
+  useEffect(() => {
+    if (error === null) {
+      // Refresh the input fields after the first successful login
+      setUsername("");
+      setPassword("");
+    }
+  }, [error]);
 
   // const handleSubmit = (event) => {
   //   event.preventDefault();
@@ -26,9 +36,11 @@ const SignInForm = (props) => {
       setError("Please enter a username and password");
       return;
     }
-    setLoading(true);
+
+
+    //setLoading(true);
     setError(null);
-    
+
     try {
       // Perform authentication logic here, e.g. by calling an API
       const response = await fetch("http://localhost:8080/usermaster/authenticate", {
@@ -36,32 +48,43 @@ const SignInForm = (props) => {
         body: JSON.stringify({ userName, password }),
         headers: { "Content-Type": "application/json" },
       })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data) {
-          console.log(data.jwtToken);
-          if (data.jwtToken) {
-            sessionStorage.setItem("token", JSON.stringify(data.jwtToken));
-            sessionStorage.setItem("role", JSON.stringify(data.roleName));
-            sessionStorage.setItem("userName", JSON.stringify(data.user));
-            navigate("/Dashboard"); }
-          }
-        })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data) {
+            console.log(data.jwtToken);
+            if (data.jwtToken) {
+              sessionStorage.setItem("token", JSON.stringify(data.jwtToken));
+              sessionStorage.setItem("role", JSON.stringify(data.roleName));
+              sessionStorage.setItem("userName", JSON.stringify(data.user));
+              navigate("/Dashboard");
+            }
+          
+         
+        }
+        });
     } catch (err) {
       setError(err.message);
-    } 
+    }
+    setError("Invalid username or password");
+
+
+   
   };
 
+  
+
   return (
-    <form  onSubmit={handleSubmit} className={classes.formField}>
+    <form onSubmit={handleSubmit} className={classes.formField}>
+
       {error && <p style={{ color: "red" }}>{error}</p>}
       <div className={classes.formField}>
         <label htmlFor="username" className={classes.formFieldLabel}>Username:</label>
-        <input  className={classes.formFieldInput}
+        <input className={classes.formFieldInput}
           type="text"
           id="username"
           value={userName}
           onChange={(event) => setUsername(event.target.value)}
+          
         />
       </div>
       <div className={classes.formField}>
