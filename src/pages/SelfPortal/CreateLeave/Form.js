@@ -177,7 +177,7 @@ fetchData();
 
           <select
             className="form-select form-select-lg mb-1 w-75"
-            value={data.leaveType}
+            value={data.leave_type}
             onChange={handleInput}
             name="leaveType"
           >
@@ -237,7 +237,7 @@ fetchData();
           <input
             name="startDate"
             onChange={handleInput}
-            value={data.startDate}
+            value={data.start_date}
             type="Date"
             className="form-control"
             id="Choose Type"
@@ -250,7 +250,7 @@ fetchData();
           <input
             name="endDate"
             onChange={handleInput}
-            value={data.endDate}
+            value={data.end_date}
             type="Date"
             className="form-control"
             id="Choose Type"
@@ -278,7 +278,7 @@ fetchData();
         <textarea
           name="reasonForLeave"
           onChange={handleInput}
-          value={data.reasonForLeave}
+          value={data.reason_for_leave}
           type="text"
           className="form-control col-10 mx-5  w-75"
           id="exampleInputEmail1"
