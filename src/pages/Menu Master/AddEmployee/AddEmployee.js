@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
+import Validation from '../../../validation/Validation'
 // import { useForm } from "react-hook-form";
 import {
   CAccordion,
@@ -8,18 +9,29 @@ import {
   CAccordionItem,
 } from "@coreui/bootstrap-react";
 // import React,{ useState } from "react";
+const formData = {
+  employeeName: "",
+  mobile: "",
+  email: "",
+  
+}
 
 const AddEmployee = () => {
   const [show, setShow] = useState([]);
-  const [itemshow, setItemshow] = useState([]);
+  // const [itemshow, setItemshow] = useState([]);
   // const { register, handleSubmit, formState: { errors } } = useForm();
   const [report, setReport] = useState([]);
   const[user,setUser]=useState([]);
   const [emp, setEmp] = useState([]);
 
-  const [data, setData] = useState({
-    name: "",
-  });
+  // const [data, setData] = useState({
+  //   name: "",
+  // });
+
+  const [data, setData] = useState(formData);
+  const { email,mobile} = data;
+  const [showError, setShowError] = useState(false);
+  const [itemshow, setItemshow] = useState([]);
   const inputChangeHandler = (e) => {
     let newData = { ...data };
     newData[e.target.name] = e.target.value;
@@ -90,8 +102,45 @@ const AddEmployee = () => {
   }, []);
 
   const submitHandler = (e) => {
-    e.preventDefault();
+    setShowError(true);
+if(
+  !Validation.email(email)&&
+  // !Validation.password(password)&&
+  !Validation.mobile(mobile)
+  // !Validation.panNumber(panNumber)
+){
+  alert("fill all the details")
+}
+    // else if (
+    //   !Validation.email(email) 
+    //   )
+    //   {
+    //     alert("fill your email")
+    //   }
+    //   // else if(
+    //   //   !Validation.password(password)
+    //   // ){
+    //   //   alert("fill your password")
+    //   // }
+    //   // else if(
+    //   //   !Validation.aadharValidate(aadhaarNumber)
+    //   // ){
+    //   //   alert("fill aadhar number")
+    //   // }
+    //   else if(
+    //     !Validation.mobile(mobile)
+    //   )
+    //   {
+    //     alert("fill your pan number")
+    //   }
+   
+    //e.preventDefault();
     // alert("Success");
+    else {
+      setShowError(false)
+      alert("Your data has been saved successfully!!")
+    
+      setData({});
     console.log(JSON.stringify(data));
     fetch("http://localhost:8080/basic/saveemployee", {
       method: "POST",
@@ -145,6 +194,7 @@ const AddEmployee = () => {
       })
       .catch((err) => console.log(err));
   };
+}
   //  const submitHandler=(e)=>{
   //     e.preventDefault();
   //  }
@@ -191,6 +241,8 @@ const AddEmployee = () => {
                       onChange={inputChangeHandler}
                       placeholder="Enter Your Name"
                       list="employee"
+                      required
+             
                     />
                     <datalist id="employee">
                     {user.map((saurabh) => (
@@ -278,6 +330,9 @@ const AddEmployee = () => {
                       name="email"
                       onChange={inputChangeHandler}
                       placeholder="Enter Your Email"
+             isInvalid={showError && !Validation.empty(data?.email)}
+
+                      required
                     />
                   </div>
                   <div className=" col-sm-4">
@@ -285,18 +340,22 @@ const AddEmployee = () => {
                     <br />
                     <input
                       value={data.mobile}
-                      type="phone"
+                      type="phone"mobile
                       className="form-control"
                       id="formGroupExampleInput"
                       name="mobile"
                       onChange={inputChangeHandler}
                       placeholder="Enter your Mobile No."
+             
+
+                      required
                     />
                   </div>
                   <div className=" col-sm-3">
                     <label className="form-label">Joining Date:</label>
                     <div>
                       <Form.Control
+                        required
                         value={data.joiningDate}
                         type="date"
                         name="joiningDate"
@@ -330,6 +389,7 @@ const AddEmployee = () => {
                     <label className="form-label">DOB:</label>
                     <div>
                       <Form.Control
+                      required
                         value={data.dob}
                         type="date"
                         name="dob"
@@ -535,6 +595,7 @@ const AddEmployee = () => {
                       name="incentive"
                       onChange={inputChangeHandler}
                       placeholder="Enter Incentive"
+                      required
                     />
                   </div>
                   {/* <div className="col-sm-3 ">
@@ -557,12 +618,14 @@ const AddEmployee = () => {
                       name="value"
                       onChange={inputChangeHandler}
                       placeholder="Enter Value"
+                      required
                     />
                   </div>
                   <div className=" col-sm-3">
                     <label className="form-label">Effective Date:</label>
                     <div>
                       <Form.Control
+                        required
                         value={data.effectiveDate}
                         type="date"
                         name="effectiveDate"
@@ -581,6 +644,7 @@ const AddEmployee = () => {
                       name="pfAccountNo"
                       onChange={inputChangeHandler}
                       placeholder="Enter PF Number"
+                      required
                     />
                   </div>
                   <div className=" col-sm-3">
@@ -594,6 +658,7 @@ const AddEmployee = () => {
                       name="esiNo"
                       onChange={inputChangeHandler}
                       placeholder="Enter ESI Number"
+                      required
                     />
                   </div>
                   <div className=" col-sm-3">
@@ -607,12 +672,14 @@ const AddEmployee = () => {
                       name="cinNo"
                       onChange={inputChangeHandler}
                       placeholder="Enter CIN Number"
+                      required
                     />
                   </div>
                   <div className=" col-sm-3">
                     <label className="form-label">Leaving Date:</label>
                     <div>
                       <Form.Control
+                        required
                         value={data.leavingDate}
                         type="date"
                         name="leavingDate"
@@ -666,6 +733,7 @@ const AddEmployee = () => {
                       name="pan"
                       onChange={inputChangeHandler}
                       placeholder="Enter Your Name"
+                      required
                     />
                   </div>
                  
@@ -680,6 +748,7 @@ const AddEmployee = () => {
                       name="bankName"
                       onChange={inputChangeHandler}
                       placeholder="Enter Bank Name"
+                      required
                     />
                   </div>
                   <div className=" col-sm-6">
@@ -693,6 +762,7 @@ const AddEmployee = () => {
                       name="bankBranch"
                       onChange={inputChangeHandler}
                       placeholder="Enter Bank Branch"
+                      required
                     />
                   </div>
                   <div className=" col-sm-6">
@@ -706,6 +776,7 @@ const AddEmployee = () => {
                       name="bankAccountNo"
                       onChange={inputChangeHandler}
                       placeholder="Enter Account Number"
+                      required
                     />
                   </div>
                   <div className=" col-sm-6">
@@ -719,6 +790,7 @@ const AddEmployee = () => {
                       name="ifscCode"
                       onChange={inputChangeHandler}
                       placeholder="Enter IFSC Code"
+                      required
                     />
                   </div>
                   {/* <div className=" col-sm-6">

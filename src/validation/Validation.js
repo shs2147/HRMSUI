@@ -49,6 +49,21 @@ const Va =(values)=>{
     return errors;
 }
 
+const V =(values)=>{
+    let errors = {}
+    if(!values.userName ==="ahom" || !values.password ==="123"){
+        errors.userName="Either user name is invalid or password is invalid";
+    }
+    
+    if(!values.password){
+        errors.password="Password Required"
+    }
+    else if (values.password.length <2){
+        errors.password="Password must be more than 2 char"
+    }
+    return errors;
+}
+
 const Validation = {
     empty,
     minimum,
@@ -58,6 +73,7 @@ const Validation = {
     panNumber,
     aadharValidate,
     Va,
+    V,
 };
 
 export default Validation;

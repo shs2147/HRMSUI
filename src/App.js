@@ -7,6 +7,7 @@ import {
   redirect,
   useNavigate,
   useLocation,
+  Switch,
 } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Users from "./pages/Users";
@@ -63,7 +64,8 @@ import Branch from "./pages/Branch/Branch";
 import SignIn from "./pages/Signin/SignIn";
 import SignInForm from "./pages/Signin/SignInForm";
 import SignUpForm from "./pages/Signin/SignUpForm";
-//import PrivateRoute from "./PrivateRoute";
+//import PrivatePage from "./privateRoute";
+//import withAuth from "./auth";
 
 import { useEffect, useState } from "react";
 
@@ -101,6 +103,10 @@ function App() {
     // </div>
 
     <>
+    {/* <Routes>
+      <Route exact path='/SignIn' component={SignIn} />
+      <Route exact path='/privateRoute' component={PrivatePage} />
+    </Routes> */}
       {location.pathname === "/" ? (
         <Routes>
           <Route path="/" element={<SignIn handler={handler} />} exact />
