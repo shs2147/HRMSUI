@@ -1,240 +1,99 @@
-import { useEffect, useState,useRef } from "react";
+import React, { useState,useEffect } from "react";
 import axios from "axios";
-
-  const AttendanceDetails = () => {
-    const[show,setShow]=useState([]);
-    const[view,setView]=useState([]);
-    const [data,setData]=useState([]);
-  
-//  const inputChangeHandler=(e)=>{
-//     let newData={...data};
-//     newData[e.target.name]=e.target.value;
-//     setData(newData)
-   
-//  }
- const fetchData = () => {
-  fetch("http://localhost:8080/basic/fetchdata", {
-  })
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      setView(data)
-    })
-}
-function DateComponent(){
-  const date=new Date();
-  const formattedDate=date.toISOString().substring(0,10);
-  return <p>{formattedDate}</p>
-}
-//  const submitHandler=(e)=>{
-//   console.log(JSON.stringify(data))
-//   fetch('http://localhost:8080/attendance_details/save',{
-//     method:"POST",
-//     headers:{"content-Type":"application/json","Accept":"appliaction/json"},
-//     body:JSON.stringify(data)
-//  }).then(()=>{
-//     // console.log(" attendance_details are added")
-//  })
-// }
-useEffect(()=>{
-  fetchData();
-},[])
-
-// async function sendData() {
-//   const response = await fetch('http://localhost:8080/OverTime/bydate', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/x-www-form-urlencoded'
-//     },
-//     body: JSON.stringify({
-//       startdate: 'fromDate',
-//       enddate: 'toDate',
-//       name: 'selectEmployee',
-//     })
-//   });
-
-//   const result = await response.json();
-//   console.log(result);
-// }
-
-// async function sendData() {
-//   const FormData = new FormData();
-//   FormData.append('startdate', 'startdate');
-//   FormData.append('enddate', 'enddate');
-//   FormData.append('name', 'name');
-
-//   const response = await fetch('http://localhost:8080/attendance/bydate' ,
-//   {
-//     method: 'GET',
-//     body:JSON.stringify()
-    
-//   })
-//   .then(response => response.json())
-// .then(data => console.log(data))
-// .catch(error => console.error(error));
-  
-
-//   const result = await response.json();
-//   console.log(result);
-// }
-const [formData,setFormData]=useState({
-  
-    startdate:'',
-    enddate:'',
-    name:'',
-  
-});
-// debugger
-//const formRef=useRef();
-const handleChange=(event)=>{
-  const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
-}
+import MaterialTable from "@material-table/core";
 
 
-const handleSubmit=(event)=> {
-  const formData = new FormData();
-  formData.append('startdate', 'startdate' ); 
-    formData.append('enddate','enddate');
-    formData.append('name','name');
-  event.preventDefault();
-  
-//   const config = {     
-//     headers: { 'content-type': 'multipart/form-data' }
-// }
-  axios.get('http://localhost:8080/OverTime/bydate',formData)
-   .then(response=>{
-    
-    console.log(response.data);
-   }) 
+function AttendanceDetails() {
+const [formData, setFormData] = useState({ name: "",startdate: "",enddate: "",});
+  const[data,setData]=useState([]); 
+  const[view,setView]=useState([]);
+  const[api,setApi]=useState([]);
+ const handleSubmit = (e) => {
+  e.preventDefault(); 
+  axios.post("http://localhost:8080/attendance/bydate", formData, 
+  {headers: {"Content-Type": "application/x-www-form-urlencoded",},})
+   .then((response) => {
+    setView(response.data)
+     console.log(response);})
+    // .then((formData)=> {setView(formData); })
+     .catch((error) => { console.log(error);}); };
 
-.catch(error=>{
-  console.log(error);
-});
+     console.log(view);
+      const handleChange = (e) => { setFormData({ ...formData, [e.target.name]: e.target.value }); };
 
-}
-// console.log (data )
+      const submitHandler = () => {
+        fetch("http://localhost:8080/attendance/fetch", {
+        })
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            setApi(data)
+          })
+      }
+      useEffect(() => {
+        // fetchData();
+        submitHandler();
+      }, [])
 
+       return (
+         <>
+         <form onSubmit={handleSubmit}>
+          <h2>Attendance Details</h2>
+          <hr></hr>
+          <div className="row">
+         <div className="col-sm-4 mt-1">
+            <label for="cars" id='label'>Select Emoloyee:</label>
+              <br />
+              {/* <input value={} /> */}
+            <input value={formData.name} 
+            class="form-select" aria-label="Default select example" 
+            name="name"
+            placeholder="Select Employee Name"
+            onChange={handleChange} 
+            list="employee"/> 
+            <datalist id="employee" >
+            {api.map(aman=>( <option valueType={aman.selectEmployee}>{aman.selectEmployee}</option>))}
+            </datalist>
+                
+                
+            {/* </input> */}
+          </div>
+           {/* <div>
+           <label>Name:</label>
+           <input type="text"name="name" value={formData.name} onChange={handleChange} />
+           </div> */}
+          <div className="col-sm-4">
+              <label class="form-label"> From Date :</label><br />
+              <input value={formData.startdate} type="date" class="form-control" id="formGroupExampleInput" name="startdate" onChange={handleChange} />
+          </div>
+           {/* <div>  
+           <label>Start Date:</label>
+           <input type="date" name="startdate" value={formData.startdate} onChange={handleChange} />
+           </div>  */}
+           <div className="col-sm-4">
+              <label class="form-label"> To Date :</label><br />
+              <input value={formData.enddate} type="date" class="form-control" id="formGroupExampleInput" name="enddate" onChange={handleChange} />
+          </div>
+           {/* <div> 
+              <label>End Date:</label>
+              <input type="date" name="enddate" value={formData.enddate} onChange={handleChange} />
+            </div> */}
+             </div>
+            <button type="submit" className="btn btn-primary mt-4">View</button>
+            {/* <button type="submit">Send to Postman</button>  */}
+            </form> 
+            <br></br>
+            <MaterialTable 
+            columns={
+              [ 
+                { title: "ID", field: "id", },
+                 {title: "Employee Name",field: "selectEmployee", }, 
+                 {title: "Date",field: "date", }, 
+                 {title: "In Time",field: "inTime", }, 
+                 {title: "Out Time",field: "outTime", }, 
+                 {title: "Status",field: "status", }, 
+                ]} 
+               data={view}title="Over Time Record"/></> );}
+            export default AttendanceDetails;
 
-
-
-const coloum = [
-  {
-      name: 'Employee',
-      selector: (row) => row.employeeName
-
-  }
-]
- 
-  return (
-    <div style={{width:'75vw'}}>
-    <div className="container">
-      <h4>Attendance Details</h4>
-      <hr />
-      <div className="bg-light">
-      <div className="row ">
-        
-        
-    
-     <div className="col-sm-4">
-      <label  class="form-label">From Date</label><br/>
-      <input type="date"
-       class="form-control" id="formGroupExampleInput"  value={formData.startdate} 
-        name="startdate"onChange={handleChange} />
-      
-    </div>
-    
-    <div className="col-sm-4">
-      <label  class="form-label">To Date</label><br/>
-      
-      <input type="date"
-       class="form-control" id="formGroupExampleInput"
-        name="enddate" value={formData.enddate}
-        onChange={handleChange} />
-  
-    </div>
-    
-    <div className="col-sm-3 mt-2">
-           <label for="cars" id='label'>Select Employee:</label>
-         <br/>  
-     <input 
-      valueType={data.name} 
-      class="form-select" 
-      aria-label="Default select example"
-       name="name" 
-       value={formData.name}
-       list="employee"
-       onChange={handleChange} />
-     <datalist id="employee">
-      
-      {/* <option selected disabled>Choose Employee</option> */}
-      {view.map(aman=>( <option valueType={aman.employeeName}>{aman.employeeName}</option>))}
-    </datalist>
-    </div>
-    
-    </div>
-    <button  onClick={handleSubmit} className="btn btn-primary mt-4">View details</button>
-    </div>
-    
-    
-    <table className='table'>
-      
-      <thead>
-        <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Date</th>
-          <th scope="col">Employee</th>
-          <th scope="col">In Time</th>
-          <th scope="col">Out Time</th>
-          <th scope="col">Edit</th>
-          <th scope="col">Del</th>
-        </tr>
-      </thead>
-    
-      <tbody>
-        <tr>
-          {/* <td data-label="sl">1</td>
-          <td data-label="Date">01-10-2022</td>
-          <td data-label="Employee">Administrator</td>
-          <td data-label="In Time">09:30</td>
-          <td data-label="Out Time">07:00</td> */}
-          {/* <td data-label="Edit"><button onClick={submitHandler} className="btn btn-outline-primary">Edit</button></td>
-          <td data-label="Del"><button onClick={submitHandler} className="btn btn-outline-primary">Delete</button></td> */}
-        </tr>
-    
-        
-        
-      </tbody>
-      
-      <tbody>
-        {show.map((item)=>(
-          <tr>
-            <td>
-              {item.date}
-            </td>
-            <td>{item.Employee}</td>
-            <td>{item.InTime}</td>
-            <td>{item.OutTime}</td>
-            <td>{item.Edit}</td>
-            <td>{item.Delete}</td>
-          </tr>
-        ))}
-        </tbody>
-        {/* <table>
-          {val.map((item)=>{
-            <tr>{{item}}</tr>
-          })}
-        </table> */}
-    </table>
-    
-        
-    </div>
-    </div>
-        
-  )
-}
-
-
-
-export default AttendanceDetails;
