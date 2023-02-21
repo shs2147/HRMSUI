@@ -438,14 +438,17 @@ if(
                       name="employmentType"
                       onChange={inputChangeHandler}
                     >
-                      <option selected disabled>
+                      <option selected disabled>---Select Employment Type---</option>
+                      <option value="permanent">Permanent</option>
+                      <option value="probation">Probation</option>
+                      {/* <option selected disabled>
                         Select Employement Type
                       </option>
                       {emp.map((e) => (
                         <option valueType={e.employmentType}>
                           {e.employmentType}
                         </option>
-                      ))}
+                      ))} */}
                       {/* <option value="abcd">abcd</option>
                                                     <option value="defg">defg</option>
                                                     <option value="hijk">hijk</option>

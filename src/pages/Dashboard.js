@@ -5,27 +5,47 @@ import Calender from "./Dashboard/Calender/Calender";
 import DasNav from "./Dashboard/Navbar/DasNav";
 import "./dashboard.css";
 import { NavItem } from "react-bootstrap";
+//import axios from "axios";
+
 
 function Dashboard() {
   const [data, setData] = useState([]);
-  let ln = 0;
-  const options = { method: "GET" };
+  const [filteredData,setFilteredData] = useState([]);
+  const[extractData,setExtractData]=useState([]);
+  //let ln = 0;
+  //const options = { method: "GET" };
   useEffect(() => {
-    fetch("http://localhost:8080/basic/fetchdata", options)
-      .then((response) => response.json())
-      .then((response) => setData(response))
+    fetch("http://localhost:8080/fetchdata").then(response => response.json())
+      .then(data=>{
+        const filteredData=data.filter(item=>item.employmentType ==="permanent");
+        
+      setFilteredData(filteredData);})
+      .catch(error =>console.log(error));},[]);
 
-      .catch((err) => console.error(err));
-  }, []);
+      useEffect(() => {
+        fetch("http://localhost:8080/fetchdata").then(response => response.json())
+          .then(data=>{
+            const extractData=data.filter(item=>item.employmentType ==="probation");
+            
+          setExtractData(extractData);})
+          .catch(error =>console.log(error));},[]);
+   
+  
+  //   fetch("http://localhost:8080/fetchdata", options)
+  //     .then((response) => response.json())
+  //     .then((response) => setData(response))
 
-  data.forEach(myFunction);
+  //     .catch((err) => console.error(err));
+  // }, []);
 
-  function myFunction(item) {
-    ln++;
-  }
+  // data.forEach(myFunction);
+
+  // function myFunction(item) {
+  //   ln++;
+  // }
   console.log(data);
   // const ln = setData.length;
-  console.log(ln);
+  // console.log(ln);
   return (
     <div style={{ maxwidth: "100vw" }}>
       <DasNav />
@@ -39,8 +59,8 @@ function Dashboard() {
           objectFit: "contain",
         }}
       >
-        <Card img={pic} title="Permanent Employee" number={ln} />
-        <Card img={pic} title="Under Probation Employee" number="0" />
+        <Card img={pic} title="Permanent Employee" number={filteredData.length}/>
+        <Card img={pic} title="Under Probation Employee" number={extractData.length} />
         {/* <Card img={pic} title="Permanent Employee" number="2" /> */}
       </div>
 

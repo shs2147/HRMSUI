@@ -1,11 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
 function Form() {
 
   const [data, setData] = useState({
  
   });
+  const [options,setOptions]=useState([]);
   useEffect(()=>{
 
   },[])
@@ -25,7 +25,7 @@ function Form() {
       return response.json();
     })
     .then((data) =>{
-      setData(data)
+      setOptions(data)
     })
   }
   useEffect(() =>{
@@ -56,12 +56,7 @@ console.log(data);
 
      
   };
-  const options = [
-    { value: "", text: "--Choose an option--", disabled: true },
-    { value: "apple", text: "Apple 🍏" },
-    { value: "banana", text: "Banana 🍌" },
-    { value: "kiwi", text: "Kiwi 🥝" },
-  ];
+  
   // const [selected, setSelected] = useState("");
 
   // const handleChange = (event) => {
@@ -95,25 +90,38 @@ console.log(data);
             type="Date"
             className="form-control"
             id="exampleFormControlInput1"
+           
           />
         </div>
         <div className="col-sm-3 mx-3">
           <label for="formFile" className="form-label">
-            Select Employee:
+            Select
           </label>
           <br />
+          <input
+           value={data.employeeName}
+           type="text"
+           className="form-control"
+           id="formGroupExampleInput"
+           name="employeeName"
+           onChange={inputChangeHandler}
+           placeholder="Enter Your Name"
+           list="employee"
+           required
 
-          <select className="form-control" onChange={handleInput} value={data.selectEmployee} name="selectEmployee">
+          />
+
+          <datalist id="employee"   >
             {options.map((option) => (
               <option
-                disabled={option.disabled}
-                key={option.value}
-                value={option.value}
+                // disabled={option.disabled}
+                // key={option.value}
+                value={option.employeeName}
               >
-                {option.text}
+                {/* {option.text} */}
               </option>
             ))}
-          </select>
+          </datalist>
         </div>
         <div className="row">
         <button type="submit" className="btn btn-outline-primary my-4 col-sm-2  mx-5">View Details</button>

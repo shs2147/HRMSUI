@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
-
+import { useEffect, useState,useRef } from "react";
+import axios from "axios";
 
   const AttendanceDetails = () => {
     const[show,setShow]=useState([]);
     const[view,setView]=useState([]);
-  const [data,setData]=useState([]);
+    const [data,setData]=useState([]);
   
- const inputChangeHandler=(e)=>{
-    let newData={...data};
-    newData[e.target.name]=e.target.value;
-    setData(newData)
+//  const inputChangeHandler=(e)=>{
+//     let newData={...data};
+//     newData[e.target.name]=e.target.value;
+//     setData(newData)
    
- }
+//  }
  const fetchData = () => {
   fetch("http://localhost:8080/basic/fetchdata", {
   })
@@ -58,26 +58,62 @@ useEffect(()=>{
 //   console.log(result);
 // }
 
-async function sendData() {
-  const params = new URLSearchParams();
-  params.append('startdate', 'startdate');
-  params.append('enddate', 'enddate');
-  params.append('name', 'name');
+// async function sendData() {
+//   const FormData = new FormData();
+//   FormData.append('startdate', 'startdate');
+//   FormData.append('enddate', 'enddate');
+//   FormData.append('name', 'name');
 
-  const response = await fetch('http://localhost:8080/OverTime/bydate' ,
-  {
-    method: 'GET',
-  });
+//   const response = await fetch('http://localhost:8080/attendance/bydate' ,
+//   {
+//     method: 'GET',
+//     body:JSON.stringify()
+    
+//   })
+//   .then(response => response.json())
+// .then(data => console.log(data))
+// .catch(error => console.error(error));
+  
 
-  const result = await response.json();
-  console.log(result);
+//   const result = await response.json();
+//   console.log(result);
+// }
+const [formData,setFormData]=useState({
+  
+    startdate:'',
+    enddate:'',
+    name:'',
+  
+});
+// debugger
+//const formRef=useRef();
+const handleChange=(event)=>{
+  const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
 }
 
 
+const handleSubmit=(event)=> {
+  const formData = new FormData();
+  formData.append('startdate', 'startdate' ); 
+    formData.append('enddate','enddate');
+    formData.append('name','name');
+  event.preventDefault();
+  
+//   const config = {     
+//     headers: { 'content-type': 'multipart/form-data' }
+// }
+  axios.get('http://localhost:8080/OverTime/bydate',formData)
+   .then(response=>{
+    
+    console.log(response.data);
+   }) 
 
+.catch(error=>{
+  console.log(error);
+});
 
-
-
+}
 // console.log (data )
 
 
@@ -103,28 +139,42 @@ const coloum = [
     
      <div className="col-sm-4">
       <label  class="form-label">From Date</label><br/>
-      <input value={data.startdate} type="date" class="form-control" id="formGroupExampleInput" name="startdate"onChange={inputChangeHandler} />
+      <input type="date"
+       class="form-control" id="formGroupExampleInput"  value={formData.startdate} 
+        name="startdate"onChange={handleChange} />
       
     </div>
     
     <div className="col-sm-4">
       <label  class="form-label">To Date</label><br/>
       
-      <input value={data.enddate} type="date" class="form-control" id="formGroupExampleInput" name="enddate"onChange={inputChangeHandler} />
+      <input type="date"
+       class="form-control" id="formGroupExampleInput"
+        name="enddate" value={formData.enddate}
+        onChange={handleChange} />
   
     </div>
     
     <div className="col-sm-3 mt-2">
            <label for="cars" id='label'>Select Employee:</label>
          <br/>  
-     <select valueType={data.name} class="form-select" aria-label="Default select example" name="name" onChange={inputChangeHandler}>
-      <option selected disabled>Choose Employee</option>
+     <input 
+      valueType={data.name} 
+      class="form-select" 
+      aria-label="Default select example"
+       name="name" 
+       value={formData.name}
+       list="employee"
+       onChange={handleChange} />
+     <datalist id="employee">
+      
+      {/* <option selected disabled>Choose Employee</option> */}
       {view.map(aman=>( <option valueType={aman.employeeName}>{aman.employeeName}</option>))}
-    </select>
+    </datalist>
     </div>
     
     </div>
-    <button  onClick={sendData} className="btn btn-primary mt-4">View details</button>
+    <button  onClick={handleSubmit} className="btn btn-primary mt-4">View details</button>
     </div>
     
     
@@ -187,4 +237,4 @@ const coloum = [
 
 
 
-export default AttendanceDetails
+export default AttendanceDetails;

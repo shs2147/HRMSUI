@@ -34,7 +34,7 @@ const DepartmentMaster = () => {
   const options = { method: "GET" };
 
   fetch("http://localhost:8080/department/getall", options)
-    .then((response) => response.json())
+    .then((response) => response.j())
     .then((response) => setTicketDetails(response))
     .catch((err) => console.error(err));
 
