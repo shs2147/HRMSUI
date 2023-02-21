@@ -37,6 +37,8 @@ const [formData, setFormData] = useState({ name: "",startdate: "",enddate: "",})
        return (
          <>
          <form onSubmit={handleSubmit}>
+          <h2>Overtime Report</h2>
+          <hr></hr>
           <div className="row">
          <div className="col-sm-4 mt-1">
             <label for="cars" id='label'>Select Emoloyee:</label>
