@@ -64,7 +64,7 @@ import Branch from "./pages/Branch/Branch";
 import SignIn from "./pages/Signin/SignIn";
 import SignInForm from "./pages/Signin/SignInForm";
 import SignUpForm from "./pages/Signin/SignUpForm";
-//import PrivatePage from "./privateRoute";
+//import ProtectedRoute from "./privateRoute";
 //import withAuth from "./auth";
 
 import { useEffect, useState } from "react";
@@ -74,47 +74,32 @@ function App() {
   const [data, setData] = useState({});
   const [logged, setLogged] = useState(false);
   const [token, setToken] = useState({});
-  let token2;
+  let token2 =  sessionStorage.getItem("token");
   const navigate = useNavigate();
   const location = useLocation();
-  const handler = (val) => {
-    token2 = sessionStorage.getItem("token");
-    setData(val);
-  };
+ 
   useEffect(() => {
-    console.log(location.pathname);
-    console.log(data);
-    console.log(token);
     if (token2) {
       setLogged(false);
-      navigate("/");
+      navigate("/Dashboard");
     } else {
-      return <p>'glat'</p>;
+      navigate("/")
     }
   }, [token, logged]);
 
   return (
-    // <div>
-    //   <BrowserRouter>
-    //     <Routes>
-    //     <Route path="/" element={<SignIn handler={handler} />} exact />
-    //     </Routes>
-    //   </BrowserRouter>
-    // </div>
+    
 
     <>
-    {/* <Routes>
-      <Route exact path='/SignIn' component={SignIn} />
-      <Route exact path='/privateRoute' component={PrivatePage} />
-    </Routes> */}
+     
       {location.pathname === "/" ? (
         <Routes>
-          <Route path="/" element={<SignIn handler={handler} />} exact />
+          <Route path="/" element={<SignIn  />} exact />
         </Routes>
       ) : (
         <SideBar>
           <Routes>
-          {/* <PrivateRoute path="/dashboard" component={Dashboard} /> */}
+           
             <Route
               path="/Dashboard"
               element={<Dashboard setLogged={setLogged} />}

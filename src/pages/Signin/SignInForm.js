@@ -35,7 +35,7 @@ const SignInForm = (props) => {
     if (!userName || !password) {
       setError("Please enter a username and password");
       return;
-    }
+    } 
 
 
     //setLoading(true);
@@ -50,6 +50,7 @@ const SignInForm = (props) => {
       })
         .then((res) => res.json())
         .then((data) => {
+          // console.log('data', data)
           if (data) {
             console.log(data.jwtToken);
             if (data.jwtToken) {
