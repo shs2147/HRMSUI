@@ -1,5 +1,6 @@
 import MaterialTable from "@material-table/core";
 import { useState } from "react";
+import swal from 'sweetalert';
 
 const Branch = () => {
   const [data, setData] = useState({
@@ -25,6 +26,7 @@ const Branch = () => {
     })
       .then(() => {
         console.log("Branch Name Added");
+        swal("Success", "Branch Added Successfully", "success");
       })
       .catch((err) => console.log(err));
   };

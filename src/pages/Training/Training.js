@@ -1,4 +1,5 @@
 import { useState } from "react";
+import swal from 'sweetalert';
 
   const Employee = () => {
     const [data,setData]=useState({
@@ -26,6 +27,7 @@ import { useState } from "react";
       body:JSON.stringify(data)
     }).then(()=>{
       console.log("Training are added")})
+      swal("Success", "Training Name Added Successfully", "success");
   
   }
    return <>
@@ -36,9 +38,11 @@ import { useState } from "react";
      <hr />
      <div className="bg-light">
      <div className="row ">
+
+      
   
    <div className="col-sm-4 my-4">
-          <label for="cars" id='label'>Name:</label>
+          <label for="cars" id='label'> Training Name:</label>
         <br/>
      <input value={data.trainingName} type="text" class="form-control" id="formGroupExampleInput" name="trainingName" onChange={inputChangeHandler}/>
    </div>

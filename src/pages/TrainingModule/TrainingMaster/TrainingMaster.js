@@ -1,4 +1,5 @@
 import { useState,useEffect} from "react";
+import swal from 'sweetalert';
 
 const TrainingMaster = () => {
   const [data,setData]=useState({
@@ -28,7 +29,7 @@ const[train,setTrian]=useState([]);
     body:JSON.stringify(data)
   }).then(()=>{
     console.log("employee added successfuly")})
-  
+    swal("Success", "Data Added Successfully", "success");
 }
 const fetchData1 = () =>{
   fetch("http://localhost:8080/basic/fetchdata",{

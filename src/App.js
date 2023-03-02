@@ -23,10 +23,10 @@ import Deduction from "./pages/Payroll/Deduction/Deduction";
 import EmployeeAllowance from "./pages/Payroll/EmployeeAllowance/EmployeeAllowances";
 import EmployeeDeduction from "./pages/Payroll/EmployeeDeduction/EmployeeDeduction";
 import AddJobTitle from "./pages/Recruitment/AddjobTitle/AddJobTitle";
-import ViewJobTitle from "./pages/Recruitment/ViewJobTitle/ViewJobTitle";
+// import ViewJobTitle from "./pages/Recruitment/ViewJobTitle/ViewJobTitle";
 import AddJobVacancy from "./pages/Recruitment/AddJobVacancy/AddJobVacancy";
 import FixingInterviewOnline from "./pages/Recruitment/FixingInterviewOnline/FixingInterviewOnline";
-import OnlineApplication from "./pages/Recruitment/OnlineApplication/OnlineApplication";
+// import OnlineApplication from "./pages/Recruitment/OnlineApplication/OnlineApplication";
 import RegisterEmployee from "./pages/TrainingModule/RegisterEmployee/RegisterEmployee";
 import TrainingToFeedback from "./pages/TrainingModule/TrainingToFeedback/TrainingToFeedback";
 import TrainingMaster from "./pages/TrainingModule/TrainingMaster/TrainingMaster";
@@ -48,7 +48,7 @@ import LeaveAproval from "./pages/Screening & Approval/LeaveAproval";
 import Edit from "./SubPages/Edit";
 import AddHoliday from "./pages/Organisation Structure/AddHoliday";
 import LeaveType from "./pages/Organisation Structure/LeaveType";
-import PayheadList from "./pages/Organisation Structure/PayheadList";
+// import PayheadList from "./pages/Organisation Structure/PayheadList";
 import LoanMaster from "./pages/Advance Or Loan/LoanMaster";
 import LoanApplication from "./pages/Advance Or Loan/LoanApplication";
 import EmployeeMaster from "./pages/Menu Master/EmployeeMaster/EmployeeMaster";
@@ -57,7 +57,7 @@ import UserMaster from "./pages/Menu Master/User Master/UserMaster";
 import DepartmentMaster from "./pages/Menu Master/Department Master/DepartmentMaster";
 import DesignationMaster from "./pages/Menu Master/Designation Master/DesignationMaster";
 import EmploymentTypeMaster from "./pages/Menu Master/Employment Type Master/EmploymentTypeMaster";
-import UserApproval from "./pages/Menu Master/User Approval/UserApproval";
+// import UserApproval from "./pages/Menu Master/User Approval/UserApproval";
 import Training from "./pages/Training/Training";
 import Branch from "./pages/Branch/Branch";
 // import Position from "./pages/Position/Position";
@@ -66,6 +66,7 @@ import SignInForm from "./pages/Signin/SignInForm";
 import SignUpForm from "./pages/Signin/SignUpForm";
 //import ProtectedRoute from "./privateRoute";
 //import withAuth from "./auth";
+import Event from "./pages/Training/Event";
 
 import { useEffect, useState } from "react";
 
@@ -123,7 +124,7 @@ function App() {
               path="/menuMaster/EmploymentTypeMaster"
               element={<EmploymentTypeMaster />}
             />
-            <Route path="/menuMaster/UserApproval" element={<UserApproval />} />
+            {/* <Route path="/menuMaster/UserApproval" element={<UserApproval />} /> */}
             <Route
               path="/selfPortal/AttendanceDetails"
               element={<AttendanceDetails />}
@@ -169,16 +170,16 @@ function App() {
               path="/organisationStructure/LeaveType"
               element={<LeaveType />}
             />
-            <Route
+            {/* <Route
               path="/organisationStructure/PayheadList"
               element={<PayheadList />}
-            />
+            /> */}
             <Route path="/requirementStructure" element={<Saved />} />
             <Route path="/Recruitment/AddjobTitle" element={<AddJobTitle />} />
-            <Route
+            {/* <Route
               path="//Recruitment/ViewJobTitle"
               element={<ViewJobTitle />}
-            />
+            /> */}
             <Route
               path="/Recruitment/AddJobVacancy"
               element={<AddJobVacancy />}
@@ -187,10 +188,10 @@ function App() {
               path="/Recruitment/FixinInterviewOnline"
               element={<FixingInterviewOnline />}
             />
-            <Route
+            {/* <Route
               path="/Recruitment/OnlineApplication"
               element={<OnlineApplication />}
-            />
+            /> */}
             <Route
               path="/trainingModule/RegisterEmployee"
               element={<RegisterEmployee />}
@@ -228,6 +229,8 @@ function App() {
             />
             <Route path="/attendance/LeaveReport" element={<LeaveReport />} />
             <Route path="/training/training" element={<Training />} />
+            <Route path="/training/event" element={<Event />} />
+            
             <Route path="/branch/branch" element={<Branch />} />
 
             {/* <Route path="/Position/Position" element={<Position />} /> */}
