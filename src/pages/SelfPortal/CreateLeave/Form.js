@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState } from "react";
+import swal from 'sweetalert';
 
 function Form() {
   const url = "";
@@ -69,15 +70,15 @@ fetchData();
       body:JSON.stringify(data)
     }).then(()=>{
       console.log("Create Leave Accepted")
-
+      swal("Success", "Data Added Successfully", "success");
     })
   };
-  const employee = [
-    { value: "", text: "Radha", disabled: true },
-    { value: "apple", text: "Apple 🍏" },
-    { value: "banana", text: "Banana 🍌" },
-    { value: "kiwi", text: "Kiwi 🥝" },
-  ];
+  // const employee = [
+  //   { value: "", text: "Radha", disabled: true },
+  //   { value: "apple", text: "Apple 🍏" },
+  //   { value: "banana", text: "Banana 🍌" },
+  //   { value: "kiwi", text: "Kiwi 🥝" },
+  // ];
   // const approver = [
   //   { value: "", text: "Administrator", disabled: true },
   //   { value: "apple", text: "Apple 🍏" },

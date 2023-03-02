@@ -52,11 +52,11 @@ const routes = [
         name: "Employment Type Master",
         icon: <AiOutlineCaretRight />,
       },
-      {
-        path: "/menuMaster/UserApproval",
-        name: "User Approval",
-        icon: <AiOutlineCaretRight />,
-      },
+      // {
+      //   path: "/menuMaster/UserApproval",
+      //   name: "User Approval",
+      //   icon: <AiOutlineCaretRight />,
+      // },
     ],
   },
   {
@@ -166,11 +166,11 @@ const routes = [
         name: "Leave Type",
         icon: <AiOutlineCaretRight />,
       },
-      {
-        path: "/organisationStructure/PayheadList",
-        name: "Payhead List",
-        icon: <AiOutlineCaretRight />,
-      },
+      // {
+      //   path: "/organisationStructure/PayheadList",
+      //   name: "Payhead List",
+      //   icon: <AiOutlineCaretRight />,
+      // },
     ],
   },
   {
@@ -183,11 +183,11 @@ const routes = [
         name: "Add Job Title",
         icon: <AiOutlineCaretRight />,
       },
-      {
-        path: "/Recruitment/ViewjobTitle",
-        name: "View Job Title",
-        icon: <AiOutlineCaretRight />,
-      },
+      // {
+      //   path: "/Recruitment/ViewjobTitle",
+      //   name: "View Job Title",
+      //   icon: <AiOutlineCaretRight />,
+      // },
       {
         path: "/Recruitment/AddJobVacancy",
         name: "Add Job Vacancies",
@@ -199,11 +199,11 @@ const routes = [
         name: "Fixing Interview Online",
         icon: <AiOutlineCaretRight />,
       },
-      {
-        path: "/Recruitment/OnlineApplication",
-        name: "Online Application",
-        icon: <AiOutlineCaretRight />,
-      },
+      // {
+      //   path: "/Recruitment/OnlineApplication",
+      //   name: "Online Application",
+      //   icon: <AiOutlineCaretRight />,
+      // },
     ],
   },
   {
@@ -313,6 +313,11 @@ const routes = [
       {
         path: "Training/Training",
         name: "Training",
+        icon: <AiOutlineCaretRight />,
+      },
+      {
+        path: "Training/Event",
+        name: "Event",
         icon: <AiOutlineCaretRight />,
       },
     ],

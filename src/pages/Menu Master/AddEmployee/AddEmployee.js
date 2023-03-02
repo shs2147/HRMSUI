@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
+import swal from 'sweetalert';
 import Validation from '../../../validation/Validation'
 // import { useForm } from "react-hook-form";
 import {
@@ -138,8 +139,8 @@ if(
     // alert("Success");
     else {
       setShowError(false)
-      alert("Your data has been saved successfully!!")
-    
+      // alert("Your data has been saved successfully!!")
+      swal("Success", "Data Added Successfully", "success");
       setData({});
     console.log(JSON.stringify(data));
     fetch("http://localhost:8080/basic/saveemployee", {
@@ -501,7 +502,7 @@ if(
                       <option value="D">D</option>
                     </select>
                   </div>
-                  <div className="col-sm-3 ">
+                  {/* <div className="col-sm-3 ">
                     <label className="form-label" for="cars" id="label">
                       Employee Group:
                     </label>
@@ -521,7 +522,7 @@ if(
                       <option value="hijk">hijk</option>
                       <option value="slmno">lmno</option>
                     </select>
-                  </div>
+                  </div> */}
                   <div className="col-sm-3 ">
                     <label className="form-label" for="cars" id="label">
                       Insurance avail:

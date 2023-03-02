@@ -1,5 +1,7 @@
 import MaterialTable from "@material-table/core";
 import React from "react";
+import swal from 'sweetalert';
+
 
 import { useState } from "react";
 
@@ -23,6 +25,8 @@ const DesignationMaster = () => {
     })
       .then(() => {
         console.log("Designation Name Added");
+        // swal("Data Added Successfully");
+        swal("Success", "Designation Added Successfully", "success");
       })
       .catch((err) => console.log(err));
   };
@@ -33,7 +37,7 @@ fetch('http://localhost:8080/designation/fetchalldesignation', options)
   .then(response => response.json())
   .then(response => setTicketDetails(response))
   .catch(err => console.error(err));
-
+  // console.log(ticketDetails);
   return (
     <>
       <div className="container">

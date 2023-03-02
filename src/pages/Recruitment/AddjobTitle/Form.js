@@ -1,11 +1,16 @@
 import { useState } from "react";
+import swal from 'sweetalert';
+import MaterialTable from "@material-table/core";
 // import { json } from "react-router-dom";
 
 const AddJobTitle = () => {
   const [data, setData] = useState({
+    id:'',
     jobTitles: '',
-    id:''
+    
   });
+  const[jobDetails,setJobDetails]=useState([]);
+
   const inputChangeHandler = (e) => {
     let newData = { ...data };
     newData[e.target.name] = e.target.value;
@@ -20,29 +25,43 @@ const AddJobTitle = () => {
       body: JSON.stringify(data)
     }).then(() => {
       console.log("AddJobTitle is added")
+      swal("Success", "Job Title Added Successfully", "success");
     })
   }
+  const options = { method: "GET" };
 
+  fetch("http://localhost:8080/addjobtitle/getjob", options)
+    .then((response) => response.json())
+    .then((response) => setJobDetails(response))
+    .catch((err) => console.error(err));
 
 
     return (
+      <>
       <div className='container ' >
         <h3>Add Job Titles</h3>
         <div className='form-control '>
           <div className="row mx-2">
             <div className="col-sm-6">
-              <label class="form-label">job Titles</label><br />
+              <label class="form-label">Job Titles</label><br />
               <input value={data.jobTitles} type="text" className="form-control" id="formGroupExampleInput" name="jobTitles" onChange={inputChangeHandler} />
             </div>
-            {/* <div className="col-sm-6">
-              <label class="form-label">id</label><br />
-              <input value={data.id} type="text" className="form-control" id="formGroupExampleInput" name="id" onChange={inputChangeHandler} />
-            </div> */}
           </div>
           <button onClick={submitHandler} className="btn btn-primary btn-sm my-3 mx-5 ">Save</button>
         </div>
 
       </div>
+      <MaterialTable
+      columns={[
+        {
+          title: "Job Title",
+          field: "jobTitles",
+        }
+      ]}
+      data={jobDetails}
+      title="Job Titles"
+    />
+    </>
     )
   }
 

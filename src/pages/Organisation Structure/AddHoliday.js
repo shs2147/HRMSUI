@@ -1,4 +1,6 @@
 import React,{ useState } from "react";
+import MaterialTable from "@material-table/core";
+import swal from 'sweetalert';
 
 const AddHoliday= () => {
   const [data,setData]=useState({
@@ -16,19 +18,28 @@ const AddHoliday= () => {
  const submitHandler=(e)=>{
   console.log(JSON.stringify(data))
 
-  fetch("http://localhost:8080/leave/LeaveDetail",{
+  fetch("http://localhost:8080/holiday/leaveDetail",{
     method:"POST",
     headers:{"content-Type": "application/json", "Accept": "application/json"},
     body:JSON.stringify(data)
   }).then(()=>{
     console.log("LeaveDetail are added")})
-
+    swal("Success", "Holiday Added Successfully", "success");
 
  }
 
+ const [holidayDetails, setHolidayDetails] = useState([]);
+  const options = {method: 'GET'};
+
+fetch('http://localhost:8080/holiday/leaveDetails', options)
+  .then(response => response.json())
+  .then(response => setHolidayDetails(response))
+  .catch(err => console.error(err));
+
 return <>
 <div className="container">
-  <h4>Add Holiday</h4><button type="button" class="btn btn-primary sm-4 mt-2">Add Holiday Master</button>   
+  <h4>Add Holiday</h4>
+  {/* <button type="button" class="btn btn-primary sm-4 mt-2">Add Holiday Master</button>    */}
   <hr />
   <div className="bg-light">
   <div className="row ">
@@ -38,7 +49,11 @@ return <>
   <label  class="form-label">Holiday Name:</label><br/>
   <input value={data.holidayName} type="Text" class="form-control" id="formGroupExampleInput" name="holidayName" onChange={inputChangeHandler} />
 </div>
-<div className="col-sm-6 mt-2">
+<div className="col-sm-6">
+  <label  class="form-label">Holiday Type:</label><br/>
+  <input value={data.holidayType} type="Text" class="form-control" id="formGroupExampleInput" name="holidayType" onChange={inputChangeHandler} />
+</div>
+{/* <div className="col-sm-6 mt-2">
        <label for="cars" id='label'>Holiday Type:</label>
      <br/>  
  
@@ -49,7 +64,7 @@ return <>
   <option value="ranjan">Ranjan</option>
   <option value="saurav">Saurav</option>
 </select>
-</div>
+</div> */}
 
  <div className="col-sm-6">
   <label  class="form-label">From Date</label><br/>
@@ -67,6 +82,29 @@ return <>
 <button onClick={submitHandler} className="btn btn-primary mt-4">Save</button>
 </div>
 </div>
+<MaterialTable
+          columns={[
+            {
+              title: "Holiday Name",
+              field: "holidayName",
+            },
+
+            {
+              title: "Holiday Type",
+              field: "holidayType",
+            },
+            {
+              title: "From Date",
+              field: "fromDate",
+            },
+            {
+              title: "To Date",
+              field: "toDate",
+            },
+          ]}
+          data={holidayDetails}
+          title="Holiday Record"
+        />
 </>
 }
 

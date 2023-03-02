@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react";
 import { Form } from 'react-bootstrap'
-
+import swal from 'sweetalert';
 
 const AddShift = () => {
   const [data,setData]=useState({
@@ -23,7 +23,7 @@ const AddShift = () => {
     body:JSON.stringify(data)
   }).then(()=>{
     console.log("Shift Management")})
-
+    swal("Success", "Shift Data Added Successfully", "success");
 
  }
  const fetchData1 = () =>{

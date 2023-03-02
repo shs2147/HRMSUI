@@ -1,12 +1,12 @@
 import { useState } from "react";
 import MaterialTable from "@material-table/core";
+import swal from 'sweetalert';
 
 const DepartmentMaster = () => {
  
   const submitHandler = (e) => {
     e.preventDefault();
     console.log(data);
-    alert("Data Added Sucessfully");
     fetch("http://localhost:8080/department/savedepartment", {
       method: "POST",
       headers: {
@@ -17,6 +17,9 @@ const DepartmentMaster = () => {
     })
       .then(() => {
         console.log("department Added");
+        // swal("Hello world!");
+        swal("Success", "Department Added Successfully", "success");
+
       })
       .catch((err) => console.log(err));
   };
@@ -34,7 +37,7 @@ const DepartmentMaster = () => {
   const options = { method: "GET" };
 
   fetch("http://localhost:8080/department/getall", options)
-    .then((response) => response.j())
+    .then((response) => response.json())
     .then((response) => setTicketDetails(response))
     .catch((err) => console.error(err));
 

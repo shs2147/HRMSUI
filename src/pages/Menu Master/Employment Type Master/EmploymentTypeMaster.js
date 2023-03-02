@@ -1,5 +1,6 @@
 import MaterialTable from "@material-table/core";
 import { useState } from "react";
+import swal from 'sweetalert';
 
 const EmploymentTypeMaster = () => {
   const [data, setData] = useState({
@@ -25,6 +26,7 @@ const EmploymentTypeMaster = () => {
     })
       .then(() => {
         console.log("Employement Master Added");
+        swal("Success", "Employement Master Added Successfully", "success");
       })
       .catch((err) => console.log(err));
   };
