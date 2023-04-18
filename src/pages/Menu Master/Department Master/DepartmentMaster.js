@@ -1,5 +1,7 @@
 import { useState } from "react";
 import MaterialTable from "@material-table/core";
+import DeleteIcon from '@mui/icons-material/Delete';
+
 import swal from 'sweetalert';
 
 const DepartmentMaster = () => {
@@ -109,6 +111,14 @@ const DepartmentMaster = () => {
           ]}
           data={ticketDetails}
           title="Department Record"
+          editable={
+            {
+              onRowAdd:()=>(newData)=>null,
+                onRowDelete:()=>(newData)=>null,
+                
+                
+            }
+          }
         />
       </div>
     </>

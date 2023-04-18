@@ -99,7 +99,7 @@ useEffect(()=>
       <div className="col-sm-4">
             <label for="cars" id='label'>Event Name:</label>
             <br />
-            <select value={data.name} class="form-select" aria-label="Default select example" name="name" onChange={inputChangeHandler}>
+            <select value={data.eventName} class="form-select" aria-label="Default select example" name="eventName" onChange={inputChangeHandler}>
               <option selected disabled>Event Name</option>
               {show.map(e=>(<option valueType={e.name}>{e.name}</option>))}
               {/* <option value="abcd">abcd</option>

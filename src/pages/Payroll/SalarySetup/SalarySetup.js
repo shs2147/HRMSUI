@@ -55,10 +55,10 @@ const submitHandler=(e)=>{
 // document.getElementById("spFY").innerHTML=getCurrentFinancialYear();
 const financialYear=()=>{
   function getCurrentFinancialYear() {
-      const thisYear = (new Date()).getFullYear();
-      const yearArray = [0, 1, 2, 3, 4].map((count) => `${thisYear - count}-${(thisYear - count - 1).toString().slice(-2)}`);
-      console.log(yearArray);
-      return yearArray.join();
+     const thisYear = (new Date()).getFullYear();
+     const yearArray = [0, 1, 2, 3, 4].map((count) => `${thisYear - count}-${(thisYear - count - 1).toString().slice(-2)}`);
+     console.log(yearArray);
+     return yearArray.join();
     }
     console.log(getCurrentFinancialYear());
 }

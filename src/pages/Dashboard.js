@@ -15,7 +15,7 @@ function Dashboard() {
   //let ln = 0;
   //const options = { method: "GET" };
   useEffect(() => {
-    fetch("http://localhost:8080/fetchdata").then(response => response.json())
+    fetch("http://localhost:8080/work/fetchdata").then(response => response.json())
       .then(data=>{
         const filteredData=data.filter(item=>item.employmentType ==="permanent");
         
@@ -23,7 +23,7 @@ function Dashboard() {
       .catch(error =>console.log(error));},[]);
 
       useEffect(() => {
-        fetch("http://localhost:8080/fetchdata").then(response => response.json())
+        fetch("http://localhost:8080/work/fetchdata").then(response => response.json())
           .then(data=>{
             const extractData=data.filter(item=>item.employmentType ==="probation");
             
