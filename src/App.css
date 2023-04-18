@@ -320,7 +320,7 @@ label{
 
 .pdfMainContainer{
   position:absolute;
-  height:665px;
+  height:100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
