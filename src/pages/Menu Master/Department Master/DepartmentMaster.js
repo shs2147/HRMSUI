@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import MaterialTable from "@material-table/core";
 import DeleteIcon from '@mui/icons-material/Delete';
 
 import swal from 'sweetalert';
+import { Button } from "react-bootstrap";
 
 const DepartmentMaster = () => {
  
@@ -26,7 +27,7 @@ const DepartmentMaster = () => {
       .catch((err) => console.log(err));
   };
 
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
   const inputChangeHandler = (e) => {
     let newData = { ...data };
     newData[e.target.name] = e.target.value;
@@ -36,7 +37,34 @@ const DepartmentMaster = () => {
   //     e.preventDefault();
   //  }
   const [ticketDetails, setTicketDetails] = useState([]);
+
+  // const CustomButton = ({ rowData, onDelete }) => (
+  //   <Button onClick={() => console.log("dqwd")}>Delete</Button>
+  // );
+  const handleDelete = (id)=>{
+    fetch(`http://localhost:8080/department/delete/${id}`,{
+  method:'DELETE'
+    }).then((result)=>{
+      swal("Success", "Department Deleted Successfully", "success");
+      result.json().then((response)=>{
+        console.warn(response)
+      })
+    })
+  }
+
   const options = { method: "GET" };
+  // const fetchData=()=>{
+  //   fetch("http://localhost:8080/department/getall", options)
+  //   .then((response) => response.json())
+  //   .then((response) => setTicketDetails(response))
+  //   .catch((err) => console.error(err));
+  // }
+  
+  // useEffect(()=>{
+  //   fetchData();
+  // },[])
+
+ 
 
   fetch("http://localhost:8080/department/getall", options)
     .then((response) => response.json())
@@ -95,9 +123,13 @@ const DepartmentMaster = () => {
           <button type="submit" class="btn btn-primary mt-4">
             Save
           </button>
+
         </form>
         <br/>
         <MaterialTable
+        title="Department Record"
+        data={ticketDetails}
+       
           columns={[
             {
               title: "Department Name",
@@ -108,17 +140,64 @@ const DepartmentMaster = () => {
               title: "Description",
               field: "description",
             },
-          ]}
-          data={ticketDetails}
-          title="Department Record"
-          editable={
             {
-              onRowAdd:()=>(newData)=>null,
-                onRowDelete:()=>(newData)=>null,
+              title: "Actions",
+              field: "actions",
+              render: (rowData) => (
+                // <CustomButton rowData={rowData} onDelete={handleDelete} />
+                <Button onClick={() => handleDelete(rowData.id)}>Delete</Button>
+              ),
+            },
+          ]}
+          
+      
+          // editable={
+          //   {
+          //     onRowDelete: selectedRow => new Promise((resolve,reject)=>{
+          //       console.log(ticketDetails);
+          //       // console.log("aaaaaa", ticketDetails);
+
+          //       const index =selectedRow.id;
+          //       const deleteUser= (index)=>{
+          //         fetch(`http://localhost:8080/employee/delete/${index}`,{
+          //       method:'DELETE'
+          //         }).then((result)=>{
+          //           result.json().then((response)=>{
+          //             console.warn(response)
+          //           })
+          //         })
                 
                 
-            }
-          }
+          //       }
+          //       console.log(index);
+          //       const updateRows = [...ticketDetails]
+          //       updateRows.splice(index-1,1)
+          //       setTicketDetails(updateRows);
+          //       console.log(updateRows);
+          //       resolve()
+                
+          //     })
+                
+                
+          //   }
+          // }
+
+          // editable={{
+          //   onRowDelete: (selectedRow) =>
+          //     new Promise((resolve, reject) => {
+          //       const index = selectedRow.id;
+          //       console.log(index);
+          //       const updateRows = [...ticketDetails];
+          //       updateRows.splice(index, 1);
+          //       setData(updateRows); // assuming you're using React state
+          //       resolve();
+          //     }),
+          // }}
+          // options={{
+          //   actionsColumnIndex:-1
+          // }}
+         
+
         />
       </div>
     </>
