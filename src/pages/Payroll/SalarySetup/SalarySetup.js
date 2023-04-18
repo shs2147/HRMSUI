@@ -1,10 +1,27 @@
-import { useEffect, useState } from 'react';
+import React, {useEffect, useState } from 'react';
 
 const SalarySetup = () => {
 const [data, setData] = useState([]);
 const [show,setShow]=useState([]);
 const [empName,setEmpName]=useState([]);
 const [selectedId,setSelectedId]=useState([]);
+const [accountNumber,setAccountNumber]=useState([]);
+const [bankName,setBankName]=useState([]);
+const [fnclYear,setFnclYear]=useState([]);
+const [fnclMonth,setFnclMonth]=useState([]);
+const [bankBranch,setBankBranch]=useState([]);
+const [joinDate,setJoinDate]=useState([]);
+const [workType,setWorkType]=useState([]);
+const [dob,setDob]=useState([]);
+const [department,setDepartment]=useState([]);
+const [mail,setMail]=useState([]);
+const [code,setCode]=useState([]);
+const [company,setCompany]=useState([]);
+const [mobile,setMobile]=useState([]);
+const [designation,setDesignation]=useState([]);
+const [reporting,setReporting]=useState([]);
+const [disabled,setDisabled]=useState(false);
+const [pdf, setPdf]=useState(false)
 //const [current,setCurrent]=useState([]);
 
 
@@ -17,8 +34,54 @@ const inputChangeHandler = (e) => {
     }
     if(e.target.name === "id"){
       setSelectedId(e.target.value);
-     
+      setDisabled(true)
     }
+    if(e.target.name === "accountNumber"){
+      setAccountNumber(e.target.value);
+    }
+    if(e.target.name === "bankName"){
+      setBankName(e.target.value);
+    }
+    if(e.target.name === "fnclYear"){
+      setFnclYear(e.target.value);
+    }
+    if(e.target.name === "fnclMonth"){
+      setFnclMonth(e.target.value);
+    }
+    if(e.target.name === "bankBranch"){
+      setBankBranch(e.target.value);
+    }
+    if(e.target.name === "joinDate"){
+      setJoinDate(e.target.value);
+    }
+    if(e.target.name === "workType"){
+      setWorkType(e.target.value);
+    }
+    if(e.target.name === "dob"){
+      setDob(e.target.value);
+    }
+    if(e.target.name === "department"){
+      setDepartment(e.target.value);
+    }
+    if(e.target.name === "mail"){
+      setMail(e.target.value);
+    }
+    if(e.target.name === "code"){
+      setCode(e.target.value);
+    }
+    if(e.target.name === "comapany"){
+      setCompany(e.target.value);
+    }
+    if(e.target.name === "mobile"){
+      setMobile(e.target.value);
+    }
+    if(e.target.name === "designation"){
+      setDesignation(e.target.value);
+    }
+    if(e.target.name === "reporting"){
+      setReporting(e.target.value);
+    }
+
     // if(e.target.name === "financialYear"){
     //   setSelectedId(e.target.value);
      
@@ -64,20 +127,21 @@ const financialYear=()=>{
 }
 
 
-const fetchData = () =>{
-  fetch("http://localhost:8080/basic/fetchemployee/{?employeeid}",{
+// const fetchData = () =>{
+//   fetch("http://localhost:8080/basic/fetchemployee/{?employeeid}",{
 
-  })
-  .then((response) =>{
-    return response.json();
-  })
-  .then((data) =>{
-    setShow(data)
-  })
-  console.log(data.id)
-}
+//   })
+//   .then((response) =>{
+//     return response.json();
+//   })
+//   .then((data) =>{
+//     setShow(data)
+//   })
+//   console.log(data)
+// }
+
 const fetchData1 = () =>{
-  fetch("http://localhost:8080/basic/fetchdata",{
+  fetch("http://localhost:8080/bank/getBankInfo",{
   })
   .then((response) =>{
     return response.json();
@@ -86,83 +150,419 @@ const fetchData1 = () =>{
     setShow(data)
   })
 }
+
 useEffect(()=>
 {
   // fetchData();
   fetchData1();
 
 },[])
+
+// useEffect(()=>
+// {
+//   // fetchData();
+//   fetchData();
+
+// },[])
        
 useEffect(()=>{
-     const myData = show?.filter((item)=>item.employeeId == selectedId )
-
-   console.log("my emp",myData[0]?.employeeName)
-   setEmpName(myData[0]?.employeeName)
+     const myData = show?.filter((item)=>item.id == selectedId )
+   console.log("my emp",myData[0]?.name)
+   setEmpName(myData[0]?.name)
+   setAccountNumber(myData[0]?.bankAccountNo)
+   setBankName(myData[0]?.bankName)
+   setBankBranch(myData[0]?.bankBranch)
+   setJoinDate(myData[0]?.basicEmployee1.joiningDate)
+   setWorkType(myData[0]?.basicEmployee1.workType)
+   setDob(myData[0]?.basicEmployee1.dob)
+   setDepartment(myData[0]?.basicEmployee1.selectDepartment)
+   setMail(myData[0]?.basicEmployee1.email)
+   setCode(myData[0]?.ifscCode)
+   setCompany(myData[0]?.basicEmployee1.whichCompany)
+   setMobile(myData[0]?.basicEmployee1.mobile)
+   setDesignation(myData[0]?.basicEmployee1.designation)
+   setReporting(myData[0]?.basicEmployee1.reportingTo)
 },[selectedId])
+
+function download(){
+  setPdf(true)
+}
+
+function closePdf(){
+  setPdf(false)
+}
+
+function print(){
+  window.print()
+}
+
 
 
 
 // console.log(data,"data")
 
   return (
-    
-    <form>
-    <div>
-    <h2 className='container'>Add Employee Salary <div className='header Button'>
-        {/* <button type="button" className="btn btn-outline-primary btn-sm mx-2">+ Salary Details</button> */}
-         </div></h2>
-    <div className=' shadow-lg p-2 mb-5 bg-body rounded'>
-   
-    <div className="container">
-    <div className="bg-light">
-      <div className="row ">
-      <div className=" col-sm-6">
-        <label className="form-label">Employee Id:</label><br />
-    {/* <input value={data.id} type="text" className="form-control" id="formGroupExampleInput" name='id' onChange={inputChangeHandler} /> */}
-    <select value={data.id } class="form-select" aria-label="Default select example" name="id" onChange={inputChangeHandler}>
-    <option selected disabled>select employee</option>
-    {show.map(e=>(<option valueType={e.employeeId }>{e.employeeId }</option>))}
+    <>
+{
+  pdf?
+
+  <div className="pdfMainContainer">
+  <div className="innerPdf">
+  <table border="1">
+<tr height="70px" style={{backgroundColor:'#747370',color:'#ffffff', textAlign:'center',fontSize:'34px', fontWeight:'600'}}>
+<td colspan='4'>Ahom Technologies Pvt. Ltd.
+</td>
+</tr>
+<tr>
+<th>Employee Id:</th>
+<td>{data.id}</td>
+<th>Name</th>
+<td>{empName}</td>
+</tr>
+{/* <!-----2 row---> */}
+<tr>
+<th>Bank Name</th>
+<td>{bankName}</td>
+<th>Bank A/c No.</th>
+<td>{accountNumber}</td>
+</tr>
+{/* <!------3 row----> */}
+<tr>
+<th>DOB</th>
+<td>{dob}</td>
+<th>Email Id:</th>
+<td>{mail}</td>
+</tr>
+{/* <!------4 row----> */}
+<tr>
+<th>PF No.</th>
+<td>{}</td>
+<th>Mobile No.</th>
+<td>{mobile}</td>
+</tr>
+{/* <!------5 row----> */}
+<tr>
+<th>Bank Branch</th>
+<td>{bankBranch}</td>
+<th>Bank IFSC Code</th>
+<td>{code}</td>
+</tr>
+{/* <!------6 row----> */}
+<tr>
+<th>Financial Year</th>
+<td>{fnclYear}</td>
+<th>Financial Month</th>
+<td>{fnclMonth}</td>
+</tr>
+{/* <!------7 row----> */}
+<tr>
+<th>Department</th>
+<td>{department}</td>
+<th>Designation</th>
+<td>{designation}</td>
+</tr>
+{/* <!------8 row----> */}
+<tr>
+<th>Date of Joining</th>
+<td>{joinDate}</td>
+<th>Work Type</th>
+<td>{workType}</td>
+</tr>
+{/* <!------9 row----> */}
+<tr>
+<th>Company</th>
+<td>{company}</td>
+<th>Reporting To</th>
+<td>{reporting}</td>
+</tr>
+</table>
+
+  <tr></tr>
+<br/>
+
+<table border="1">
+<tr>
+<th >Earnings</th>
+<th>Amount</th>
+<th >Deductions</th>
+<th>Amount</th>
+</tr>
+<tr>
+<td>Basic</td>
+<td>29000</td>
+<td>provident fund</td>
+<td>1900</td>
+</tr>
+<tr>
+<td>House Rent Allowance</td>
+<td>2000</td>
+<td>professional tax</td>
+<td>600</td>
+</tr>
+<tr>
+<td>special Allowance</td>
+<td>400</td>
+<td>Income tax</td>
+<td>500</td>
+</tr>
+<tr>
+<td>conveyance</td>
+<td>3000</td>
+</tr>
+<tr>
+<td>ADD Special allowance</td>
+<td>2000</td>
+</tr>
+<tr>
+<td>shift Allowance</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>bonus</td>
+<td>500</td>
+</tr>
+<tr>
+<td>medical Allowance</td>
+<td>600</td>
+</tr>
+<tr>
+<th>Gross Earnings</th>
+<td>Rs.38500</td>
+<th >Gross Deductions</th>
+<td>Rs.3000</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>NET PAY</strong></td>
+<td>Rs.35500</td>
+<td></td>
+</tr>
+</table>
+  </div>
+  <div className="mt-5">
+	<button className='btn btn-primary me-2' onClick={print}>Print</button>
+	<button className='btn btn-success me-2'>Download PDF</button>
+  <button className='btn btn-danger ms-2' onClick={closePdf}>Close</button>
+	</div>
+</div>
+
+  :null
+}
+
+
+
+
+<center className='mt-2'><h1><b>Employee Salary</b></h1></center>
+<fieldset>
+  <legend>Employee Salary Slip</legend> <br />
+
+<div className="labelContainer">
+  <div className="all">
+    <label>Employee Id:</label>
+  </div>
+
+  <div className="all">
+    <label>Financial Year:</label>
+  </div>
+
+  <div className="all">
+    <label>Bank Name:</label>
+  </div>
+
+  <div className="all">
+    <label>Bank Branch:</label>
+  </div>
+
+  <div className="all">
+    <label>Joining Date:</label>
+  </div>
+
+  <div className="all">
+    <label>Email:</label>
+  </div>
+
+  <div className="all">
+    <label>Department:</label>
+  </div>
+
+  <div className="all">
+    <label>Date of Birth:</label>
+  </div>
+
+  <div className="all">
+    <label>Work Type:</label>
+  </div>
+
+  <div className="all">
+    <label>Incentive:</label>
+  </div>
+
+  <div className="all">
+    <label>Conveyance:</label>
+  </div>
+
+  <div className="all">
+    <label>Special Allowance:</label>
+  </div>
+
+  <div className="all"></div>
+  <div className="all"></div>
+
+</div>
+<div className="labelContainer"> 
+
+ <div className="all">
+ <select value={data.id } name="id" onChange={inputChangeHandler}>
+    <option selected disabled>Select Id</option>
+    {show.map(e=>(<option valueType={e.id }>{e.id }</option>))}
   </select>
   </div>
-  <div className=" col-sm-6">
-        <label className="form-label">Employee Name</label><br />
-        <select value={empName} className="form-select" aria-label="Default select example" name="employeeName" onChange={inputChangeHandler}>
-    {/* <select value={data.employeeName} type="text" className="form-control" id="formGroupExampleInput" name='employeeName' onChange={inputChangeHandler}> </select> */}
-    {show.map(e=>(<option valueType={e.employeeName}>{e.employeeName}</option>))}
-    {/* {show.map(e=>(<option value={data.value}>{data.value}</option>))} */}
+
+  <div className="all">
+  <select value={fnclYear} name='fnclYear' onChange={inputChangeHandler}>
+    <option selected>Select Year</option>
+    <option>2017</option>
+    <option>2018</option>
+    <option>2019</option>
+    <option>2020</option>
+    <option>2021</option>
+    <option>2022</option>
+    <option>2023</option>
+  </select>
+  </div>
+
+  <div className="all">
+  <select disabled={disabled} value={bankName} name='bankName' onChange={inputChangeHandler}>
+    <option selected disabled>Select Bank</option>
+    {show.map(e=>(<option valueType={e.bankName }>{e.bankName }</option>))}
+  </select>
+  </div>
+
+  <div className="all">
+  <select disabled={disabled} value={bankBranch} name='bankBranch' onChange={inputChangeHandler}>
+    <option selected disabled>Select Branch</option>
+    {show.map(e=>(<option valueType={e.bankBranch }>{e.bankBranch }</option>))}
+  </select>
+  </div>
+
+  <div className="all">
+  <select disabled={disabled} value={joinDate} name='joinDate' onChange={inputChangeHandler} >
+      <option selected disabled>Select Date</option>
+      {show.map(e=>(<option valueType={e.basicEmployee1.joiningDate}>{e.basicEmployee1.joiningDate}</option>))}
+      </select>
+  </div>
+
+  <div className="all">
+  <select disabled={disabled} value={mail} name='mail' onChange={inputChangeHandler} >
+      <option selected disabled>Choose Email</option>
+      {show.map(e=>(<option valueType={e.basicEmployee1.email}>{e.basicEmployee1.email}</option>))}
+      </select>
+  </div>
+
+  <div className="all">
+    <select disabled={disabled} value={department} name='department' onChange={inputChangeHandler} >
+      <option selected disabled>Select Department.</option>
+      {show.map(e=>(<option valueType={e.basicEmployee1.selectDepartment }>{e.basicEmployee1.selectDepartment }</option>))}
+      </select>
+  </div>
+
+  <div className="all">
+  <select disabled={disabled} value={dob} name='dob' onChange={inputChangeHandler} >
+      <option selected disabled>Select dob</option>
+      {show.map(e=>(<option valueType={e.basicEmployee1.dob }>{e.basicEmployee1.dob }</option>))}
+      </select>
+  </div>
+
+  <div className="all">
+  <select disabled={disabled} value={workType} name='workType' onChange={inputChangeHandler} >
+      <option selected disabled>Select Work Type</option>
+      {show.map(e=>(<option valueType={e.basicEmployee1.workType }>{e.basicEmployee1.workType }</option>))}
+      </select>
+  </div>
+
+  <div className="all">
+  <input type="text" placeholder='Enter field...' />
+  </div>
+
+  <div className="all">
+    <input type="text" placeholder='Enter field...' />
+  </div>
+
+  <div className="all">
+    <input type="text" placeholder='Enter field...' />
+  </div>
+
+  <div className="all"></div>
+  <div className="all"></div>
+
+  </div>
+
+<div className="labelContainer">
+
+<div className="all">
+    <label>Employee Name:</label>
+  </div>
+
+  <div className="all">
+    <label>Financial Month:</label>
+  </div>
+
+  <div className="all">
+    <label>Bank Account Number:</label>
+  </div>
+
+  <div className="all">
+    <label>IFSC Code:</label>
+  </div>
+
+  <div className="all">
+    <label>Company:</label>
+  </div>
+
+  <div className="all">
+    <label>Mobile No:</label>
+  </div>
+
+  <div className="all">
+    <label>Designation:</label>
+  </div>
+  <div className="all">
+    <label>Reporting to:</label>
+  </div>
+
+  <div className="all">
+    <label>Pf Number:</label>
+  </div>
+
+  <div className="all">
+    <label>Income Tax:</label>
+  </div>
+
+  <div className="all">
+    <label>Shift Allowance:</label>
+  </div>
+
+  <div className="all">
+    <label>Total Earnings:</label>
+  </div>
+
+  <div className="all"></div>
+  <div className="all"></div>
+
+
+</div>
+<div className="labelContainer">
+
+<div className="all">
+<select disabled={disabled} value={empName} name="employeeName" onChange={inputChangeHandler}>
+<option selected disabled>Select Name</option>
+    {show.map(e=>(<option valueType={e.name}>{e.name}</option>))}
     </select>
-          </div>
+  </div>
 
-
-
-          
-          {/* <div className=" col-sm-6">
-        <label className="form-label">Financial Year:</label><br />
-    <input value={data.financialYear} type="text" className="form-control" id="formGroupExampleInput" name='financialYear' onChange={inputChangeHandler} />
-          </div> */}
-          <div className="col-sm-6 ">
-          <label className="form-label" for="cars" id='label' >Financial Year:</label>
-           <br /> 
-          
- <select value={data.financialYear} className="form-control" aria-label="Default select example" name='financialYear' onChange={financialYear}>
-  
-    {/* <option selected disabled>---Select Year---</option> */}
-      {/* <option value="2020-21">2020-21</option>
-     <option value="2021-22">2021-22</option>
-    <option value="2022-23">2022-23</option>
-      <option value="2023-24">2023-24</option>
-        <option value="2024-25">2024-25</option>
-         <option value="2025-26">2025-26</option>
-          <option value="2026-27">2026-27</option> */}
-          
-                  </select>
-                 </div>
-                 
-          <div className="col-sm-6 ">
-          <label className="form-label" for="cars" id='label'>Month:</label>
-           <br />
- <select value={data.month} className="form-select" aria-label="Default select example" name='month' onChange={inputChangeHandler}>
-    <option selected disabled>---Select Month---</option>
+<div className="all">
+<select  value={fnclMonth} name='fnclMonth' onChange={inputChangeHandler}>
+    <option selected>Select Month</option>
       <option value="Jan">January</option>
      <option value="Fab">February</option>
     <option value="Mar">March</option>
@@ -176,89 +576,84 @@ useEffect(()=>{
             <option value="Nov">November</option>
                <option value="Dec">December</option>
                   </select>
-                 </div>
-          <div className=" col-sm-6">
-        <label className="form-label">Annual Salary:</label><br />
-    <input value={data.annualSalary} type="text" className="form-control" id="formGroupExampleInput" name='annualSalary' onChange={inputChangeHandler} />
-          </div>
+  </div>
+
+  <div className="all">
+    <select disabled={disabled} value={accountNumber} name="accountNumber"  onChange={inputChangeHandler} >
+      <option selected disabled>Select Account No.</option>
+      {show.map(e=>(<option valueType={e.bankAccountNo }>{e.bankAccountNo }</option>))}
+      </select>
+  </div>
+
+  <div className="all">
+  <select disabled={disabled} value={code} name="code" onChange={inputChangeHandler} >
+      <option selected disabled>Select IFSC Code.</option>
+      {show.map(e=>(<option valueType={e.ifscCode }>{e.ifscCode }</option>))}
+      </select>
+  </div>
+
+  <div className="all">
+  <select disabled={disabled} value={company} name="company" onChange={inputChangeHandler} >
+      <option selected disabled>Select Company.</option>
+      {show.map(e=>(<option valueType={e.basicEmployee1.whichCompany }>{e.basicEmployee1.whichCompany }</option>))}
+      </select>
+  </div>
+
+  <div className="all">
+  <select disabled={disabled} value={mobile} name="mobile" onChange={inputChangeHandler} >
+      <option selected disabled>Choose Mobile No.</option>
+      {show.map(e=>(<option valueType={e.basicEmployee1.mobile }>{e.basicEmployee1.mobile }</option>))}
+      </select>
+  </div>
+
+  <div className="all">
+    <select disabled={disabled} value={designation} name='designation' onChange={inputChangeHandler} >
+      <option selected disabled>Select Designation</option>
+      {show.map(e=>(<option valueType={e.basicEmployee1.designation}>{e.basicEmployee1.designation}</option>))}
+      </select>
+  </div>
+
+  <div className="all">
+  <select disabled={disabled} value={reporting} name='reporting' onChange={inputChangeHandler} >
+      <option selected disabled>Select Reporting to</option>
+      {show.map(e=>(<option valueType={e.basicEmployee1.reportingTo}>{e.basicEmployee1.reportingTo}</option>))}
+      </select>
+  </div>
+
+  <div className="all">
+  <input type="text" placeholder="Enter field" />
+  </div>
+
+  <div className="all">
+  <input type="text" placeholder="Enter d" />
+  </div>
+
+  <div className="all">
+  <input type="text" placeholder='Enter field'/>
+  </div>
+
+  <div className="all">
+    <input type="text" placeholder='Enter field' />
+  </div>
+
+  <div className="all">
+  </div>
+
+  <div className="all">
+
+  <button className='btn btn-success text-light' onClick={download}>Print / Download</button>
+  </div>
+
+</div>
 
 
+</fieldset>
 
-       </div>
-        </div>
-        {/* <button type="button" className="btn btn-primary my-4" onClick={submitHandler}>Save</button> */}
-        {/* <button type="submit" class="btn btn-primary mt-4">
-            Save
-          </button> */}
-          <button onClick={submitHandler} className="btn btn-primary mt-4">Save</button>
-        </div>
-        </div>
-        </div>
-        </form>
+        
+        </>
   )
   
 }
 
 
 export default SalarySetup
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React from 'react'
-// import TableEmployee from './Table'
-// import classes from "./EmployeeDetails.module.css"
-// import { Form } from 'react-bootstrap'
-// function EmployeeDetails() {
-//   const data=[
-//     {
-//       id:1,
-//       name:"saurav",
-//       type:"Earning",
-//       value:"Calculated",
-//       salary:"10000",
-
-//     }
-//   ]
-//   return (
-//     <div className={classes.contain}>
-//     <div className={classes.header}>
-//         <div className='display-5 mb-3'>Salary Setup</div>
-
-//         <div className={classes.headerButton}>
-//          <button type="button" class="btn btn-outline-primary btn-sm mx-2">+ Salary Details</button>
-//         </div>
-//         </div>
-//         <div className={classes.datePick}><Form.Control type="date"></Form.Control></div>
-//         {data.map(items => {
-//           return <TableEmployee id={items.id} name={items.name} type={items.type}  value={items.value} salary={items.salary}  />})}
-          
-//     </div>)}
-
-// export default EmployeeDetails
