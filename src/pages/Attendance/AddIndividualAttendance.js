@@ -12,18 +12,17 @@ import { useEffect, useState } from "react";
       
    }
 
-   const fetchData = () =>{
-    fetch("http://localhost:8080/basic/fetchdata",{
-    })
-    .then((response) =>{
-      return response.json();
-    })
-    .then((data) =>{
-      setShow(data)
-    })
-  }
+   const fetchData1 = () => {
+    fetch("http://localhost:8080/basic/fetchdata", {})
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setShow(data);
+      });
+  };
   useEffect(()=>{
-    fetchData();
+    fetchData1();
   },[])
 
    const submitHandler=(e)=>{

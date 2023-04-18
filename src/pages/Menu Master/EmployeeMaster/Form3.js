@@ -15,35 +15,6 @@ const Form3 = () => {
     setUserModal(false);
   };
 
-  // const fetchData=()=>{
-
-  // fetch("http://localhost:8080/basic/fetchdata",{
-  //   method: 'GET',
-  //   headers : {
-  //         'Accept' : 'application/json',
-  //         'Authorization': `Bearer $ token `
-
-  //   },
-  // })
-  // .then((response)=> response.json())
-  // .then((response)=> setData((response.data)))
-  // .catch((data) => console.log(data))
-
-  // .then((response)=>{
-  //   return response.json();
-  // })
-  // .then((data)=>{
-  //   // console.log(data);
-  //   let gagan = data
-  //   // console.log(gagan)
-  //   setShow()
-  // })
-
-  // }
-  // useEffect(()=>{
-  //   console.log(data);
-  // },[data])
-
   const fetchData = () => {
     fetch("http://localhost:8080/basic/fetchdata", {})
       .then((response) => {
@@ -92,19 +63,9 @@ const Form3 = () => {
             field: "reportingTo",
           },
         ]}
-        // data={[
-        //   {
-        //     EmplyoyeeName: "Piyush",
-        //     EmplyoyeeCode: 125,
-        //     DepartmentName: "HR",
-        //     EmailId: "asd@gmai.com",
-        //     Designation: "User",
-        //   },
-        // ]}
         data={ticketDetails}
         options={{
-          // filtering: true,
-          // sorting: true,
+          
           exportMenu: [
             {
               label: "Export PDF",
@@ -127,19 +88,7 @@ const Form3 = () => {
         }}
         title="Employee Record"
       />
-      {/* <button className="btn btn-primary" onClick={showUserModal}>
-        Open Modal
-      </button>
-      <Modal
-        show={userModal}
-        onHide={closeUserModal}
-        centered
-        backdrop="static"
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>Edit Details</Modal.Title>
-        </Modal.Header>
-      </Modal> */}
+
     </>
   );
 };
