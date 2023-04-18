@@ -82,8 +82,6 @@ method:'DELETE'
       console.warn(response)
     })
   })
-
-
 }
 
 

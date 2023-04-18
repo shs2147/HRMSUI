@@ -1,5 +1,6 @@
 import MaterialTable from "@material-table/core";
 import { useState } from "react";
+import { Button } from "react-bootstrap";
 import swal from 'sweetalert';
 
 const EmploymentTypeMaster = () => {
@@ -31,9 +32,17 @@ const EmploymentTypeMaster = () => {
       .catch((err) => console.log(err));
   };
 
-  //  const submitHandler=(e)=>{
-  //     e.preventDefault();
-  //  }
+  const handleDelete = (id)=>{
+    fetch(`http://localhost:8080/employment/delete/${id}`,{
+  method:'DELETE'
+    }).then((result)=>{
+      swal("Success", "Data Deleted Successfully", "success");
+      result.json().then((response)=>{
+        console.warn(response)
+      })
+    })
+  }
+  
   const [ticketDetails, setTicketDetails] = useState([]);
   const options = { method: "GET" };
 
@@ -98,6 +107,14 @@ const EmploymentTypeMaster = () => {
           {
             title: "Description",
             field: "description",
+          },
+          {
+            title: "Actions",
+            field: "actions",
+            render: (rowData) => (
+              // <CustomButton rowData={rowData} onDelete={handleDelete} />
+              <Button onClick={() => handleDelete(rowData.id)}>Delete</Button>
+            ),
           },
         ]}
         data={ticketDetails}
