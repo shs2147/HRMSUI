@@ -4,6 +4,7 @@ import swal from 'sweetalert';
 
 
 import { useState } from "react";
+import { Button } from "react-bootstrap";
 
 const DesignationMaster = () => {
   const [data, setData] = useState({});
@@ -30,6 +31,17 @@ const DesignationMaster = () => {
       })
       .catch((err) => console.log(err));
   };
+
+  const handleDelete = (id)=>{
+    fetch(`http://localhost:8080/designation/delete/${id}`,{
+  method:'DELETE'
+    }).then((result)=>{
+      swal("Success", "Designation Deleted Successfully", "success");
+      result.json().then((response)=>{
+        console.warn(response)
+      })
+    })
+  }
   const [ticketDetails, setTicketDetails] = useState([]);
   const options = {method: 'GET'};
 
@@ -89,6 +101,14 @@ fetch('http://localhost:8080/designation/fetchalldesignation', options)
             {
               title: "Designation Name",
               field: "designationName",
+            },
+            {
+              title: "Actions",
+              field: "actions",
+              render: (rowData) => (
+                // <CustomButton rowData={rowData} onDelete={handleDelete} />
+                <Button onClick={() => handleDelete(rowData.id)}>Delete</Button>
+              ),
             },
           ]}
           data={ticketDetails}
