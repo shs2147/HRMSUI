@@ -197,6 +197,7 @@ const DepartmentMaster = () => {
           //   actionsColumnIndex:-1
           // }}
          
+
         />
       </div>
     </>

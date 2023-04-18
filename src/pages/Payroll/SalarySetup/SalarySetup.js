@@ -1,4 +1,5 @@
 import React, {useEffect, useState } from 'react';
+import jsPDF from 'jspdf';
 
 const SalarySetup = () => {
 const [data, setData] = useState([]);
@@ -19,13 +20,29 @@ const [code,setCode]=useState([]);
 const [company,setCompany]=useState([]);
 const [mobile,setMobile]=useState([]);
 const [designation,setDesignation]=useState([]);
+const [basicSalary,setBasicSalary]=useState([]);
+const [pfnumber,setPfnumber]=useState([]);
 const [reporting,setReporting]=useState([]);
+const [incentive,setIncentive]=useState([]);
+const [incometax,setIncometax]=useState([]);
+const [shiftallowance,setShiftallowance]=useState([]);
+const [conveyance,setConveyance]=useState([]);
+const [specialallowance,setSpecialallowance]=useState([]);
+const [houserent,setHouserent]=useState([]);
+const [bonus,setBonus]=useState([]);
 const [disabled,setDisabled]=useState(false);
 const [pdf, setPdf]=useState(false)
 //const [current,setCurrent]=useState([]);
 
 
 console.log(empName,selectedId,"selectedId")
+
+const pdfGenerator=()=>{
+ 
+  var doc=new jsPDF('portrait','px','a4','false')
+  doc.save('a.pdf');
+}
+
 const inputChangeHandler = (e) => {
     let newData = { ...data };
     newData[e.target.name ] = e.target.value;
@@ -45,8 +62,32 @@ const inputChangeHandler = (e) => {
     if(e.target.name === "fnclYear"){
       setFnclYear(e.target.value);
     }
+    if(e.target.name==="pfnumber"){
+      setPfnumber(e.target.value);
+    }
+    if(e.target.name==="houserent"){
+      setHouserent(e.target.value)
+    }
     if(e.target.name === "fnclMonth"){
       setFnclMonth(e.target.value);
+    }
+    if (e.target.name==="incentive"){
+      setIncentive(e.target.value);
+    }
+    if (e.target.name==="bonus"){
+      setBonus(e.target.value);
+    }
+    if (e.target.name==="incometax"){
+      setIncometax(e.target.value);
+    }
+    if (e.target.name==="shiftallowance"){
+      setShiftallowance(e.target.value);
+    }
+    if (e.target.name==="conveyance"){
+      setConveyance(e.target.value);
+    }
+    if (e.target.name==="specialallowance"){
+      setSpecialallowance(e.target.value);
     }
     if(e.target.name === "bankBranch"){
       setBankBranch(e.target.value);
@@ -81,6 +122,10 @@ const inputChangeHandler = (e) => {
     if(e.target.name === "reporting"){
       setReporting(e.target.value);
     }
+    if (e.target.name==="basicSalary"){
+      setBasicSalary(e.target.value);
+    }
+    
 
     // if(e.target.name === "financialYear"){
     //   setSelectedId(e.target.value);
@@ -182,6 +227,9 @@ useEffect(()=>{
    setMobile(myData[0]?.basicEmployee1.mobile)
    setDesignation(myData[0]?.basicEmployee1.designation)
    setReporting(myData[0]?.basicEmployee1.reportingTo)
+   setBasicSalary(myData[0]?.basicEmployee1.basicSalary)
+   setPfnumber(myData[0]?.basicEmployee1.pfnumber)
+   
 },[selectedId])
 
 function download(){
@@ -193,6 +241,7 @@ function closePdf(){
 }
 
 function print(){
+  // window.open(pdf)
   window.print()
 }
 
@@ -208,8 +257,8 @@ function print(){
 
   <div className="pdfMainContainer">
   <div className="innerPdf">
-  <table border="1">
-<tr height="70px" style={{backgroundColor:'#747370',color:'#ffffff', textAlign:'center',fontSize:'34px', fontWeight:'600'}}>
+  <table border="2">
+<tr height="100px" style={{backgroundColor:'#747370',color:'orange', textAlign:'center',fontSize:'34px', fontWeight:'600'}}>
 <td colspan='4'>Ahom Technologies Pvt. Ltd.
 </td>
 </tr>
@@ -236,7 +285,7 @@ function print(){
 {/* <!------4 row----> */}
 <tr>
 <th>PF No.</th>
-<td>{}</td>
+<td>{pfnumber}</td>
 <th>Mobile No.</th>
 <td>{mobile}</td>
 </tr>
@@ -275,6 +324,10 @@ function print(){
 <th>Reporting To</th>
 <td>{reporting}</td>
 </tr>
+{/* <tr>
+  <th>basicSalary</th>
+  <td>{basicSalary}</td>
+  </tr> */}
 </table>
 
   <tr></tr>
@@ -287,71 +340,73 @@ function print(){
 <th >Deductions</th>
 <th>Amount</th>
 </tr>
+{/* will use for calculation */}
 <tr>
 <td>Basic</td>
-<td>29000</td>
+<td>{basicSalary}</td>
+
 <td>provident fund</td>
-<td>1900</td>
+<td>{basicSalary-(basicSalary-(0.24*basicSalary))}</td>
 </tr>
 <tr>
 <td>House Rent Allowance</td>
-<td>2000</td>
-<td>professional tax</td>
-<td>600</td>
+<td>{houserent}</td>
+
+<td>LOF</td>
+<td>{basicSalary-(basicSalary-(0.01*basicSalary))}</td>
 </tr>
 <tr>
-<td>special Allowance</td>
-<td>400</td>
+<td>Incentive</td>
+<td>{incentive}</td>
+
 <td>Income tax</td>
-<td>500</td>
+<td>{incometax}</td>
 </tr>
 <tr>
 <td>conveyance</td>
-<td>3000</td>
+<td>{conveyance}</td>
 </tr>
 <tr>
-<td>ADD Special allowance</td>
-<td>2000</td>
+<td>Special allowance</td>
+<td>{specialallowance}</td>
 </tr>
 <tr>
 <td>shift Allowance</td>
-<td>1000</td>
+<td>{shiftallowance}</td>
 </tr>
 <tr>
 <td>bonus</td>
-<td>500</td>
+<td>{bonus}</td>
 </tr>
-<tr>
+{/* <tr>
 <td>medical Allowance</td>
-<td>600</td>
-</tr>
+<td>00</td>
+</tr> */}
 <tr>
 <th>Gross Earnings</th>
-<td>Rs.38500</td>
+<td>{basicSalary-(-incentive-houserent-conveyance-specialallowance-shiftallowance-bonus)}</td>
 <th >Gross Deductions</th>
-<td>Rs.3000</td>
+<td>{(basicSalary-(-incometax)-(basicSalary-(0.24*basicSalary))+basicSalary-(basicSalary-(0.01*basicSalary)))}</td>
+<td>{}</td>
 </tr>
 <tr>
 <td></td>
-<td><strong>NET PAY</strong></td>
-<td>Rs.35500</td>
+<td><strong>NET PAY </strong></td>
+<td>{(basicSalary-(-incentive-houserent-conveyance-specialallowance-shiftallowance-bonus))-(basicSalary-(basicSalary-(0.24*basicSalary))+basicSalary-(basicSalary-(0.01*basicSalary)))}</td>
+
 <td></td>
 </tr>
 </table>
   </div>
   <div className="mt-5">
 	<button className='btn btn-primary me-2' onClick={print}>Print</button>
-	<button className='btn btn-success me-2'>Download PDF</button>
+	<button className='btn btn-success me-2' onClick={pdfGenerator}>Download PDF</button>
   <button className='btn btn-danger ms-2' onClick={closePdf}>Close</button>
 	</div>
 </div>
 
-  :null
-}
-
-
-
-
+  :
+<div>
 <center className='mt-2'><h1><b>Employee Salary</b></h1></center>
 <fieldset>
   <legend>Employee Salary Slip</legend> <br />
@@ -405,6 +460,10 @@ function print(){
     <label>Special Allowance:</label>
   </div>
 
+  <div className='all'>
+    <label>House Rent</label>
+  </div>
+
   <div className="all"></div>
   <div className="all"></div>
 
@@ -428,6 +487,9 @@ function print(){
     <option>2021</option>
     <option>2022</option>
     <option>2023</option>
+    <option>2024</option>
+    <option>2025</option>
+    <option>2026</option>
   </select>
   </div>
 
@@ -478,18 +540,21 @@ function print(){
       <option selected disabled>Select Work Type</option>
       {show.map(e=>(<option valueType={e.basicEmployee1.workType }>{e.basicEmployee1.workType }</option>))}
       </select>
+  </div>  
+
+  <div className="all">
+  <input type="text" value={incentive} name='incentive' onChange={inputChangeHandler} placeholder='Enter field ...' />
   </div>
 
   <div className="all">
-  <input type="text" placeholder='Enter field...' />
+    <input type="text" value={conveyance} name='conveyance' onChange={inputChangeHandler} placeholder='Enter field conve...' />
   </div>
 
   <div className="all">
-    <input type="text" placeholder='Enter field...' />
+    <input type="text" value={specialallowance} name='specialallowance'onChange={inputChangeHandler} placeholder='Enter field special...' />
   </div>
-
   <div className="all">
-    <input type="text" placeholder='Enter field...' />
+    <input type="text" value={houserent} name='houserent'onChange={inputChangeHandler} placeholder='Enter field special...' />
   </div>
 
   <div className="all"></div>
@@ -543,7 +608,7 @@ function print(){
   </div>
 
   <div className="all">
-    <label>Total Earnings:</label>
+    <label>Bonus:</label>
   </div>
 
   <div className="all"></div>
@@ -612,6 +677,7 @@ function print(){
       {show.map(e=>(<option valueType={e.basicEmployee1.designation}>{e.basicEmployee1.designation}</option>))}
       </select>
   </div>
+  
 
   <div className="all">
   <select disabled={disabled} value={reporting} name='reporting' onChange={inputChangeHandler} >
@@ -619,22 +685,29 @@ function print(){
       {show.map(e=>(<option valueType={e.basicEmployee1.reportingTo}>{e.basicEmployee1.reportingTo}</option>))}
       </select>
   </div>
+  <div className="all">
+  <select disabled={disabled} value={pfnumber} name='pfnumber' onChange={inputChangeHandler} >
+      <option selected disabled>Select pfnumber</option>
+      {show.map(e=>(<option valueType={e.basicEmployee1.pfnumber }>{e.basicEmployee1.pfnumber }</option>))}
+      </select>
+  </div>
+  
 
   <div className="all">
-  <input type="text" placeholder="Enter field" />
+  <input type="text" value={incometax} name='incometax' onChange={inputChangeHandler} placeholder="Enter field income" />
   </div>
 
   <div className="all">
-  <input type="text" placeholder="Enter d" />
+  <input type="text" value={shiftallowance}  name='shiftallowance' onChange={inputChangeHandler} placeholder="Enter shift" />
   </div>
 
   <div className="all">
-  <input type="text" placeholder='Enter field'/>
+  <input type="text"  value={bonus} name='bonus' onChange={inputChangeHandler} placeholder='Enter field total'/>
   </div>
 
-  <div className="all">
+  {/* <div className="all">
     <input type="text" placeholder='Enter field' />
-  </div>
+  </div> */}
 
   <div className="all">
   </div>
@@ -648,7 +721,8 @@ function print(){
 
 
 </fieldset>
-
+</div>
+}
         
         </>
   )
