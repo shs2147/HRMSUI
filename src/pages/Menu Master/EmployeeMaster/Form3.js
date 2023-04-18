@@ -62,6 +62,7 @@ const Form3 = () => {
             title: "Reported To",
             field: "reportingTo",
           },
+          
         ]}
         data={ticketDetails}
         options={{
