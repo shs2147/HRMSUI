@@ -24,6 +24,8 @@ const AddEmployee = () => {
   const [report, setReport] = useState([]);
   const[user,setUser]=useState([]);
   const [emp, setEmp] = useState([]);
+  const [dep,setDep]=useState([]);
+  // const [names,setNames]=useState([]);
 
   // const [data, setData] = useState({
   //   name: "",
@@ -62,8 +64,8 @@ const AddEmployee = () => {
       .then((response) => {
         return response.json();
       })
-      .then((data) => {
-        setItemshow(data);
+      .then((dep) => {
+        setDep(dep);
       });
   };
   const fetchData2 = () => {
@@ -102,13 +104,18 @@ const AddEmployee = () => {
     fetchData5();
   }, []);
 
+  const submitHandler1 = (e)=>{
+    setShowError(true);
+  }
+  
+
   const submitHandler = (e) => {
     setShowError(true);
 if(
   !Validation.email(email)&&
-  // !Validation.password(password)&&
+  
   !Validation.mobile(mobile)
-  // !Validation.panNumber(panNumber)
+  
 ){
   alert("fill all the details")
 }
@@ -290,7 +297,7 @@ if(
                       <option selected disabled>
                         ---Select Department---
                       </option>
-                      {itemshow.map((saurabh) => (
+                      {dep.map((saurabh) => (
                         <option valueType={saurabh.departmentName}>
                           {saurabh.departmentName}
                         </option>
@@ -352,6 +359,39 @@ if(
                       required
                     />
                   </div>
+                  <div className=" col-sm-4">
+                    <label className="form-label">Basic Salary:</label>
+                    <br />
+                    <input
+                      value={data.basicSalary}
+                      type="number"
+                      className="form-control"
+                      id="formGroupExampleInput"
+                      name="basicSalary"
+                      onChange={inputChangeHandler}
+                      placeholder="Enter salary."
+             
+
+                      required
+                    />
+                  </div>
+                  <div className=" col-sm-4">
+                    <label className="form-label">Pf Number:</label>
+                    <br />
+                    <input
+                      value={data.pfnumber}
+                      type="number"
+                      className="form-control"
+                      id="formGroupExampleInput"
+                      name="pfnumber"
+                      onChange={inputChangeHandler}
+                      placeholder="Enter pf number  ."
+             
+
+                      required
+                    />
+                  </div>
+
                   <div className=" col-sm-3">
                     <label className="form-label">Joining Date:</label>
                     <div>
@@ -415,19 +455,72 @@ if(
                       <option value="probation">Non-Technical</option>
                       {/* {show.map(saurabh=>( <option valueType={saurabh.workType}>{saurabh.workType}</option>))} */}
                     </select>
+                    
                   </div>
+                  <div className="my-4">
+                    <button
+                    type="submit"
+                    className="btn btn-primary mx-2"
+                    // onClick={s}
+                    >
+                      save
+
+                    </button>
+                    </div>
                 </div>
               </div>
             </div>
+
           </CAccordionBody>
         </CAccordionItem>
         <CAccordionItem itemKey={2}>
+
+          {/* =========workInformation========== */}
           <CAccordionHeader>Work Information</CAccordionHeader>
           <CAccordionBody>
             <div className="container">
               <div className="bg-light">
                 <div className="row ">
+                <div className="col-sm-3 ">
+                    <label className="form-label" for="cars" id="label">
+                      Employee Name:
+                    </label>
+
+                    <select
+                      valueType={data.employeeName}
+                      className="form-select"
+                      name="employeeName"
+                      onChange={inputChangeHandler}
+                      >
+                        <option selected disabled >
+                          Select Name
+                        </option>
+                          {report.map((e)=>(
+                          <option valueType={e.employeeName}>
+                            {e.employeeName}
+                            </option>
+                          
+                        ))}
+                        
+                      
+                    </select>
+                  </div>
                   <div className="col-sm-3 ">
+                  {/* <div  >
+                    <label className="form-label">Employee Name:</label>
+                    
+                    <input
+                      value={data.employeeName}
+                      type="text"
+                      className="form-control"
+                      id="formGroupExampleInput"
+                      name="employeeName"
+                      onChange={inputChangeHandler}
+                      placeholder=""
+                      required
+                    />
+                  </div > */}
+                  <div >
                     <label className="form-label" for="cars" id="label">
                       Employement type:
                     </label>
@@ -455,6 +548,7 @@ if(
                                                     <option value="hijk">hijk</option>
                                                     <option value="slmno">lmno</option> */}
                     </select>
+                    </div>
                   </div>
                   <div className="col-sm-3 ">
                     <label className="form-label" for="cars" id="label">
@@ -665,7 +759,7 @@ if(
                       required
                     />
                   </div>
-                  <div className=" col-sm-3">
+                  {/* <div className=" col-sm-3">
                     <label className="form-label">CIN No:</label>
                     <br />
                     <input
@@ -678,7 +772,7 @@ if(
                       placeholder="Enter CIN Number"
                       required
                     />
-                  </div>
+                  </div> */}
                   <div className=" col-sm-3">
                     <label className="form-label">Leaving Date:</label>
                     <div>
