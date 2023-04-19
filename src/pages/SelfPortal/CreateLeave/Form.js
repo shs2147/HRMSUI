@@ -5,18 +5,8 @@ import swal from 'sweetalert';
 function Form() {
   const url = "";
   const [show,setShow]=useState([]);
-  const [data, setData] = useState({
-    employee: "",
-    approver: "",
-    leave_type: "",
-    available_balance: "",
-    leave_for: "",
-    start_date: "",
-    end_date: "",
-    days: "",
-    reason_for_leave: "",
-  });
-  function handleInput(e) {
+  const [data, setData] = useState([])
+     function handleInput(e) {
     e.preventDefault();
     const newdata = { ...data };
     newdata[e.target.name] = e.target.value;
@@ -73,47 +63,14 @@ fetchData();
       swal("Success", "Data Added Successfully", "success");
     })
   };
-  // const employee = [
-  //   { value: "", text: "Radha", disabled: true },
-  //   { value: "apple", text: "Apple 🍏" },
-  //   { value: "banana", text: "Banana 🍌" },
-  //   { value: "kiwi", text: "Kiwi 🥝" },
-  // ];
-  // const approver = [
-  //   { value: "", text: "Administrator", disabled: true },
-  //   { value: "apple", text: "Apple 🍏" },
-  //   { value: "banana", text: "Banana 🍌" },
-  //   { value: "kiwi", text: "Kiwi 🥝" },
-  // ];
+
   const leaveType = [
     { value: "", text: "Choose Leave Type", disabled: false },
     { value: "casual", text: "Casual Leave" },
     { value: "sick", text: "Sick Leave" },
     { value: "annual", text: "Annual Leave" },
   ];
-  // const leaveFor = [
-  //   { value: "", text: "Choose Leave For", disabled: true },
-  //   { value: "apple", text: "Apple 🍏" },
-  //   { value: "banana", text: "Banana 🍌" },
-  //   { value: "kiwi", text: "Kiwi 🥝" },
-  // ];
-  // const [selectedEmployee, setSelectedEmployee] = useState("");
-  // const [selectedApprover, setSelectedApprover] = useState("");
-  // const [selectedLeaveType, setSelectedLeaveType] = useState("");
-  // const [selectedLeaveFor, setSelectedLeaveFor] = useState("");
-
-  // const handleChangeEmployee = (event) => {
-  //   setSelectedEmployee(event.target.value);
-  // };
-  // const handleChangeApprover = (event) => {
-  //   setSelectedApprover(event.target.value);
-  // };
-  // const handleChangeLeaveType = (event) => {
-  //   setSelectedLeaveType(event.target.value);
-  // };
-  // const handleChangeLeaveFor = (event) => {
-  //   setSelectedLeaveFor(event.target.value);
-  // };
+  
   return (
     <form onSubmit={submitHandler} className=" ">
       <p className="h4 py-2">Create Leave Request</p>
@@ -207,29 +164,7 @@ fetchData();
           />
         </div> */}
       </div>
-      {/* <div className=" row mb-1 mx-4 ">
-        <label for="formFile" className="form-label">
-          Leave For:
-        </label>
-        <br />
-
-        <select
-          className="form-select form-control col-sm-10 mb-1 w-100 "
-          value={data.leaveFor}
-          onChange={handleInput}
-          name="leaveFor"
-        >
-          {leaveFor.map((option) => (
-            <option
-              disabled={option.disabled}
-              key={option.value}
-              value={option.value}
-            >
-              {option.text}
-            </option>
-          ))}
-        </select>
-      </div> */}
+     
       <div className=" row mb-1 d-flex justify-content-around ">
         <div className="col">
           <label for="exampleFormControlInput1" className="form-label ">
@@ -238,7 +173,7 @@ fetchData();
           <input
             name="startDate"
             onChange={handleInput}
-            value={data.start_date}
+            value={data.startDate}
             type="Date"
             className="form-control"
             id="Choose Type"
@@ -251,7 +186,7 @@ fetchData();
           <input
             name="endDate"
             onChange={handleInput}
-            value={data.end_date}
+            value={data.endDate}
             type="Date"
             className="form-control"
             id="Choose Type"

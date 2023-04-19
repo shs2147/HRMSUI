@@ -62,6 +62,14 @@ const Form3 = () => {
             title: "Reported To",
             field: "reportingTo",
           },
+          {
+            title:"Basic Salary",
+            field:"basicSalary",
+          },
+          {
+            title:"PF Number",
+            field:"pfnumber",
+          }
           
         ]}
         data={ticketDetails}
