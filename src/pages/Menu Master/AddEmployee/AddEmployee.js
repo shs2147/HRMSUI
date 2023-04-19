@@ -106,19 +106,50 @@ const AddEmployee = () => {
 
   const submitHandler1 = (e)=>{
     setShowError(true);
+    if(
+      !Validation.email(email)&&
+      
+      !Validation.mobile(mobile)
+      
+    ){
+      alert("fill all the details")
+    }
+        else {
+          setShowError(false)
+          // alert("Your data has been saved successfully!!")
+          swal("Success", "Data Added Successfully", "success");
+          setData({});
+        
+    
+
+    fetch("http://localhost:8080/basic/saveemployee", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then(() => {
+        console.log("Basic Information Added");
+      })
+      .catch((err) => console.log(err));
+    console.log(JSON.stringify(data));
   }
-  
+}
 
   const submitHandler = (e) => {
-    setShowError(true);
-if(
-  !Validation.email(email)&&
+
+    setData({});
+
+// if(
+//   !Validation.email(email)&&
   
-  !Validation.mobile(mobile)
+//   !Validation.mobile(mobile)
   
-){
-  alert("fill all the details")
-}
+// ){
+//   alert("fill all the details")
+// }
     // else if (
     //   !Validation.email(email) 
     //   )
@@ -144,26 +175,25 @@ if(
    
     //e.preventDefault();
     // alert("Success");
-    else {
-      setShowError(false)
+    // else {
+    //   setShowError(false)
       // alert("Your data has been saved successfully!!")
-      swal("Success", "Data Added Successfully", "success");
-      setData({});
+      
+    // console.log(JSON.stringify(data));
+    // fetch("http://localhost:8080/basic/saveemployee", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Accept: "application/json",
+    //   },
+    //   body: JSON.stringify(data),
+    // })
+    //   .then(() => {
+    //     console.log("Basic Information Added");
+    //   })
+    //   .catch((err) => console.log(err));
     console.log(JSON.stringify(data));
-    fetch("http://localhost:8080/basic/saveemployee", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then(() => {
-        console.log("Basic Information Added");
-      })
-      .catch((err) => console.log(err));
-    console.log(JSON.stringify(data));
-    fetch("http://localhost:8080/savework", {
+    fetch("http://localhost:8080/work/savework", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -173,9 +203,10 @@ if(
     })
       .then(() => {
         console.log("Save info Added");
+        swal("Success", "Data Added Successfully", "success");
       })
       .catch((err) => console.log(err));
-    console.log(JSON.stringify(data));
+    // console.log(JSON.stringify(data));
     fetch("http://localhost:8080/bank/savebankinginfo", {
       method: "POST",
       headers: {
@@ -201,8 +232,8 @@ if(
         console.log("emergency Added");
       })
       .catch((err) => console.log(err));
-  };
-}
+  
+};
   //  const submitHandler=(e)=>{
   //     e.preventDefault();
   //  }
@@ -364,7 +395,7 @@ if(
                     <br />
                     <input
                       value={data.basicSalary}
-                      type="number"
+                      type="text"
                       className="form-control"
                       id="formGroupExampleInput"
                       name="basicSalary"
@@ -380,7 +411,7 @@ if(
                     <br />
                     <input
                       value={data.pfnumber}
-                      type="number"
+                      type="text"
                       className="form-control"
                       id="formGroupExampleInput"
                       name="pfnumber"
@@ -461,7 +492,7 @@ if(
                     <button
                     type="submit"
                     className="btn btn-primary mx-2"
-                    // onClick={s}
+                    onClick={submitHandler1}
                     >
                       save
 
@@ -533,8 +564,8 @@ if(
                       onChange={inputChangeHandler}
                     >
                       <option selected disabled>---Select Employment Type---</option>
-                      <option value="permanent">Permanent</option>
-                      <option value="probation">Probation</option>
+                      <option value="permanent">permanent</option>
+                      <option value="probation">probation</option>
                       {/* <option selected disabled>
                         Select Employement Type
                       </option>
@@ -815,6 +846,11 @@ if(
           </CAccordionBody>
         </CAccordionItem>
         <CAccordionItem itemKey={3}>
+
+
+
+
+
           <CAccordionHeader>Banking Information</CAccordionHeader>
           <CAccordionBody>
             <div className="container">
@@ -828,7 +864,7 @@ if(
                       type="text"
                       className="form-control"
                       id="formGroupExampleInput"
-                      name="pan"
+                      name="name"
                       onChange={inputChangeHandler}
                       placeholder="Enter Your Name"
                       required
@@ -918,12 +954,30 @@ if(
             </div>
           </CAccordionBody>
         </CAccordionItem>
+
+
+
+
         <CAccordionItem itemKey={4}>
           <CAccordionHeader>Emergency Contact Information</CAccordionHeader>
           <CAccordionBody>
             <div className="container">
               <div className="bg-light">
                 <div className="row ">
+
+                <div className=" col-sm-6">
+                    <label className="form-label">Employee Name:</label>
+                    <br />
+                    <input
+                      value={data.employeeName}
+                      type="text"
+                      className="form-control"
+                      id="formGroupExampleInput"
+                      name="employeeName"
+                      onChange={inputChangeHandler}
+                      placeholder="Enter Name"
+                    />
+                  </div>
                   <div className=" col-sm-6">
                     <label className="form-label">Contact Name:</label>
                     <br />
