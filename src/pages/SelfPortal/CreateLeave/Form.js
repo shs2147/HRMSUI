@@ -87,6 +87,7 @@ fetchData();
             onChange={handleInput}
             name="selectEmployee"
           >
+            <option>select Employee</option>
             {show.map(e=>(<option valueType={e.employeeName}>{e.employeeName}</option>))}
             {/* {employee.map((option) => (
               <option
@@ -113,6 +114,7 @@ fetchData();
             name="leaveApprover"
             onChange={handleInput}
           >
+            <option>select Approver</option>
             {show.map(e=>(<option valueType={e.employeeName}>{e.employeeName}</option>))}
             {/* {approver.map((option) => (
               <option
@@ -225,9 +227,7 @@ fetchData();
         <button onClick={submitHandler} className="btn btn-outline-primary px-5 btn-lg mb-2 mx-2">
           Submit
         </button>
-        <button className="btn btn-outline-danger px-5 btn-lg mb-2">
-          Back
-        </button>
+        
       </div>
     </form>
   );

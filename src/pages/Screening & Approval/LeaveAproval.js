@@ -39,7 +39,7 @@ const LeaveAproval = () => {
             },
             {
               title: "Leave Type",
-              field: "raesonForLeave",
+              field: "leaveType",
             },
             {
               title: "Start Date",

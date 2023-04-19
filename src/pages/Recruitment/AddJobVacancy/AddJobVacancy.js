@@ -118,7 +118,7 @@ useEffect(()=>
             <input value={data.jobDescription} type="text" className="form-control" id="formGroupExampleInput" name="jobDescription" onChange={inputChangeHandler}/>
           </div>
         </div>
-        <div>
+        {/* <div>
           <label class="form-label">Active:</label><br />
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="active" id="inlineRadio1" value="1" onChange={(e)=> setActive(e.target.value)}/>
@@ -128,7 +128,7 @@ useEffect(()=>
             <input class="form-check-input" type="radio" name="active" id="inlineRadio2" value="0" onChange={(e)=> setActive(e.target.value)} />
             <label class="form-check-label" htmlFor="inlineRadio2">No</label>
           </div>
-        </div>
+        </div> */}
         <div> 
           <button onClick={submitHandler} className="btn btn-primary mt-4">Save</button>
           </div>

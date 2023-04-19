@@ -68,17 +68,16 @@ return <>
 <div className="col-sm-4 mt-2">
        <label for="cars" id='label'>Status</label>
      <br/>  
- <select value={data.selectEmployee} class="form-select" aria-label="Default select example" name="selectEmployee" onChange={inputChangeHandler}>
+ <select value={data.status} class="form-select" aria-label="Default select example" name="status" onChange={inputChangeHandler}>
   <option selected>select</option>
   {/* {show.map(e=>(<option valueType={e.employeeName}>{e.employeeName}</option>))} */}
   <option value="present">Present</option>
   <option value="absent">Absent</option>
-  <option value="absent">Work From Home</option>
-  <option value="absent">Un-Paid Leave</option>
-  <option value="absent">Weekly Off</option>
-  <option value="absent">Optional Holiday</option>
-  <option value="absent">Leave</option>
-  <option value="absent">Holiday</option>
+  <option value="WFH">Work From Home</option>
+  <option value="un paid">Un-Paid Leave</option>
+  <option value="optional">Optional Holiday</option>
+  <option value="leave">Leave</option>
+  <option value="holiday">Holiday</option>
 </select>
 </div>
 

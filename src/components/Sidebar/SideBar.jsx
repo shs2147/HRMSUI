@@ -194,11 +194,11 @@ const routes = [
         icon: <AiOutlineCaretRight />,
       },
 
-      {
-        path: "/Recruitment/FixinInterviewOnline",
-        name: "Fixing Interview Online",
-        icon: <AiOutlineCaretRight />,
-      },
+      // {
+      //   path: "/Recruitment/FixinInterviewOnline",
+      //   name: "Fixing Interview Online",
+      //   icon: <AiOutlineCaretRight />,
+      // },
       // {
       //   path: "/Recruitment/OnlineApplication",
       //   name: "Online Application",
@@ -275,16 +275,16 @@ const routes = [
         name: "Monthwise Absent Report",
         icon: <AiOutlineCaretRight />,
       },
-      {
-        path: "/attendance/MonthwiseAttdReport",
-        name: "Monthwise Attd Report",
-        icon: <AiOutlineCaretRight />,
-      },
-      {
-        path: "/attendance/LeaveReport",
-        name: "Leave Report",
-        icon: <AiOutlineCaretRight />,
-      },
+      // {
+      //   path: "/attendance/MonthwiseAttdReport",
+      //   name: "Monthwise Attd Report",
+      //   icon: <AiOutlineCaretRight />,
+      // },
+      // {
+      //   path: "/attendance/LeaveReport",
+      //   name: "Leave Report",
+      //   icon: <AiOutlineCaretRight />,
+      // },
     ],
   },
   {
