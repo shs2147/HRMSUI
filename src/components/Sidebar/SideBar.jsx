@@ -118,36 +118,36 @@ const routes = [
         name: "SalarySetup",
         icon: <AiOutlineCaretRight />,
       },
-      {
-        path: "/payroll/PayRoll",
-        name: "PayRoll",
-        icon: <AiOutlineCaretRight />,
-      },
-      {
-        path: "/payroll/PayrollItem",
-        name: "PayrollItem",
-        icon: <AiOutlineCaretRight />,
-      },
-      {
-        path: "/allowance/Allowance",
-        name: "Allowance",
-        icon: <AiOutlineCaretRight />,
-      },
-      {
-        path: "/employeeallowance/EmployeeAllowance",
-        name: "EmployeeAllowance",
-        icon: <AiOutlineCaretRight />,
-      },
-      {
-        path: "/deduction/deduction",
-        name: "Deduction",
-        icon: <AiOutlineCaretRight />,
-      },
-      {
-        path: "/employeededuction/employeededuction",
-        name: "EmployeeDeduction",
-        icon: <AiOutlineCaretRight />,
-      },
+      // {
+      //   path: "/payroll/PayRoll",
+      //   name: "PayRoll",
+      //   icon: <AiOutlineCaretRight />,
+      // },
+      // {
+      //   path: "/payroll/PayrollItem",
+      //   name: "PayrollItem",
+      //   icon: <AiOutlineCaretRight />,
+      // },
+      // {
+      //   path: "/allowance/Allowance",
+      //   name: "Allowance",
+      //   icon: <AiOutlineCaretRight />,
+      // },
+      // {
+      //   path: "/employeeallowance/EmployeeAllowance",
+      //   name: "EmployeeAllowance",
+      //   icon: <AiOutlineCaretRight />,
+      // },
+      // {
+      //   path: "/deduction/deduction",
+      //   name: "Deduction",
+      //   icon: <AiOutlineCaretRight />,
+      // },
+      // {
+      //   path: "/employeededuction/employeededuction",
+      //   name: "EmployeeDeduction",
+      //   icon: <AiOutlineCaretRight />,
+      // },
     ],
   },
 

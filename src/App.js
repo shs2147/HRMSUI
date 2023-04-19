@@ -12,7 +12,7 @@ import {
 import Dashboard from "./pages/Dashboard";
 import Users from "./pages/Users";
 import Saved from "./pages/Saved";
-
+import Protected from "./Protected"
 import AddEmployee from "./pages/Menu Master/AddEmployee/AddEmployee";
 // import EmployeeSalarySetup from "./pages/Payroll/EmployeeSalarySetup/EmployeeSalarySetup";
 import SalarySetup from "./pages/Payroll/SalarySetup/SalarySetup";
@@ -81,12 +81,24 @@ function App() {
  
   useEffect(() => {
     if (token2) {
-      setLogged(false);
-      navigate("/Dashboard");
+      // navigate("/Dashboard");
     } else {
       navigate("/")
     }
   }, [token, logged]);
+
+  // const data1 = sessionStorage.getItem('token');
+
+  // Parse the retrieved data into a JavaScript object
+  const parsedData = JSON.parse(token2);
+  localStorage.setItem('setLogged',true)
+
+  // Set the parsed data to Local Storage
+
+  localStorage.setItem('token2', JSON.stringify(parsedData));
+
+
+  // const setLogged=true;
 
   return (
     
@@ -101,9 +113,13 @@ function App() {
         <SideBar>
           <Routes>
            
-            <Route
+            {/* <Route
               path="/Dashboard"
               element={<Dashboard setLogged={setLogged} />}
+            /> */}
+            <Route 
+              path={"/Dashboard"}
+              element={<Protected Component={Dashboard} setLogged={setLogged}/> }
             />
             <Route path="/SubPages/AddEmployees" element={<AddEmployees />} />
             <Route path="/menuMaster" element={<Users />} />
@@ -111,6 +127,7 @@ function App() {
               path="/menuMaster/EmployeeMaster"
               element={<EmployeeMaster />}
             />
+            
             <Route path="/menuMaster/AddEmployee" element={<AddEmployee />} />
             <Route
               path="/menuMaster/DepartmentMaster"
@@ -150,18 +167,18 @@ function App() {
             <Route path="/menuMaster/UserMaster" element={<UserMaster />} />
             {/* <Route path="/payroll/EmployeeSalarySetup" element={<EmployeeSalarySetup />} /> */}
             <Route path="/payroll/SalarySetup" element={<SalarySetup />} />
-            <Route path="/payroll/PayRoll" element={<PayRoll />} />
-            <Route path="/payroll/PayrollItem" element={<PayrollItem />} />
-            <Route path="/allowance/Allowance" element={<Allowances />} />
-            <Route path="/deduction/Deduction" element={<Deduction />} />
-            <Route
+            {/* <Route path="/payroll/PayRoll" element={<PayRoll />} /> */}
+            {/* <Route path="/payroll/PayrollItem" element={<PayrollItem />} /> */}
+            {/* <Route path="/allowance/Allowance" element={<Allowances />} /> */}
+            {/* <Route path="/deduction/Deduction" element={<Deduction />} /> */}
+            {/* <Route
               path="/employeeallowance/EmployeeAllowance"
               element={<EmployeeAllowance />}
-            />
-            <Route
+            /> */}
+            {/* <Route
               path="/employeededuction/EmployeeDeduction"
               element={<EmployeeDeduction />}
-            />
+            /> */}
             <Route
               path="/organisationStructure/AddHoliday"
               element={<AddHoliday />}
