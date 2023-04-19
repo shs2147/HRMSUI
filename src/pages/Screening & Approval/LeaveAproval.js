@@ -1,12 +1,75 @@
 import React from 'react'
+import MaterialTable from "@material-table/core";
+import { useState,useEffect } from "react";
 
 const LeaveAproval = () => {
+
+  const[leave,setLeave]=useState([])
+
+  const options = { method: "GET" };
+  const fetchData=()=>{
+    fetch("http://localhost:8080/CreateLeaveRequest/get", options)
+    .then((response) => response.json())
+    .then((response) => setLeave(response))
+    .catch((err) => console.error(err));
+  }
+  
+  useEffect(()=>{
+    fetchData();
+  },[])
+
   return (
     <>
     <div className="container">
       <h4>Leave Aproval</h4>    
       <hr />
-      <table style={{width:'75vw'}} className='table'>
+      <MaterialTable
+        title="Department Record"
+        data={leave}
+       
+          columns={[
+            {
+              title: "Employee Name",
+              field: "selectEmployee",
+            },
+
+            {
+              title: "Leave Approver",
+              field: "leaveApprover",
+            },
+            {
+              title: "Leave Type",
+              field: "raesonForLeave",
+            },
+            {
+              title: "Start Date",
+              field: "startDate",
+            },
+            {
+              title: "End Date",
+              field: "endDate",
+            },
+            {
+              title: "Reason",
+              field: "reasonForLeave",
+            },
+            {
+              title: "No. Of Days",
+              field: "days",
+            },
+
+          
+            // {
+            //   title: "Actions",
+            //   field: "actions",
+            //   render: (rowData) => (
+            //     // <CustomButton rowData={rowData} onDelete={handleDelete} />
+            //     <Button onClick={() => handleDelete(rowData.id)}>Delete</Button>
+            //   ),
+            // },
+          ]}
+        />
+      {/* <table style={{width:'75vw'}} className='table'>
     <caption>Showing Result 1 To 1 of 1</caption>
     <thead>
       <tr>
@@ -35,7 +98,7 @@ const LeaveAproval = () => {
       
       
     </tbody>
-  </table>
+  </table> */}
     </div>
     </>
   )
