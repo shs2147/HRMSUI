@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import swal from 'sweetalert';
 
   const AddAttendance = () => {
     const [data,setData]=useState({
@@ -36,7 +37,10 @@ import { useEffect, useState } from "react";
             headers:{"content-Type": "application/json", "Accept": "application/json"},
             body:JSON.stringify(data)
           }).then(()=>{
-            console.log("Attendance are added")}).catch(err=>console.log(err))
+            swal("Success", "Data Added Successfully", "success");
+            console.log("Attendance are added")})
+            
+            .catch(err=>console.log(err))
 
    }
 return <>

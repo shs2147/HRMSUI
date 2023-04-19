@@ -74,21 +74,21 @@ const routes = [
         name: "Create Leave Request",
         icon: <AiOutlineCaretRight />,
       },
-      {
-        path: "/selfPortal/MonthlyPerformance",
-        name: "Monthly Performance",
-        icon: <AiOutlineCaretRight />,
-      },
-      {
-        path: "/selfPortal/RaiseGrievance",
-        name: "Raise Grievances",
-        icon: <AiOutlineCaretRight />,
-      },
-      {
-        path: "/selfPortal/SelfPortal",
-        name: "Travel Overview",
-        icon: <AiOutlineCaretRight />,
-      },
+      // {
+      //   path: "/selfPortal/MonthlyPerformance",
+      //   name: "Monthly Performance",
+      //   icon: <AiOutlineCaretRight />,
+      // },
+      // {
+      //   path: "/selfPortal/RaiseGrievance",
+      //   name: "Raise Grievances",
+      //   icon: <AiOutlineCaretRight />,
+      // },
+      // {
+      //   path: "/selfPortal/SelfPortal",
+      //   name: "Travel Overview",
+      //   icon: <AiOutlineCaretRight />,
+      // },
     ],
   },
   {
@@ -228,23 +228,23 @@ const routes = [
       },
     ],
   },
-  {
-    path: "/advanceOrLoan",
-    name: "Advance or Loan",
-    icon: <BiAlignLeft />,
-    subRoutes: [
-      {
-        path: "/advanceOrLoan/LoanMaster",
-        name: "Loan Master",
-        icon: <AiOutlineCaretRight />,
-      },
-      {
-        path: "/advanceOrLoan/LoanApplication",
-        name: "Loan Application",
-        icon: <AiOutlineCaretRight />,
-      },
-    ],
-  },
+  // {
+  //   path: "/advanceOrLoan",
+  //   name: "Advance or Loan",
+  //   icon: <BiAlignLeft />,
+  //   subRoutes: [
+  //     {
+  //       path: "/advanceOrLoan/LoanMaster",
+  //       name: "Loan Master",
+  //       icon: <AiOutlineCaretRight />,
+  //     },
+  //     {
+  //       path: "/advanceOrLoan/LoanApplication",
+  //       name: "Loan Application",
+  //       icon: <AiOutlineCaretRight />,
+  //     },
+  //   ],
+  // },
   {
     path: "/attendance",
     name: "Attendance",
