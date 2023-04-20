@@ -246,8 +246,6 @@ function print(){
 }
 
 
-
-
 // console.log(data,"data")
 
   return (
@@ -255,7 +253,7 @@ function print(){
 {
   pdf?
 
-  <div className="pdfMainContainer">
+  <div className="pdfMainContainer" >
   <div className="innerPdf">
   <table border="2">
 <tr height="100px" style={{backgroundColor:'#747370',color:'orange', textAlign:'center',fontSize:'34px', fontWeight:'600'}}>
@@ -343,17 +341,18 @@ function print(){
 {/* will use for calculation */}
 <tr>
 <td>Basic</td>
-<td>{basicSalary}</td>
+<td>{basicSalary.toFixed(2)}</td>
 
 <td>provident fund</td>
-<td>{basicSalary-(basicSalary-(0.24*basicSalary))}</td>
+<td>{(basicSalary-(basicSalary-(0.24*basicSalary))).toFixed(2)}</td>
 </tr>
 <tr>
 <td>House Rent Allowance</td>
 <td>{houserent}</td>
 
 <td>LOF</td>
-<td>{basicSalary-(basicSalary-(0.01*basicSalary))}</td>
+{/* <td>{(basicSalary-(((basicSalary-((0.01*basicSalary).toFixed(2)))))).toFixed(2)}</td> */}
+<td>{(basicSalary-(basicSalary-(0.01*basicSalary))).toFixed(2)}</td>
 </tr>
 <tr>
 <td>Incentive</td>
@@ -384,15 +383,15 @@ function print(){
 </tr> */}
 <tr>
 <th>Gross Earnings</th>
-<td>{basicSalary-(-incentive-houserent-conveyance-specialallowance-shiftallowance-bonus)}</td>
+<td>{(basicSalary-(-incentive-houserent-conveyance-specialallowance-shiftallowance-bonus)).toFixed(2)}</td>
 <th >Gross Deductions</th>
-<td>{(basicSalary-(-incometax)-(basicSalary-(0.24*basicSalary))+basicSalary-(basicSalary-(0.01*basicSalary)))}</td>
+<td>{(basicSalary-(-incometax)-(basicSalary-(0.24*basicSalary))+basicSalary-(basicSalary-(0.01*basicSalary))).toFixed(2)}</td>
 <td>{}</td>
 </tr>
 <tr>
 <td></td>
 <td><strong>NET PAY </strong></td>
-<td>{(basicSalary-(-incentive-houserent-conveyance-specialallowance-shiftallowance-bonus))-(basicSalary-(basicSalary-(0.24*basicSalary))+basicSalary-(basicSalary-(0.01*basicSalary)))}</td>
+<td>{((basicSalary-(-incentive-houserent-conveyance-specialallowance-shiftallowance-bonus))-(basicSalary-(basicSalary-(0.24*basicSalary))+basicSalary-(basicSalary-(0.01*basicSalary)))).toFixed(2)}</td>
 
 <td></td>
 </tr>
@@ -400,7 +399,7 @@ function print(){
   </div>
   <div className="mt-5">
 	<button className='btn btn-primary me-2' onClick={print}>Print</button>
-	<button className='btn btn-success me-2' onClick={pdfGenerator}>Download PDF</button>
+	{/* <button className='btn btn-success me-2' onClick={pdfGenerator}>Download PDF</button> */}
   <button className='btn btn-danger ms-2' onClick={closePdf}>Close</button>
 	</div>
 </div>
