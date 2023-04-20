@@ -9,7 +9,7 @@ const [selectedId,setSelectedId]=useState([]);
 const [accountNumber,setAccountNumber]=useState([]);
 const [bankName,setBankName]=useState([]);
 const [fnclYear,setFnclYear]=useState([]);
-const [fnclMonth,setFnclMonth]=useState([]);
+const [pan,setPan]=useState([]);
 const [bankBranch,setBankBranch]=useState([]);
 const [joinDate,setJoinDate]=useState([]);
 const [workType,setWorkType]=useState([]);
@@ -29,6 +29,7 @@ const [shiftallowance,setShiftallowance]=useState([]);
 const [conveyance,setConveyance]=useState([]);
 const [specialallowance,setSpecialallowance]=useState([]);
 const [houserent,setHouserent]=useState([]);
+const [phonebill,setPhonebill]=useState([]);
 const [bonus,setBonus]=useState([]);
 const [disabled,setDisabled]=useState(false);
 const [pdf, setPdf]=useState(false)
@@ -68,8 +69,11 @@ const inputChangeHandler = (e) => {
     if(e.target.name==="houserent"){
       setHouserent(e.target.value)
     }
-    if(e.target.name === "fnclMonth"){
-      setFnclMonth(e.target.value);
+    if(e.target.name==="phonebill"){
+      setPhonebill(e.target.value)
+    }
+    if(e.target.name === "panNumber"){
+      setPan(e.target.value);
     }
     if (e.target.name==="incentive"){
       setIncentive(e.target.value);
@@ -214,6 +218,7 @@ useEffect(()=>{
      const myData = show?.filter((item)=>item.id == selectedId )
    console.log("my emp",myData[0]?.name)
    setEmpName(myData[0]?.name)
+   setPan(myData[0]?.basicEmployee1.panNumber)
    setAccountNumber(myData[0]?.bankAccountNo)
    setBankName(myData[0]?.bankName)
    setBankBranch(myData[0]?.bankBranch)
@@ -229,6 +234,7 @@ useEffect(()=>{
    setReporting(myData[0]?.basicEmployee1.reportingTo)
    setBasicSalary(myData[0]?.basicEmployee1.basicSalary)
    setPfnumber(myData[0]?.basicEmployee1.pfnumber)
+   
    
 },[selectedId])
 
@@ -269,7 +275,7 @@ function print(){
 {/* <!-----2 row---> */}
 <tr>
 <th>Bank Name</th>
-<td>{bankName}</td>
+<td>{bankName}</td> 
 <th>Bank A/c No.</th>
 <td>{accountNumber}</td>
 </tr>
@@ -298,8 +304,9 @@ function print(){
 <tr>
 <th>Financial Year</th>
 <td>{fnclYear}</td>
-<th>Financial Month</th>
-<td>{fnclMonth}</td>
+
+<th>Pan</th>
+<td>{pan}</td>
 </tr>
 {/* <!------7 row----> */}
 <tr>
@@ -312,14 +319,15 @@ function print(){
 <tr>
 <th>Date of Joining</th>
 <td>{joinDate}</td>
-<th>Work Type</th>
+
+<th>LOP</th>
 <td>{workType}</td>
 </tr>
 {/* <!------9 row----> */}
 <tr>
 <th>Company</th>
 <td>{company}</td>
-<th>Reporting To</th>
+<th>Working days</th>
 <td>{reporting}</td>
 </tr>
 {/* <tr>
@@ -350,40 +358,31 @@ function print(){
 <td>House Rent Allowance</td>
 <td>{houserent}</td>
 
-<td>LOF</td>
+
+
+<td>LUF</td>
 {/* <td>{(basicSalary-(((basicSalary-((0.01*basicSalary).toFixed(2)))))).toFixed(2)}</td> */}
 <td>{(basicSalary-(basicSalary-(0.01*basicSalary))).toFixed(2)}</td>
+
 </tr>
 <tr>
-<td>Incentive</td>
-<td>{incentive}</td>
-
+<td>Conveyance Allowance</td>
+<td>{conveyance}</td>
+<tr>
 <td>Income tax</td>
 <td>{incometax}</td>
 </tr>
-<tr>
-<td>conveyance</td>
-<td>{conveyance}</td>
 </tr>
 <tr>
-<td>Special allowance</td>
+<td>Other allowance</td>
 <td>{specialallowance}</td>
+
+
 </tr>
-<tr>
-<td>shift Allowance</td>
-<td>{shiftallowance}</td>
-</tr>
-<tr>
-<td>bonus</td>
-<td>{bonus}</td>
-</tr>
-{/* <tr>
-<td>medical Allowance</td>
-<td>00</td>
-</tr> */}
+
 <tr>
 <th>Gross Earnings</th>
-<td>{(basicSalary-(-incentive-houserent-conveyance-specialallowance-shiftallowance-bonus)).toFixed(2)}</td>
+<td>{(basicSalary-(-incentive-houserent-conveyance-specialallowance-shiftallowance-bonus-phonebill)).toFixed(2)}</td>
 <th >Gross Deductions</th>
 <td>{(basicSalary-(-incometax)-(basicSalary-(0.24*basicSalary))+basicSalary-(basicSalary-(0.01*basicSalary))).toFixed(2)}</td>
 <td>{}</td>
@@ -391,7 +390,7 @@ function print(){
 <tr>
 <td></td>
 <td><strong>NET PAY </strong></td>
-<td>{((basicSalary-(-incentive-houserent-conveyance-specialallowance-shiftallowance-bonus))-(basicSalary-(basicSalary-(0.24*basicSalary))+basicSalary-(basicSalary-(0.01*basicSalary)))).toFixed(2)}</td>
+<td>{((basicSalary-(-incentive-houserent-conveyance-specialallowance-shiftallowance-phonebill-bonus))-(basicSalary-(basicSalary-(0.24*basicSalary))+basicSalary-(basicSalary-(0.01*basicSalary)-(incometax)))).toFixed(2)}</td>
 
 <td></td>
 </tr>
@@ -408,7 +407,9 @@ function print(){
 <div>
 <center className='mt-2'><h1><b>Employee Salary</b></h1></center>
 <fieldset>
+
   <legend>Employee Salary Slip</legend> <br />
+  
 
 <div className="labelContainer">
   <div className="all">
@@ -416,7 +417,7 @@ function print(){
   </div>
 
   <div className="all">
-    <label>Financial Year:</label>
+    <label>Paid days:</label>
   </div>
 
   <div className="all">
@@ -444,7 +445,7 @@ function print(){
   </div>
 
   <div className="all">
-    <label>Work Type:</label>
+    <label>LOP:</label>
   </div>
 
   <div className="all">
@@ -462,6 +463,7 @@ function print(){
   <div className='all'>
     <label>House Rent</label>
   </div>
+  
 
   <div className="all"></div>
   <div className="all"></div>
@@ -555,7 +557,7 @@ function print(){
   <div className="all">
     <input type="text" value={houserent} name='houserent'onChange={inputChangeHandler} placeholder='Enter field special...' />
   </div>
-
+  
   <div className="all"></div>
   <div className="all"></div>
 
@@ -568,7 +570,7 @@ function print(){
   </div>
 
   <div className="all">
-    <label>Financial Month:</label>
+    <label>Pan Number:</label>
   </div>
 
   <div className="all">
@@ -591,7 +593,7 @@ function print(){
     <label>Designation:</label>
   </div>
   <div className="all">
-    <label>Reporting to:</label>
+    <label>Working days:</label>
   </div>
 
   <div className="all">
@@ -609,6 +611,11 @@ function print(){
   <div className="all">
     <label>Bonus:</label>
   </div>
+  <div className='all'>
+    <label>
+      Phone Bills
+    </label>
+  </div>
 
   <div className="all"></div>
   <div className="all"></div>
@@ -624,7 +631,15 @@ function print(){
     </select>
   </div>
 
-<div className="all">
+  <div className="all">
+<select disabled={disabled} value={pan} name="pan" onChange={inputChangeHandler}>
+{/* <option selected disabled>pan</option> */}
+    {show.map(e=>(<option valueType={e.basicEmployee1.panNumber}>{e.basicEmployee1.panNumber}</option>))}
+    </select>
+  </div>
+
+
+{/* <div className="all">
 <select  value={fnclMonth} name='fnclMonth' onChange={inputChangeHandler}>
     <option selected>Select Month</option>
       <option value="Jan">January</option>
@@ -640,7 +655,7 @@ function print(){
             <option value="Nov">November</option>
                <option value="Dec">December</option>
                   </select>
-  </div>
+  </div> */}
 
   <div className="all">
     <select disabled={disabled} value={accountNumber} name="accountNumber"  onChange={inputChangeHandler} >
@@ -702,6 +717,9 @@ function print(){
 
   <div className="all">
   <input type="text"  value={bonus} name='bonus' onChange={inputChangeHandler} placeholder='Enter field total'/>
+  </div>
+  <div className="all">
+    <input type="text" value={phonebill} name='phonebill'onChange={inputChangeHandler} placeholder='Enter bill detail...' />
   </div>
 
   {/* <div className="all">
