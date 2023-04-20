@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import Validation from '../../../validation/Validation'
 import { Button, Container, Form, Row,Col } from 'react-bootstrap';
+import swal from 'sweetalert';
 
 const formData = {
   userName: "",
@@ -78,7 +79,7 @@ if(
     else {
       
       setShowError(false)
-      alert("Your data has been saved successfully!!")
+      // alert("Your data has been saved successfully!!")
     
       setData({});
       console.log(JSON.stringify(data));
@@ -91,6 +92,7 @@ if(
         body: JSON.stringify(data),
       })
         .then(() => {
+          swal("Success", "User Added Successfully", "success");
           console.log("User are Added");
         })
         .catch((err) => console.log(err));
@@ -145,17 +147,18 @@ if(
       <Form.Label>Department Name : </Form.Label>
       <select
         
-          
-                valueType={data.department}
-                class="form-select"
-                aria-label="Default select example"
-                name="departmentName"
-                onChange={handleChange}
-                required
-                //isInvalid={showError && !Validation.maximum(data?.departmentName)}
-              >
+        
+        valueType={data.department}
+        class="form-select"
+        aria-label="Default select example"
+        name="departmentName"
+        onChange={handleChange}
+        required
+        //isInvalid={showError && !Validation.maximum(data?.departmentName)}
+        >
                 
                 
+                <option>Select Department</option>
                 <select selected disabled>
                   Select Department
                 </select>
@@ -206,7 +209,7 @@ if(
                 </option>
                 <option valueType="react JS">ADMIN</option>
                 <option valueType="java">EMPLOYEE</option>
-                <option valueType="java">User</option>
+                {/* <option valueType="java">User</option> */}
               </select>
               </Form.Group>
             
