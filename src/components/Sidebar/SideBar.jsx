@@ -26,6 +26,11 @@ const routes = [
         icon: <AiOutlineCaretRight />,
       },
       {
+        path: "/menuMaster/UserMasterData",
+        name: "User Master Data",
+        icon: <AiOutlineCaretRight />,
+      },
+      {
         path: "/menuMaster/AddEmployee",
         name: "Add Employee",
         icon: <AiOutlineCaretRight />,

@@ -25,9 +25,11 @@ const DesignationMaster = () => {
       body: JSON.stringify(data),
     })
       .then(() => {
+        
         console.log("Designation Name Added");
         // swal("Data Added Successfully");
         swal("Success", "Designation Added Successfully", "success");
+        window.location.reload(true)
       })
       .catch((err) => console.log(err));
   };
@@ -37,6 +39,7 @@ const DesignationMaster = () => {
   method:'DELETE'
     }).then((result)=>{
       swal("Success", "Designation Deleted Successfully", "success");
+      window.location.reload(true)
       result.json().then((response)=>{
         console.warn(response)
       })

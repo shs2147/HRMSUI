@@ -69,6 +69,7 @@ import SignUpForm from "./pages/Signin/SignUpForm";
 import Event from "./pages/Training/Event";
 
 import { useEffect, useState } from "react";
+import UserMasterData from "./pages/Menu Master/User Master Data/UserMasterData";
 
 
 function App() {
@@ -126,6 +127,10 @@ function App() {
             <Route
               path="/menuMaster/EmployeeMaster"
               element={<EmployeeMaster />}
+            />
+            <Route
+              path="/menuMaster/UserMasterData"
+              element={<UserMasterData />}
             />
             
             <Route path="/menuMaster/AddEmployee" element={<AddEmployee />} />

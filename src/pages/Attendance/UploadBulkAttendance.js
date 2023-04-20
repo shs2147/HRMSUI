@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import swal from 'sweetalert';
 
 function App() {
   const [file, setFile] = useState(null);
@@ -38,9 +39,11 @@ function App() {
       formData.append("file",file)
       const API_URL ="http://localhost:8080/attendance/upload"
       await axios.post(API_URL,formData);
+      swal("Success", "Added Successfully", "success");
       
     } catch (error) {
       alert(error.message)
+      
     }
      };
 

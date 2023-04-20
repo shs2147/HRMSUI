@@ -19,9 +19,11 @@ const DepartmentMaster = () => {
       body: JSON.stringify(data),
     })
       .then(() => {
+        
         console.log("department Added");
         // swal("Hello world!");
         swal("Success", "Department Added Successfully", "success");
+        window.location.reload(true)
 
       })
       .catch((err) => console.log(err));
@@ -46,6 +48,7 @@ const DepartmentMaster = () => {
   method:'DELETE'
     }).then((result)=>{
       swal("Success", "Department Deleted Successfully", "success");
+      window.location.reload(true)
       result.json().then((response)=>{
         console.warn(response)
       })
@@ -53,23 +56,24 @@ const DepartmentMaster = () => {
   }
 
   const options = { method: "GET" };
-  // const fetchData=()=>{
-  //   fetch("http://localhost:8080/department/getall", options)
-  //   .then((response) => response.json())
-  //   .then((response) => setTicketDetails(response))
-  //   .catch((err) => console.error(err));
-  // }
-  
-  // useEffect(()=>{
-  //   fetchData();
-  // },[])
-
- 
-
-  fetch("http://localhost:8080/department/getall", options)
+  const fetchData=()=>{
+    fetch("http://localhost:8080/department/getall", options)
     .then((response) => response.json())
     .then((response) => setTicketDetails(response))
     .catch((err) => console.error(err));
+  }
+  
+  useEffect(()=>{
+    fetchData();
+  },[])
+  
+
+ 
+
+  // fetch("http://localhost:8080/department/getall", options)
+  //   .then((response) => response.json())
+  //   .then((response) => setTicketDetails(response))
+  //   .catch((err) => console.error(err));
 
   return (
     <>

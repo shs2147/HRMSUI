@@ -1,4 +1,5 @@
 import { useState ,useEffect} from "react";
+import swal from 'sweetalert';
 
   const OvertimeReport = () => {
   const [data,setData]=useState({
@@ -32,6 +33,7 @@ useEffect(()=>{
     headers:{"content-Type": "application/json", "Accept": "application/json"},
     body:JSON.stringify(data)
   }).then(()=>{
+    swal("Success", "OverTime Added Successfully", "success");
     console.log("OverTime are added")})
   
  }
