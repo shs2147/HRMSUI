@@ -77,6 +77,7 @@ const EmploymentTypeMaster = () => {
                 id="formGroupExampleInput"
                 name="employmentType"
                 onChange={inputChangeHandler}
+                placeholder="Enter Employement Type"
               />
             </div>
 
@@ -92,6 +93,7 @@ const EmploymentTypeMaster = () => {
                 id="formGroupExampleInput"
                 name="description"
                 onChange={inputChangeHandler}
+                placeholder="Enter Description here"
               />
             </div>
           </div>

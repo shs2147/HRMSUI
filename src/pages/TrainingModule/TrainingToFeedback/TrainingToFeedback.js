@@ -61,7 +61,7 @@ useEffect(()=>
 
   return (
     <div className="container2">
-      <h2>Traning Master To Feedback</h2>
+      <h2>Feedback Of Trainee</h2>
       <hr />
       <div className="bg-light">
         <div className="row ">
