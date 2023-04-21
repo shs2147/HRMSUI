@@ -8,7 +8,7 @@ const [empName,setEmpName]=useState([]);
 const [selectedId,setSelectedId]=useState([]);
 const [accountNumber,setAccountNumber]=useState([]);
 const [bankName,setBankName]=useState([]);
-const [fnclYear,setFnclYear]=useState([]);
+const [lOP,setLop]=useState([]);
 const [pan,setPan]=useState([]);
 const [bankBranch,setBankBranch]=useState([]);
 const [joinDate,setJoinDate]=useState([]);
@@ -20,20 +20,23 @@ const [code,setCode]=useState([]);
 const [company,setCompany]=useState([]);
 const [mobile,setMobile]=useState([]);
 const [designation,setDesignation]=useState([]);
-const [basicSalary,setBasicSalary]=useState([]);
+const [ctc,setCtc]=useState([]);
 const [pfnumber,setPfnumber]=useState([]);
 const [reporting,setReporting]=useState([]);
-const [incentive,setIncentive]=useState([]);
+// const [incentive,setIncentive]=useState([]);
 const [incometax,setIncometax]=useState([]);
 const [shiftallowance,setShiftallowance]=useState([]);
 const [conveyance,setConveyance]=useState([]);
 const [specialallowance,setSpecialallowance]=useState([]);
-const [houserent,setHouserent]=useState([]);
-const [phonebill,setPhonebill]=useState([]);
+const [paidday,setPaidday]=useState([]);
+const [basicsalary,setBasicsalary]=useState([]);
 const [bonus,setBonus]=useState([]);
 const [disabled,setDisabled]=useState(false);
 const [pdf, setPdf]=useState(false)
 //const [current,setCurrent]=useState([]);
+const[grossSalary,setGrossSalary]=useState([]);
+
+
 
 
 console.log(empName,selectedId,"selectedId")
@@ -60,38 +63,42 @@ const inputChangeHandler = (e) => {
     if(e.target.name === "bankName"){
       setBankName(e.target.value);
     }
-    if(e.target.name === "fnclYear"){
-      setFnclYear(e.target.value);
-    }
+
+
+    // if(e.target.name === "fnclYear"){
+    //   setFnclYear(e.target.value);
+    // }
+
+
     if(e.target.name==="pfnumber"){
       setPfnumber(e.target.value);
     }
-    if(e.target.name==="houserent"){
-      setHouserent(e.target.value)
-    }
-    if(e.target.name==="phonebill"){
-      setPhonebill(e.target.value)
-    }
+    // if(e.target.name==="houserent"){
+    //   setHouserent(e.target.value)
+    // }
+    // if(e.target.name==="basicSalary"){
+    //   setBasicsalary(e.target.value)
+    // }
     if(e.target.name === "panNumber"){
       setPan(e.target.value);
     }
-    if (e.target.name==="incentive"){
-      setIncentive(e.target.value);
-    }
-    if (e.target.name==="bonus"){
-      setBonus(e.target.value);
-    }
-    if (e.target.name==="incometax"){
-      setIncometax(e.target.value);
-    }
-    if (e.target.name==="shiftallowance"){
-      setShiftallowance(e.target.value);
-    }
-    if (e.target.name==="conveyance"){
-      setConveyance(e.target.value);
-    }
-    if (e.target.name==="specialallowance"){
-      setSpecialallowance(e.target.value);
+    // if (e.target.name==="incentive"){
+    //   setIncentive(e.target.value);
+    // }
+    // if (e.target.name==="bonus"){
+    //   setBonus(e.target.value);
+    // }
+    // if (e.target.name==="incometax"){
+    //   setIncometax(e.target.value);
+    // }
+    // if (e.target.name==="shiftallowance"){
+    //   setShiftallowance(e.target.value);
+    // }
+    // if (e.target.name==="conveyance"){
+    //   setConveyance(e.target.value);
+    // }
+    if (e.target.name==="basicSalary"){
+      setBasicsalary(e.target.value);
     }
     if(e.target.name === "bankBranch"){
       setBankBranch(e.target.value);
@@ -126,15 +133,10 @@ const inputChangeHandler = (e) => {
     if(e.target.name === "reporting"){
       setReporting(e.target.value);
     }
-    if (e.target.name==="basicSalary"){
-      setBasicSalary(e.target.value);
+    if (e.target.name==="ctc"){
+      setCtc(e.target.value);
     }
     
-
-    // if(e.target.name === "financialYear"){
-    //   setSelectedId(e.target.value);
-     
-    // }
     newData[e.target.name] = e.target.value;
     setData(newData)
     // console.log(JSON.stringify(newData))
@@ -152,19 +154,6 @@ const submitHandler=(e)=>{
 }
 
 
-// const getCurrentFinancialYear = ()=> {
-//    const fiscalyear = "";
-//   var today = new Date();
-//   if ((today.getMonth() + 1) <= 3) {
-//     fiscalyear = (today.getFullYear() - 1) + "-" + today.getFullYear()
-//   } else {
-//     fiscalyear = today.getFullYear() + "-" + (today.getFullYear() + 1)
-//   }
-//   return fiscalyear
-// }
-// console.log(fiscalyear);
-
-// document.getElementById("spFY").innerHTML=getCurrentFinancialYear();
 const financialYear=()=>{
   function getCurrentFinancialYear() {
      const thisYear = (new Date()).getFullYear();
@@ -175,19 +164,6 @@ const financialYear=()=>{
     console.log(getCurrentFinancialYear());
 }
 
-
-// const fetchData = () =>{
-//   fetch("http://localhost:8080/basic/fetchemployee/{?employeeid}",{
-
-//   })
-//   .then((response) =>{
-//     return response.json();
-//   })
-//   .then((data) =>{
-//     setShow(data)
-//   })
-//   console.log(data)
-// }
 
 const fetchData1 = () =>{
   fetch("http://localhost:8080/bank/getBankInfo",{
@@ -207,12 +183,7 @@ useEffect(()=>
 
 },[])
 
-// useEffect(()=>
-// {
-//   // fetchData();
-//   fetchData();
 
-// },[])
        
 useEffect(()=>{
      const myData = show?.filter((item)=>item.id == selectedId )
@@ -223,7 +194,7 @@ useEffect(()=>{
    setBankName(myData[0]?.bankName)
    setBankBranch(myData[0]?.bankBranch)
    setJoinDate(myData[0]?.basicEmployee1.joiningDate)
-   setWorkType(myData[0]?.basicEmployee1.workType)
+  //  setWorkType(myData[0]?.basicEmployee1.workType)
    setDob(myData[0]?.basicEmployee1.dob)
    setDepartment(myData[0]?.basicEmployee1.selectDepartment)
    setMail(myData[0]?.basicEmployee1.email)
@@ -231,9 +202,11 @@ useEffect(()=>{
    setCompany(myData[0]?.basicEmployee1.whichCompany)
    setMobile(myData[0]?.basicEmployee1.mobile)
    setDesignation(myData[0]?.basicEmployee1.designation)
-   setReporting(myData[0]?.basicEmployee1.reportingTo)
-   setBasicSalary(myData[0]?.basicEmployee1.basicSalary)
+  //  setReporting(myData[0]?.basicEmployee1.reportingTo)
+   setCtc(myData[0]?.basicEmployee1.ctc)
+   setBasicsalary(myData[0]?.basicSalary)
    setPfnumber(myData[0]?.basicEmployee1.pfnumber)
+   setGrossSalary(myData[0]?.grossSalary)
    
    
 },[selectedId])
@@ -276,6 +249,7 @@ function print(){
 <tr>
 <th>Bank Name</th>
 <td>{bankName}</td> 
+
 <th>Bank A/c No.</th>
 <td>{accountNumber}</td>
 </tr>
@@ -302,8 +276,8 @@ function print(){
 </tr>
 {/* <!------6 row----> */}
 <tr>
-<th>Financial Year</th>
-<td>{fnclYear}</td>
+<th>Paid Days</th>
+<td>{paidday}</td>
 
 <th>Pan</th>
 <td>{pan}</td>
@@ -321,18 +295,19 @@ function print(){
 <td>{joinDate}</td>
 
 <th>LOP</th>
-<td>{workType}</td>
+<td>{lOP}</td>
 </tr>
 {/* <!------9 row----> */}
 <tr>
 <th>Company</th>
 <td>{company}</td>
+
 <th>Working days</th>
 <td>{reporting}</td>
 </tr>
 {/* <tr>
-  <th>basicSalary</th>
-  <td>{basicSalary}</td>
+  <th>ctc</th>
+  <td>{ctc}</td>
   </tr> */}
 </table>
 
@@ -349,48 +324,52 @@ function print(){
 {/* will use for calculation */}
 <tr>
 <td>Basic</td>
-<td>{basicSalary.toFixed(2)}</td>
+{/* <td>{((ctc/12)*0.6).toFixed(2)}</td> */}
+<td>{(basicsalary.toFixed(2))} </td>
 
 <td>provident fund</td>
-<td>{(basicSalary-(basicSalary-(0.24*basicSalary))).toFixed(2)}</td>
+<td>{(grossSalary*0.18).toFixed(2)}</td>
 </tr>
 <tr>
 <td>House Rent Allowance</td>
-<td>{houserent}</td>
+{/* <td>{(ctc-(ctc-(ctc*0.4))).toFixed(0)}</td> */}
+<td>{ (basicsalary*0.4).toFixed(2)}</td>
 
 
 
 <td>LUF</td>
-{/* <td>{(basicSalary-(((basicSalary-((0.01*basicSalary).toFixed(2)))))).toFixed(2)}</td> */}
-<td>{(basicSalary-(basicSalary-(0.01*basicSalary))).toFixed(2)}</td>
+{/* <td>{(ctc-(((ctc-((0.01*ctc).toFixed(2)))))).toFixed(2)}</td> */}
+<td>{(grossSalary*0.01).toFixed(2)}</td>
 
 </tr>
 <tr>
 <td>Conveyance Allowance</td>
-<td>{conveyance}</td>
-<tr>
+<td>{((grossSalary-(basicsalary-(-(basicsalary*0.4))))/2).toFixed(2)}</td>
+{/* <tr>
 <td>Income tax</td>
 <td>{incometax}</td>
-</tr>
+</tr> */}
 </tr>
 <tr>
 <td>Other allowance</td>
-<td>{specialallowance}</td>
+<td>{((grossSalary-(basicsalary-(-(basicsalary*0.4))))/2).toFixed(2)}</td>
 
 
 </tr>
 
 <tr>
 <th>Gross Earnings</th>
-<td>{(basicSalary-(-incentive-houserent-conveyance-specialallowance-shiftallowance-bonus-phonebill)).toFixed(2)}</td>
+<td>{(grossSalary.toFixed(2))}</td>
+
+
 <th >Gross Deductions</th>
-<td>{(basicSalary-(-incometax)-(basicSalary-(0.24*basicSalary))+basicSalary-(basicSalary-(0.01*basicSalary))).toFixed(2)}</td>
+<td>{(grossSalary*0.18+(grossSalary*0.01)).toFixed(2)}</td>
 <td>{}</td>
 </tr>
 <tr>
 <td></td>
 <td><strong>NET PAY </strong></td>
-<td>{((basicSalary-(-incentive-houserent-conveyance-specialallowance-shiftallowance-phonebill-bonus))-(basicSalary-(basicSalary-(0.24*basicSalary))+basicSalary-(basicSalary-(0.01*basicSalary)-(incometax)))).toFixed(2)}</td>
+<td>{(grossSalary-(grossSalary*0.18+(grossSalary*0.01))).toFixed(2)}</td>
 
 <td></td>
 </tr>
@@ -408,7 +387,7 @@ function print(){
 <center className='mt-2'><h1><b>Employee Salary</b></h1></center>
 <fieldset>
 
-  <legend>Employee Salary Slip</legend> <br />
+  {/* <legend>Employee Salary Slip</legend> <br /> */}
   
 
 <div className="labelContainer">
@@ -448,11 +427,11 @@ function print(){
     <label>LOP:</label>
   </div>
 
-  <div className="all">
+  {/* <div className="all">
     <label>Incentive:</label>
-  </div>
+  </div> */}
 
-  <div className="all">
+  {/* <div className="all">
     <label>Conveyance:</label>
   </div>
 
@@ -462,7 +441,7 @@ function print(){
 
   <div className='all'>
     <label>House Rent</label>
-  </div>
+  </div> */}
   
 
   <div className="all"></div>
@@ -479,6 +458,12 @@ function print(){
   </div>
 
   <div className="all">
+  <input type="text" value={paidday} name='paidday' onChange={inputChangeHandler} placeholder='Enter field ...' />
+  </div>
+
+
+
+  {/* <div className="all">
   <select value={fnclYear} name='fnclYear' onChange={inputChangeHandler}>
     <option selected>Select Year</option>
     <option>2017</option>
@@ -492,7 +477,7 @@ function print(){
     <option>2025</option>
     <option>2026</option>
   </select>
-  </div>
+  </div> */}
 
   <div className="all">
   <select disabled={disabled} value={bankName} name='bankName' onChange={inputChangeHandler}>
@@ -537,13 +522,13 @@ function print(){
   </div>
 
   <div className="all">
-  <select disabled={disabled} value={workType} name='workType' onChange={inputChangeHandler} >
+  <select disabled={disabled} value={lOP} name='lop' onChange={inputChangeHandler} >
       <option selected disabled>Select Work Type</option>
-      {show.map(e=>(<option valueType={e.basicEmployee1.workType }>{e.basicEmployee1.workType }</option>))}
+      {/* {show.map(e=>(<option valueType={e.basicEmployee1.workType }>{e.basicEmployee1.workType }</option>))} */}
       </select>
   </div>  
 
-  <div className="all">
+  {/* <div className="all">
   <input type="text" value={incentive} name='incentive' onChange={inputChangeHandler} placeholder='Enter field ...' />
   </div>
 
@@ -556,7 +541,7 @@ function print(){
   </div>
   <div className="all">
     <input type="text" value={houserent} name='houserent'onChange={inputChangeHandler} placeholder='Enter field special...' />
-  </div>
+  </div> */}
   
   <div className="all"></div>
   <div className="all"></div>
@@ -600,11 +585,11 @@ function print(){
     <label>Pf Number:</label>
   </div>
 
-  <div className="all">
+  {/* <div className="all">
     <label>Income Tax:</label>
-  </div>
+  </div> */}
 
-  <div className="all">
+  {/* <div className="all">
     <label>Shift Allowance:</label>
   </div>
 
@@ -615,7 +600,7 @@ function print(){
     <label>
       Phone Bills
     </label>
-  </div>
+  </div> */}
 
   <div className="all"></div>
   <div className="all"></div>
@@ -707,20 +692,20 @@ function print(){
   </div>
   
 
-  <div className="all">
+  {/* <div className="all">
   <input type="text" value={incometax} name='incometax' onChange={inputChangeHandler} placeholder="Enter field income" />
-  </div>
+  </div> */}
 
-  <div className="all">
+  {/* <div className="all">
   <input type="text" value={shiftallowance}  name='shiftallowance' onChange={inputChangeHandler} placeholder="Enter shift" />
-  </div>
+  </div> */}
 
-  <div className="all">
+  {/* <div className="all">
   <input type="text"  value={bonus} name='bonus' onChange={inputChangeHandler} placeholder='Enter field total'/>
-  </div>
-  <div className="all">
+  </div> */}
+  {/* <div className="all">
     <input type="text" value={phonebill} name='phonebill'onChange={inputChangeHandler} placeholder='Enter bill detail...' />
-  </div>
+  </div> */}
 
   {/* <div className="all">
     <input type="text" placeholder='Enter field' />

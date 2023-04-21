@@ -391,16 +391,16 @@ const AddEmployee = () => {
                     />
                   </div>
                   <div className=" col-sm-4">
-                    <label className="form-label">Basic Salary:</label>
+                    <label className="form-label">CTC:</label>
                     <br />
                     <input
-                      value={data.basicSalary}
+                      value={data.ctc}
                       type="text"
                       className="form-control"
                       id="formGroupExampleInput"
-                      name="basicSalary"
+                      name="ctc"
                       onChange={inputChangeHandler}
-                      placeholder="Enter salary."
+                      placeholder="Enter your CTC."
              
 
                       required
