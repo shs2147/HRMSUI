@@ -77,6 +77,7 @@ fetch('http://localhost:8080/designation/fetchalldesignation', options)
                 id="formGroupExampleInput"
                 name="designationName"
                 onChange={inputChangeHandler}
+                placeholder="Enter Designation Name"
               />
             </div>
           </div>

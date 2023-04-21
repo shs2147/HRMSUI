@@ -106,6 +106,7 @@ const DepartmentMaster = () => {
                 id="formGroupExampleInput"
                 name="departmentName"
                 onChange={inputChangeHandler}
+                placeholder="Enter Department Name"
               />
             </div>
 
@@ -121,6 +122,7 @@ const DepartmentMaster = () => {
                 id="formGroupExampleInput"
                 name="description"
                 onChange={inputChangeHandler}
+                placeholder="Enter Description Here"
               />
             </div>
           </div>
