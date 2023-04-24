@@ -47,9 +47,9 @@ export default function UserMaster() {
     setShowError(true);
 if(
   !Validation.email(userName)&&
-  !Validation.password(password)&&
-  !Validation.aadharValidate(aadhaarNumber)&&
-  !Validation.panNumber(panNumber)
+  !Validation.password(password)
+  // !Validation.aadharValidate(aadhaarNumber)&&
+  // !Validation.panNumber(panNumber)
 ){
   alert("fill all the details")
 }
@@ -64,17 +64,17 @@ if(
       ){
         alert("fill your password")
       }
-      else if(
-        !Validation.aadharValidate(aadhaarNumber)
-      ){
-        alert("fill aadhar number")
-      }
-      else if(
-        !Validation.panNumber(panNumber)
-      )
-      {
-        alert("fill your pan number")
-      }
+      // else if(
+      //   !Validation.aadharValidate(aadhaarNumber)
+      // ){
+      //   alert("fill aadhar number")
+      // }
+      // else if(
+      //   !Validation.panNumber(panNumber)
+      // )
+      // {
+      //   alert("fill your pan number")
+      // }
    
     else {
       
@@ -92,8 +92,10 @@ if(
         body: JSON.stringify(data),
       })
         .then(() => {
-          swal("Success", "User Added Successfully", "success");
           console.log("User are Added");
+          swal("Success", "User Added Successfully", "success").then(()=>{
+            window.location.reload(true)
+          })
         })
         .catch((err) => console.log(err));
 
@@ -213,7 +215,7 @@ if(
               </select>
               </Form.Group>
             
-          <Form.Group as={Col} sm={4} controlId="validationCustom03" className="mt-2">
+          {/* <Form.Group as={Col} sm={4} controlId="validationCustom03" className="mt-2">
             <Form.Label>Aadhar Number : </Form.Label>
             <Form.Control
               type='text'
@@ -228,9 +230,9 @@ if(
               {!aadhaarNumber ? "aadhar is necessary(12 digits)" : "can't be less than or greater than 12"}
               
             </Form.Control.Feedback>
-          </Form.Group>
+          </Form.Group> */}
         
-          <Form.Group as={Col} sm={4} controlId="validationCustom06" className="mt-2">
+          {/* <Form.Group as={Col} sm={4} controlId="validationCustom06" className="mt-2">
             <Form.Label>Pan Number : </Form.Label>
             <Form.Control
               type='text'
@@ -245,7 +247,8 @@ if(
               {!panNumber ? "pan is necessary(10 digits)" : "can't be less than 10 digit"}
               
             </Form.Control.Feedback>
-          </Form.Group>
+          </Form.Group> */}
+
           <Form.Group as={Col} sm={4} controlId="validationCustom04" className="mt-2">
             <Form.Label>Password : </Form.Label>
             <Form.Control

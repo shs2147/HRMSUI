@@ -22,8 +22,10 @@ const UserMasterData = () => {
     fetch(`http://localhost:8080/usermaster/delete/${id}`,{
   method:'DELETE'
     }).then((result)=>{
-      swal("Success", "UserData Deleted Successfully", "success");
+      swal("Success", "UserData Deleted Successfully", "success").then(()=>{
         window.location.reload(true)
+      })
+        
       result.json().then((response)=>{
         console.warn(response)
       })

@@ -5,29 +5,28 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import swal from 'sweetalert';
 import { Button } from "react-bootstrap";
 
+const reload=()=>window.location.reload();
 const DepartmentMaster = () => {
  
   const submitHandler = (e) => {
     e.preventDefault();
     console.log(data);
     fetch("http://localhost:8080/department/savedepartment", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(data),
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        },
+        body: JSON.stringify(data),
     })
-      .then(() => {
-        
+    .then(() => {
         console.log("department Added");
-        // swal("Hello world!");
-        swal("Success", "Department Added Successfully", "success");
-        window.location.reload(true)
-
-      })
-      .catch((err) => console.log(err));
-  };
+        swal("Success", "Department Added Successfully", "success").then(() => {
+            window.location.reload(true);
+        });
+    })
+    .catch((err) => console.log(err));
+};
 
   const [data, setData] = useState([]);
   const inputChangeHandler = (e) => {
@@ -47,8 +46,10 @@ const DepartmentMaster = () => {
     fetch(`http://localhost:8080/department/delete/${id}`,{
   method:'DELETE'
     }).then((result)=>{
-      swal("Success", "Department Deleted Successfully", "success");
-      window.location.reload(true)
+      swal("Success", "Department Deleted Successfully", "success").then(()=>{
+        window.location.reload(true);
+      });
+      
       result.json().then((response)=>{
         console.warn(response)
       })
@@ -126,7 +127,7 @@ const DepartmentMaster = () => {
               />
             </div>
           </div>
-          <button type="submit" class="btn btn-primary mt-4">
+          <button type="submit" class="btn btn-primary mt-4" >
             Save
           </button>
 
@@ -150,58 +151,11 @@ const DepartmentMaster = () => {
               title: "Actions",
               field: "actions",
               render: (rowData) => (
-                // <CustomButton rowData={rowData} onDelete={handleDelete} />
                 <Button onClick={() => handleDelete(rowData.id)}>Delete</Button>
               ),
             },
           ]}
-          
-      
-          // editable={
-          //   {
-          //     onRowDelete: selectedRow => new Promise((resolve,reject)=>{
-          //       console.log(ticketDetails);
-          //       // console.log("aaaaaa", ticketDetails);
-
-          //       const index =selectedRow.id;
-          //       const deleteUser= (index)=>{
-          //         fetch(`http://localhost:8080/employee/delete/${index}`,{
-          //       method:'DELETE'
-          //         }).then((result)=>{
-          //           result.json().then((response)=>{
-          //             console.warn(response)
-          //           })
-          //         })
-                
-                
-          //       }
-          //       console.log(index);
-          //       const updateRows = [...ticketDetails]
-          //       updateRows.splice(index-1,1)
-          //       setTicketDetails(updateRows);
-          //       console.log(updateRows);
-          //       resolve()
-                
-          //     })
-                
-                
-          //   }
-          // }
-
-          // editable={{
-          //   onRowDelete: (selectedRow) =>
-          //     new Promise((resolve, reject) => {
-          //       const index = selectedRow.id;
-          //       console.log(index);
-          //       const updateRows = [...ticketDetails];
-          //       updateRows.splice(index, 1);
-          //       setData(updateRows); // assuming you're using React state
-          //       resolve();
-          //     }),
-          // }}
-          // options={{
-          //   actionsColumnIndex:-1
-          // }}
+         
          
 
         />

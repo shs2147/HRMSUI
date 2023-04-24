@@ -3,7 +3,7 @@ import React from "react";
 import swal from 'sweetalert';
 
 
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { Button } from "react-bootstrap";
 
 const DesignationMaster = () => {
@@ -27,9 +27,10 @@ const DesignationMaster = () => {
       .then(() => {
         
         console.log("Designation Name Added");
-        // swal("Data Added Successfully");
-        swal("Success", "Designation Added Successfully", "success");
-        window.location.reload(true)
+        swal("Success", "Designation Added Successfully", "success").then(()=>{
+
+          window.location.reload(true)
+        })
       })
       .catch((err) => console.log(err));
   };
@@ -38,8 +39,9 @@ const DesignationMaster = () => {
     fetch(`http://localhost:8080/designation/delete/${id}`,{
   method:'DELETE'
     }).then((result)=>{
-      swal("Success", "Designation Deleted Successfully", "success");
+      swal("Success", "Designation Deleted Successfully", "success").then(()=>{
       window.location.reload(true)
+      });
       result.json().then((response)=>{
         console.warn(response)
       })
@@ -47,12 +49,22 @@ const DesignationMaster = () => {
   }
   const [ticketDetails, setTicketDetails] = useState([]);
   const options = {method: 'GET'};
+  const fetchData=()=>{
+    fetch("http://localhost:8080/designation/fetchalldesignation", options)
+    .then((response) => response.json())
+    .then((response) => setTicketDetails(response))
+    .catch((err) => console.error(err));
+  }
+  
+  useEffect(()=>{
+    fetchData();
+  },[])
 
-fetch('http://localhost:8080/designation/fetchalldesignation', options)
-  .then(response => response.json())
-  .then(response => setTicketDetails(response))
-  .catch(err => console.error(err));
-  // console.log(ticketDetails);
+// fetch('http://localhost:8080/designation/fetchalldesignation', options)
+//   .then(response => response.json())
+//   .then(response => setTicketDetails(response))
+//   .catch(err => console.error(err));
+//   // console.log(ticketDetails);
   return (
     <>
       <div className="container">
@@ -110,7 +122,6 @@ fetch('http://localhost:8080/designation/fetchalldesignation', options)
               title: "Actions",
               field: "actions",
               render: (rowData) => (
-                // <CustomButton rowData={rowData} onDelete={handleDelete} />
                 <Button onClick={() => handleDelete(rowData.id)}>Delete</Button>
               ),
             },

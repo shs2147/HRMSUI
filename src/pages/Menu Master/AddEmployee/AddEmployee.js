@@ -51,7 +51,7 @@ const AddEmployee = () => {
       });
   };
   const fetchData4 = () => {
-    fetch("http://localhost:8080/basic/fetchdata", {})
+    fetch("http://localhost:8080/usermaster/fetchAll", {})
       .then((response) => {
         return response.json();
       })
@@ -116,8 +116,8 @@ const AddEmployee = () => {
     }
         else {
           setShowError(false)
-          // alert("Your data has been saved successfully!!")
-          swal("Success", "Data Added Successfully", "success");
+
+          
           setData({});
         
     
@@ -132,6 +132,9 @@ const AddEmployee = () => {
     })
       .then(() => {
         console.log("Basic Information Added");
+        swal("Success", "Data Added Successfully", "success").then(()=>{
+          window.location.reload(true)
+        })
       })
       .catch((err) => console.log(err));
     console.log(JSON.stringify(data));
@@ -422,20 +425,40 @@ const AddEmployee = () => {
                       required
                     />
                   </div>
+                  <div className=" col-sm-4">
+                    <label className="form-label">PAN Number:</label>
+                    <br />
+                    <input
+                      value={data.panNumber}
+                      type="text"
+                      className="form-control"
+                      id="formGroupExampleInput"
+                      name="panNumber"
+                      onChange={inputChangeHandler}
+                      placeholder="Enter PAN Number  ."
+             
 
-                  <div className=" col-sm-3">
-                    <label className="form-label">Joining Date:</label>
-                    <div>
-                      <Form.Control
-                        required
-                        value={data.joiningDate}
-                        type="date"
-                        name="joiningDate"
-                        onChange={inputChangeHandler}
-                      ></Form.Control>
-                    </div>
+                      required
+                    />
                   </div>
-                  <div className="col-sm-3 ">
+                  <div className=" col-sm-4">
+                    <label className="form-label">Aadhar Number:</label>
+                    <br />
+                    <input
+                      value={data.aadhaarNumber}
+                      type="text"
+                      className="form-control"
+                      id="formGroupExampleInput"
+                      name="aadhaarNumber"
+                      onChange={inputChangeHandler}
+                      placeholder="Enter Aadhaar Number  ."
+             
+
+                      required
+                    />
+                  </div>
+
+                  <div className="col-sm-4 ">
                     <label className="form-label" for="cars" id="label">
                       Reporting To:
                     </label>
@@ -457,19 +480,8 @@ const AddEmployee = () => {
                       ))}
                     </select>
                   </div>
-                  <div className=" col-sm-3">
-                    <label className="form-label">DOB:</label>
-                    <div>
-                      <Form.Control
-                      required
-                        value={data.dob}
-                        type="date"
-                        name="dob"
-                        onChange={inputChangeHandler}
-                      ></Form.Control>
-                    </div>
-                  </div>
-                  <div className="col-sm-3 ">
+
+                  <div className="col-sm-4 ">
                     <label className="form-label" for="cars" id="label">
                       Work Type:
                     </label>
@@ -488,6 +500,33 @@ const AddEmployee = () => {
                     </select>
                     
                   </div>
+
+                  <div className=" col-sm-4">
+                    <label className="form-label">Joining Date:</label>
+                    <div>
+                      <Form.Control
+                        required
+                        value={data.joiningDate}
+                        type="date"
+                        name="joiningDate"
+                        onChange={inputChangeHandler}
+                      ></Form.Control>
+                    </div>
+                  </div>
+                
+                  <div className=" col-sm-4">
+                    <label className="form-label">DOB:</label>
+                    <div>
+                      <Form.Control
+                      required
+                        value={data.dob}
+                        type="date"
+                        name="dob"
+                        onChange={inputChangeHandler}
+                      ></Form.Control>
+                    </div>
+                  </div>
+                 
                   <div className="my-4">
                     <button
                     type="submit"
