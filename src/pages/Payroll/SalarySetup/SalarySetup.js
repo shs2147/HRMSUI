@@ -23,7 +23,7 @@ const [designation,setDesignation]=useState([]);
 const [ctc,setCtc]=useState([]);
 const [pfnumber,setPfnumber]=useState([]);
 const [reporting,setReporting]=useState([]);
-// const [incentive,setIncentive]=useState([]);
+const [workingdays,setWorkingdays]=useState([]);
 const [incometax,setIncometax]=useState([]);
 const [shiftallowance,setShiftallowance]=useState([]);
 const [conveyance,setConveyance]=useState([]);
@@ -65,9 +65,9 @@ const inputChangeHandler = (e) => {
     }
 
 
-    // if(e.target.name === "fnclYear"){
-    //   setFnclYear(e.target.value);
-    // }
+    if(e.target.name === "lop"){
+      setLop(e.target.value);
+    }
 
 
     if(e.target.name==="pfnumber"){
@@ -82,15 +82,15 @@ const inputChangeHandler = (e) => {
     if(e.target.name === "panNumber"){
       setPan(e.target.value);
     }
-    // if (e.target.name==="incentive"){
-    //   setIncentive(e.target.value);
-    // }
+    if (e.target.name==="workingdays"){
+      setWorkingdays(e.target.value);
+    }
     // if (e.target.name==="bonus"){
     //   setBonus(e.target.value);
     // }
-    // if (e.target.name==="incometax"){
-    //   setIncometax(e.target.value);
-    // }
+    if (e.target.name==="paidday"){
+      setPaidday(e.target.value);
+    }
     // if (e.target.name==="shiftallowance"){
     //   setShiftallowance(e.target.value);
     // }
@@ -303,7 +303,7 @@ function print(){
 <td>{company}</td>
 
 <th>Working days</th>
-<td>{reporting}</td>
+<td>{workingdays}</td>
 </tr>
 {/* <tr>
   <th>ctc</th>
@@ -345,9 +345,13 @@ function print(){
 <tr>
 <td>Conveyance Allowance</td>
 <td>{((grossSalary-(basicsalary-(-(basicsalary*0.4))))/2).toFixed(2)}</td>
+
+<td>LOP</td>
+<td>{(basicsalary/workingdays)*lOP}</td>
 {/* <tr>
-<td>Income tax</td>
-<td>{incometax}</td>
+<td>LOP </td>
+
+<td>{basicsalary}</td>
 </tr> */}
 </tr>
 <tr>
@@ -363,13 +367,13 @@ function print(){
 
 
 <th >Gross Deductions</th>
-<td>{(grossSalary*0.18+(grossSalary*0.01)).toFixed(2)}</td>
+<td>{(grossSalary*0.18+(grossSalary*0.01)+((basicsalary/workingdays)*lOP)).toFixed(2)}</td>
 <td>{}</td>
 </tr>
 <tr>
 <td></td>
 <td><strong>NET PAY </strong></td>
-<td>{(grossSalary-(grossSalary*0.18+(grossSalary*0.01))).toFixed(2)}</td>
+<td>{(grossSalary-(grossSalary*0.18+(grossSalary*0.01))-((basicsalary/workingdays)*lOP)).toFixed(2)}</td>
 
 <td></td>
 </tr>
@@ -427,9 +431,9 @@ function print(){
     <label>LOP:</label>
   </div>
 
-  {/* <div className="all">
-    <label>Incentive:</label>
-  </div> */}
+  <div className="all">
+    <label>Working days:</label>
+  </div>
 
   {/* <div className="all">
     <label>Conveyance:</label>
@@ -522,26 +526,27 @@ function print(){
   </div>
 
   <div className="all">
-  <select disabled={disabled} value={lOP} name='lop' onChange={inputChangeHandler} >
-      <option selected disabled>Select Work Type</option>
+  {/* <select disabled={disabled} value={lOP} name='lop' onChange={inputChangeHandler} > */}
+      {/* <option selected disabled>Select Work Type</option> */}
+      <input type='text' value={lOP} name='lop' onChange={inputChangeHandler} placeholder='lop days'/> 
       {/* {show.map(e=>(<option valueType={e.basicEmployee1.workType }>{e.basicEmployee1.workType }</option>))} */}
-      </select>
+      {/* </select> */}
   </div>  
 
+   <div className="all">
+  <input type="text" value={workingdays} name='workingdays' onChange={inputChangeHandler} placeholder='Enter field ...' />
+  </div>
+
   {/* <div className="all">
-  <input type="text" value={incentive} name='incentive' onChange={inputChangeHandler} placeholder='Enter field ...' />
-  </div>
-
-  <div className="all">
     <input type="text" value={conveyance} name='conveyance' onChange={inputChangeHandler} placeholder='Enter field conve...' />
-  </div>
+  </div> */}
 
-  <div className="all">
+  {/* <div className="all">
     <input type="text" value={specialallowance} name='specialallowance'onChange={inputChangeHandler} placeholder='Enter field special...' />
   </div>
   <div className="all">
     <input type="text" value={houserent} name='houserent'onChange={inputChangeHandler} placeholder='Enter field special...' />
-  </div> */}
+  </div>  */}
   
   <div className="all"></div>
   <div className="all"></div>
@@ -585,9 +590,9 @@ function print(){
     <label>Pf Number:</label>
   </div>
 
-  {/* <div className="all">
-    <label>Income Tax:</label>
-  </div> */}
+  <div className="all">
+    <label>Paid days:</label>
+  </div>
 
   {/* <div className="all">
     <label>Shift Allowance:</label>
@@ -692,9 +697,9 @@ function print(){
   </div>
   
 
-  {/* <div className="all">
-  <input type="text" value={incometax} name='incometax' onChange={inputChangeHandler} placeholder="Enter field income" />
-  </div> */}
+  <div className="all">
+  <input type="text" value={paidday} name='paidday' onChange={inputChangeHandler} placeholder="Enter field income" />
+  </div>
 
   {/* <div className="all">
   <input type="text" value={shiftallowance}  name='shiftallowance' onChange={inputChangeHandler} placeholder="Enter shift" />
