@@ -1,5 +1,5 @@
 import MaterialTable from "@material-table/core";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { Button } from "react-bootstrap";
 import swal from 'sweetalert';
 
@@ -27,8 +27,9 @@ const EmploymentTypeMaster = () => {
     })
       .then(() => {
         console.log("Employement Master Added");
-        swal("Success", "Employement Master Added Successfully", "success");
-        window.location.reload(true)
+        swal("Success", "Employement Master Added Successfully", "success").then(()=>{
+          window.location.reload(true)
+        })
       })
       .catch((err) => console.log(err));
   };
@@ -38,8 +39,9 @@ const EmploymentTypeMaster = () => {
   method:'DELETE'
     }).then((result)=>{
 
-      swal("Success", "Data Deleted Successfully", "success");
-    window.location.reload(true)
+      swal("Success", "Data Deleted Successfully", "success").then(()=>{
+        window.location.reload(true)
+      })
       result.json().then((response)=>{
         console.warn(response)
       })
@@ -48,11 +50,21 @@ const EmploymentTypeMaster = () => {
   
   const [ticketDetails, setTicketDetails] = useState([]);
   const options = { method: "GET" };
-
-  fetch("http://localhost:8080/getallEmp", options)
+  const fetchData=()=>{
+    fetch("http://localhost:8080/getallEmp", options)
     .then((response) => response.json())
     .then((response) => setTicketDetails(response))
     .catch((err) => console.error(err));
+  }
+  
+  useEffect(()=>{
+    fetchData();
+  },[])
+
+  // fetch("http://localhost:8080/getallEmp", options)
+  //   .then((response) => response.json())
+  //   .then((response) => setTicketDetails(response))
+  //   .catch((err) => console.error(err));
 
   return (
     <>

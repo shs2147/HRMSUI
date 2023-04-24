@@ -2,6 +2,8 @@ import MaterialTable from "@material-table/core";
 import React, { useEffect, useState } from "react";
 // import { Modal } from "react-bootstrap";
 import { ExportCsv, ExportPdf } from "@material-table/exporters";
+import swal from 'sweetalert';
+import { Button } from "react-bootstrap";
 
 const Form3 = () => {
   const [userModal, setUserModal] = useState(false);
@@ -14,6 +16,19 @@ const Form3 = () => {
   const closeUserModal = () => {
     setUserModal(false);
   };
+
+  const handleDelete = (id)=>{
+    fetch(`http://localhost:8080/basic/delete/${id}`,{
+  method:'DELETE'
+    }).then((result)=>{
+      swal("Success", "Designation Deleted Successfully", "success").then(()=>{
+        window.location.reload(true)
+      })
+      result.json().then((response)=>{
+        console.warn(response)
+      })
+    })
+  }
 
   const fetchData = () => {
     fetch("http://localhost:8080/basic/fetchdata", {})
@@ -63,13 +78,20 @@ const Form3 = () => {
             field: "reportingTo",
           },
           {
-            title:"Basic Salary",
-            field:"basicSalary",
+            title:"CTC",
+            field:"ctc",
           },
           {
             title:"PF Number",
             field:"pfnumber",
-          }
+          },
+          {
+            title: "Actions",
+            field: "actions",
+            render: (rowData) => (
+              <Button onClick={() => handleDelete(rowData.id)}>Delete</Button>
+            ),
+          },
           
         ]}
         data={ticketDetails}
