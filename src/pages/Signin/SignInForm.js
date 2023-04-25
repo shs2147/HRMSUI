@@ -52,9 +52,9 @@ const SignInForm = (props) => {
         .then((data) => {
           // console.log('data', data)
           if (data) {
-            console.log(data.jwtToken);
-            if (data.jwtToken) {
-              sessionStorage.setItem("token", JSON.stringify(data.jwtToken));
+            console.log(data.token);
+            if (data.token) {
+              sessionStorage.setItem("token", JSON.stringify(data.token));
               sessionStorage.setItem("role", JSON.stringify(data.roleName));
               sessionStorage.setItem("userName", JSON.stringify(data.user));
               navigate("/Dashboard");

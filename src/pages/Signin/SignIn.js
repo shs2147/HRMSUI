@@ -12,35 +12,6 @@ function SignIn(props) {
     setDataInput(val);
   };
 
-  // const logInHandler = () => {
-  //   navigate("/Dashboard");
-  // };
-
-  // const logInHandler = async (e) => {
-  //   console.log(JSON.stringify(dataInput));
-  //   fetch("http://localhost:8080/usermaster/authenticate", {
-  //     method: "POST",
-  //     headers: {
-  //       "content-Type": "application/json",
-  //       Accept: "application/json",
-  //     },
-  //     body: JSON.stringify(dataInput),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       if (data) {
-  //         console.log(data.jwtToken);
-  //         if (data.jwtToken) {
-  //           sessionStorage.setItem("token", JSON.stringify(data.jwtToken));
-  //           sessionStorage.setItem("role", JSON.stringify(data.roleName));
-  //           sessionStorage.setItem("userName", JSON.stringify(data.user));
-  //           navigate("/Dashboard");
-  //         }
-  //       }
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
-  // const token = localStorage.getItem("token");
 
   return (
     <div className={classes.body}>
@@ -50,11 +21,6 @@ function SignIn(props) {
             <img src={ahom} alt="logo" />
           </div>
 
-          {/* <div className={classes.formTitle}>
-            <p className={classes.formTitleLink} onClick={logInHandler}>
-              Sign In
-            </p>
-          </div> */}
           {
             <SignInForm
               handlerInput={handlerInput}
