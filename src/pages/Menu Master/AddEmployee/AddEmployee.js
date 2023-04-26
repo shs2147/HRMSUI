@@ -87,7 +87,7 @@ const AddEmployee = () => {
       });
   };
   const fetchData5 = () => {
-    fetch("http://localhost:8080/usermaster/fetchAll", {})
+    fetch("http://localhost:8080/basic/fetchdata", {})
       .then((response) => {
         return response.json();
       })
@@ -287,7 +287,7 @@ const AddEmployee = () => {
              
                     />
                     <datalist id="employee">
-                    {user.map((saurabh) => (
+                    {report.map((saurabh) => (
                         <option value={saurabh.employeeName}>
                           {/* {saurabh.employeeName} */}
                         </option>
@@ -551,6 +551,32 @@ const AddEmployee = () => {
             <div className="container">
               <div className="bg-light">
                 <div className="row ">
+
+                <div className="col-sm-3 ">
+                    <label className="form-label" for="cars" id="label">
+                      Employee Id:
+                    </label>
+
+                    <select
+                      valueType={data.employeeId}
+                      className="form-select"
+                      name="employeeId"
+                      onChange={inputChangeHandler}
+                      >
+                        <option selected disabled >
+                          Select ID
+                        </option>
+                          {user.map((e)=>(
+                          <option valueType={e.employeeId}>
+                            {e.employeeId}
+                            </option>
+                          
+                        ))}
+                        
+                      
+                    </select>
+                  </div>
+
                 <div className="col-sm-3 ">
                     <label className="form-label" for="cars" id="label">
                       Employee Name:
@@ -565,7 +591,7 @@ const AddEmployee = () => {
                         <option selected disabled >
                           Select Name
                         </option>
-                          {report.map((e)=>(
+                          {user.map((e)=>(
                           <option valueType={e.employeeName}>
                             {e.employeeName}
                             </option>
@@ -576,20 +602,7 @@ const AddEmployee = () => {
                     </select>
                   </div>
                   <div className="col-sm-3 ">
-                  {/* <div  >
-                    <label className="form-label">Employee Name:</label>
-                    
-                    <input
-                      value={data.employeeName}
-                      type="text"
-                      className="form-control"
-                      id="formGroupExampleInput"
-                      name="employeeName"
-                      onChange={inputChangeHandler}
-                      placeholder=""
-                      required
-                    />
-                  </div > */}
+                  
                   <div >
                     <label className="form-label" for="cars" id="label">
                       Employement type:
@@ -605,18 +618,7 @@ const AddEmployee = () => {
                       <option selected disabled>---Select Employment Type---</option>
                       <option value="permanent">permanent</option>
                       <option value="probation">probation</option>
-                      {/* <option selected disabled>
-                        Select Employement Type
-                      </option>
-                      {emp.map((e) => (
-                        <option valueType={e.employmentType}>
-                          {e.employmentType}
-                        </option>
-                      ))} */}
-                      {/* <option value="abcd">abcd</option>
-                                                    <option value="defg">defg</option>
-                                                    <option value="hijk">hijk</option>
-                                                    <option value="slmno">lmno</option> */}
+                     
                     </select>
                     </div>
                   </div>
@@ -638,13 +640,10 @@ const AddEmployee = () => {
                       {itemshow.map((e) => (
                         <option valueType={e.name}>{e.name}</option>
                       ))}
-                      {/* <option value="abcd">abcd</option>
-                                                    <option value="defg">defg</option>
-                                                    <option value="hijk">hijk</option>
-                                                    <option value="slmno">lmno</option> */}
+                     
                     </select>
                   </div>
-                  <div className="col-sm-3 ">
+                  {/* <div className="col-sm-3 ">
                     <label className="form-label" for="cars" id="label">
                       Employee Grade:
                     </label>
@@ -665,7 +664,7 @@ const AddEmployee = () => {
                       <option value="C">C</option>
                       <option value="D">D</option>
                     </select>
-                  </div>
+                  </div> */}
                   {/* <div className="col-sm-3 ">
                     <label className="form-label" for="cars" id="label">
                       Employee Group:
@@ -687,7 +686,7 @@ const AddEmployee = () => {
                       <option value="slmno">lmno</option>
                     </select>
                   </div> */}
-                  <div className="col-sm-3 ">
+                  {/* <div className="col-sm-3 ">
                     <label className="form-label" for="cars" id="label">
                       Insurance avail:
                     </label>
@@ -705,7 +704,7 @@ const AddEmployee = () => {
                       <option value="Yes">Yes</option>
                       <option value="No">No</option>
                     </select>
-                  </div>
+                  </div> */}
                   <div className="col-sm-3 ">
                     <label className="form-label" for="cars" id="label">
                       Gender:
@@ -750,7 +749,7 @@ const AddEmployee = () => {
                       <option value="slmno">AB-</option>
                     </select>
                   </div>
-                  <div className="col-sm-3 ">
+                  {/* <div className="col-sm-3 ">
                     <label className="form-label" for="cars" id="label">
                       Incentive:
                     </label>
@@ -765,8 +764,8 @@ const AddEmployee = () => {
                       placeholder="Enter Incentive"
                       required
                     />
-                  </div>
-                  {/* <div className="col-sm-3 ">
+                  </div> */}
+                  <div className="col-sm-3 ">
                                                 <label className="form-label" for="cars" id='label'>Employee type:</label>
 
                                                 <select value={data.employeeType} className="form-select" aria-label="Default select example" name='employeeType' onChange={inputChangeHandler}>
@@ -774,8 +773,8 @@ const AddEmployee = () => {
                                                     <option value="abcd">Permanent</option>
                                                     <option value="defg">Under-Probation</option>
                                                 </select>
-                                            </div> */}
-                  <div className=" col-sm-3">
+                                            </div>
+                  {/* <div className=" col-sm-3">
                     <label className="form-label">Value:</label>
                     <br />
                     <input
@@ -788,8 +787,8 @@ const AddEmployee = () => {
                       placeholder="Enter Value"
                       required
                     />
-                  </div>
-                  <div className=" col-sm-3">
+                  </div> */}
+                  {/* <div className=" col-sm-3">
                     <label className="form-label">Effective Date:</label>
                     <div>
                       <Form.Control
@@ -800,8 +799,8 @@ const AddEmployee = () => {
                         onChange={inputChangeHandler}
                       ></Form.Control>
                     </div>
-                  </div>
-                  <div className=" col-sm-3">
+                  </div> */}
+                  {/* <div className=" col-sm-3">
                     <label className="form-label">PF Account No:</label>
                     <br />
                     <input
@@ -814,8 +813,8 @@ const AddEmployee = () => {
                       placeholder="Enter PF Number"
                       required
                     />
-                  </div>
-                  <div className=" col-sm-3">
+                  </div> */}
+                  {/* <div className=" col-sm-3">
                     <label className="form-label">ESI No:</label>
                     <br />
                     <input
@@ -828,7 +827,7 @@ const AddEmployee = () => {
                       placeholder="Enter ESI Number"
                       required
                     />
-                  </div>
+                  </div> */}
                   {/* <div className=" col-sm-3">
                     <label className="form-label">CIN No:</label>
                     <br />
@@ -843,7 +842,7 @@ const AddEmployee = () => {
                       required
                     />
                   </div> */}
-                  <div className=" col-sm-3">
+                  {/* <div className=" col-sm-3">
                     <label className="form-label">Leaving Date:</label>
                     <div>
                       <Form.Control
@@ -854,8 +853,8 @@ const AddEmployee = () => {
                         onChange={inputChangeHandler}
                       ></Form.Control>
                     </div>
-                  </div>
-                  <div className="col-sm-14">
+                  </div> */}
+                  <div className="col-sm-4">
                     <label className="form-label">Address:</label>
                     <br />
                     <textarea
@@ -867,7 +866,7 @@ const AddEmployee = () => {
                       onChange={inputChangeHandler}
                     ></textarea>
                   </div>
-                  <div className="col-sm-14 pb-4">
+                  <div className="col-sm-4 pb-4">
                     <label className="form-label"> Description:</label>
                     <br />
                     <textarea
