@@ -120,7 +120,7 @@ if(
             <Form.Control
               type='text'
               name='employeeName'
-              placeholder='enter your  name'
+              placeholder='Enter Your Name'
               onChange={handleChange}
               value ={data.employeeName}
               isInvalid={showError && !Validation.maximum(data?.employeeName, 50)}
@@ -135,7 +135,7 @@ if(
             <Form.Control
               type='text'
               name='userName'
-              placeholder='enter your email'
+              placeholder='Enter Your Email as a Username'
               onChange={handleChange}
               value ={data.userName}
               isInvalid={showError && !Validation.maximum(data?.userName, 50)}
@@ -254,10 +254,27 @@ if(
             <Form.Control
               type='text'
               name='password'
-              placeholder='enter your password'
+              placeholder='Enter Your Password'
               onChange={handleChange}
               value={data.password}
               isInvalid={showError && !Validation.password(data?.password)}
+            
+            />
+            <Form.Control.Feedback type='invalid'>
+              {!password ? "aadhar is necessary(12 digits)" : "can't be less than or greater than 12"}
+              
+            </Form.Control.Feedback>
+          </Form.Group>
+
+          <Form.Group as={Col} sm={4} controlId="validationCustom04" className="mt-2">
+            <Form.Label>Confirm Password : </Form.Label>
+            <Form.Control
+              type='text'
+              name='confirmPassword'
+              placeholder='Re-enter Your Password'
+              onChange={handleChange}
+              value={data.confirmPassword}
+              isInvalid={showError && !Validation.password(data?.confirmPassword)}
             
             />
             <Form.Control.Feedback type='invalid'>
