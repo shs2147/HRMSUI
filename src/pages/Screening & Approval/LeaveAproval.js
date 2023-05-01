@@ -24,7 +24,7 @@ const LeaveAproval = () => {
       <h4>Leave Aproval</h4>    
       <hr />
       <MaterialTable
-        title="Department Record"
+        title="Leave Record"
         data={leave}
        
           columns={[
@@ -53,10 +53,7 @@ const LeaveAproval = () => {
               title: "Reason",
               field: "reasonForLeave",
             },
-            {
-              title: "No. Of Days",
-              field: "days",
-            },
+            
 
           
             // {

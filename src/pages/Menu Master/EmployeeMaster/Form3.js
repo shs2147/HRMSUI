@@ -17,19 +17,6 @@ const Form3 = () => {
     setUserModal(false);
   };
 
-  const handleDelete = (id)=>{
-    fetch(`http://localhost:8080/basic/delete/${id}`,{
-  method:'DELETE'
-    }).then((result)=>{
-      swal("Success", "Designation Deleted Successfully", "success").then(()=>{
-        window.location.reload(true)
-      })
-      result.json().then((response)=>{
-        console.warn(response)
-      })
-    })
-  }
-
   const fetchData = () => {
     fetch("http://localhost:8080/basic/fetchdata", {})
       .then((response) => {
@@ -44,6 +31,21 @@ const Form3 = () => {
     fetchData();
   }, []);
   console.log(data);
+
+
+  const handleDelete = (id) => {
+    const idInt = parseInt(id); // convert the id parameter to an integer
+    fetch(`http://localhost:8080/basic/delete/${idInt}`, {
+      method: 'DELETE'
+    }).then((result) => {
+      swal("Success", "Data Deleted Successfully", "success").then(() => {
+        window.location.reload(true)
+      })
+      result.json().then((response) => {
+        console.warn(response)
+      })
+    })
+  }
 
   return (
     <>

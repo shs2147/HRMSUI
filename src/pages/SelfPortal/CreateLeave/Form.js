@@ -13,19 +13,7 @@ function Form() {
     setData(newdata);
     
   }
-  // const fetchData1 = () =>{
-  //   fetch("http://localhost:8080/basic/fetchdata",{
-  //   })
-  //   .then((response) =>{
-  //     return response.json();
-  //   })
-  //   .then((data) =>{
-  //     setShow(data)
-  //   })
-  // }
-  // useEffect(()=>{
-  //   fetchData1();
-  // })
+
   
   useEffect(() => {
     const fetchData = async () => {
@@ -38,22 +26,7 @@ fetchData();
 }, []);
   const submitHandler=(e)=>{
     e.preventDefault();
-    // console.log(JSON.stringify(data));
-    // axios
-    //   .post(url, {
-    //     employee: data.employee,
-    //     approver: data.appprover,
-    //     leave_type: data.leave_type,
-    //     available_balance: data.available_balance,
-    //     leave_for: data.leave_for,
-    //     start_date: data.start_date,
-    //     end_date: data.end_date,
-    //     days: data.days,
-    //     reason_for_leave: data.reason_for_leave,
-    //   })
-    //   .then((res) => {
-    //     console.log(res.data);
-    //   });
+  
     fetch("http://localhost:8080/CreateLeaveRequest/post",{
       method:"POST",
       headers:{"Content-Type":"application/json","Accept":"application/json"},
@@ -89,16 +62,6 @@ fetchData();
           >
             <option>select Employee</option>
             {show.map(e=>(<option valueType={e.employeeName}>{e.employeeName}</option>))}
-            {/* {employee.map((option) => (
-              <option
-                disabled={option.disabled}
-                key={option.value}
-                value={option.value}
-              >
-                {option.text}
-              </option>
-              
-            ))} */}
           </select>
           
         </div>
@@ -116,15 +79,6 @@ fetchData();
           >
             <option>select Approver</option>
             {show.map(e=>(<option valueType={e.employeeName}>{e.employeeName}</option>))}
-            {/* {approver.map((option) => (
-              <option
-                disabled={option.disabled}
-                key={option.value}
-                value={option.value}
-              >
-                {option.text}
-              </option>
-            ))} */}
           </select>
         </div>
       </div>
@@ -152,19 +106,6 @@ fetchData();
             ))}
           </select>
         </div>
-        {/* <div className="col-sm-5 mx-2">
-          <label for="formFile" className="form-label">
-            Available Balance:
-          </label>
-          <br />
-          <input
-          className="form-control"
-            type="number"
-            name="availableBalance"
-            onChange={handleInput}
-            value={data.availableBalance}
-          />
-        </div> */}
       </div>
      
       <div className=" row mb-1 d-flex justify-content-around ">

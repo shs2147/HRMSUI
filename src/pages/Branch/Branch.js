@@ -26,7 +26,9 @@ const Branch = () => {
     })
       .then(() => {
         console.log("Branch Name Added");
-        swal("Success", "Branch Added Successfully", "success");
+        swal("Success", "Branch Added Successfully", "success").then(()=>{
+          window.location.reload(true);
+        })
       })
       .catch((err) => console.log(err));
   };

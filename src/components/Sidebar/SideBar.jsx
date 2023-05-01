@@ -303,8 +303,8 @@ const routes = [
         icon: <AiOutlineCaretRight />,
       },
       {
-        path: "Shift Management/View Employee Shift",
-        name: "View Employee Shift",
+        path: "Shift Management/ViewEmployeeShift",
+        name: "ViewEmployeeShift",
         icon: <AiOutlineCaretRight />,
       },
     ],
