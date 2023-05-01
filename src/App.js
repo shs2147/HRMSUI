@@ -31,7 +31,7 @@ import RegisterEmployee from "./pages/TrainingModule/RegisterEmployee/RegisterEm
 import TrainingToFeedback from "./pages/TrainingModule/TrainingToFeedback/TrainingToFeedback";
 import TrainingMaster from "./pages/TrainingModule/TrainingMaster/TrainingMaster";
 import AddShift from "./pages/Shift Management/Add Shift/AddShift";
-import ViewEmployeeShift from "./pages/Shift Management/View Employee Shift/ViewEmployeeShift";
+// import ViewEmployeeShift from "./pages/Shift Management/View Employee Shift/ViewEmployeeShift";
 import AttendanceDetails from "./pages/Screening & Approval/AttendanceDetails.js";
 import CreateLeave from "./pages/SelfPortal/CreateLeave/CreateLeave";
 import MonthlyPerformance from "./pages/SelfPortal/MonthlyPerformance/MonthlyPerformance";
@@ -67,7 +67,7 @@ import SignUpForm from "./pages/Signin/SignUpForm";
 //import ProtectedRoute from "./privateRoute";
 //import withAuth from "./auth";
 import Event from "./pages/Training/Event";
-
+import ViewEmployeeShift from "./pages/Shift Management/ViewEmployeeShift";
 import { useEffect, useState } from "react";
 import UserMasterData from "./pages/Menu Master/User Master Data/UserMasterData";
 
@@ -259,8 +259,8 @@ function App() {
 
             <Route path="/Shift Management/Add Shift" element={<AddShift />} />
             <Route
-              path="/Shift Management/View Employee Shift"
-              element={<ViewEmployeeShift />}
+              path="/Shift Management/ViewEmployeeShift"
+              element={<ViewEmployeeShift/>}
             />
             <Route path="/edit" element={<Edit />} />
             <Route exact path="/signin/sign-out" component={<SignUpForm />} />

@@ -3,11 +3,12 @@ import { Form } from 'react-bootstrap'
 import swal from 'sweetalert';
 
 const AddShift = () => {
-  const [data,setData]=useState({
-    shiftdutyassign:'',
-    shiftName:'',
-    employee:'',
-  });
+  const[data,setData]=useState([]);
+  // const [data,setData]=useState({
+  //   shiftdutyassign:'',
+  //   country:'',
+  //   employee:'',
+  // });
   const[show,setShow]=useState([]);
  const inputChangeHandler=(e)=>{
     let newData={...data};
@@ -47,33 +48,43 @@ useEffect(()=>
       <hr />
       <div className="bg-light">
         <div className="row ">
-        <div className=" col-sm-4">
-        <label >Date:</label>
-       <div ><Form.Control value={data.date} type="date" name="date" onChange={inputChangeHandler}></Form.Control></div>
-       </div>
-       <div className="col-sm-4 ">
-            <label for="cars" id='label'>Shift Name:</label>
-            <br />
-            <select valueType={data.shiftName} class="form-select" aria-label="Default select example" name="shiftName" onChange={inputChangeHandler}>
-              <option selected disabled>Choose Shift</option>
-              <option valueType="night">Night</option>
-              <option valueType="day">Day</option>
-              {/* <option valueType="afternoon">Shift C</option>
-              <option valueType="Evening">Shift D</option> */}
-            </select>
-          </div>
-          <div className="col-sm-4">
+        <div className="col-sm-4">
             <label for="car" id='label' >Employee:</label>
           
             <select valueType={data.employee}  class="form-select" aria-label="Default select example"  name="employee" onChange={inputChangeHandler} >
             <option selected disabled>Select Employee</option>
             {show.map(e=>(<option valueType={e.employeeName}>{e.employeeName}</option>))}
-            {/* <option valueType="night">Night</option>
-              <option valueType="day">Day</option> */}
               </select>
           </div>
+        
+       <div className="col-sm-4 ">
+            <label for="cars" id='label'>Country :</label>
+            <br />
+            <select valueType={data.country} class="form-select" aria-label="Default select example" name="country" onChange={inputChangeHandler}>
+              <option selected disabled>Choose Shift</option>
+              <option valueType="India">India</option>
+              <option valueType="USA">USA</option>
+              <option valueType="Japan">Japan</option>
+              {/* <option valueType="afternoon">Shift C</option>
+              <option valueType="Evening">Shift D</option> */}
+            </select>
           </div>
-          <button onClick={submitHandler} className="btn btn-primary btn-sm my-3 mx-5 ">Save</button>
+
+          <div className=" col-sm-4">
+        <label >Date:</label>
+       <div ><Form.Control value={data.datee} type="date" name="date" onChange={inputChangeHandler}></Form.Control></div>
+       </div>
+          
+          <div className="col-sm-4 mt-2">
+  <label   for="cars" id='label'>Start Time</label><br/>
+  <input value={data.startTime} type="time" class="form-control" aria-label="Default select example"  name="startTime" onChange={inputChangeHandler} />
+</div>
+<div className="col-sm-4 mt-2">
+  <label   for="cars" id='label'>End Time</label><br/>
+  <input value={data.endTime} type="time" class="form-control" aria-label="Default select example"  name="endTime" onChange={inputChangeHandler}/>
+</div>
+          </div>
+          <button onClick={submitHandler} className="btn btn-primary mt-4">Save</button>
           </div>
     </div>  
   )
