@@ -142,11 +142,12 @@ fetchData();
           </label>
           <br />
           <input
-          className='form-control w-50'
+          className='form-control w-100'
             name="days"
             onChange={handleInput}
             value={data.days}
-            type="number"
+            type="text"
+            maxlength="3"
           />
         </div>
       </div>

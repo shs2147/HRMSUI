@@ -286,9 +286,9 @@ label{
   outline:none;
   padding-left:1rem ;
   cursor:no-drop;
-  background-image: linear-gradient(to right, transparent, rgb(199, 193, 193), transparent);
+  background-image: linear-gradient(to right, transparent, rgb(248, 245, 245),rgb(226, 219, 219));
   font-weight: 530;
-  color: #000;
+  color: #a79f9f;
 
   }
 
