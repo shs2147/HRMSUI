@@ -18,7 +18,7 @@ export default function UserMaster() {
 
   const [data, setData] = useState(formData);
   const { userName, password, aadhaarNumber, departmentName ,roleName,employeeName,panNumber} = data;
-  const [showError, setShowError] = useState(false);
+  // const [showError, setShowError] = useState(false);
   const [itemshow, setItemshow] = useState([]);
 
   const handleChange = (e) => {
@@ -57,12 +57,12 @@ if(
       !Validation.email(userName) 
       )
       {
-        alert("fill your email")
+        // alert("fill your email")
       }
       else if(
         !Validation.password(password)
       ){
-        alert("fill your password")
+        // alert("fill your password")
       }
       // else if(
       //   !Validation.aadharValidate(aadhaarNumber)
@@ -93,9 +93,9 @@ if(
       })
         .then(() => {
           console.log("User are Added");
-          swal("Success", "User Added Successfully", "success").then(()=>{
-            window.location.reload(true)
-          })
+          swal("Success", "Data Added Successfully", "success").then(() => {
+            window.location.reload(true);
+        });
         })
         .catch((err) => console.log(err));
 
@@ -123,7 +123,8 @@ if(
               placeholder='Enter Your Name'
               onChange={handleChange}
               value ={data.employeeName}
-              isInvalid={showError && !Validation.maximum(data?.employeeName, 50)}
+              required
+              // isInvalid={showError && !Validation.maximum(data?.employeeName, 50)}
             />
             <Form.Control.Feedback type='invalid'>
               employee name is necessary
@@ -138,7 +139,8 @@ if(
               placeholder='Enter Your Email as a Username'
               onChange={handleChange}
               value ={data.userName}
-              isInvalid={showError && !Validation.maximum(data?.userName, 50)}
+              required
+              // isInvalid={showError && !Validation.maximum(data?.userName, 50)}
             />
             <Form.Control.Feedback type='invalid'>
               user name is necessary
@@ -147,23 +149,16 @@ if(
 
       <Form.Group as={Col} sm={4} controlId="validationCustom07" className="mt-2">
       <Form.Label>Department Name : </Form.Label>
-      <select
-        
-        
+      <select required="true"
         valueType={data.department}
         class="form-select"
         aria-label="Default select example"
         name="departmentName"
         onChange={handleChange}
-        required
-        //isInvalid={showError && !Validation.maximum(data?.departmentName)}
+        // isInvalid={showError && !Validation.maximum(data?.departmentName)}
         >
-                
-                
-                <option>Select Department</option>
-                <select selected disabled>
-                  Select Department
-                </select>
+                <option selected disabled>Select Department</option>
+                <option> Developer</option>
                 {itemshow.map((aman) => (
                   <option valueType={aman.departmentName}>
                     {aman.departmentName}
@@ -204,6 +199,7 @@ if(
                 aria-label="Default select example"
                 name="roleName"
                 onChange={handleChange}
+                required
               >
       
                 <option selected disabled>
@@ -257,11 +253,11 @@ if(
               placeholder='Enter Your Password'
               onChange={handleChange}
               value={data.password}
-              isInvalid={showError && !Validation.password(data?.password)}
-            
+              // isInvalid={showError && !Validation.password(data?.password)}
+              required
             />
             <Form.Control.Feedback type='invalid'>
-              {!password ? "aadhar is necessary(12 digits)" : "can't be less than or greater than 12"}
+              {!password ? "Password is necessary(12 digits)" : "can't be less than or greater than 12"}
               
             </Form.Control.Feedback>
           </Form.Group>
@@ -274,18 +270,18 @@ if(
               placeholder='Re-enter Your Password'
               onChange={handleChange}
               value={data.confirmPassword}
-              isInvalid={showError && !Validation.password(data?.confirmPassword)}
-            
+              // isInvalid={showError && !Validation.password(data?.confirmPassword)}
+            required
             />
             <Form.Control.Feedback type='invalid'>
-              {!password ? "aadhar is necessary(12 digits)" : "can't be less than or greater than 12"}
+              {!password ? "Password is necessary(12 digits)" : "can't be less than or greater than 12"}
               
             </Form.Control.Feedback>
           </Form.Group>
         
           
         </Row> 
-        <Button onClick={handleClick}>Save</Button>
+        <Button type="submit" onClick={handleClick}>Save</Button>
         </Form>
     </div>
   );

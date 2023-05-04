@@ -328,7 +328,8 @@ label{
   width:98.8vw;
   overflow:auto;
   z-index: 100;
-  margin:-10px 0px 0px -245px;
+  margin:-10px 0px 0px -65px;
+  padding-top:10px;
   position:fixed;
   background-color: #fff;
   backdrop-filter: blur(4px);

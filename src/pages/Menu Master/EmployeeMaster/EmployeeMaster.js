@@ -5,7 +5,7 @@ import Nav from './Nav'
 
 const EmployeeMaster = () => {
   return (
-    <div>
+    <div style={{width:'80vw'}}>
         <Nav/>
         <br />
         <Form3/>

@@ -262,6 +262,7 @@ const AddEmployee = () => {
         <CAccordionItem itemKey={1}>
           <CAccordionHeader>Basic Information</CAccordionHeader>
           <CAccordionBody>
+          <form action="">
             <div className="container">
               <div className="bg-light">
                 <div className="row ">
@@ -284,7 +285,6 @@ const AddEmployee = () => {
                       placeholder="Enter Your Name"
                       list="employee"
                       required
-             
                     />
                     <datalist id="employee">
                     {report.map((saurabh) => (
@@ -388,8 +388,7 @@ const AddEmployee = () => {
                       name="mobile"
                       onChange={inputChangeHandler}
                       placeholder="Enter your Mobile No."
-             
-
+                      maxlength='10'
                       required
                     />
                   </div>
@@ -420,7 +419,7 @@ const AddEmployee = () => {
                       name="pfnumber"
                       onChange={inputChangeHandler}
                       placeholder="Enter pf number  ."
-             
+                      maxlength='12'
 
                       required
                     />
@@ -518,11 +517,11 @@ const AddEmployee = () => {
                     <label className="form-label">DOB:</label>
                     <div>
                       <Form.Control
-                      required
                         value={data.dob}
                         type="date"
                         name="dob"
                         onChange={inputChangeHandler}
+                        required
                       ></Form.Control>
                     </div>
                   </div>
@@ -534,12 +533,12 @@ const AddEmployee = () => {
                     onClick={submitHandler1}
                     >
                       save
-
                     </button>
                     </div>
                 </div>
               </div>
             </div>
+            </form>
 
           </CAccordionBody>
         </CAccordionItem>

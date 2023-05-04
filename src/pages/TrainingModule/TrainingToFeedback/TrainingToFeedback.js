@@ -1,4 +1,5 @@
 import { useState,useEffect } from "react";
+import swal from 'sweetalert';
 
 const TrainingToFeedback = () => {
   const [data,setData]=useState({
@@ -48,14 +49,21 @@ useEffect(()=>
  //}
 
  const submitHandler=(e)=>{
+  e.preventDefault();
+
   console.log(JSON.stringify(data))
  
   fetch("http://localhost:8080/feedback",{
     method:"POST",
-    headers:{"Content-Type":"application/json","Accept":"application/json"},
+    headers:{"Content-Type":"application/json",
+              Accept:"application/json"},
     body:JSON.stringify(data)
-  }).then(()=>{
+  })
+  .then(()=>{
     console.log("item are added")})
+    swal("Success", "Feedback saved Successfully", "success").then(() => {
+      window.location.reload(true);
+  });
   
 }
 
@@ -63,6 +71,7 @@ useEffect(()=>
     <div className="container2">
       <h2>Feedback Of Trainee</h2>
       <hr />
+      <form>
       <div className="bg-light">
         <div className="row ">
         
@@ -91,11 +100,12 @@ useEffect(()=>
           <div className="col mt-3">
             <label class="form-label">Feedback:</label>
             <br />
-            <textarea value={data.feedback} className='form-control' id='my box' rows="3" name="feedback" onChange={inputChangeHandler}></textarea>
+            <textarea placeholder="Write something..." value={data.feedback} className='form-control' id='my box' rows="3" name="feedback" onChange={inputChangeHandler} required></textarea>
           </div>
         </div>
-        <button onClick={submitHandler} type="save" className="btn btn-primary btn-sm my-3 mx-5 ">Save</button>
+        <button onClick={submitHandler} type="submit" className="btn btn-primary btn-sm my-3 mx-5 ">Save</button>
         </div>
+        </form>
         </div>
        
   )

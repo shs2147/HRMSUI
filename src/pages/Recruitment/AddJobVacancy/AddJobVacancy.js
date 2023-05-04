@@ -1,4 +1,5 @@
 import { useState,useEffect } from "react";
+import swal from 'sweetalert';
 
 const AddJobVacancy = () => {
   const [data,setData]=useState({
@@ -28,6 +29,9 @@ const[active,setActive]=useState([]);
       body: JSON.stringify(data)
     }).then(() => {
       console.log("Vacancy created")
+      swal("Success", "User Added Successfully", "success").then(()=>{
+        window.location.reload(true)
+      })
     })
 }
 const fetchData = () =>{
@@ -86,7 +90,7 @@ useEffect(()=>
           <div className="col-sm-6">
             <label class="form-label">Vacancy Name</label><br />
             {/* <input type="text" class="form-control" id="formGroupExampleInput" /> */}
-            <input value={data.vacancyName} type="text" className="form-control" id="formGroupExampleInput" name="vacancyName" onChange={inputChangeHandler}/>
+            <input placeholder="Enter field" value={data.vacancyName} type="text" className="form-control" id="formGroupExampleInput" name="vacancyName" onChange={inputChangeHandler}/>
           </div>
 
           <div className="col-sm-6 mt-2">
@@ -106,16 +110,16 @@ useEffect(()=>
           <div className="col-sm-6">
             <label class="form-label">Number Of Postion:</label><br />
             {/* <input type="text" class="form-control" id="formGroupExampleInput" /> */}
-            <input value={data.numberOfPosition} type="text" className="form-control" id="formGroupExampleInput" name="numberOfPosition" onChange={inputChangeHandler} />
+            <input placeholder="Enter field" value={data.numberOfPosition} type="text" className="form-control" id="formGroupExampleInput" name="numberOfPosition" onChange={inputChangeHandler} />
           </div>
           <div className="col-sm-6">
             <label class="form-label">Job Location:</label><br />
             {/* <input type="text" class="form-control" id="formGroupExampleInput" /> */}
-            <input value={data.jobLocation} type="text" className="form-control" id="formGroupExampleInput" name="jobLocation" onChange={inputChangeHandler} />
+            <input placeholder="Enter field" value={data.jobLocation} type="text" className="form-control" id="formGroupExampleInput" name="jobLocation" onChange={inputChangeHandler} />
           </div>
           <div className="col-sm-6">
             <label class="form-label">Job Description:</label><br />
-            <input value={data.jobDescription} type="text" className="form-control" id="formGroupExampleInput" name="jobDescription" onChange={inputChangeHandler}/>
+            <input placeholder="Enter field" value={data.jobDescription} type="text" className="form-control" id="formGroupExampleInput" name="jobDescription" onChange={inputChangeHandler}/>
           </div>
         </div>
         {/* <div>
