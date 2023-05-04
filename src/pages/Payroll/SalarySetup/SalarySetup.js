@@ -584,7 +584,7 @@ function print(){
     <label>Designation:</label>
   </div>
   <div className="all">
-    <label>Working days:</label>
+    <label>Reporting To:</label>
   </div>
 
   <div className="all">

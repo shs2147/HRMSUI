@@ -42,7 +42,7 @@ function App() {
       swal("Success", "Added Successfully", "success");
       
     } catch (error) {
-      alert(error.message)
+      alert("Only excel file will be uploaded.")
       
     }
      };
