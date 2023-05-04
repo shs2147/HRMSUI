@@ -32,6 +32,7 @@ const [paidday,setPaidday]=useState([]);
 const [basicsalary,setBasicsalary]=useState([]);
 const [bonus,setBonus]=useState([]);
 const [disabled,setDisabled]=useState(false);
+const [btnDisabled,setBtnDisabled]=useState(true);
 const [pdf, setPdf]=useState(false)
 //const [current,setCurrent]=useState([]);
 const[grossSalary,setGrossSalary]=useState([]);
@@ -41,21 +42,18 @@ const[grossSalary,setGrossSalary]=useState([]);
 
 console.log(empName,selectedId,"selectedId")
 
-const pdfGenerator=()=>{
- 
-  var doc=new jsPDF('portrait','px','a4','false')
-  doc.save('a.pdf');
-}
 
 const inputChangeHandler = (e) => {
     let newData = { ...data };
     newData[e.target.name ] = e.target.value;
+
     if(e.target.name === "employeeName"){
       setEmpName(e.target.value)
     }
     if(e.target.name === "id"){
       setSelectedId(e.target.value);
       setDisabled(true)
+      setBtnDisabled(false)
     }
     if(e.target.name === "accountNumber"){
       setAccountNumber(e.target.value);
@@ -386,10 +384,13 @@ function print(){
 	</div>
 </div>
 
-  :
+  : 
+  <form>
 <div>
 <center className='mt-2'><h1><b>Employee Salary</b></h1></center>
+
 <fieldset>
+
 
   {/* <legend>Employee Salary Slip</legend> <br /> */}
   
@@ -449,7 +450,7 @@ function print(){
   
 
   <div className="all"></div>
-  <div className="all"></div>
+  <div className="all"></div>     
 
 </div>
 <div className="labelContainer"> 
@@ -462,7 +463,7 @@ function print(){
   </div>
 
   <div className="all">
-  <input type="text" value={paidday} name='paidday' onChange={inputChangeHandler} placeholder='Enter field ...' />
+  <input type="text" maxLength="2" value={paidday} name='paidday' onChange={inputChangeHandler} placeholder='Enter field ...' required />
   </div>
 
 
@@ -528,13 +529,13 @@ function print(){
   <div className="all">
   {/* <select disabled={disabled} value={lOP} name='lop' onChange={inputChangeHandler} > */}
       {/* <option selected disabled>Select Work Type</option> */}
-      <input type='text' value={lOP} name='lop' onChange={inputChangeHandler} placeholder='lop days'/> 
+      <input type='text' maxLength="2" value={lOP} name='lop' onChange={inputChangeHandler} placeholder='lop days'/> 
       {/* {show.map(e=>(<option valueType={e.basicEmployee1.workType }>{e.basicEmployee1.workType }</option>))} */}
       {/* </select> */}
   </div>  
 
    <div className="all">
-  <input type="text" value={workingdays} name='workingdays' onChange={inputChangeHandler} placeholder='Enter field ...' />
+  <input type="text" maxLength="2" value={workingdays} name='workingdays' onChange={inputChangeHandler} placeholder='Enter field ...' />
   </div>
 
   {/* <div className="all">
@@ -698,7 +699,7 @@ function print(){
   
 
   <div className="all">
-  <input type="text" value={paidday} name='paidday' onChange={inputChangeHandler} placeholder="Enter field income" />
+  <input type="text" maxLength="2" value={paidday} name='paidday' onChange={inputChangeHandler} placeholder="Enter field income" />
   </div>
 
   {/* <div className="all">
@@ -721,14 +722,16 @@ function print(){
 
   <div className="all">
 
-  <button className='btn btn-success text-light' onClick={download}>Print / Download</button>
+  <button type="submit" disabled={btnDisabled} className='btn btn-success text-light' onClick={download}>Print / Download</button>
   </div>
 
 </div>
 
 
 </fieldset>
+
 </div>
+</form>
 }
         
         </>

@@ -30,6 +30,7 @@ const[train,setTrian]=useState([]);
   }).then(()=>{
     console.log("employee added successfuly")})
     swal("Success", "Data Added Successfully", "success");
+    window.location.reload(true);
 }
 const fetchData1 = () =>{
   fetch("http://localhost:8080/basic/fetchdata",{

@@ -1,6 +1,7 @@
 import MaterialTable from "@material-table/core";
 import { useState } from "react";
 import swal from 'sweetalert';
+import { Button } from "react-bootstrap";
 
 const Branch = () => {
   const [data, setData] = useState({
@@ -32,6 +33,20 @@ const Branch = () => {
       })
       .catch((err) => console.log(err));
   };
+ 
+  const handleDelete = (id)=>{
+    fetch(`http://localhost:8080/branch/delete/${id}`,{
+  method:'DELETE'
+    }).then((result)=>{
+      swal("Success", "Department Deleted Successfully", "success").then(()=>{
+        window.location.reload(true);
+      });
+      
+      result.json().then((response)=>{
+        console.warn(response)
+      })
+    })
+  }
 
   //  const submitHandler=(e)=>{
   //     e.preventDefault();
@@ -91,6 +106,9 @@ const Branch = () => {
         </form>
       </div>   <br/><br/>
       <MaterialTable
+      title="Branch Record"
+      data={ticketDetails}
+
         columns={[
                {
             title: "Branch Id",
@@ -99,12 +117,19 @@ const Branch = () => {
           {
             title: "Branch Name",
             field: "name",
-          }
+          },
+          {
+            title: "Actions",
+            field: "actions",
+            render: (rowData) => (
+              <Button onClick={() => handleDelete(rowData.id)}>Delete</Button>
+              )
+            },
 
        
         ]}
-        data={ticketDetails}
-        title="Branch Record"
+       
+        
       />
     </>
   );
