@@ -44,13 +44,13 @@ import swal from 'sweetalert';
    <div className="col-sm-4 my-4">
           <label for="cars" id='label'> Training Name:</label>
         <br/>
-     <input value={data.trainingName} type="text" class="form-control" id="formGroupExampleInput" name="trainingName" onChange={inputChangeHandler}/>
+     <input placeholder="Enter Training Name" value={data.trainingName} type="text" class="form-control" id="formGroupExampleInput" name="trainingName" onChange={inputChangeHandler}/>
    </div>
 
    <div className="col-sm-4 my-4">
           <label for="cars" id='label'>Description:</label>
         <br/>
-     <input value={data.description} type="text" class="form-control" id="formGroupExampleInput" name="description" onChange={inputChangeHandler}/>
+     <input placeholder="Describe here..." value={data.description} type="text" class="form-control" id="formGroupExampleInput" name="description" onChange={inputChangeHandler}/>
    </div>
    {/* <div className="col-sm-4 mt-2">
           <label for="cars" id='label'>DEP ID:</label>
