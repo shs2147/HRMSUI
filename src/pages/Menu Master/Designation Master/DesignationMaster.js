@@ -8,7 +8,19 @@ import { Button } from "react-bootstrap";
 
 const DesignationMaster = () => {
   const [data, setData] = useState({});
+  const [warningMessage, setWarningMessage] = useState(false);
+  const [disabled, setDisabled] = useState(true);
   const inputChangeHandler = (e) => {
+    var neeraj=e.target.value;
+    if (!neeraj.match(/^[A-Za-z ]{0,}[A-Za-z]{0,}$/) || neeraj.length<1){
+setWarningMessage(true)
+setDisabled(true)
+     }
+     else{
+      setWarningMessage(false)
+      setDisabled(false)
+           }
+
     let newData = { ...data };
     newData[e.target.name] = e.target.value;
     setData(newData);
@@ -79,7 +91,7 @@ const DesignationMaster = () => {
           <div className="row ">
             <div className="col-sm-6 mt-2">
               <label for="cars" id="label">
-                Designation Name:
+                Designation Name: <span style={{color:'red'}}>*</span>
               </label>
               <br />
               <input
@@ -90,13 +102,20 @@ const DesignationMaster = () => {
                 name="designationName"
                 onChange={inputChangeHandler}
                 placeholder="Enter Designation Name"
+                autoFocus
               />
             </div>
+            {
+              warningMessage?
+              <span style={{color:'red'}}><i> &nbsp; <i class="fa fa-exclamation-circle" aria-hidden="true"></i> Number or empty field not allowed</i></span>
+              : null
+            }
           </div>
           <button
+          disabled={disabled}
             onClick={submitHandler}
             type="button"
-            class="btn btn-primary  mt-4 "
+            class="btn btn-primary  mt-4 vvv "
           >
             Submit
           </button>{" "}
@@ -104,6 +123,7 @@ const DesignationMaster = () => {
             View All
           </button> */}
         </div>
+
       </div>
       <br/><br/>
 

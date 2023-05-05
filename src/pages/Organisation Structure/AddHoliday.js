@@ -3,6 +3,7 @@ import MaterialTable from "@material-table/core";
 import swal from 'sweetalert';
 
 const AddHoliday= () => {
+
   const [data,setData]=useState({
     // holidayName:'',
     // holidayType:'',
@@ -10,7 +11,9 @@ const AddHoliday= () => {
     // fromDate:'',
     // toDate:'',
   });
+
  const inputChangeHandler=(e)=>{
+  
     let newData={...data};
     newData[e.target.name]=e.target.value;
     setData(newData)
@@ -48,11 +51,11 @@ return <>
     
   <div className="col-sm-6">
   <label  class="form-label">Holiday Name:</label><br/>
-  <input placeholder="Enter field" value={data.holidayName} type="Text" class="form-control" id="formGroupExampleInput" name="holidayName" onChange={inputChangeHandler} required />
+  <input placeholder="Enter Holiday Name" value={data.holidayName} type="Text" class="form-control" id="formGroupExampleInput" name="holidayName" onChange={inputChangeHandler} required />
 </div>
 <div className="col-sm-6">
   <label  class="form-label">Holiday Type:</label><br/>
-  <input placeholder="Enter field" value={data.holidayType} type="Text" class="form-control" id="formGroupExampleInput" name="holidayType" onChange={inputChangeHandler} required />
+  <input placeholder="Enter Holiday Type" value={data.holidayType} type="Text" class="form-control" id="formGroupExampleInput" name="holidayType" onChange={inputChangeHandler} required />
 </div>
 {/* <div className="col-sm-6 mt-2">
        <label for="cars" id='label'>Holiday Type:</label>
@@ -82,6 +85,7 @@ return <>
 </div>
 <button type="submit" onClick={submitHandler} className="btn btn-primary mt-4">Save</button>
 </div>
+
 </form>
 </div>
 <MaterialTable

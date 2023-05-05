@@ -1,7 +1,8 @@
 import React, {useEffect, useState } from 'react';
-import jsPDF from 'jspdf';
+
 
 const SalarySetup = () => {
+
 const [data, setData] = useState([]);
 const [show,setShow]=useState([]);
 const [empName,setEmpName]=useState([]);
@@ -24,13 +25,14 @@ const [ctc,setCtc]=useState([]);
 const [pfnumber,setPfnumber]=useState([]);
 const [reporting,setReporting]=useState([]);
 const [workingdays,setWorkingdays]=useState([]);
-const [incometax,setIncometax]=useState([]);
-const [shiftallowance,setShiftallowance]=useState([]);
-const [conveyance,setConveyance]=useState([]);
-const [specialallowance,setSpecialallowance]=useState([]);
+// const [incometax,setIncometax]=useState([]);
+// const [shiftallowance,setShiftallowance]=useState([]);
+// const [conveyance,setConveyance]=useState([]);
+// const [specialallowance,setSpecialallowance]=useState([]);
 const [paidday,setPaidday]=useState([]);
+const [month,setMonth]=useState([]);
 const [basicsalary,setBasicsalary]=useState([]);
-const [bonus,setBonus]=useState([]);
+// const [bonus,setBonus]=useState([]);
 const [disabled,setDisabled]=useState(false);
 const [btnDisabled,setBtnDisabled]=useState(true);
 const [pdf, setPdf]=useState(false)
@@ -49,6 +51,9 @@ const inputChangeHandler = (e) => {
 
     if(e.target.name === "employeeName"){
       setEmpName(e.target.value)
+    }
+    if(e.target.name === "month"){
+      setMonth(e.target.value)
     }
     if(e.target.name === "id"){
       setSelectedId(e.target.value);
@@ -401,7 +406,7 @@ function print(){
   </div>
 
   <div className="all">
-    <label>Paid days:</label>
+    <label>Month:</label>
   </div>
 
   <div className="all">
@@ -463,7 +468,7 @@ function print(){
   </div>
 
   <div className="all">
-  <input type="text" maxLength="2" value={paidday} name='paidday' onChange={inputChangeHandler} placeholder='Enter field ...' required />
+  <input type="month" value={month} name='month' onChange={inputChangeHandler} placeholder='Enter field ...' required />
   </div>
 
 

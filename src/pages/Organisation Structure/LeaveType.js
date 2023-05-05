@@ -47,11 +47,11 @@ return <>
     
   <div className="col-sm-6">
   <label  class="form-label">Leave Type :</label><br/>
-  <input placeholder="Enter field" value={data.leaveType} type="Text" class="form-control" id="formGroupExampleInput" name="leaveType" onChange={inputChangeHandler} />
+  <input placeholder="Enter leave type..." value={data.leaveType} type="Text" class="form-control" id="formGroupExampleInput" name="leaveType" onChange={inputChangeHandler} />
 </div>
 <div className="col-sm-6">
   <label  class="form-label">Description :</label><br/>
-  <input placeholder="Enter field" value={data.description} type="Text" class="form-control" id="formGroupExampleInput" name="description" onChange={inputChangeHandler} />
+  <input placeholder="Describe here..." value={data.description} type="Text" class="form-control" id="formGroupExampleInput" name="description" onChange={inputChangeHandler} />
 </div>
 
 
