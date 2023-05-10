@@ -42,13 +42,13 @@ import swal from 'sweetalert';
    <div className="col-sm-4 my-4">
           <label for="cars" id='label'>Event Name:</label>
         <br/>
-     <input value={data.name} type="text" class="form-control" id="formGroupExampleInput" name="name" onChange={inputChangeHandler}/>
+     <input value={data.name} type="text" class="form-control" id="formGroupExampleInput" name="name" onChange={inputChangeHandler} placeholder="Please Enter Event Name"/>
    </div>
 
    <div className="col-sm-4 my-4">
           <label for="cars" id='label'>Description:</label>
         <br/>
-     <input value={data.description} type="text" class="form-control" id="formGroupExampleInput" name="description" onChange={inputChangeHandler}/>
+     <input value={data.description} type="text" class="form-control" id="formGroupExampleInput" name="description" onChange={inputChangeHandler} placeholder="Write Something Here" />
    </div>
 </div>
    <button onClick={submitHandler} className="btn btn-primary mt-4">Save</button>

@@ -92,7 +92,7 @@ useEffect(()=>
 
   return (
     <div className="container2">
-    <h2>Traning Master To Employee</h2>
+    <h2>Training Master To Employee</h2>
     <hr />
     <div className="bg-light">
       <div className="row ">
@@ -109,14 +109,11 @@ useEffect(()=>
             </select>
           </div>
           <div className="col-sm-4">
-            <label for="cars" id='label'>Training Name:</label>
+            <label for="cars" id='label'>Training Name: </label>
             <br />
-            <select value={data.trainingName} class="form-select" aria-label="Default select example" name="trainingName" onChange={inputChangeHandler}>
+            <select value={data.trainingName} class="form-select" aria-label="Default select example" name="trainingName" onChange={inputChangeHandler} required>
               <option selected disabled>Training Name</option>
-              {train.map(e=>(<option valueType={e.trainingName}>{e.trainingName}</option>))}
-              {/* <option value="react js">react js</option>
-              <option value="java">java</option>
-              <option value="php">php</option> */}
+                  {train.map(e=>(<option valueType={e.trainingName}>{e.trainingName}</option>))}
             </select>
           </div>
           <div className="col-sm-4">
