@@ -906,6 +906,30 @@ const AddEmployee = () => {
             <div className="container">
               <div className="bg-light">
                 <div className="row ">
+                <div className="col-sm-6 ">
+                    <label className="form-label" for="cars" id="label">
+                      Employee Id:
+                    </label>
+
+                    <select
+                      valueType={data.employeeId}
+                      className="form-select"
+                      name="employeeId"
+                      onChange={inputChangeHandler}
+                      >
+                        <option selected disabled >
+                          Select ID
+                        </option>
+                          {user.map((e)=>(
+                          <option valueType={e.employeeId}>
+                            {e.employeeId}
+                            </option>
+                          
+                        ))}
+                        
+                      
+                    </select>
+                  </div>
                 <div className=" col-sm-6">
                     <label className="form-label">Name (As Per Bank Record):</label>
                     <br />
@@ -1015,6 +1039,30 @@ const AddEmployee = () => {
               <div className="bg-light">
                 <div className="row ">
 
+                <div className="col-sm-6 ">
+                    <label className="form-label" for="cars" id="label">
+                      Employee Id:
+                    </label>
+
+                    <select
+                      valueType={data.employeeId}
+                      className="form-select"
+                      name="employeeId"
+                      onChange={inputChangeHandler}
+                      >
+                        <option selected disabled >
+                          Select ID
+                        </option>
+                          {user.map((e)=>(
+                          <option valueType={e.employeeId}>
+                            {e.employeeId}
+                            </option>
+                          
+                        ))}
+                        
+                      
+                    </select>
+                  </div>
                 <div className=" col-sm-6">
                     <label className="form-label">Employee Name:</label>
                     <br />

@@ -135,7 +135,7 @@ fetchData();
             id="Choose Type"
           />
         </div>
-        <div className="col">
+        {/* <div className="col">
           {" "}
           <label for="formFile" className="form-label">
             Days:
@@ -149,7 +149,7 @@ fetchData();
             type="text"
             maxlength="3"
           />
-        </div>
+        </div> */}
       </div>
       <div className="row d-flex flex-column">
         <label for="exampleInputEmail1" className="form-label mx-5">

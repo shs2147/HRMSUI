@@ -17,9 +17,12 @@ const formData = {
 export default function UserMaster() {
 
   const [data, setData] = useState(formData);
-  const { userName, password, aadhaarNumber, departmentName ,roleName,employeeName,panNumber} = data;
-  // const [showError, setShowError] = useState(false);
+  const { userName, password, aadhaarNumber, departmentName ,roleName,panNumber} = data;
+  const [showError, setShowError] = useState(false);
   const [itemshow, setItemshow] = useState([]);
+  const[inputValue,setInputValue]=useState([]);
+  const[errors,setErrors]=useState('');
+  const[employeeName,setEmployeeName]=useState('')
 
   const handleChange = (e) => {
   
@@ -27,6 +30,49 @@ export default function UserMaster() {
     newData[e.target.name]=e.target.value;
     setData(newData);
   };
+
+  const validateForm = () => {
+    const newErrors = [];
+
+    // Validate name
+    if (!employeeName) {
+      newErrors.push('Name is required.')
+    }
+
+    // // Validate email
+    // if (!email) {
+    //   newErrors.push('Email is required.');
+    // } else if (!/\S+@\S+\.\S+/.test(email)) {
+    //   newErrors.push('Invalid email format.');
+    // }
+
+    setErrors(newErrors);
+    return newErrors.length === 0;
+  };
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    if (validateForm()) {
+      // Submit the form
+      console.log(data);
+      fetch("http://localhost:8080/usermaster/saveuser", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+          },
+          body: JSON.stringify(data),
+      })
+      .then(() => {
+          console.log("department Added");
+          swal("Success", "User Added Successfully", "success").then(() => {
+              window.location.reload(true);
+          });
+      })
+      .catch((err) => console.log(err));
+    }
+  };
+
 
   const FetchData1 = () => {
     fetch("http://localhost:8080/department/getall", {})
@@ -42,65 +88,34 @@ export default function UserMaster() {
     FetchData1();
   },[])
 
-  const handleClick = (e) => {
-   
-    setShowError(true);
-if(
-  !Validation.email(userName)&&
-  !Validation.password(password)
-  // !Validation.aadharValidate(aadhaarNumber)&&
-  // !Validation.panNumber(panNumber)
-){
-  alert("fill all the details")
-}
-    else if (
-      !Validation.email(userName) 
-      )
-      {
-        // alert("fill your email")
-      }
-      else if(
-        !Validation.password(password)
-      ){
-        // alert("fill your password")
-      }
-      // else if(
-      //   !Validation.aadharValidate(aadhaarNumber)
-      // ){
-      //   alert("fill aadhar number")
-      // }
-      // else if(
-      //   !Validation.panNumber(panNumber)
-      // )
-      // {
-      //   alert("fill your pan number")
-      // }
-   
-    else {
-      
-      setShowError(false)
-      // alert("Your data has been saved successfully!!")
-    
-      setData({});
-      console.log(JSON.stringify(data));
-      fetch("http://localhost:8080/usermaster/saveuser", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-        .then(() => {
-          console.log("User are Added");
-          swal("Success", "Data Added Successfully", "success").then(() => {
-            window.location.reload(true);
-        });
-        })
-        .catch((err) => console.log(err));
+  // const handleClick=(e)=>{
+  //   e.preventDefault();
 
-    };
-  }
+  //   if(inputValue===" ")
+  //   {
+  //       alert("Enter a value");
+  //   }
+  //   else{
+  //     console.log(data);
+  //     fetch("http://localhost:8080/usermaster/saveuser", {
+  //         method: "POST",
+  //         headers: {
+  //             "Content-Type": "application/json",
+  //             Accept: "application/json",
+  //         },
+  //         body: JSON.stringify(data),
+  //     })
+  //     .then(() => {
+  //         console.log("department Added");
+  //         swal("Success", "User Added Successfully", "success").then(() => {
+  //             window.location.reload(true);
+  //         });
+  //     })
+  //     .catch((err) => console.log(err));
+  //   }
+  // }
+
+
 
   return (
     
@@ -116,14 +131,16 @@ if(
       <Row className="mb-3">
 
       <Form.Group as={Col} sm={4} controlId="validationCustom05" className="mt-2">
-            <Form.Label>Employee Name : </Form.Label>
+            <Form.Label >Employee Name : </Form.Label>
             <Form.Control
               type='text'
               name='employeeName'
               placeholder='Enter Your Name'
-              onChange={handleChange}
+              onChange={(e) => setEmployeeName(e.target.value)}
+              // onChange={handleChange}
               value ={data.employeeName}
               required
+              pattern="[A-Za-z]{3}+"
               // isInvalid={showError && !Validation.maximum(data?.employeeName, 50)}
             />
             <Form.Control.Feedback type='invalid'>
@@ -135,12 +152,12 @@ if(
             <Form.Label>User Name : </Form.Label>
             <Form.Control
               type='text'
-              name='userName'
-              placeholder='Enter Your Email as a Username'
+              name='employeeName'
+              placeholder='Enter Your Name'
               onChange={handleChange}
-              value ={data.userName}
+              value ={data.employeeName}
               required
-              // isInvalid={showError && !Validation.maximum(data?.userName, 50)}
+              pattern="[A-Za-z]+"
             />
             <Form.Control.Feedback type='invalid'>
               user name is necessary
@@ -210,40 +227,6 @@ if(
                 {/* <option valueType="java">User</option> */}
               </select>
               </Form.Group>
-            
-          {/* <Form.Group as={Col} sm={4} controlId="validationCustom03" className="mt-2">
-            <Form.Label>Aadhar Number : </Form.Label>
-            <Form.Control
-              type='text'
-              name='aadhaarNumber'
-              placeholder='enter your aadhar'
-              onChange={handleChange}
-              value={data.aadhaarNumber}
-             isInvalid={showError && !Validation.aadharValidate(data?.aadhaarNumber)}
-             maxLength="12"
-            />
-            <Form.Control.Feedback type='invalid'>
-              {!aadhaarNumber ? "aadhar is necessary(12 digits)" : "can't be less than or greater than 12"}
-              
-            </Form.Control.Feedback>
-          </Form.Group> */}
-        
-          {/* <Form.Group as={Col} sm={4} controlId="validationCustom06" className="mt-2">
-            <Form.Label>Pan Number : </Form.Label>
-            <Form.Control
-              type='text'
-              name='panNumber'
-              placeholder='enter your panNumber'
-              onChange={handleChange}
-              value={data.panNumber}
-             isInvalid={showError && !Validation.panNumber(data?.panNumber)}
-            
-            />
-            <Form.Control.Feedback type='invalid'>
-              {!panNumber ? "pan is necessary(10 digits)" : "can't be less than 10 digit"}
-              
-            </Form.Control.Feedback>
-          </Form.Group> */}
 
           <Form.Group as={Col} sm={4} controlId="validationCustom04" className="mt-2">
             <Form.Label>Password : </Form.Label>
@@ -278,6 +261,15 @@ if(
               
             </Form.Control.Feedback>
           </Form.Group>
+          {errors.length > 0 && (
+        <div>
+          <ul>
+            {errors.map((error) => (
+              <li key={error}>{error}</li>
+            ))}
+          </ul>
+        </div>
+      )}
         
           
         </Row> 
