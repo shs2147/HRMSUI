@@ -39,7 +39,7 @@ import RaiseGrievance from "./pages/SelfPortal/RaiseGrievance/RaiseGrievance";
 import SelfPortal from "./pages/SelfPortal/SelfPortal/SelfPortal";
 import LeaveReport from "./pages/Attendance/LeaveReport";
 import MonthwiseAttdReport from "./pages/Attendance/MonthwiseAttdReport";
-import MonthwiseAbsentReport from "./pages/Attendance/MonthwiseAbsentReport";
+import MonthwiseReport from "./pages/Attendance/MonthwiseReport";
 import ViewOtReport from "./pages/Attendance/ViewOtReport";
 import AddOverTime from "./pages/Attendance/AddOverTime";
 import UploadBulkAttendance from "./pages/Attendance/UploadBulkAttendance";
@@ -242,8 +242,8 @@ function App() {
             <Route path="/attendance/AddOverTime" element={<AddOverTime />} />
             <Route path="/attendance/ViewOtReport" element={<ViewOtReport />} />
             <Route
-              path="/attendance/MonthwiseAbsentReport"
-              element={<MonthwiseAbsentReport />}
+              path="/attendance/MonthwiseReport"
+              element={<MonthwiseReport />}
             />
             <Route
               path="/attendance/MonthwiseAttdReport"
