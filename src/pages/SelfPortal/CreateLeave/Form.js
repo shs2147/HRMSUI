@@ -163,6 +163,7 @@ fetchData();
           className="form-control col-10 mx-5  w-75"
           id="exampleInputEmail1"
           aria-describedby="emailHelp"
+          placeholder="Reason for leave"
         />
       </div>
       <div className="mt-2 mx-5">

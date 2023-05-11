@@ -3,7 +3,6 @@ import MaterialTable from "@material-table/core";
 import swal from 'sweetalert';
 import { Button } from "react-bootstrap";
 
-const reload=()=>window.location.reload();
 
 const DepartmentMaster = () => {
 
