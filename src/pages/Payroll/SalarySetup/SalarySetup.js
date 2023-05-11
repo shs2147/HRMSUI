@@ -635,24 +635,6 @@ function print(){
   </div>
 
 
-{/* <div className="all">
-<select  value={fnclMonth} name='fnclMonth' onChange={inputChangeHandler}>
-    <option selected>Select Month</option>
-      <option value="Jan">January</option>
-     <option value="Fab">February</option>
-    <option value="Mar">March</option>
-      <option value="Apr">April</option>
-        <option value="May">May</option>
-         <option value="Jun">June</option>
-          <option value="Jul">July</option>
-           <option value="Aug">August</option>
-             <option value="Sep">September</option>
-             <option value="Oct">October</option>
-            <option value="Nov">November</option>
-               <option value="Dec">December</option>
-                  </select>
-  </div> */}
-
   <div className="all">
     <select disabled={disabled} value={accountNumber} name="accountNumber"  onChange={inputChangeHandler} >
       <option selected disabled>Select Account No.</option>

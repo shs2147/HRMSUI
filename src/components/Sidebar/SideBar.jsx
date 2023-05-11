@@ -276,8 +276,8 @@ const routes = [
         icon: <AiOutlineCaretRight />,
       },
       {
-        path: "/attendance/MonthwiseAbsentReport",
-        name: "Monthwise Absent Report",
+        path: "/attendance/MonthwiseReport",
+        name: "Monthwise Report",
         icon: <AiOutlineCaretRight />,
       },
       // {

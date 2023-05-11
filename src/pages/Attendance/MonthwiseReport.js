@@ -83,7 +83,7 @@ const [formData, setFormData] = useState({ name: "",startdate: "",enddate: "",st
               <option>select</option>
               <option>Present</option>
               <option>Absent</option>
-              <option>Work From Home</option>
+              <option>WFH</option>
               <option>Paid Leave</option>
               <option>Weekly Off</option>
               <option>Optional</option>
