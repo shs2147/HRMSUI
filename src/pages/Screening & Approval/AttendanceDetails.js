@@ -94,6 +94,6 @@ const [formData, setFormData] = useState({ name: "",startdate: "",enddate: "",})
                  {title: "Out Time",field: "outTime", }, 
                  {title: "Status",field: "status", }, 
                 ]} 
-               data={view}title="Over Time Record"/></> );}
+               data={view}title="Attendence Record"/></> );}
             export default AttendanceDetails;
 

@@ -29,8 +29,10 @@ const[train,setTrian]=useState([]);
     body:JSON.stringify(data)
   }).then(()=>{
     console.log("employee added successfuly")})
-    swal("Success", "Data Added Successfully", "success");
-    window.location.reload(true);
+    swal("Success", "Data Added Successfully", "success").then(()=>{
+      window.location.reload(true);
+    })
+    
 }
 const fetchData1 = () =>{
   fetch("http://localhost:8080/basic/fetchdata",{
@@ -92,28 +94,25 @@ useEffect(()=>
 
   return (
     <div className="container2">
-    <h2>Training Master To Employee</h2>
+    <h2>Training Master</h2>
     <hr />
-    <div className="bg-light">
+    <form className="bg-light" onSubmit={submitHandler}>
       <div className="row ">
       
       <div className="col-sm-4">
             <label for="cars" id='label'>Event Name:</label>
             <br />
-            <select value={data.eventName} class="form-select" aria-label="Default select example" name="eventName" onChange={inputChangeHandler}>
+            <select value={data.eventName} class="form-select" aria-label="Default select example" name="eventName" onChange={inputChangeHandler} >
               <option selected disabled>Event Name</option>
               {show.map(e=>(<option valueType={e.name}>{e.name}</option>))}
-              {/* <option value="abcd">abcd</option>
-              <option value="efgh">efgh</option>
-              <option value="ijkl">ijkl</option> */}
             </select>
           </div>
           <div className="col-sm-4">
             <label for="cars" id='label'>Training Name: </label>
             <br />
-            <select value={data.trainingName} class="form-select" aria-label="Default select example" name="trainingName" onChange={inputChangeHandler} required>
+            <select value={data.trainingName} class="form-select" aria-label="Default select example" name="trainingName" onChange={inputChangeHandler} >
               <option selected disabled>Training Name</option>
-                  {train.map(e=>(<option valueType={e.trainingName}>{e.trainingName}</option>))}
+                  {train.map(e=>(<option valueType={e.trainingName}>{e.trainingName}</option>))}0
             </select>
           </div>
           <div className="col-sm-4">
@@ -128,8 +127,8 @@ useEffect(()=>
             </select>
           </div>
       </div>
-      <button onClick={submitHandler} type="save" className="btn btn-primary btn-sm my-3 mx-5 ">Save</button>
-      </div>
+      <button  type="submit" className="btn btn-primary btn-sm my-3 mx-5 " value="Submit">Save</button>
+      </form>
       </div>
   )
 }

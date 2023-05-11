@@ -2,14 +2,7 @@ import { useState } from "react";
 import swal from 'sweetalert';
 
   const Employee = () => {
-    const [data,setData]=useState({
-      empid:'',
-      depid:'',
-      firstname:'',
-      middlename:'',
-      lastname:'',
-      salary:'',
-    });
+    const [data,setData]=useState([]);
    const inputChangeHandler=(e)=>{
       let newData={...data};
       newData[e.target.name]=e.target.value;
@@ -27,7 +20,9 @@ import swal from 'sweetalert';
       body:JSON.stringify(data)
     }).then(()=>{
       console.log("Training are added")})
-      swal("Success", "Training Name Added Successfully", "success");
+      swal("Success", "Training Name Added Successfully", "success").then(()=>{
+        window.location.reload(true)
+      })
   
   }
    return <>
@@ -36,52 +31,25 @@ import swal from 'sweetalert';
      <h3>Add Details</h3>
      </div> 
      <hr />
-     <div className="bg-light">
+     <form className="bg-light" onSubmit={submitHandler}>
      <div className="row ">
 
       
   
    <div className="col-sm-4 my-4">
-          <label for="cars" id='label'> Training Name:</label>
+          <label for="cars" id='label'> Training Name: <span style={{color:'red'}}> * </span></label>
         <br/>
-     <input placeholder="Enter Training Name" value={data.trainingName} type="text" class="form-control" id="formGroupExampleInput" name="trainingName" onChange={inputChangeHandler}/>
+     <input placeholder="Enter Training Name" value={data.trainingName} type="text" class="form-control" id="formGroupExampleInput" name="trainingName" onChange={inputChangeHandler} required/>
    </div>
 
    <div className="col-sm-4 my-4">
-          <label for="cars" id='label'>Description:</label>
+          <label for="cars" id='label'>Description: <span style={{color:'red'}}> * </span></label>
         <br/>
-     <input placeholder="Describe here..." value={data.description} type="text" class="form-control" id="formGroupExampleInput" name="description" onChange={inputChangeHandler}/>
+     <input placeholder="Describe here..." value={data.description} type="text" class="form-control" id="formGroupExampleInput" name="description" onChange={inputChangeHandler} required/>
    </div>
-   {/* <div className="col-sm-4 mt-2">
-          <label for="cars" id='label'>DEP ID:</label>
-        <br/>
-     <input value={data.depid} type="text" class="form-control" id="formGroupExampleInput" name="depid" onChange={inputChangeHandler}/>
    </div>
-
-   <div className="col-sm-4 mt-2">
-          <label for="cars" id='label'> First Name:</label>
-        <br/>
-     <input value={data.firstname} type="text" class="form-control" id="formGroupExampleInput" name="firstname" onChange={inputChangeHandler}/>
-   </div>
-   <div className="col-sm-4 mt-2">
-          <label for="cars" id='label'> Middle Name:</label>
-        <br/>
-     <input value={data.middlename} type="text" class="form-control" id="formGroupExampleInput" name="middlename" onChange={inputChangeHandler}/>
-   </div>
-   <div className="col-sm-4 mt-2">
-          <label for="cars" id='label'> Last Name:</label>
-        <br/>
-     <input value={data.lastname} type="text" class="form-control" id="formGroupExampleInput" name="lastname" onChange={inputChangeHandler}/>
-   </div>
-   <div className="col-sm-4 mt-2">
-          <label for="cars" id='label'>Salary:</label>
-        <br/>
-     <input value={data.salary} type="text" class="form-control" id="formGroupExampleInput" name="salary" onChange={inputChangeHandler}/>
-   </div> */}
-
-   </div>
-   <button onClick={submitHandler} className="btn btn-primary mt-4">Save</button>
-   </div>
+   <button type="submit" className="btn btn-primary mt-4">Save</button>
+   </form>
    </div>
    </>
    }

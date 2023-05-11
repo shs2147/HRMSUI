@@ -629,7 +629,7 @@ function print(){
 
   <div className="all">
 <select disabled={disabled} value={pan} name="pan" onChange={inputChangeHandler}>
-{/* <option selected disabled>pan</option> */}
+<option selected disabled>Enter your PAN Number</option>
     {show.map(e=>(<option valueType={e.basicEmployee1.panNumber}>{e.basicEmployee1.panNumber}</option>))}
     </select>
   </div>
@@ -691,7 +691,7 @@ function print(){
 
   <div className="all">
   <select disabled={disabled} value={reporting} name='reporting' onChange={inputChangeHandler} >
-      <option selected disabled>Select Reporting to</option>
+      <option selected >Select Reporting to</option>
       {show.map(e=>(<option valueType={e.basicEmployee1.reportingTo}>{e.basicEmployee1.reportingTo}</option>))}
       </select>
   </div>
