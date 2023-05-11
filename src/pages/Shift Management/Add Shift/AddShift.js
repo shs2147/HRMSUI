@@ -4,6 +4,7 @@ import swal from 'sweetalert';
 
 const AddShift = () => {
   const[data,setData]=useState([]);
+  const[employee,setEmployee]=useState("");
   // const [data,setData]=useState({
   //   shiftdutyassign:'',
   //   country:'',
@@ -42,16 +43,19 @@ useEffect(()=>
   fetchData1();
 },[])
 
+
+
   return (
     <div className="container">
       <h2>Shift Duty Assign</h2>
       <hr />
+      <form>
       <div className="bg-light">
         <div className="row ">
         <div className="col-sm-4">
             <label for="car" id='label' >Employee:</label>
-          
-            <select valueType={data.employee}  class="form-select" aria-label="Default select example"  name="employee" onChange={inputChangeHandler} >
+        
+            <select valueType={data.employee}  class="form-select" aria-label="Default select example"  name="employee" onChange={inputChangeHandler}>
             <option selected disabled>Select Employee</option>
             {show.map(e=>(<option valueType={e.employeeName}>{e.employeeName}</option>))}
               </select>
@@ -84,8 +88,9 @@ useEffect(()=>
   <input value={data.endTime} type="time" class="form-control" aria-label="Default select example"  name="endTime" onChange={inputChangeHandler}/>
 </div>
           </div>
-          <button onClick={submitHandler} className="btn btn-primary mt-4">Save</button>
+          <button type="submit" onClick={submitHandler} className="btn btn-primary mt-4">Save</button>
           </div>
+          </form>
     </div>  
   )
 }

@@ -34,6 +34,7 @@ useEffect(()=>{
     body:JSON.stringify(data)
   }).then(()=>{
     swal("Success", "OverTime Added Successfully", "success");
+    window.location.reload(true);
     console.log("OverTime are added")})
   
  }
@@ -75,7 +76,7 @@ useEffect(()=>{
   </div>
   <div className="col-sm-4">
     <label  class="form-label">Description</label><br/>
-    <input value={data.description} type="text" class="form-control" id="formGroupExampleInput" name="description" onChange={inputChangeHandler}/>
+    <input value={data.description} type="text" class="form-control" id="formGroupExampleInput" name="description" onChange={inputChangeHandler} placeholder="Write Something Here"/>
     
     
   </div>

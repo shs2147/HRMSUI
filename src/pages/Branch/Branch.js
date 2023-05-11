@@ -1,12 +1,24 @@
 import MaterialTable from "@material-table/core";
 import { useState } from "react";
 import swal from 'sweetalert';
+import { Button } from "react-bootstrap";
 
 const Branch = () => {
+  const [warningMessage, setWarningMessage] = useState(false);
+  const [disabled, setDisabled] = useState(true);
   const [data, setData] = useState({
     name: "",
   });
   const inputChangeHandler = (e) => {
+    let neeraj=e.target.value;
+  if (!neeraj.match(/^[A-Za-z ]{0,}[A-Za-z]{0,}$/) || neeraj.length<1){
+setWarningMessage(true)
+setDisabled(true)
+   }
+   else{
+    setWarningMessage(false)
+    setDisabled(false)
+         }
     let newData = { ...data };
     newData[e.target.name] = e.target.value;
     setData(newData);
@@ -32,6 +44,20 @@ const Branch = () => {
       })
       .catch((err) => console.log(err));
   };
+ 
+  const handleDelete = (id)=>{
+    fetch(`http://localhost:8080/branch/delete/${id}`,{
+  method:'DELETE'
+    }).then((result)=>{
+      swal("Success", "Department Deleted Successfully", "success").then(()=>{
+        window.location.reload(true);
+      });
+      
+      result.json().then((response)=>{
+        console.warn(response)
+      })
+    })
+  }
 
   //  const submitHandler=(e)=>{
   //     e.preventDefault();
@@ -57,17 +83,23 @@ const Branch = () => {
           <div className="row ">
             <div className="col-sm-4 mt-2">
               <label for="cars" id="label">
-                Name:
+               Branch Name:
               </label>
               <br />
               <input
                 value={data.name}
+                placeholder='Enter branch name'
                 type="text"
                 class="form-control"
                 id="formGroupExampleInput"
                 name="name"
                 onChange={inputChangeHandler}
-              />
+              />     
+                     {
+              warningMessage?
+              <span style={{color:'red'}}><i> &nbsp; <i class="fa fa-exclamation-circle" aria-hidden="true"></i> Number or empty field not allowed</i></span>
+              : null
+            }
             </div>
 
             {/* <div className="col-sm-6 mt-2">
@@ -85,12 +117,15 @@ const Branch = () => {
               />
             </div> */}
           </div>
-          <button type="submit" class="btn btn-primary  mt-4 ">
+          <button  disabled={disabled} type="submit" class="btn btn-primary  mt-4 ">
             Save
           </button>
         </form>
       </div>   <br/><br/>
       <MaterialTable
+      title="Branch Record"
+      data={ticketDetails}
+
         columns={[
                {
             title: "Branch Id",
@@ -99,12 +134,19 @@ const Branch = () => {
           {
             title: "Branch Name",
             field: "name",
-          }
+          },
+          {
+            title: "Actions",
+            field: "actions",
+            render: (rowData) => (
+              <Button onClick={() => handleDelete(rowData.id)}>Delete</Button>
+              )
+            },
 
        
         ]}
-        data={ticketDetails}
-        title="Branch Record"
+       
+        
       />
     </>
   );

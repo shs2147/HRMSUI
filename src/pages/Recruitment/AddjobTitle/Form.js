@@ -44,7 +44,7 @@ const AddJobTitle = () => {
           <div className="row mx-2">
             <div className="col-sm-6">
               <label class="form-label">Job Titles</label><br />
-              <input value={data.jobTitles} type="text" className="form-control" id="formGroupExampleInput" name="jobTitles" onChange={inputChangeHandler} />
+              <input placeholder="Enter job title..." value={data.jobTitles} type="text" className="form-control" id="formGroupExampleInput" name="jobTitles" onChange={inputChangeHandler} />
             </div>
           </div>
           <button onClick={submitHandler} className="btn btn-primary btn-sm my-3 mx-5 ">Save</button>

@@ -106,6 +106,6 @@ const [formData, setFormData] = useState({ name: "",startdate: "",enddate: "",st
                  {title: "Out Time",field: "outTime", }, 
                  {title: "Status",field: "status", }, 
                 ]} 
-               data={view}title="Over Time Record"/></> );}
+               data={view}title="Monthwise Absent Record"/></> );}
             export default PostmanForm;
 

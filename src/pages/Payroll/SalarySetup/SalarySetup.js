@@ -1,7 +1,8 @@
 import React, {useEffect, useState } from 'react';
-import jsPDF from 'jspdf';
+
 
 const SalarySetup = () => {
+
 const [data, setData] = useState([]);
 const [show,setShow]=useState([]);
 const [empName,setEmpName]=useState([]);
@@ -24,14 +25,16 @@ const [ctc,setCtc]=useState([]);
 const [pfnumber,setPfnumber]=useState([]);
 const [reporting,setReporting]=useState([]);
 const [workingdays,setWorkingdays]=useState([]);
-const [incometax,setIncometax]=useState([]);
-const [shiftallowance,setShiftallowance]=useState([]);
-const [conveyance,setConveyance]=useState([]);
-const [specialallowance,setSpecialallowance]=useState([]);
+// const [incometax,setIncometax]=useState([]);
+// const [shiftallowance,setShiftallowance]=useState([]);
+// const [conveyance,setConveyance]=useState([]);
+// const [specialallowance,setSpecialallowance]=useState([]);
 const [paidday,setPaidday]=useState([]);
+const [month,setMonth]=useState([]);
 const [basicsalary,setBasicsalary]=useState([]);
-const [bonus,setBonus]=useState([]);
+// const [bonus,setBonus]=useState([]);
 const [disabled,setDisabled]=useState(false);
+const [btnDisabled,setBtnDisabled]=useState(true);
 const [pdf, setPdf]=useState(false)
 //const [current,setCurrent]=useState([]);
 const[grossSalary,setGrossSalary]=useState([]);
@@ -41,21 +44,21 @@ const[grossSalary,setGrossSalary]=useState([]);
 
 console.log(empName,selectedId,"selectedId")
 
-const pdfGenerator=()=>{
- 
-  var doc=new jsPDF('portrait','px','a4','false')
-  doc.save('a.pdf');
-}
 
 const inputChangeHandler = (e) => {
     let newData = { ...data };
     newData[e.target.name ] = e.target.value;
+
     if(e.target.name === "employeeName"){
       setEmpName(e.target.value)
+    }
+    if(e.target.name === "month"){
+      setMonth(e.target.value)
     }
     if(e.target.name === "id"){
       setSelectedId(e.target.value);
       setDisabled(true)
+      setBtnDisabled(false)
     }
     if(e.target.name === "accountNumber"){
       setAccountNumber(e.target.value);
@@ -386,10 +389,13 @@ function print(){
 	</div>
 </div>
 
-  :
+  : 
+  <form>
 <div>
 <center className='mt-2'><h1><b>Employee Salary</b></h1></center>
+
 <fieldset>
+
 
   {/* <legend>Employee Salary Slip</legend> <br /> */}
   
@@ -400,7 +406,7 @@ function print(){
   </div>
 
   <div className="all">
-    <label>Paid days:</label>
+    <label>Month:</label>
   </div>
 
   <div className="all">
@@ -449,7 +455,7 @@ function print(){
   
 
   <div className="all"></div>
-  <div className="all"></div>
+  <div className="all"></div>     
 
 </div>
 <div className="labelContainer"> 
@@ -462,7 +468,7 @@ function print(){
   </div>
 
   <div className="all">
-  <input type="text" value={paidday} name='paidday' onChange={inputChangeHandler} placeholder='Enter field ...' />
+  <input type="month" value={month} name='month' onChange={inputChangeHandler} placeholder='Enter field ...' required />
   </div>
 
 
@@ -528,13 +534,13 @@ function print(){
   <div className="all">
   {/* <select disabled={disabled} value={lOP} name='lop' onChange={inputChangeHandler} > */}
       {/* <option selected disabled>Select Work Type</option> */}
-      <input type='number' value={lOP} name='lop' onChange={inputChangeHandler} placeholder='lop days'/> 
+      <input type='text' maxLength="2" value={lOP} name='lop' onChange={inputChangeHandler} placeholder='lop days'/> 
       {/* {show.map(e=>(<option valueType={e.basicEmployee1.workType }>{e.basicEmployee1.workType }</option>))} */}
       {/* </select> */}
   </div>  
 
    <div className="all">
-  <input type="number" value={workingdays} name='workingdays' onChange={inputChangeHandler} placeholder='Enter field ...' />
+  <input type="text" maxLength="2" value={workingdays} name='workingdays' onChange={inputChangeHandler} placeholder='Enter field ...' />
   </div>
 
   {/* <div className="all">
@@ -583,7 +589,7 @@ function print(){
     <label>Designation:</label>
   </div>
   <div className="all">
-    <label>Working days:</label>
+    <label>Reporting To:</label>
   </div>
 
   <div className="all">
@@ -623,7 +629,7 @@ function print(){
 
   <div className="all">
 <select disabled={disabled} value={pan} name="pan" onChange={inputChangeHandler}>
-{/* <option selected disabled>pan</option> */}
+<option selected disabled>Enter your PAN Number</option>
     {show.map(e=>(<option valueType={e.basicEmployee1.panNumber}>{e.basicEmployee1.panNumber}</option>))}
     </select>
   </div>
@@ -667,7 +673,7 @@ function print(){
 
   <div className="all">
   <select disabled={disabled} value={reporting} name='reporting' onChange={inputChangeHandler} >
-      <option selected disabled>Select Reporting to</option>
+      <option selected >Select Reporting to</option>
       {show.map(e=>(<option valueType={e.basicEmployee1.reportingTo}>{e.basicEmployee1.reportingTo}</option>))}
       </select>
   </div>
@@ -680,7 +686,7 @@ function print(){
   
 
   <div className="all">
-  <input type="number" value={paidday} name='paidday' onChange={inputChangeHandler} placeholder="Enter field income" />
+  <input type="text" maxLength="2" value={paidday} name='paidday' onChange={inputChangeHandler} placeholder="Enter field income" />
   </div>
 
   {/* <div className="all">
@@ -703,14 +709,16 @@ function print(){
 
   <div className="all">
 
-  <button className='btn btn-success text-light' onClick={download}>Print / Download</button>
+  <button type="submit" disabled={btnDisabled} className='btn btn-success text-light' onClick={download}>Print / Download</button>
   </div>
 
 </div>
 
 
 </fieldset>
+
 </div>
+</form>
 }
         
         </>

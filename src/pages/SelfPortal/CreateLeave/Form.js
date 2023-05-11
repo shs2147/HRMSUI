@@ -135,20 +135,21 @@ fetchData();
             id="Choose Type"
           />
         </div>
-        <div className="col">
+        {/* <div className="col">
           {" "}
           <label for="formFile" className="form-label">
             Days:
           </label>
           <br />
           <input
-          className='form-control w-50'
+          className='form-control w-100'
             name="days"
             onChange={handleInput}
             value={data.days}
-            type="number"
+            type="text"
+            maxlength="3"
           />
-        </div>
+        </div> */}
       </div>
       <div className="row d-flex flex-column">
         <label for="exampleInputEmail1" className="form-label mx-5">
@@ -162,6 +163,7 @@ fetchData();
           className="form-control col-10 mx-5  w-75"
           id="exampleInputEmail1"
           aria-describedby="emailHelp"
+          placeholder="Reason for leave"
         />
       </div>
       <div className="mt-2 mx-5">

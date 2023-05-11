@@ -1,15 +1,15 @@
 import { useState,useEffect } from "react";
 import MaterialTable from "@material-table/core";
-import DeleteIcon from '@mui/icons-material/Delete';
-
 import swal from 'sweetalert';
 import { Button } from "react-bootstrap";
 
-const reload=()=>window.location.reload();
+
 const DepartmentMaster = () => {
+
  
   const submitHandler = (e) => {
-    e.preventDefault();
+      e.preventDefault();
+
     console.log(data);
     fetch("http://localhost:8080/department/savedepartment", {
         method: "POST",
@@ -26,14 +26,14 @@ const DepartmentMaster = () => {
         });
     })
     .catch((err) => console.log(err));
-};
+  };
 
   const [data, setData] = useState([]);
   const inputChangeHandler = (e) => {
     let newData = { ...data };
     newData[e.target.name] = e.target.value;
     setData(newData);
-  };
+    };
   //  const submitHandler=(e)=>{
   //     e.preventDefault();
   //  }
@@ -97,7 +97,7 @@ const DepartmentMaster = () => {
 
             <div className="col-sm-6 mt-2">
               <label for="cars" id="label">
-                Department Name:
+                Department Name:<span style={{color:'red'}}>*</span>
               </label>
               <br />
               <input
@@ -108,12 +108,13 @@ const DepartmentMaster = () => {
                 name="departmentName"
                 onChange={inputChangeHandler}
                 placeholder="Enter Department Name"
+                required
               />
             </div>
 
             <div className="col-sm-6 mt-2">
               <label for="cars" id="label">
-                Description:
+                Description:<span style={{color:'red'}}>*</span>
               </label>
               <br />
               <input
@@ -124,10 +125,12 @@ const DepartmentMaster = () => {
                 name="description"
                 onChange={inputChangeHandler}
                 placeholder="Enter Description Here"
+                required
+
               />
             </div>
           </div>
-          <button type="submit" class="btn btn-primary mt-4" >
+          <button type="submit" class="btn btn-primary mt-2 mb-2" >
             Save
           </button>
 

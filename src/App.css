@@ -286,9 +286,9 @@ label{
   outline:none;
   padding-left:1rem ;
   cursor:no-drop;
-  background-image: linear-gradient(to right, transparent, rgb(199, 193, 193), transparent);
+  background-image: linear-gradient(to right, transparent, rgb(248, 245, 245),rgb(226, 219, 219));
   font-weight: 530;
-  color: #000;
+  color: #a79f9f;
 
   }
 
@@ -317,6 +317,14 @@ label{
   outline:none;
   padding-left:1rem ;
 }
+.all input[type="month"]{
+  width:100%;
+  height:100%;
+  border:none;
+  border-bottom:2px solid grey;
+  outline:none;
+  padding-left:1rem ;
+}
 
 .pdfMainContainer{
   position:absolute;
@@ -328,7 +336,8 @@ label{
   width:98.8vw;
   overflow:auto;
   z-index: 100;
-  margin:-10px 0px 0px -245px;
+  margin:-10px 0px 0px -265px;
+  padding-top:10px;
   position:fixed;
   background-color: #fff;
   backdrop-filter: blur(4px);
@@ -372,4 +381,4 @@ table{
     background-color:#dbd9d5; 
     color:#363636;
     padding-left:10px;
-  }
+  } 

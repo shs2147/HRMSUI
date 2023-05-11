@@ -79,7 +79,7 @@ const EmploymentTypeMaster = () => {
           <div className="row ">
             <div className="col-sm-4 mt-2">
               <label for="cars" id="label">
-                Employment Type:
+                Employment Type: <span style={{color:'red'}}> * </span>
               </label>
               <br />
               <input
@@ -90,12 +90,13 @@ const EmploymentTypeMaster = () => {
                 name="employmentType"
                 onChange={inputChangeHandler}
                 placeholder="Enter Employement Type"
+                required
               />
             </div>
 
             <div className="col-sm-6 mt-2">
               <label for="cars" id="label">
-                Description:
+                Description : <span style={{color:'red'}}> * </span>
               </label>
               <br />
               <input
@@ -106,6 +107,7 @@ const EmploymentTypeMaster = () => {
                 name="description"
                 onChange={inputChangeHandler}
                 placeholder="Enter Description here"
+                required
               />
             </div>
           </div>
