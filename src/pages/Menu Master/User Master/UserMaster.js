@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import Validation from '../../../validation/Validation'
+// import Validation from '../../../validation/Validation'
 import { Button, Container, Form, Row,Col } from 'react-bootstrap';
 import swal from 'sweetalert';
 
@@ -31,29 +31,28 @@ export default function UserMaster() {
     setData(newData);
   };
 
-  const validateForm = () => {
-    const newErrors = [];
+  // const validateForm = () => {
+  //   const newErrors = [];
 
-    // Validate name
-    if (!employeeName) {
-      newErrors.push('Name is required.')
-    }
+  //   // Validate name
+  //   if (!employeeName) {
+  //     newErrors.push('Name is required.')
+  //   }
 
-    // // Validate email
-    // if (!email) {
-    //   newErrors.push('Email is required.');
-    // } else if (!/\S+@\S+\.\S+/.test(email)) {
-    //   newErrors.push('Invalid email format.');
-    // }
+  //   // // Validate email
+  //   // if (!email) {
+  //   //   newErrors.push('Email is required.');
+  //   // } else if (!/\S+@\S+\.\S+/.test(email)) {
+  //   //   newErrors.push('Invalid email format.');
+  //   // }
 
-    setErrors(newErrors);
-    return newErrors.length === 0;
-  };
+  //   setErrors(newErrors);
+  //   return newErrors.length === 0;
+  // };
 
   const handleClick = (event) => {
     event.preventDefault();
-    if (validateForm()) {
-      // Submit the form
+
       console.log(data);
       fetch("http://localhost:8080/usermaster/saveuser", {
           method: "POST",
@@ -70,7 +69,7 @@ export default function UserMaster() {
           });
       })
       .catch((err) => console.log(err));
-    }
+
   };
 
 
@@ -136,11 +135,9 @@ export default function UserMaster() {
               type='text'
               name='employeeName'
               placeholder='Enter Your Name'
-              onChange={(e) => setEmployeeName(e.target.value)}
-              // onChange={handleChange}
+              onChange={handleChange}
               value ={data.employeeName}
-              required
-              pattern="[A-Za-z]{3}+"
+              
               // isInvalid={showError && !Validation.maximum(data?.employeeName, 50)}
             />
             <Form.Control.Feedback type='invalid'>
@@ -152,12 +149,10 @@ export default function UserMaster() {
             <Form.Label>User Name : </Form.Label>
             <Form.Control
               type='text'
-              name='employeeName'
+              name='userName'
               placeholder='Enter Your Name'
               onChange={handleChange}
-              value ={data.employeeName}
-              required
-              pattern="[A-Za-z]+"
+              value ={data.userName}
             />
             <Form.Control.Feedback type='invalid'>
               user name is necessary
@@ -261,16 +256,6 @@ export default function UserMaster() {
               
             </Form.Control.Feedback>
           </Form.Group>
-          {errors.length > 0 && (
-        <div>
-          <ul>
-            {errors.map((error) => (
-              <li key={error}>{error}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-        
           
         </Row> 
         <Button type="submit" onClick={handleClick}>Save</Button>
