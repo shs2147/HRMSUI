@@ -2,37 +2,49 @@ import { useState,useEffect} from "react";
 import swal from 'sweetalert';
 
 const TrainingMaster = () => {
-  const [data,setData]=useState({
-  
-  });
+  const [data,setData]=useState({});
+  const [employee,setEmployee]=useState([]);
 const [show,setShow]=useState([]);
 const [itemshow,setItemshow]=useState([]);
 const[train,setTrian]=useState([]);
+const[selectedId,setSelectedId]=useState([])
+
 
  const inputChangeHandler=(e)=>{
     let newData={...data};
     newData[e.target.name]=e.target.value;
-    setData(newData)
-    // console.log(JSON.stringify(newData))
+    if(e.target.name=== "employee")
+    {
+      setEmployee(e.target.value)
+    }
+    if(e.target.name==="id")
+    {
+      setSelectedId(e.target.value)
+    }
  }
- //const submitHandler=(e)=>{
-    // e.preventDefault();
-   // console.log(JSON.stringify(data))
- //}
+
+ useEffect(()=>{
+  const myData=itemshow?.filter((item)=>item.employeeId==selectedId)
+  console.log("my emp",myData[0]?.name);
+  setEmployee(myData[0]?.employeeName)
+ },[selectedId])
+
 
  const submitHandler=(e)=>{
+  
+  e.preventDefault();
   console.log(JSON.stringify(data))
- 
+
   fetch("http://localhost:8080/employee/save",{
     method:"POST",
-    headers:{"Content-Type":"application/json","Accept":"application/json"},
+    headers:{"content-Type": "application/json", "Accept": "application/json"},
     body:JSON.stringify(data)
   }).then(()=>{
-    console.log("employee added successfuly")})
+    console.log("Event are added")})
     swal("Success", "Data Added Successfully", "success").then(()=>{
-      window.location.reload(true);
+      window.location.reload(true)
     })
-    
+
 }
 const fetchData1 = () =>{
   fetch("http://localhost:8080/basic/fetchdata",{
@@ -47,21 +59,10 @@ const fetchData1 = () =>{
 useEffect(()=>
 {
   fetchData1();
+
 },[])
 
-// useEffect(() => {
-//   const fetchData = async () => {
-//     const response = await fetch(
-//       "http://localhost:8080/basic/fetchdata"
-//     );
-//     const result = await response.json();
-
-//     console.log("res", result);
-//   };
-
-//   fetchData();
-// }, []);
-
+ console.log ("itemshow" , itemshow)
 const fetchData2 = () =>{
   fetch("http://localhost:8080/event/fetchdata",{
   })
@@ -94,13 +95,29 @@ useEffect(()=>
 
   return (
     <div className="container2">
-    <h2>Training Master</h2>
+    <h2>Training Masterghxwd</h2>
     <hr />
-    <form className="bg-light" onSubmit={submitHandler}>
+    <div className="bg-light" >
       <div className="row ">
+      <div className="col-sm-4">
+            <label for="cars" id='label'>Employee Id : </label>
+            <br />
+            <select value={data.id} class="form-select" aria-label="Default select example" name="id" onChange={inputChangeHandler} >
+              <option selected disabled>Employee Id</option>
+              {itemshow.map(e=>(<option valueType={e.employeeId}>{e.employeeId}</option>))}
+            </select>
+          </div>
+          <div className="col-sm-4">
+            <label for="cars" id='label'>Employee Name : </label>
+            <br />
+            <select value={employee} class="form-select" aria-label="Default select example" name="employee" onChange={inputChangeHandler} >
+              <option selected disabled>Select Employee</option>
+              {itemshow.map(e=>(<option valueType={e.employeeName}>{e.employeeName}</option>))}
+            </select>
+          </div>
       
       <div className="col-sm-4">
-            <label for="cars" id='label'>Event Name:</label>
+            <label for="cars" id='label'>Event Name : </label>
             <br />
             <select value={data.eventName} class="form-select" aria-label="Default select example" name="eventName" onChange={inputChangeHandler} >
               <option selected disabled>Event Name</option>
@@ -108,27 +125,17 @@ useEffect(()=>
             </select>
           </div>
           <div className="col-sm-4">
-            <label for="cars" id='label'>Training Name: </label>
+            <label for="cars" id='label'>Training Name : </label>
             <br />
             <select value={data.trainingName} class="form-select" aria-label="Default select example" name="trainingName" onChange={inputChangeHandler} >
               <option selected disabled>Training Name</option>
-                  {train.map(e=>(<option valueType={e.trainingName}>{e.trainingName}</option>))}0
+                  {train.map(e=>(<option valueType={e.trainingName}>{e.trainingName}</option>))}
             </select>
           </div>
-          <div className="col-sm-4">
-            <label for="cars" id='label'>Employee:</label>
-            <br />
-            <select value={data.employee} class="form-select" aria-label="Default select example" name="employee" onChange={inputChangeHandler} >
-              <option selected disabled>Select Employee</option>
-              {itemshow.map(e=>(<option valueType={e.employeeName}>{e.employeeName}</option>))}
-              {/* <option value="aman">aman</option>
-              <option value="amit">amit</option>
-              <option value="saurav">saurav</option> */}
-            </select>
-          </div>
+          
       </div>
-      <button  type="submit" className="btn btn-primary btn-sm my-3 mx-5 " value="Submit">Save</button>
-      </form>
+      <button type="submit" className="btn btn-primary mt-4" onClick={submitHandler}>Save</button>
+      </div>
       </div>
   )
 }

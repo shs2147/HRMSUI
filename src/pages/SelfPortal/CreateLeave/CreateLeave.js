@@ -1,23 +1,113 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import swal from 'sweetalert';
 
-import CalenderForm from "./CalenderForm";
-// import classes from "./CreateLeave.module.css";
-import Form from "./Form";
+  const CreateLeave = () => {
+    const [data,setData]=useState({
+  
+    });
+    const[show,setShow]=useState([]);
+   const inputChangeHandler=(e)=>{
+      let newData={...data};
+      newData[e.target.name]=e.target.value;
+      setData(newData)
+      
+   }
 
-function CreateLeave() {
-  return (
-    <div style={{maxWidth:'80%',marginLeft:'5%'}}>
-      <div className= "text-start mx-1 h1">Leave Request</div>
-      <div  className="d-flex justify-content-center row">
-        <div className='card col-md-6 mx-1'>
-          <Form />
-        </div>
-        <div className='col-md-5'>
-          <CalenderForm />
-        </div>
-      </div>
+   const fetchData1 = () => {
+    fetch("http://localhost:8080/basic/fetchdata", {})
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setShow(data);
+      });
+  };
+  useEffect(()=>{
+    fetchData1();
+  },[])
+
+   const submitHandler=(e)=>{
+    e.preventDefault();
+    console.log(JSON.stringify(data))
+
+
+
+    fetch("http://localhost:8080/CreateLeaveRequest/post",{
+            method:"POST",
+            headers:{"content-Type": "application/json", "Accept": "application/json"},
+            body:JSON.stringify(data)
+          }).then(()=>{
+            swal("Success", "Data Added Successfully", "success").then(()=>{
+              window.location.reload(true);
+            })
+            console.log("Attendance are added")})
+            
+            .catch(err=>console.log(err))
+
+   }
+return <>
+<div className="container">
+  <h4>Create Leave Request</h4>
+  <hr />
+  <form onSubmit={submitHandler} className="bg-light">
+  <div className="row ">
+    
+    
+  <div className="col-sm-4 mt-2">
+       <label for="cars" id='label'>Select Employee : </label>
+     <br/>  
+ <select value={data.selectEmployee} class="form-select" aria-label="Default select example" name="selectEmployee" onChange={inputChangeHandler}>
+  <option selected disabled>Select Employee</option>
+  {show.map(e=>(<option valueType={e.employeeName}>{e.employeeName}</option>))}
+</select>
+</div>
+
+<div className="col-sm-4 mt-2">
+       <label for="cars" id='label'>Leave Approver : </label>
+     <br/>  
+ <select value={data.leaveApprover} class="form-select" aria-label="Default select example" name="leaveApprover" onChange={inputChangeHandler}>
+  <option selected disabled>Select Approver</option>
+  {show.map(e=>(<option valueType={e.employeeName}>{e.employeeName}</option>))}
+</select>
+</div>
+
+<div className="col-sm-4 mt-2">
+       <label for="cars" id='label'>Leave Type : </label>
+     <br/>  
+ <select value={data.leaveType} class="form-select" aria-label="Default select example" name="leaveType" onChange={inputChangeHandler}>
+  <option selected disabled>Choose Leave Type</option>
+  <option>Choose Leave Type</option>
+  {show.map(e=>(<option valueType={e.leaveType}>{e.leaveType}</option>))}
+</select>
+</div>
+
+<div className="col-sm-4 mt-2">
+  <label  class="form-label">Start Date : </label><br/>
+  <input value={data.startDate} type="Date" class="form-control" id="formGroupExampleInput" name="startDate" onChange={inputChangeHandler} required />
+</div>
+
+<div className="col-sm-4 mt-2">
+  <label  class="form-label">End Date : </label><br/>
+  <input value={data.endDate} type="Date" class="form-control" id="formGroupExampleInput" name="endDate" onChange={inputChangeHandler} required />
+</div>
+
+    <div className="col-sm-4 mt-2">
+            <label class="form-label">Reason For Leave :</label>
+            <br />
+            <textarea placeholder="Write something..." value={data.reasonForLeave} className='form-control' id='my box' rows="3" name="reasonForLeave" onChange={inputChangeHandler} required></textarea>
     </div>
-  );
+
+</div>
+<button type="submit" className="btn btn-primary mt-4">Save</button>
+</form>
+</div>
+</>
 }
 
 export default CreateLeave;
+
+
+
+
+
+
