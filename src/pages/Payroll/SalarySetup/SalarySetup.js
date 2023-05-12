@@ -534,13 +534,13 @@ function print(){
   <div className="all">
   {/* <select disabled={disabled} value={lOP} name='lop' onChange={inputChangeHandler} > */}
       {/* <option selected disabled>Select Work Type</option> */}
-      <input type='text' maxLength="2" value={lOP} name='lop' onChange={inputChangeHandler} placeholder='lop days'/> 
+      <input type='number' maxLength="2" value={lOP} name='lop' onChange={inputChangeHandler} placeholder='lop days'/> 
       {/* {show.map(e=>(<option valueType={e.basicEmployee1.workType }>{e.basicEmployee1.workType }</option>))} */}
       {/* </select> */}
   </div>  
 
    <div className="all">
-  <input type="text" maxLength="2" value={workingdays} name='workingdays' onChange={inputChangeHandler} placeholder='Enter field ...' />
+  <input type="number" maxLength="2" value={workingdays} name='workingdays' onChange={inputChangeHandler} placeholder='Enter field ...' />
   </div>
 
   {/* <div className="all">
@@ -686,7 +686,7 @@ function print(){
   
 
   <div className="all">
-  <input type="text" maxLength="2" value={paidday} name='paidday' onChange={inputChangeHandler} placeholder="Enter field income" />
+  <input type="number" maxLength="2" value={paidday} name='paidday' onChange={inputChangeHandler} placeholder="Enter field income" />
   </div>
 
   {/* <div className="all">
