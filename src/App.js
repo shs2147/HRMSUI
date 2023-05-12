@@ -9,6 +9,8 @@ import {
   useLocation,
   Switch,
 } from "react-router-dom";
+import RegisterEmployee from "./pages/TrainingModule/RegisterEmployee/RegisterEmployee";
+import EmployeeMaster from "./pages/Menu Master/EmployeeMaster/EmployeeMaster";
 import Dashboard from "./pages/Dashboard";
 import Users from "./pages/Users";
 import Saved from "./pages/Saved";
@@ -27,7 +29,7 @@ import AddJobTitle from "./pages/Recruitment/AddjobTitle/AddJobTitle";
 import AddJobVacancy from "./pages/Recruitment/AddJobVacancy/AddJobVacancy";
 import FixingInterviewOnline from "./pages/Recruitment/FixingInterviewOnline/FixingInterviewOnline";
 // import OnlineApplication from "./pages/Recruitment/OnlineApplication/OnlineApplication";
-import RegisterEmployee from "./pages/TrainingModule/RegisterEmployee/RegisterEmployee";
+// import RegisterEmployee from "./pages/TrainingModule/RegisterEmployee/RegisterEmployee";
 import TrainingToFeedback from "./pages/TrainingModule/TrainingToFeedback/TrainingToFeedback";
 import TrainingMaster from "./pages/TrainingModule/TrainingMaster/TrainingMaster";
 import AddShift from "./pages/Shift Management/Add Shift/AddShift";
@@ -51,7 +53,7 @@ import LeaveType from "./pages/Organisation Structure/LeaveType";
 // import PayheadList from "./pages/Organisation Structure/PayheadList";
 import LoanMaster from "./pages/Advance Or Loan/LoanMaster";
 import LoanApplication from "./pages/Advance Or Loan/LoanApplication";
-import EmployeeMaster from "./pages/Menu Master/EmployeeMaster/EmployeeMaster";
+// import EmployeeMaster from "./pages/Menu Master/EmployeeMaster/EmployeeMaster";
 import AddEmployees from "./SubPages/AddEmployees";
 import UserMaster from "./pages/Menu Master/User Master/UserMaster";
 import DepartmentMaster from "./pages/Menu Master/Department Master/DepartmentMaster";

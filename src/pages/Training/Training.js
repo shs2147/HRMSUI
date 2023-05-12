@@ -12,6 +12,7 @@ import swal from 'sweetalert';
   //   console.log(JSON.stringify(data))
   // }
   const submitHandler=(e)=>{
+    e.preventDefault();
     console.log(JSON.stringify(data))
   
     fetch("http://localhost:8080/training/save",{
@@ -19,7 +20,7 @@ import swal from 'sweetalert';
       headers:{"content-Type": "application/json", "Accept": "application/json"},
       body:JSON.stringify(data)
     }).then(()=>{
-      console.log("Training are added")})
+      console.log("Event are added")})
       swal("Success", "Training Name Added Successfully", "success").then(()=>{
         window.location.reload(true)
       })
