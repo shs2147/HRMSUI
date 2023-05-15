@@ -390,3 +390,11 @@ table{
     color:#363636;
     padding-left:10px;
   } 
+  .eyeButton{
+    color:#fff;
+    border: none;
+    font-size: 27px;
+    position: absolute;
+    background-color: transparent;
+  margin-left:-30px;
+  }
