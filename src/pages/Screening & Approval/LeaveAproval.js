@@ -1,10 +1,16 @@
 import React from 'react'
 import MaterialTable from "@material-table/core";
 import { useState,useEffect } from "react";
+import { Button } from 'react-bootstrap';
 
 const LeaveAproval = () => {
 
   const[leave,setLeave]=useState([])
+  const[data,setData]=useState([])
+  const[approve,setApprove]=useState([]);
+  const[approveId,setApproveId]=useState([])
+  const[disapproveId,setDisApproveId]=useState([])
+  const[disApprove,setDisApprove]=useState([])
 
   const options = { method: "GET" };
   const fetchData=()=>{
@@ -17,6 +23,114 @@ const LeaveAproval = () => {
   useEffect(()=>{
     fetchData();
   },[])
+
+
+
+//   const submitHandler = (id,status) => {
+//     // e.preventDefault();
+
+//   console.log(approve);
+//   fetch("http://localhost:8080/approve/save", {
+//       method: "POST",
+//       headers: {
+//           "Content-Type": "application/json",
+//           Accept: "application/json",
+//       },
+//       body: JSON.stringify({id:id ,status:status}),
+//   })
+//   .then(() => {
+//       console.log("department Added");
+//   })
+//   // setApprove(!approve)
+//   // .catch((err) => console.log(err));
+// };
+
+function approveHandle(id, status) {
+
+
+
+
+  console.log(id, "idd")
+  
+  console.log(status, "remark")
+  
+  
+  
+  
+  fetch(
+  
+   "http://localhost:8080/approve/save",
+  
+   {
+  
+  method: "POST",
+  
+  headers: {
+  
+   "Content-Type": "application/json",
+  
+   Authorization: `Bearer ${localStorage.getItem("token")}`,
+  
+  },
+  
+  body: JSON.stringify({ id: id, status: status }),
+  
+   }
+  
+  )
+  
+   .then((response) => response.json())
+  
+   .then((data) => console.log("aprrove data", data));
+  
+  fetchData();
+  
+  setApprove(!approve)
+   }
+
+   function disApproveHandle(id, status) {
+
+
+
+
+    console.log(id, "idd")
+    
+    console.log(status, "remark")
+    
+    
+    
+    
+    fetch(
+    
+     "http://localhost:8080/disApprove/save",
+    
+     {
+    
+    method: "POST",
+    
+    headers: {
+    
+     "Content-Type": "application/json",
+    
+     Authorization: `Bearer ${localStorage.getItem("token")}`,
+    
+    },
+    
+    body: JSON.stringify({ id: id, status: status }),
+    
+     }
+    
+    )
+    
+     .then((response) => response.json())
+    
+     .then((data) => console.log("disaprrove data", data));
+    
+    fetchData();
+    
+    setDisApprove(!disApprove)
+     }
+  
 
   return (
     <>
@@ -53,17 +167,91 @@ const LeaveAproval = () => {
               title: "Reason",
               field: "reasonForLeave",
             },
-            
+            {
+              title: "Actions",
+              field: "actions",
+              render: (rowData) => (
+                <div className="w-100" style={{ display: "flex", justifyContent: "space-between" }}>
+                 {rowData.status === "APPROVED" ? (
 
-          
-            // {
-            //   title: "Actions",
-            //   field: "actions",
-            //   render: (rowData) => (
-            //     // <CustomButton rowData={rowData} onDelete={handleDelete} />
-            //     <Button onClick={() => handleDelete(rowData.id)}>Delete</Button>
-            //   ),
-            // },
+                              <button
+                  
+                                className="btn btn-sm btn-outline-danger px-3 rounded-4"
+                  
+                                onClick={() => {
+                  
+                                  disApproveHandle()
+                    setDisApproveId(rowData?.id)
+                    setDisApprove(!disApprove)
+                                  // setDisApprove(!disApprove)
+                  
+                                  // setDisApproveId(rowData?.id)
+                  
+                  
+                  
+                  
+                                  console.log("row1222", rowData)
+                  
+                  
+                  
+                  
+                                  localStorage.setItem("jobDetailId", rowData?.id);
+                  
+                                }}
+                  
+                              >
+                  
+                                {('Disapprove')}
+                  
+                              </button>
+                  
+                            ) : (
+                  
+                              <button
+                  
+                                className="btn btn-sm btn-outline-success px-3 rounded-4"
+                  
+                                onClick={() => {
+                                  approveHandle()
+                    setApproveId(rowData?.id)
+                    setApprove(!approve)
+                  
+                                  // setApproveId(rowData?.id)
+                  
+                                  // setApprove(!approve)
+                  
+                  
+                  
+                  
+                                  console.log("row11", rowData?.id)
+                  
+                  
+                  
+                  
+                                  localStorage.setItem("jobDetailId", rowData?.id);
+                  
+                                }}
+                  
+                              >
+                  
+                                {('Approve')}
+                  
+                              </button>
+                  
+                            )
+                  
+                            }
+                            </div>
+                // <div style={{ display: 'flex', justifyContent:"space-between"}}>
+                //   <Button onClick={()=>{
+                //     approveHandle()
+                //     setApproveId(rowData?.id)
+                //     setApprove(!approve)
+                //   }}>Approve</Button>&nbsp;
+                //   <Button>Reject</Button>
+                // </div>
+              ),
+            }
           ]}
         />
       {/* <table style={{width:'75vw'}} className='table'>

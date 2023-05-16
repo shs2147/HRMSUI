@@ -270,6 +270,20 @@ const AddEmployee = () => {
                                                 <label className="form-label">Employee ID:</label><br />
                                                 <input value={data.employeeId} type="text" className="form-control" id="formGroupExampleInput" name='employeeId' onChange={inputChangeHandler} />
                                             </div> */}
+                {/* <div className=" col-sm-4">
+                    <label className="form-label">Employee Id:</label>
+                    <div>
+                      <Form.Control
+                        value={data.employeeId}
+                        placeholder='Enter employee Id'
+                        type="text"
+                        name="employeeId"
+                        onChange={inputChangeHandler}
+                        required
+                      ></Form.Control>
+                    </div>
+                  </div> */}
+
                   <div className=" col-sm-4">
                     <label for="cars" id="label">
                       Employee Name:
@@ -525,19 +539,7 @@ const AddEmployee = () => {
                       ></Form.Control>
                     </div>
                   </div>
-                  <div className=" col-sm-4">
-                    <label className="form-label">Employee Id:</label>
-                    <div>
-                      <Form.Control
-                        value={data.dob}
-                        placeholder='Enter employee Id'
-                        type="text"
-                        name="dob"
-                        onChange={inputChangeHandler}
-                        required
-                      ></Form.Control>
-                    </div>
-                  </div>
+                 
                  
                   <div className="my-4">
                     <button
@@ -628,8 +630,8 @@ const AddEmployee = () => {
                       onChange={inputChangeHandler}
                     >
                       <option selected disabled>---Select Employment Type---</option>
-                      <option value="permanent">permanent</option>
-                      <option value="probation">probation</option>
+                      <option value="permanent">Permanent</option>
+                      <option value="probation">Probation</option>
                      
                     </select>
                     </div>
@@ -978,7 +980,7 @@ const AddEmployee = () => {
                     <br />
                     <input
                       value={data.bankAccountNo}
-                      type="number"
+                      type="text"
                       className="form-control"
                       id="formGroupExampleInput"
                       name="bankAccountNo"
