@@ -95,7 +95,7 @@ useEffect(()=>
 
   return (
     <div className="container2">
-    <h2>Training Masterghxwd</h2>
+    <h2>Training Master</h2>
     <hr />
     <div className="bg-light" >
       <div className="row ">
