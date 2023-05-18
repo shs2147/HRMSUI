@@ -6,6 +6,8 @@ import swal from 'sweetalert';
   
     });
     const[show,setShow]=useState([]);
+
+    
    const inputChangeHandler=(e)=>{
       let newData={...data};
       newData[e.target.name]=e.target.value;
@@ -25,6 +27,8 @@ import swal from 'sweetalert';
   useEffect(()=>{
     fetchData1();
   },[])
+
+
 
    const submitHandler=(e)=>{
     e.preventDefault();
@@ -74,10 +78,9 @@ return <>
 <div className="col-sm-4 mt-2">
        <label for="cars" id='label'>Leave Type : </label>
      <br/>  
- <select value={data.leaveType} class="form-select" aria-label="Default select example" name="leaveType" onChange={inputChangeHandler}>
+ <select value={data.LeaveType} class="form-select" aria-label="Default select example" name="leaveType" onChange={inputChangeHandler}>
   <option selected disabled>Choose Leave Type</option>
-  <option>Choose Leave Type</option>
-  {show.map(e=>(<option valueType={e.leaveType}>{e.leaveType}</option>))}
+  {show.map(e=>(<option valueType={e.employeeName}>{e.employeeName}</option>))}
 </select>
 </div>
 

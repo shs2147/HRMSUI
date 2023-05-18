@@ -5,18 +5,26 @@ import { Button } from "react-bootstrap";
 
 const Branch = () => {
   const [warningMessage, setWarningMessage] = useState(false);
+  const [warningMessage2, setWarningMessage2] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const [data, setData] = useState({
     name: "",
   });
   const inputChangeHandler = (e) => {
     let neeraj=e.target.value;
-  if (!neeraj.match(/^[A-Za-z ]{0,}[A-Za-z]{0,}$/) || neeraj.length<1){
-setWarningMessage(true)
+  if (!neeraj.match(/^[A-Za-z ]{0,}[A-Za-z]{0,}$/)){
+setWarningMessage2(true)
+setWarningMessage(false)
 setDisabled(true)
    }
+   else if (neeraj.length<1){
+    setWarningMessage(true)
+    setWarningMessage2(false)
+    setDisabled(true)
+       }
    else{
     setWarningMessage(false)
+    setWarningMessage2(false)
     setDisabled(false)
          }
     let newData = { ...data };
@@ -97,7 +105,12 @@ setDisabled(true)
               />     
                      {
               warningMessage?
-              <span style={{color:'red'}}><i> &nbsp; <i class="fa fa-exclamation-circle" aria-hidden="true"></i> Number or empty field not allowed</i></span>
+              <span style={{color:'red'}}><i> &nbsp; <i class="fa fa-exclamation-circle" aria-hidden="true"></i> Please enter branch name.</i></span>
+              : null
+            }
+            {
+              warningMessage2?
+              <span style={{color:'red'}}><i> &nbsp; <i class="fa fa-exclamation-circle" aria-hidden="true"></i> Only alphabets allowed.</i></span>
               : null
             }
             </div>
@@ -117,7 +130,7 @@ setDisabled(true)
               />
             </div> */}
           </div>
-          <button  disabled={disabled} type="submit" class="btn btn-primary  mt-4 ">
+          <button disabled={disabled} type="submit" class="btn btn-primary  mt-4 ">
             Save
           </button>
         </form>
@@ -139,7 +152,7 @@ setDisabled(true)
             title: "Actions",
             field: "actions",
             render: (rowData) => (
-              <Button onClick={() => handleDelete(rowData.id)}>Delete</Button>
+              <Button className="btn btn-danger" onClick={() => handleDelete(rowData.id)}><i class="fa fa-trash" aria-hidden="true"></i></Button>
               )
             },
 
