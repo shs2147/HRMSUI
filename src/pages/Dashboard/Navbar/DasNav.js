@@ -9,6 +9,7 @@ const DasNav = () => {
   const handleSubmit = () => {
     // e.preventDefault();
     sessionStorage.removeItem("token");
+    localStorage.removeItem("token2");
     // propTypes.history.push('/login');
     location("/");
   };

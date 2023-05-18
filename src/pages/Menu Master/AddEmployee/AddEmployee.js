@@ -877,6 +877,7 @@ const AddEmployee = () => {
                       id="my box"
                       rows="3"
                       name="address"
+                      placeholder="Enter Address here"
                       onChange={inputChangeHandler}
                     ></textarea>
                   </div>
@@ -889,6 +890,7 @@ const AddEmployee = () => {
                       id="my box"
                       rows="3"
                       name="description"
+                      placeholder="Write Something here..."
                       onChange={inputChangeHandler}
                     ></textarea>
                   </div>
