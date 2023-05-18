@@ -2,6 +2,8 @@ import { useState,useEffect } from "react";
 import MaterialTable from "@material-table/core";
 import swal from 'sweetalert';
 import { Button } from "react-bootstrap";
+// import MaterialTable from 'material-table';
+import { SaveAlt } from '@material-ui/icons';
 
 
 const EmployeeMaster = () => {
@@ -108,6 +110,7 @@ const EmployeeMaster = () => {
               title: "Aadhar Number",
               field: "aadhaarNumber",
             },
+            
             {
               title: "Actions",
               field: "actions",
@@ -116,7 +119,16 @@ const EmployeeMaster = () => {
               ),
             },
           ]}
-         
+          icons={{
+            Export: () => <SaveAlt />,
+          }}
+
+          options={{
+            
+            exportButton: true,
+            exportCsv: (columns, data) => {
+              alert('You should develop a code to export ' + data.length + ' rows');
+            }}}
          
 
         />
