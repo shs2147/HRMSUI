@@ -25,11 +25,14 @@ export default function UserMaster() {
   const[employeeName,setEmployeeName]=useState('')
 
   const handleChange = (e) => {
+
   
     let newData = { ... data };
     newData[e.target.name]=e.target.value;
     setData(newData);
   };
+
+ 
 
   // const validateForm = () => {
   //   const newErrors = [];
@@ -132,12 +135,13 @@ export default function UserMaster() {
       <Form.Group as={Col} sm={4} controlId="validationCustom05" className="mt-2">
             <Form.Label >Employee Name : </Form.Label>
             <Form.Control
+            input
               type='text'
               name='employeeName'
               placeholder='Enter Your Name'
               onChange={handleChange}
               value ={data.employeeName}
-              
+              required
               // isInvalid={showError && !Validation.maximum(data?.employeeName, 50)}
             />
             <Form.Control.Feedback type='invalid'>
@@ -148,11 +152,13 @@ export default function UserMaster() {
       <Form.Group as={Col} sm={4} controlId="validationCustom01" className="mt-2">
             <Form.Label>User Name : </Form.Label>
             <Form.Control
+            input
               type='text'
               name='userName'
               placeholder='Enter Your Name'
               onChange={handleChange}
               value ={data.userName}
+              required
             />
             <Form.Control.Feedback type='invalid'>
               user name is necessary
@@ -234,6 +240,7 @@ export default function UserMaster() {
               // isInvalid={showError && !Validation.password(data?.password)}
               required
             />
+
             <Form.Control.Feedback type='invalid'>
               {!password ? "Password is necessary(12 digits)" : "can't be less than or greater than 12"}
               
@@ -251,6 +258,7 @@ export default function UserMaster() {
               // isInvalid={showError && !Validation.password(data?.confirmPassword)}
             required
             />
+
             <Form.Control.Feedback type='invalid'>
               {!password ? "Password is necessary(12 digits)" : "can't be less than or greater than 12"}
               
@@ -262,4 +270,5 @@ export default function UserMaster() {
         </Form>
     </div>
   );
-  }
+  };
+
