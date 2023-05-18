@@ -67,7 +67,7 @@ console.log(data);
       <div className="row mb-3 mt-4 justify-content-evenly d-flex ">
         <div className="col-lg-3 mx-1  ">
           <label for="exampleFormControlInput1" className="form-label ">
-            Fromzddsdsdv Date:
+            From Date:
           </label>
           <br/>
           <input

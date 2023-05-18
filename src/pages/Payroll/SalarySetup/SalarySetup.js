@@ -223,8 +223,7 @@ function closePdf(){
 }
 
 function print(){
-  // window.open(pdf)
-  window.print()
+  window.scroll()
 }
 
 
@@ -238,7 +237,7 @@ function print(){
   <div className="pdfMainContainer" >
   <div className="innerPdf">
   <table border="2">
-<tr height="100px" style={{backgroundColor:'#747370',color:'orange', textAlign:'center',fontSize:'34px', fontWeight:'600'}}>
+<tr height="100px" className='head'>
 <td colspan='4'>Ahom Technologies Pvt. Ltd.
 </td>
 </tr>
@@ -383,9 +382,9 @@ function print(){
 </table>
   </div>
   <div className="mt-5">
-	<button className='btn btn-primary me-2' onClick={print}>Print</button>
+	<button className='btn btn-primary me-2 neeraj' onClick={print}>Print</button>
 	{/* <button className='btn btn-success me-2' onClick={pdfGenerator}>Download PDF</button> */}
-  <button className='btn btn-danger ms-2' onClick={closePdf}>Close</button>
+  <button className='btn btn-danger ms-2 neeraj' onClick={closePdf}>Close</button>
 	</div>
 </div>
 

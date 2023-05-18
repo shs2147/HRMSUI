@@ -35,12 +35,16 @@ const AddEmployee = () => {
   const { email,mobile} = data;
   const [showError, setShowError] = useState(false);
   const [itemshow, setItemshow] = useState([]);
+
+
   const inputChangeHandler = (e) => {
     let newData = { ...data };
     newData[e.target.name] = e.target.value;
     setData(newData);
     // console.log(JSON.stringify(newData))
   };
+
+
   const fetchData = () => {
     fetch("http://localhost:8080/designation/fetchalldesignation", {})
       .then((response) => {
@@ -301,14 +305,15 @@ const AddEmployee = () => {
                       Company:
                     </label>
                     <br />
-                    <select
+                    <select  required
                       valueType={data.whichCompany}
                       className="form-select"
                       aria-label="Default select example"
                       name="whichCompany"
                       onChange={inputChangeHandler}
+                     
                     >
-                      <option selected disabled>
+                      <option selected disabled value="">
                         ---Select Company---
                       </option>
                       <option valueType="ahomTechnologies">
@@ -321,15 +326,18 @@ const AddEmployee = () => {
                       Select Department:
                     </label>
                     <br />
-                    <select
+                    <select required
                       valueType={data.selectDepartment}
                       className="form-select"
                       aria-label="Default select example"
                       name="selectDepartment"
                       onChange={inputChangeHandler}
                     >
-                      <option selected disabled>
+                      <option selected disabled value="">
                         ---Select Department---
+                      </option>
+                      <option valueType="ahomTechnologies">
+                        Java
                       </option>
                       {dep.map((saurabh) => (
                         <option valueType={saurabh.departmentName}>
@@ -343,14 +351,14 @@ const AddEmployee = () => {
                       Designation:
                     </label>
 
-                    <select
+                    <select required
                       valueType={data.designation}
                       className="form-select"
                       aria-label="Default select example"
                       name="designation"
                       onChange={inputChangeHandler}
                     >
-                      <option selected disabled>
+                      <option selected disabled value="">
                         ---Select Designation---
                       </option>
                       {show.map((saurabh) => (
@@ -373,7 +381,6 @@ const AddEmployee = () => {
                       onChange={inputChangeHandler}
                       placeholder="Enter Your Email"
              isInvalid={showError && !Validation.empty(data?.email)}
-
                       required
                     />
                   </div>
@@ -403,8 +410,6 @@ const AddEmployee = () => {
                       name="ctc"
                       onChange={inputChangeHandler}
                       placeholder="Enter your CTC."
-             
-
                       required
                     />
                   </div>
@@ -420,7 +425,6 @@ const AddEmployee = () => {
                       onChange={inputChangeHandler}
                       placeholder="Enter pf number  ."
                       maxlength='12'
-
                       required
                     />
                   </div>
@@ -435,8 +439,6 @@ const AddEmployee = () => {
                       name="panNumber"
                       onChange={inputChangeHandler}
                       placeholder="Enter PAN Number  ."
-             
-
                       required
                     />
                   </div>
@@ -451,8 +453,6 @@ const AddEmployee = () => {
                       name="aadhaarNumber"
                       onChange={inputChangeHandler}
                       placeholder="Enter Aadhaar Number  ."
-             
-
                       required
                     />
                   </div>
@@ -462,14 +462,14 @@ const AddEmployee = () => {
                       Reporting To:
                     </label>
 
-                    <select
+                    <select required
                       valueType={data.reportingTo}
                       className="form-select"
                       aria-label="Default select example"
                       name="reportingTo"
                       onChange={inputChangeHandler}
                     >
-                      <option selected disabled>
+                      <option selected disabled value=''>
                         ---Reporting To---
                       </option>
                       {report.map((e) => (
@@ -485,14 +485,14 @@ const AddEmployee = () => {
                       Work Type:
                     </label>
 
-                    <select
+                    <select required
                       valueType={data.workType}
                       className="form-select"
                       aria-label="Default select example"
                       name="workType"
                       onChange={inputChangeHandler}
                     >
-                      <option>---select Type---</option>
+                      <option value=''>---select Type---</option>
                       <option value="permanent">Technical</option>
                       <option value="probation">Non-Technical</option>
                       {/* {show.map(saurabh=>( <option valueType={saurabh.workType}>{saurabh.workType}</option>))} */}
@@ -504,6 +504,7 @@ const AddEmployee = () => {
                     <label className="form-label">Joining Date:</label>
                     <div>
                       <Form.Control
+                      input
                         required
                         value={data.joiningDate}
                         type="date"
@@ -548,10 +549,15 @@ const AddEmployee = () => {
                       save
                     </button>
                     </div>
+
+
+
+
                 </div>
               </div>
             </div>
             </form>
+
 
           </CAccordionBody>
         </CAccordionItem>
