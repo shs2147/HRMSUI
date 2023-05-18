@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import Form from "./Form";
+import React from "react";
+import Form from "../Form";
 import classes from "./AttendanceDetail.module.css";
 function AttendanceDetail() {
   

@@ -3,6 +3,13 @@ import MaterialTable from "@material-table/core";
 import swal from 'sweetalert';
 
 const AddHoliday= () => {
+   const [warningMessage2, setWarningMessage2] = useState(false);
+  const [warningMessage, setWarningMessage] = useState(false);
+  const [neeraj, setNeeraj] = useState(false);
+  const [kukaa, setkukaa] = useState(false);
+  const [bhanwala, setBhanwala] = useState(false);
+  const [bhanwalas, setBhanwalas] = useState(false);
+  const [disabled, setDisabled] = useState(true);
 
   const [data,setData]=useState({
     // holidayName:'',
@@ -13,22 +20,102 @@ const AddHoliday= () => {
   });
 
  const inputChangeHandler=(e)=>{
-  
+    let neeraj=e.target.value;
+  setNeeraj(neeraj)
+  if (!neeraj.match(/^[A-Za-z-()_/a-z ]{0,}$/)){
+setWarningMessage2(true)
+setWarningMessage(false)
+setDisabled(true)
+   }   
+   else if (neeraj.length==""){
+    setWarningMessage(true)
+    setWarningMessage2(false)
+    setDisabled(true)
+       }
+   else{
+    setWarningMessage2(false)
+    setWarningMessage(false)
+    setDisabled(false)
+         }
     let newData={...data};
     newData[e.target.name]=e.target.value;
     setData(newData)
  }
- const submitHandler=(e)=>{
-  console.log(JSON.stringify(data))
 
+ const inputChangeHandlers=(e)=>{
+  let neeraj=e.target.value;
+  setkukaa(neeraj)
+  if (!neeraj.match(/^[A-Za-z-/a-z ]{0,}$/)){
+setWarningMessage2(true)
+setWarningMessage(false)
+setDisabled(true)
+   }   
+   else if (neeraj.length==""){
+    setWarningMessage(true)
+    setWarningMessage2(false)
+    setDisabled(true)
+       }
+   else{
+    setWarningMessage2(false)
+    setWarningMessage(false)
+    setDisabled(false)
+         }
+    let newData={...data};
+    newData[e.target.name]=e.target.value;
+    setData(newData)
+ }
+
+ const inputChangeHandlerss=(e)=>{
+  let neeraj=e.target.value;
+  setBhanwala(neeraj)  
+   if (neeraj.length==""){
+    setWarningMessage(true)
+    setWarningMessage2(false)
+    setDisabled(true)
+       }
+   else{
+    setWarningMessage2(false)
+    setWarningMessage(false)
+    setDisabled(false)
+         }
+    let newData={...data};
+    newData[e.target.name]=e.target.value;
+    setData(newData)
+ }
+
+ const inputChangeHandlersss=(e)=>{
+  let neeraj=e.target.value;
+  setBhanwalas(neeraj)  
+   if (neeraj.length==""){
+    setWarningMessage(true)
+    setWarningMessage2(false)
+    setDisabled(true)
+       }
+   else{
+    setWarningMessage2(false)
+    setWarningMessage(false)
+    setDisabled(false)
+         }
+    let newData={...data};
+    newData[e.target.name]=e.target.value;
+    setData(newData)
+ }
+
+ const submitHandler=(e)=>{
+    if(neeraj.length>0 && kukaa.length>0 && bhanwala.length>0 && bhanwalas.length>0){
+  e.preventDefault();
+  console.log(JSON.stringify(data))
   fetch("http://localhost:8080/holiday/leaveDetail",{
     method:"POST",
     headers:{"content-Type": "application/json", "Accept": "application/json"},
     body:JSON.stringify(data)
   }).then(()=>{
     console.log("LeaveDetail are added")})
-    swal("Success", "Holiday Added Successfully", "success");
+    swal("Success", "Holiday Added Successfully", "success").then(()=>{
+          window.location.reload(true);
+    })
 
+  }
  }
 
  const [holidayDetails, setHolidayDetails] = useState([]);
@@ -55,7 +142,7 @@ return <>
 </div>
 <div className="col-sm-6">
   <label  class="form-label">Holiday Type:</label><br/>
-  <input placeholder="Enter Holiday Type" value={data.holidayType} type="Text" class="form-control" id="formGroupExampleInput" name="holidayType" onChange={inputChangeHandler} required />
+  <input placeholder="Enter Holiday Type" value={data.holidayType} type="Text" class="form-control" id="formGroupExampleInput" name="holidayType" onChange={inputChangeHandlers} required />
 </div>
 {/* <div className="col-sm-6 mt-2">
        <label for="cars" id='label'>Holiday Type:</label>
@@ -72,18 +159,29 @@ return <>
 
  <div className="col-sm-6">
   <label  class="form-label">From Date</label><br/>
-  <input value={data.fromDate} type="Date" class="form-control" id="formGroupExampleInput" name="fromDate" onChange={inputChangeHandler} required />
+  <input value={data.fromDate} type="Date" class="form-control" id="formGroupExampleInput" name="fromDate" onChange={inputChangeHandlerss} required />
 
 </div>
 
 <div className="col-sm-6">
   <label  class="form-label">To Date</label><br/>
-  <input value={data.toDate} type="Date" class="form-control" id="formGroupExampleInput" name="toDate" onChange={inputChangeHandler} required/>
+  <input value={data.toDate} type="Date" class="form-control" id="formGroupExampleInput" name="toDate" onChange={inputChangeHandlersss} required/>
 
 </div>
 
 </div>
-<button type="submit" onClick={submitHandler} className="btn btn-primary mt-4">Save</button>
+
+<button type="submit" disabled={disabled} onClick={submitHandler}  className="btn btn-primary mt-4">Save</button>
+{
+              warningMessage?
+              <span style={{color:'red'}}><i> &nbsp; <i class="fa fa-exclamation-circle" aria-hidden="true"></i> Empty field not allowed.</i></span>
+              : null
+            }
+            {
+              warningMessage2?
+              <span style={{color:'red'}}><i> &nbsp; <i class="fa fa-exclamation-circle" aria-hidden="true"></i> This stroke not allowed.</i></span>
+              : null
+            }
 </div>
 
 </form>

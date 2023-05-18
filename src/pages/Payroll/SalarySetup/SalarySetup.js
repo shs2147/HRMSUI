@@ -223,8 +223,7 @@ function closePdf(){
 }
 
 function print(){
-  // window.open(pdf)
-  window.print()
+  window.scroll()
 }
 
 
@@ -238,7 +237,7 @@ function print(){
   <div className="pdfMainContainer" >
   <div className="innerPdf">
   <table border="2">
-<tr height="100px" style={{backgroundColor:'#747370',color:'orange', textAlign:'center',fontSize:'34px', fontWeight:'600'}}>
+<tr height="100px" className='head'>
 <td colspan='4'>Ahom Technologies Pvt. Ltd.
 </td>
 </tr>
@@ -383,9 +382,9 @@ function print(){
 </table>
   </div>
   <div className="mt-5">
-	<button className='btn btn-primary me-2' onClick={print}>Print</button>
+	<button className='btn btn-primary me-2 neeraj' onClick={print}>Print</button>
 	{/* <button className='btn btn-success me-2' onClick={pdfGenerator}>Download PDF</button> */}
-  <button className='btn btn-danger ms-2' onClick={closePdf}>Close</button>
+  <button className='btn btn-danger ms-2 neeraj' onClick={closePdf}>Close</button>
 	</div>
 </div>
 
@@ -534,13 +533,13 @@ function print(){
   <div className="all">
   {/* <select disabled={disabled} value={lOP} name='lop' onChange={inputChangeHandler} > */}
       {/* <option selected disabled>Select Work Type</option> */}
-      <input type='text' maxLength="2" value={lOP} name='lop' onChange={inputChangeHandler} placeholder='lop days'/> 
+      <input type='number' maxLength="2" value={lOP} name='lop' onChange={inputChangeHandler} placeholder='lop days'/> 
       {/* {show.map(e=>(<option valueType={e.basicEmployee1.workType }>{e.basicEmployee1.workType }</option>))} */}
       {/* </select> */}
   </div>  
 
    <div className="all">
-  <input type="text" maxLength="2" value={workingdays} name='workingdays' onChange={inputChangeHandler} placeholder='Enter field ...' />
+  <input type="number" maxLength="2" value={workingdays} name='workingdays' onChange={inputChangeHandler} placeholder='Enter field ...' />
   </div>
 
   {/* <div className="all">
@@ -635,24 +634,6 @@ function print(){
   </div>
 
 
-{/* <div className="all">
-<select  value={fnclMonth} name='fnclMonth' onChange={inputChangeHandler}>
-    <option selected>Select Month</option>
-      <option value="Jan">January</option>
-     <option value="Fab">February</option>
-    <option value="Mar">March</option>
-      <option value="Apr">April</option>
-        <option value="May">May</option>
-         <option value="Jun">June</option>
-          <option value="Jul">July</option>
-           <option value="Aug">August</option>
-             <option value="Sep">September</option>
-             <option value="Oct">October</option>
-            <option value="Nov">November</option>
-               <option value="Dec">December</option>
-                  </select>
-  </div> */}
-
   <div className="all">
     <select disabled={disabled} value={accountNumber} name="accountNumber"  onChange={inputChangeHandler} >
       <option selected disabled>Select Account No.</option>
@@ -704,7 +685,7 @@ function print(){
   
 
   <div className="all">
-  <input type="text" maxLength="2" value={paidday} name='paidday' onChange={inputChangeHandler} placeholder="Enter field income" />
+  <input type="number" maxLength="2" value={paidday} name='paidday' onChange={inputChangeHandler} placeholder="Enter field income" />
   </div>
 
   {/* <div className="all">
