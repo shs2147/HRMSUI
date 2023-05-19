@@ -190,7 +190,6 @@ const routes = [
       // },
     ],
   },
-
   {
     path: "/requirementStructure",
     name: "Requirement Structure",
@@ -212,40 +211,18 @@ const routes = [
         icon: <AiOutlineCaretRight />,
       },
 
-  // {
-  //   path: "/requirementStructure",
-  //   name: "Requirement Structure",
-  //   icon: <BiAlignLeft />,
-  //   subRoutes: [
-  //     {
-  //       path: "/Recruitment/AddjobTitle",
-  //       name: "Add Job Title",
-  //       icon: <AiOutlineCaretRight />,
-  //     },
-  //     // {
-  //     //   path: "/Recruitment/ViewjobTitle",
-  //     //   name: "View Job Title",
-  //     //   icon: <AiOutlineCaretRight />,
-  //     // },
-  //     {
-  //       path: "/Recruitment/AddJobVacancy",
-  //       name: "Add Job Vacancies",
-  //       icon: <AiOutlineCaretRight />,
-  //     },
-
-
-  //     // {
-  //     //   path: "/Recruitment/FixinInterviewOnline",
-  //     //   name: "Fixing Interview Online",
-  //     //   icon: <AiOutlineCaretRight />,
-  //     // },
-  //     // {
-  //     //   path: "/Recruitment/OnlineApplication",
-  //     //   name: "Online Application",
-  //     //   icon: <AiOutlineCaretRight />,
-  //     // },
-  //   ],
-  // },
+      // {
+      //   path: "/Recruitment/FixinInterviewOnline",
+      //   name: "Fixing Interview Online",
+      //   icon: <AiOutlineCaretRight />,
+      // },
+      // {
+      //   path: "/Recruitment/OnlineApplication",
+      //   name: "Online Application",
+      //   icon: <AiOutlineCaretRight />,
+      // },
+    ],
+  },
   {
     path: "/trainingModule",
     name: "Training Module",

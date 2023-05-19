@@ -223,7 +223,7 @@ function closePdf(){
 }
 
 function print(){
-  window.scroll()
+  window.print()
 }
 
 

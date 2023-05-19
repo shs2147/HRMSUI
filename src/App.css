@@ -409,8 +409,8 @@ table{
   margin-left:-30px;
   }
 
-  @media scroll{
-.neer, time{
+  @media print{
+.neer{
   display:none;
 }   
   }

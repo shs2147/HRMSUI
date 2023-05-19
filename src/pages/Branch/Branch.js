@@ -4,29 +4,10 @@ import swal from 'sweetalert';
 import { Button } from "react-bootstrap";
 
 const Branch = () => {
-  const [warningMessage, setWarningMessage] = useState(false);
-  const [warningMessage2, setWarningMessage2] = useState(false);
-  const [disabled, setDisabled] = useState(true);
   const [data, setData] = useState({
     name: "",
   });
   const inputChangeHandler = (e) => {
-    let neeraj=e.target.value;
-  if (!neeraj.match(/^[A-Za-z ]{0,}[A-Za-z]{0,}$/)){
-setWarningMessage2(true)
-setWarningMessage(false)
-setDisabled(true)
-   }
-   else if (neeraj.length<1){
-    setWarningMessage(true)
-    setWarningMessage2(false)
-    setDisabled(true)
-       }
-   else{
-    setWarningMessage(false)
-    setWarningMessage2(false)
-    setDisabled(false)
-         }
     let newData = { ...data };
     newData[e.target.name] = e.target.value;
     setData(newData);
@@ -103,7 +84,7 @@ setDisabled(true)
                 name="name"
                 onChange={inputChangeHandler}
               />     
-                     {
+                     {/* {
               warningMessage?
               <span style={{color:'red'}}><i> &nbsp; <i class="fa fa-exclamation-circle" aria-hidden="true"></i> Please enter branch name.</i></span>
               : null
@@ -112,7 +93,7 @@ setDisabled(true)
               warningMessage2?
               <span style={{color:'red'}}><i> &nbsp; <i class="fa fa-exclamation-circle" aria-hidden="true"></i> Only alphabets allowed.</i></span>
               : null
-            }
+            } */}
             </div>
 
             {/* <div className="col-sm-6 mt-2">
@@ -130,9 +111,9 @@ setDisabled(true)
               />
             </div> */}
           </div>
-          <button disabled={disabled} type="submit" class="btn btn-primary  mt-4 ">
+          <butto type="submit" class="btn btn-primary  mt-4 ">
             Save
-          </button>
+          </butto>
         </form>
       </div>   <br/><br/>
       <MaterialTable

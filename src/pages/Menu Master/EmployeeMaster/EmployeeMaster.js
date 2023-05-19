@@ -3,7 +3,7 @@ import MaterialTable from "@material-table/core";
 import swal from 'sweetalert';
 import { Button } from "react-bootstrap";
 // import MaterialTable from 'material-table';
-import { SaveAlt } from '@material-ui/icons';
+// import { SaveAlt } from '@material-ui/icons';
 
 
 const EmployeeMaster = () => {
@@ -120,7 +120,7 @@ const EmployeeMaster = () => {
             },
           ]}
           icons={{
-            Export: () => <SaveAlt />,
+            // Export: () => <SaveAlt />,
           }}
 
           options={{
