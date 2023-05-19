@@ -14,7 +14,7 @@ const ViewJobTitle = () => {
   const submitHandler = async(e) => {
     e.preventDefault();
 
-     fetch("http://localhost:8080/addjobtitle/getjob", {
+     fetch("https://apihrms.atwpl.com/addJobTitle/getJob", {
       headers: {
         Accept: 'application/json',
       },

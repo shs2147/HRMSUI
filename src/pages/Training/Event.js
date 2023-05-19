@@ -14,7 +14,7 @@ import { Button } from "react-bootstrap";
     e.preventDefault();
     console.log(JSON.stringify(data))
   
-    fetch("http://localhost:8080/event/savedata",{
+    fetch("https://apihrms.atwpl.com/event/saveData",{
       method:"POST",
       headers:{"content-Type": "application/json", "Accept": "application/json"},
       body:JSON.stringify(data)

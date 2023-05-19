@@ -16,7 +16,7 @@ import swal from 'sweetalert';
    }
 
    const fetchData1 = () => {
-    fetch("http://localhost:8080/basic/fetchdata", {})
+    fetch("https://apihrms.atwpl.com/basic/fetchData", {})
       .then((response) => {
         return response.json();
       })
@@ -36,7 +36,7 @@ import swal from 'sweetalert';
 
 
 
-    fetch("http://localhost:8080/CreateLeaveRequest/post",{
+    fetch("https://apihrms.atwpl.com/CreateLeaveRequest/post",{
             method:"POST",
             headers:{"content-Type": "application/json", "Accept": "application/json"},
             body:JSON.stringify(data)

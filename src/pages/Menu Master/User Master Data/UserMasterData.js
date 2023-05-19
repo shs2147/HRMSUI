@@ -7,14 +7,6 @@ import { Button } from "react-bootstrap";
 
 const UserMasterData = () => {
 
-
-  const [data, setData] = useState([]);
-  const inputChangeHandler = (e) => {
-    let newData = { ...data };
-    newData[e.target.name] = e.target.value;
-    setData(newData);
-  };
- 
   const [ticketDetails, setTicketDetails] = useState([]);
 
  
@@ -31,10 +23,16 @@ const UserMasterData = () => {
       })
     })
   }
-
-  const options = { method: "GET" };
+  const token = sessionStorage.getItem("token");
+  // const options = { method: "GET" };
+  const options = {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
   const fetchData=()=>{
-    fetch("http://localhost:8080/usermaster/fetchAll", options)
+    fetch("http://localhost:8080/employees/getAll", options)
     .then((response) => response.json())
     .then((response) => setTicketDetails(response))
     .catch((err) => console.error(err));
@@ -43,13 +41,6 @@ const UserMasterData = () => {
   useEffect(()=>{
     fetchData();
   },[])
-
- 
-
-//   fetch("http://localhost:8080/usermaster/fetchAll", options)
-//     .then((response) => response.json())
-//     .then((response) => setTicketDetails(response))
-//     .catch((err) => console.error(err));
 
   return (
     <>
@@ -81,13 +72,12 @@ const UserMasterData = () => {
             },
             {
                 title: "Role",
-                field: "roleName",
+                field: "roles",
             },
             {
               title: "Actions",
               field: "actions",
               render: (rowData) => (
-                // <CustomButton rowData={rowData} onDelete={handleDelete} />
                 <Button onClick={() => handleDelete(rowData.id)}>Delete</Button>
               ),
             },

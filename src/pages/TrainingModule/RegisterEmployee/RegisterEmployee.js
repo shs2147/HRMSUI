@@ -11,7 +11,7 @@ const RegisterEmployee = () => {
 
  
   const handleDelete = (id)=>{
-    fetch(`http://localhost:8080/employee/delete/${id}`,{
+    fetch(`https://apihrms.atwpl.com/employee/delete/${id}`,{
   method:'DELETE'
     }).then((result)=>{
       swal("Success", "Data Deleted Successfully", "success").then(()=>{
@@ -26,7 +26,7 @@ const RegisterEmployee = () => {
 
   const options = { method: "GET" };
   const fetchData=()=>{
-    fetch("http://localhost:8080/employee/get", options)
+    fetch("https://apihrms.atwpl.com/employee/get", options)
     .then((response) => response.json())
     .then((response) => setTicketDetails(response))
     .catch((err) => console.error(err));

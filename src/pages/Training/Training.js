@@ -15,7 +15,7 @@ import swal from 'sweetalert';
     e.preventDefault();
     console.log(JSON.stringify(data))
   
-    fetch("http://localhost:8080/training/save",{
+    fetch("https://apihrms.atwpl.com/training/save",{
       method:"POST",
       headers:{"content-Type": "application/json", "Accept": "application/json"},
       body:JSON.stringify(data)

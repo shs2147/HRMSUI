@@ -70,7 +70,7 @@ setDisabled(true)
   if(neeraj.length>0 && kukaa.length>0){
   e.preventDefault();
   console.log(JSON.stringify(data))
-  fetch("http://localhost:8080/leave/leaveType",{
+  fetch("https://apihrms.atwpl.com/leave/leaveType",{
     method:"POST",
     headers:{
       "content-Type": "application/json", 
@@ -94,7 +94,7 @@ setDisabled(true)
 
 
   const handleDelete = (id)=>{
-    fetch(`http://localhost:8080/leave/leavetype/{deletei}`,{
+    fetch(`https://apihrms.atwpl.com/leave/leaveType/{deletei}`,{
   method:'DELETE'
     }).then((result)=>{
       swal("Success", "Department Deleted Successfully", "success").then(()=>{
@@ -110,7 +110,7 @@ setDisabled(true)
    const [leaveDetails, setLeaveDetails] = useState([]);
   const options = {method: 'GET'};
 
-fetch('http://localhost:8080/leave/LeaveType', options)
+fetch('https://apihrms.atwpl.com/leave/leaveType', options)
   .then(response => response.json())
   .then(response => setLeaveDetails(response))
   .catch(err => console.error(err));

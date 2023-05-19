@@ -4,10 +4,12 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 const DasNav = () => {
   const location = useNavigate();
 
+
   const logout = async () => {
     await fetch('/logout'); // send a request to the server to clear the session information
     sessionStorage.removeItem("token")
     window.location.href = '/SignIn'; // redirect the user to the login page
+
   };
   return (
     <div className="container4">

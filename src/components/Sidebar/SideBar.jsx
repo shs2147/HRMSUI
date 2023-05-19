@@ -3,18 +3,6 @@ import { FaBars } from "react-icons/fa";
 import { BiAlignLeft } from "react-icons/bi";
 import { AiFillHome, AiOutlineCaretRight } from "react-icons/ai";
 import { BsFillPersonFill } from "react-icons/bs";
-import { SiMomenteo } from "react-icons/si";
-import { GiInnerSelf } from "react-icons/gi";
-import { MdOutlineAppRegistration } from "react-icons/md";
-import { FaRupeeSign } from "react-icons/fa";
-import { CgOrganisation } from "react-icons/cg";
-import { RiGitPullRequestFill } from "react-icons/ri";
-import { FaCodeBranch } from "react-icons/fa";
-import { MdOutlinePendingActions } from "react-icons/md";
-import { FaChalkboardTeacher } from "react-icons/fa";
-import { GiTeacher } from "react-icons/gi";
-import { BiShekel } from "react-icons/bi";
-
 
 import { useState } from "react";
 // import{ setSelectedFile } from "react";
@@ -30,7 +18,7 @@ const routes = [
   {
     path: "/menuMaster",
     name: "Menu Master",
-    icon: <SiMomenteo />,
+    icon: <BiAlignLeft />,
     subRoutes: [
       {
         path: "/menuMaster/UserMaster",
@@ -79,7 +67,7 @@ const routes = [
   {
     path: "/selfPortal",
     name: "Self Portal",
-    icon: <GiInnerSelf />,
+    icon: <BiAlignLeft />,
     subRoutes: [
       {
         path: "/selfPortal/AttendanceDetails",
@@ -111,7 +99,7 @@ const routes = [
   {
     path: "/screening&Approval",
     name: "Screening & Approval",
-    icon: <MdOutlineAppRegistration />,
+    icon: <BiAlignLeft />,
     subRoutes: [
       {
         path: "/screening&Approval/Attendance Details",
@@ -128,7 +116,7 @@ const routes = [
   {
     path: "/payroll",
     name: "Payroll",
-    icon: <FaRupeeSign />,
+    icon: <BiAlignLeft />,
     subRoutes: [
       {
         path: "/payroll/SalarySetup",
@@ -171,7 +159,7 @@ const routes = [
   {
     path: "/organisationStructure",
     name: "Organisation Structure",
-    icon: <CgOrganisation />,
+    icon: <BiAlignLeft />,
     subRoutes: [
       {
         path: "/organisationStructure/AddHoliday",
@@ -193,7 +181,7 @@ const routes = [
   {
     path: "/requirementStructure",
     name: "Requirement Structure",
-    icon: <RiGitPullRequestFill />,
+    icon: <BiAlignLeft />,
     subRoutes: [
       {
         path: "/Recruitment/AddjobTitle",
@@ -211,6 +199,41 @@ const routes = [
         icon: <AiOutlineCaretRight />,
       },
 
+
+  // {
+  //   path: "/requirementStructure",
+  //   name: "Requirement Structure",
+  //   icon: <BiAlignLeft />,
+  //   subRoutes: [
+  //     {
+  //       path: "/Recruitment/AddjobTitle",
+  //       name: "Add Job Title",
+  //       icon: <AiOutlineCaretRight />,
+  //     },
+  //     // {
+  //     //   path: "/Recruitment/ViewjobTitle",
+  //     //   name: "View Job Title",
+  //     //   icon: <AiOutlineCaretRight />,
+  //     // },
+  //     {
+  //       path: "/Recruitment/AddJobVacancy",
+  //       name: "Add Job Vacancies",
+  //       icon: <AiOutlineCaretRight />,
+  //     },
+
+
+  //     // {
+  //     //   path: "/Recruitment/FixinInterviewOnline",
+  //     //   name: "Fixing Interview Online",
+  //     //   icon: <AiOutlineCaretRight />,
+  //     // },
+  //     // {
+  //     //   path: "/Recruitment/OnlineApplication",
+  //     //   name: "Online Application",
+  //     //   icon: <AiOutlineCaretRight />,
+  //     // },
+
+
       // {
       //   path: "/Recruitment/FixinInterviewOnline",
       //   name: "Fixing Interview Online",
@@ -221,12 +244,13 @@ const routes = [
       //   name: "Online Application",
       //   icon: <AiOutlineCaretRight />,
       // },
+
     ],
   },
   {
     path: "/trainingModule",
     name: "Training Module",
-    icon: <GiTeacher />,
+    icon: <BiAlignLeft />,
     subRoutes: [
       {
         path: "/trainingModule/RegisterEmployee",
@@ -265,7 +289,7 @@ const routes = [
   {
     path: "/attendance",
     name: "Attendance",
-    icon: <MdOutlinePendingActions />,
+    icon: <BiAlignLeft />,
     subRoutes: [
       {
         path: "/attendance/AddIndividualAttendance",
@@ -307,7 +331,7 @@ const routes = [
   {
     path: "/ShiftManagement",
     name: "Shift Management",
-    icon: <BiShekel />,
+    icon: <BiAlignLeft />,
     subRoutes: [
       {
         path: "Shift Management/Add Shift",
@@ -325,7 +349,7 @@ const routes = [
   {
     path: "/Training",
     name: "Training",
-    icon: <FaChalkboardTeacher />,
+    icon: <BiAlignLeft />,
     subRoutes: [
       {
         path: "Training/Training",
@@ -342,7 +366,7 @@ const routes = [
   {
     path: "/Branch",
     name: "Branch",
-    icon: <FaCodeBranch />,
+    icon: <BiAlignLeft />,
     subRoutes: [
       {
         path: "Branch/Branch",
@@ -351,7 +375,7 @@ const routes = [
       },
     ],
   }
-];
+]
 
 const SideBar = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);

@@ -13,7 +13,7 @@ const EmployeeMaster = () => {
 
 
   const handleDelete = (employeeId)=>{
-    fetch(`http://localhost:8080/basic/delete/${employeeId}`,{
+    fetch(`https://apihrms.atwpl.com/basic/delete/${employeeId}`,{
   method:'DELETE'
     }).then((result)=>{
       swal("Success", "Employee Deleted Successfully", "success").then(()=>{
@@ -28,7 +28,7 @@ const EmployeeMaster = () => {
 
   const options = { method: "GET" };
   const fetchData=()=>{
-    fetch("http://localhost:8080/basic/fetchdata", options)
+    fetch("https://apihrms.atwpl.com/basic/fetchData", options)
     .then((response) => response.json())
     .then((response) => setTicketDetails(response))
     .catch((err) => console.error(err));

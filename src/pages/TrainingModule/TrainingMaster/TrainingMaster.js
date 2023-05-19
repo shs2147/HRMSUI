@@ -35,7 +35,7 @@ const[selectedId,setSelectedId]=useState([])
   e.preventDefault();
   console.log(JSON.stringify(data))
 
-  fetch("http://localhost:8080/employee/save",{
+  fetch("https://apihrms.atwpl.com/employee/save",{
     method:"POST",
     headers:{"content-Type": "application/json", "Accept": "application/json"},
     body:JSON.stringify(data)
@@ -47,7 +47,7 @@ const[selectedId,setSelectedId]=useState([])
 
 }
 const fetchData1 = () =>{
-  fetch("http://localhost:8080/basic/fetchdata",{
+  fetch("https://apihrms.atwpl.com/basic/fetchData",{
   })
   .then((response) =>{
     return response.json();
@@ -64,7 +64,7 @@ useEffect(()=>
 
  console.log ("itemshow" , itemshow)
 const fetchData2 = () =>{
-  fetch("http://localhost:8080/event/fetchdata",{
+  fetch("https://apihrms.atwpl.com/event/fetchData",{
   })
   .then((response) =>{
     return response.json();
@@ -79,7 +79,7 @@ useEffect(()=>
  },[])
 
  const fetchData3 = () =>{
-  fetch("http://localhost:8080/training/fetchdata",{
+  fetch("https://apihrms.atwpl.com/training/fetchData",{
   })
   .then((response) =>{
     return response.json();

@@ -19,7 +19,7 @@ const AddJobTitle = () => {
   }
   const submitHandler = () => {
     console.log(JSON.stringify(data))
-    fetch("http://localhost:8080/addjobtitle/save", {
+    fetch("https://apihrms.atwpl.com/addJobTitle/save", {
       method: "POST",
       headers: { "Content-Type": "application/json", "Accept": "appliction/json" },
       body: JSON.stringify(data)
@@ -30,7 +30,7 @@ const AddJobTitle = () => {
   }
   const options = { method: "GET" };
 
-  fetch("http://localhost:8080/addjobtitle/getjob", options)
+  fetch("https://apihrms.atwpl.com/addJobTitle/getJob", options)
     .then((response) => response.json())
     .then((response) => setJobDetails(response))
     .catch((err) => console.error(err));

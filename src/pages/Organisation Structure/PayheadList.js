@@ -20,12 +20,12 @@ const changeHandler=(event)=>{
 }
 const deleteHandler=(e,id)=>{
   e.preventDefault()
-  axios.delete(`http://localhost:8080/payHead/deletepayheadmaster/${id}`).then(res=>console.log(res))
+  axios.delete(`https://apihrms.atwpl.com/payHead/deletepayheadmaster/${id}`).then(res=>console.log(res))
 }
 
 useEffect(()=>{
   
-  fetch("http://localhost:8080/payHead/PayheadMasterDetail").then(res=>res.json()).then(value=>setContacts(value))
+  fetch("https://apihrms.atwpl.com/payHead/PayheadMasterDetail").then(res=>res.json()).then(value=>setContacts(value))
 },[contacts])
 
 const showHandler=(e)=>{
@@ -37,7 +37,7 @@ const showHandler=(e)=>{
 const submitHandler=(event)=>{
   event.preventDefault();
   console.log(data);
-  fetch("http://localhost:8080/payHead/PayheadMaster",{
+  fetch("https://apihrms.atwpl.com/payHead/PayheadMaster",{
       method:"POST",
       headers:{"content-Type": "application/json", "Accept": "application/json"},
       body:JSON.stringify(data)
@@ -204,7 +204,7 @@ const submitHandler=(event)=>{
 //    setContacts(newContacts)
 //    console.log(contacts)
 
-//    fetch("http://localhost:8080/PayheadMaster",{
+//    fetch("https://apihrms.atwpl.com/PayheadMaster",{
 //     method:"POST",
 //     headers:{"content-Type": "application/json", "Accept": "application/json"},
 //     body:JSON.stringify(data)

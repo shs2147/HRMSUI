@@ -16,7 +16,7 @@ const inputChangeHandler=(e)=>{
   const submitHandler = (e) => {
     e.preventDefault();
     console.log(JSON.stringify(data))
-    fetch('http://localhost:8080/saveapproval', {
+    fetch('https://apihrms.atwpl.com/saveApproval', {
 
       method: "POST",
       headers: { "Content-Type": "application/json", "Accept": "application/json" },

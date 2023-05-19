@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Validation from "../../validation/Validation";
 
 const SignInForm = (props) => {
-  const [userName, setUsername] = useState("");
+  const [username, setusername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [showError, setShowError] = useState(false);
@@ -14,23 +14,23 @@ const SignInForm = (props) => {
 
   useEffect(() => {
     if (error === null) {
-      setUsername("");
+      setusername("");
       setPassword("");
     }
   }, [error]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!userName || !password) {
+    if (!username || !password) {
       setError("Please enter a username and password");
       return;
     }
     setError(null);
 
     try {
-      const response = await fetch("http://localhost:8080/usermaster/authenticate", {
+      const response = await fetch("http://localhost:8081/login", {
         method: "POST",
-        body: JSON.stringify({ userName, password }),
+        body: JSON.stringify({ username, password }),
         headers: { "Content-Type": "application/json" },
       })
         .then((res) => res.json())
@@ -39,8 +39,8 @@ const SignInForm = (props) => {
             console.log(data.token);
             if (data.token) {
               sessionStorage.setItem("token", JSON.stringify(data.token));
-              sessionStorage.setItem("role", JSON.stringify(data.roleName));
-              sessionStorage.setItem("userName", JSON.stringify(data.user));
+              // sessionStorage.setItem("role", JSON.stringify(data.roleName));
+              // sessionStorage.setItem("username", JSON.stringify(data.user));
               navigate("/Dashboard");
             }
           }
@@ -59,12 +59,12 @@ const SignInForm = (props) => {
     <form onSubmit={handleSubmit} className={classes.formField}>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <div className={classes.formField}>
-        <label htmlFor="username" className={classes.formFieldLabel}>Username:</label>
+        <label htmlFor="username" className={classes.formFieldLabel}>username:</label>
         <input className={classes.formFieldInput}
           type="text"
           id="username"
-          value={userName}
-          onChange={(event) => setUsername(event.target.value)}
+          value={username}
+          onChange={(event) => setusername(event.target.value)}
         />
       </div>
       <div className={classes.formField}>

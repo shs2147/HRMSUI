@@ -105,7 +105,7 @@ setDisabled(true)
     if(neeraj.length>0 && kukaa.length>0 && bhanwala.length>0 && bhanwalas.length>0){
   e.preventDefault();
   console.log(JSON.stringify(data))
-  fetch("http://localhost:8080/holiday/leaveDetail",{
+  fetch("https://apihrms.atwpl.com/holiday/leaveDetail",{
     method:"POST",
     headers:{"content-Type": "application/json", "Accept": "application/json"},
     body:JSON.stringify(data)
@@ -121,7 +121,7 @@ setDisabled(true)
  const [holidayDetails, setHolidayDetails] = useState([]);
   const options = {method: 'GET'};
 
-fetch('http://localhost:8080/holiday/leaveDetails', options)
+fetch('https://apihrms.atwpl.com/holiday/leaveDetails', options)
   .then(response => response.json())
   .then(response => setHolidayDetails(response))
   .catch(err => console.error(err));

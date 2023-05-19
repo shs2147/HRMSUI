@@ -17,7 +17,7 @@ const EmploymentTypeMaster = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     console.log(JSON.stringify(data));
-    fetch("http://localhost:8080/saveemployement", {
+    fetch("https://apihrms.atwpl.com/employment/saveEmployement", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -35,7 +35,7 @@ const EmploymentTypeMaster = () => {
   };
 
   const handleDelete = (id)=>{
-    fetch(`http://localhost:8080/employment/delete/${id}`,{
+    fetch(`https://apihrms.atwpl.com/employment/delete/${id}`,{
   method:'DELETE'
     }).then((result)=>{
 
@@ -51,7 +51,7 @@ const EmploymentTypeMaster = () => {
   const [ticketDetails, setTicketDetails] = useState([]);
   const options = { method: "GET" };
   const fetchData=()=>{
-    fetch("http://localhost:8080/getallEmp", options)
+    fetch("https://apihrms.atwpl.com/getAllEmp", options)
     .then((response) => response.json())
     .then((response) => setTicketDetails(response))
     .catch((err) => console.error(err));
@@ -61,7 +61,7 @@ const EmploymentTypeMaster = () => {
     fetchData();
   },[])
 
-  // fetch("http://localhost:8080/getallEmp", options)
+  // fetch("https://apihrms.atwpl.com/getallEmp", options)
   //   .then((response) => response.json())
   //   .then((response) => setTicketDetails(response))
   //   .catch((err) => console.error(err));
