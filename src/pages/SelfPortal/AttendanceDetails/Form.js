@@ -19,7 +19,7 @@ function Form() {
   }
   
   const fetchData = () =>{
-    fetch("http://localhost:8080/basic/fetchdata",{
+    fetch("https://apihrms.atwpl.com/basic/fetchData",{
     })
     .then((response) =>{
       return response.json();
@@ -45,7 +45,7 @@ console.log(data);
     //     console.log(res.data);
     //   });
     
-    fetch("http://localhost:8080/attendance/save",{
+    fetch("https://apihrms.atwpl.com/attendance/save",{
       method:"POST",
       headers:{"Content-Type":"application/json","Accept":"application/json"},
       body:JSON.stringify(data)

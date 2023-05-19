@@ -19,7 +19,7 @@ const AddShift = () => {
  const submitHandler=(e)=>{
   console.log(JSON.stringify(data))
 
-  fetch("http://localhost:8080/shiftmanagement/addshift",{
+  fetch("https://apihrms.atwpl.com/shiftManagement/addShift",{
     method:"POST",
     headers:{"Content-Type": "application/json", "Accept":"application/json"},
     body:JSON.stringify(data)
@@ -29,7 +29,7 @@ const AddShift = () => {
 
  }
  const fetchData1 = () =>{
-  fetch("http://localhost:8080/basic/fetchdata",{
+  fetch("https://apihrms.atwpl.com/basic/fetchData",{
   })
   .then((response) =>{
     return response.json();

@@ -28,7 +28,7 @@ setDisabled(true)
   };
   const submitHandler = (e) => {
     e.preventDefault();
-    fetch("http://localhost:8080/designation/savedesignation", {
+    fetch("https://apihrms.atwpl.com/designation/saveDesignation", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -48,7 +48,7 @@ setDisabled(true)
   };
 
   const handleDelete = (id)=>{
-    fetch(`http://localhost:8080/designation/delete/${id}`,{
+    fetch(`https://apihrms.atwpl.com/designation/delete/${id}`,{
   method:'DELETE'
     }).then((result)=>{
       swal("Success", "Designation Deleted Successfully", "success").then(()=>{
@@ -62,7 +62,7 @@ setDisabled(true)
   const [ticketDetails, setTicketDetails] = useState([]);
   const options = {method: 'GET'};
   const fetchData=()=>{
-    fetch("http://localhost:8080/designation/fetchalldesignation", options)
+    fetch("https://apihrms.atwpl.com/designation/fetchAllDesignation", options)
     .then((response) => response.json())
     .then((response) => setTicketDetails(response))
     .catch((err) => console.error(err));
@@ -72,7 +72,7 @@ setDisabled(true)
     fetchData();
   },[])
 
-// fetch('http://localhost:8080/designation/fetchalldesignation', options)
+// fetch('https://apihrms.atwpl.com/designation/fetchalldesignation', options)
 //   .then(response => response.json())
 //   .then(response => setTicketDetails(response))
 //   .catch(err => console.error(err));

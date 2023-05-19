@@ -39,8 +39,8 @@ const SignInForm = (props) => {
             console.log(data.token);
             if (data.token) {
               sessionStorage.setItem("token", JSON.stringify(data.token));
-              sessionStorage.setItem("role", JSON.stringify(data.roleName));
-              sessionStorage.setItem("username", JSON.stringify(data.user));
+              // sessionStorage.setItem("role", JSON.stringify(data.roleName));
+              // sessionStorage.setItem("username", JSON.stringify(data.user));
               navigate("/Dashboard");
             }
           }

@@ -10,7 +10,7 @@ const [formData, setFormData] = useState({ name: "",startdate: "",enddate: "",})
   const[api,setApi]=useState([]);
  const handleSubmit = (e) => {
   e.preventDefault(); 
-  axios.post("http://localhost:8080/attendance/bydate", formData, 
+  axios.post("https://apihrms.atwpl.com/attendance/byDate", formData, 
   {headers: {"Content-Type": "application/x-www-form-urlencoded",},})
    .then((response) => {
     setView(response.data)
@@ -22,7 +22,7 @@ const [formData, setFormData] = useState({ name: "",startdate: "",enddate: "",})
       const handleChange = (e) => { setFormData({ ...formData, [e.target.name]: e.target.value }); };
 
       const submitHandler = () => {
-        fetch("http://localhost:8080/attendance/fetch", {
+        fetch("https://apihrms.atwpl.com/attendance/fetch", {
         })
           .then((response) => {
             return response.json();

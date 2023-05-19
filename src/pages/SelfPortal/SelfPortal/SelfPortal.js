@@ -23,7 +23,7 @@ function SelfPortal() {
     //   .then((res) => {
     //     console.log(res.data);
     //   });
-    fetch("http://localhost:8080/travelOverview",{
+    fetch("https://apihrms.atwpl.com/travelOverview",{
       method:"POST",
       headers:{"Content-Type":"application/json","Accept":"application/json"},
       body:JSON.stringify(data)

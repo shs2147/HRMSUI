@@ -15,7 +15,7 @@ function Dashboard() {
   //let ln = 0;
   //const options = { method: "GET" };
   useEffect(() => {
-    fetch("http://localhost:8080/work/fetchdata").then(response => response.json())
+    fetch("https://apihrms.atwpl.com/work/fetchData").then(response => response.json())
       .then(data=>{
         const filteredData=data.filter(item=>item.employmentType ==="permanent");
         
@@ -23,7 +23,7 @@ function Dashboard() {
       .catch(error =>console.log(error));},[]);
 
       useEffect(() => {
-        fetch("http://localhost:8080/work/fetchdata").then(response => response.json())
+        fetch("https://apihrms.atwpl.com/work/fetchData").then(response => response.json())
           .then(data=>{
             const extractData=data.filter(item=>item.employmentType ==="probation");
             
@@ -31,7 +31,7 @@ function Dashboard() {
           .catch(error =>console.log(error));},[]);
    
   
-  //   fetch("http://localhost:8080/fetchdata", options)
+  //   fetch("https://apihrms.atwpl.com/fetchdata", options)
   //     .then((response) => response.json())
   //     .then((response) => setData(response))
 

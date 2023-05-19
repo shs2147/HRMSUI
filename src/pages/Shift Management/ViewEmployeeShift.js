@@ -17,7 +17,7 @@ const ViewEmployeeShift = () => {
   const [ticketDetails, setTicketDetails] = useState([]);
 
   const handleDelete = (id)=>{
-    fetch(`http://localhost:8080/shiftmanagement/addshift/${id}`,{
+    fetch(`https://apihrms.atwpl.com/shiftManagement/addShift/${id}`,{
   method:'DELETE'
     }).then((result)=>{
       swal("Success", "Department Deleted Successfully", "success").then(()=>{
@@ -32,7 +32,7 @@ const ViewEmployeeShift = () => {
 
   const options = { method: "GET" };
   const fetchData=()=>{
-    fetch("http://localhost:8080/shiftmanagement/viewshift", options)
+    fetch("https://apihrms.atwpl.com/shiftManagement/viewShift", options)
     .then((response) => response.json())
     .then((response) => setTicketDetails(response))
     .catch((err) => console.error(err));

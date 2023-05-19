@@ -14,7 +14,7 @@ const LeaveAproval = () => {
 
   const options = { method: "GET" };
   const fetchData=()=>{
-    fetch("http://localhost:8080/CreateLeaveRequest/get", options)
+    fetch("https://apihrms.atwpl.com/CreateLeaveRequest/get", options)
     .then((response) => response.json())
     .then((response) => setLeave(response))
     .catch((err) => console.error(err));
@@ -30,7 +30,7 @@ const LeaveAproval = () => {
 //     // e.preventDefault();
 
 //   console.log(approve);
-//   fetch("http://localhost:8080/approve/save", {
+//   fetch("https://apihrms.atwpl.com/approve/save", {
 //       method: "POST",
 //       headers: {
 //           "Content-Type": "application/json",
@@ -59,7 +59,7 @@ function approveHandle(id, status) {
   
   fetch(
   
-   "http://localhost:8080/approve/save",
+   "https://apihrms.atwpl.com/approve/save",
   
    {
   
@@ -102,7 +102,7 @@ function approveHandle(id, status) {
     
     fetch(
     
-     "http://localhost:8080/disApprove/save",
+     "https://apihrms.atwpl.com/disApprove/save",
     
      {
     

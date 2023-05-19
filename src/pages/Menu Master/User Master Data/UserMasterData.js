@@ -23,7 +23,7 @@ const UserMasterData = () => {
       })
     })
   }
-  const token = sessionStorage.getItem("token2");
+  const token = sessionStorage.getItem("token");
   // const options = { method: "GET" };
   const options = {
     method: "GET",
